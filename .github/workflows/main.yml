@@ -1,0 +1,24 @@
+# This workflow will build a Java project with Ant
+
+
+name: WAR CI
+
+on:
+  push:
+    branches:
+      - master # 当main分支发生push操作时，将执行所属工作流程
+    tag:
+      - "*"
+  pull_request_target:
+    branches:
+      - master
+    tag:
+      - "*"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
