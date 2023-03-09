@@ -20,10 +20,20 @@ permissions:
   id-token: write
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./spaic/doc
+
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages
