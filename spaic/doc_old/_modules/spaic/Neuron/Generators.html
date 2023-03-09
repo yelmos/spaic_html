@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Neuron.Generators &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.Neuron.Generators</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.Neuron.Generators 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># encoding: utf-8</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: Yuan Mengwen</span>
+<span class="sd">@contact: mwyuan94@gmail.com</span>
+<span class="sd">@project: PyCharm</span>
+<span class="sd">@filename: Generators.py</span>
+<span class="sd">@time:2021/6/21 16:35</span>
+<span class="sd">@description:</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">.Node</span> <span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">Generator</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="Poisson_Generator"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Generators.Poisson_Generator">[文档]</a><span class="k">class</span> <span class="nc">Poisson_Generator</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        泊松生成器，根据输入脉冲速率生成。</span>
+<span class="sd">        Generate a poisson spike train according input rate.</span>
+<span class="sd">        time: encoding window ms</span>
+<span class="sd">        dt: time step</span>
+<span class="sd">        HZ: cycles/s</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                 <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">Poisson_Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+        <span class="c1"># the unit of dt is 0.1ms, for each time step, the rate has to be multiplied by 1e-4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unit_conversion</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;unit_conversion&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">rate</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">rate</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">rate</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;batch&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Poisson_Generator.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Generators.Poisson_Generator.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># assert source.size == self.num, &quot;The dimension of input data should be consistent with the number of input neurons.&quot;</span>
+        <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;The dimension of input data should be consistent with the number of input neurons.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;ndarray&#39;</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="c1"># if source.ndim == 0:</span>
+        <span class="c1">#     batch = 1</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     batch = source.shape[0]</span>
+
+        <span class="c1"># shape = [self.batch, self.nu]</span>
+        <span class="n">spk_shape</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">spikes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">spk_shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="n">source</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">unit_conversion</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">start_time_step</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+            <span class="n">spikes</span><span class="p">[:</span><span class="n">start_time_step</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">end_time_step</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+            <span class="n">spikes</span><span class="p">[</span><span class="n">end_time_step</span><span class="p">:,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="n">spikes</span></div></div>
+
+<span class="n">Generator</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;poisson_generator&#39;</span><span class="p">,</span> <span class="n">Poisson_Generator</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Poisson_Generator2"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Generators.Poisson_Generator2">[文档]</a><span class="k">class</span> <span class="nc">Poisson_Generator2</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        泊松生成器，根据输入脉冲速率生成。</span>
+<span class="sd">        Generate a poisson spike train according input rate.</span>
+<span class="sd">        time: encoding window ms</span>
+<span class="sd">        dt: time step</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                 <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">Poisson_Generator2</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+
+
+
+
+<div class="viewcode-block" id="Poisson_Generator2.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Generators.Poisson_Generator2.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># assert (source &gt;= 0).all(), &quot;Input rate must be non-negative&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">source</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Input rate shall be non-negative&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;ndarray&#39;</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">batch</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">batch</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">batch</span>
+        <span class="n">spk_shape</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">spikes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">spk_shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="n">source</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">spikes</span><span class="p">)</span>
+        <span class="n">spikes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">spikes</span><span class="p">,</span> <span class="n">times</span><span class="p">],</span><span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">spikes</span></div></div>
+
+<span class="n">Generator</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;poisson_generator2&#39;</span><span class="p">,</span> <span class="n">Poisson_Generator2</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="CC_Generator"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Generators.CC_Generator">[文档]</a><span class="k">class</span> <span class="nc">CC_Generator</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        恒定电流生成器。</span>
+<span class="sd">        Generate a constant current input.</span>
+<span class="sd">        time: encoding window ms</span>
+<span class="sd">        dt: time step</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;cc_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                 <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CC_Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+
+<div class="viewcode-block" id="CC_Generator.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Generators.CC_Generator.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># assert (source &gt;= 0).all(), &quot;Input rate must be non-negative&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">source</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Input rate shall be non-negative&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;ndarray&#39;</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="c1"># if source.ndim == 0:</span>
+        <span class="c1">#     batch = 1</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     batch = source.shape[0]</span>
+        <span class="c1">#</span>
+        <span class="c1"># shape = [batch, self.num]</span>
+        <span class="n">spk_shape</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">spikes</span> <span class="o">=</span> <span class="n">source</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">spk_shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">spikes</span></div></div>
+
+<span class="n">Generator</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;cc_generator&#39;</span><span class="p">,</span> <span class="n">CC_Generator</span><span class="p">)</span>
+<span class="n">Generator</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;constant_current&#39;</span><span class="p">,</span> <span class="n">CC_Generator</span><span class="p">)</span>
+<div class="viewcode-block" id="Sin_Generator"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Generators.Sin_Generator">[文档]</a><span class="k">class</span> <span class="nc">Sin_Generator</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Generate a sin current input.</span>
+<span class="sd">        time: encoding window ms</span>
+<span class="sd">        dt: time step</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;cc_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                 <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Sin_Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+
+<div class="viewcode-block" id="Sin_Generator.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Generators.Sin_Generator.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># assert (source &gt;= 0).all(), &quot;Input rate must be non-negative&quot;</span>
+        <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;ndarray&#39;</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">amp</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">omg</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">source</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># if source.ndim == 0:</span>
+        <span class="c1">#     batch = 1</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     batch = source.shape[0]</span>
+        <span class="c1">#</span>
+        <span class="c1"># shape = [batch, self.num]</span>
+        <span class="n">spk_shape</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)))]</span>
+
+        <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">spk_shape</span><span class="p">)</span>
+        <span class="n">spikes</span> <span class="o">=</span> <span class="n">amp</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omg</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">spikes</span></div></div>
+
+<span class="n">Generator</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;sin_generator&#39;</span><span class="p">,</span> <span class="n">Sin_Generator</span><span class="p">)</span>
+<span class="n">Generator</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;sin&#39;</span><span class="p">,</span> <span class="n">Sin_Generator</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Ramp_Generator"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Generators.Ramp_Generator">[文档]</a><span class="k">class</span> <span class="nc">Ramp_Generator</span><span class="p">(</span><span class="n">Generator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;cc_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                 <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Ramp_Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">amp</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;amp&#39;</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Ramp_Generator.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Generators.Ramp_Generator.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;ndarray&#39;</span><span class="p">:</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;ndarray&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">base</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="n">slope</span> <span class="o">=</span> <span class="n">source</span>
+        <span class="c1"># spk_shape = [self.time_step] + [1 for _ in range(len(list(self.shape)))]</span>
+        <span class="n">t_shape</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)))]</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">t_shape</span><span class="p">)</span>
+        <span class="n">spikes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amp</span><span class="o">*</span><span class="p">(</span><span class="n">slope</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">base</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">time_step</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_time</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+            <span class="n">spikes</span><span class="p">[</span><span class="n">time_step</span><span class="p">:,</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="n">spikes</span></div></div>
+<span class="n">Generator</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;ramp_generator&#39;</span><span class="p">,</span> <span class="n">Ramp_Generator</span><span class="p">)</span>
+<span class="n">Generator</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;ramp&#39;</span><span class="p">,</span> <span class="n">Ramp_Generator</span><span class="p">)</span>
+
+
+
+
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

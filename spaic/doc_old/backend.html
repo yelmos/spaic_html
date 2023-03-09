@@ -1,0 +1,240 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>模拟后端 Backend &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="保存与读取模型" href="save_model.html" />
+    <link rel="prev" title="输入输出" href="input_output.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor_en.html">Monitor</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">输入输出</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>模拟后端 Backend</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/backend.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="backend">
+<h1>模拟后端 Backend<a class="headerlink" href="#backend" title="永久链接至标题">¶</a></h1>
+<p>Backend是SPAIC平台后端的核心部件，负责网络整体的运行模拟。 <code class="code docutils literal notranslate"><span class="pre">dt</span></code> 与 <code class="code docutils literal notranslate"><span class="pre">runtime</span></code> 是backend中最为重要的两个参数，分别代表了模拟的时间步与时间窗的长度。而 <code class="code docutils literal notranslate"><span class="pre">time</span></code> 代表了当前模拟到的时刻，<code class="code docutils literal notranslate"><span class="pre">n_time_step</span></code> 代表了当前模拟到的时间步。</p>
+<p>Backend中可供用户使用的函数有：</p>
+<ul class="simple">
+<li><p>set_runtime 设置时间窗的长度，或者称之为模拟的时间长度</p></li>
+<li><p>add_variable 向后端添加变量，用于自定义算法时，需要添加新的变量至backend中</p></li>
+<li><p>add_operation 向后端添加新的计算式，用于自定义算法、神经元等操作中，需要依照一定的格式</p></li>
+<li><p>register_standalone 注册独立操作，主要用于向后端添加一些平台不支持的操作</p></li>
+<li><p>register_initial 注册初始化操作，初始化操作中的计算将会在每个时间窗的最开始运算一次，而不会随着时间步的运行每个dt都进行运算</p></li>
+</ul>
+<div class="section" id="add-variable">
+<h2>add_variable<a class="headerlink" href="#add-variable" title="永久链接至标题">¶</a></h2>
+<p>使用 <code class="code docutils literal notranslate"><span class="pre">add_variable</span></code> 时，必须添加的参数有 <code class="code docutils literal notranslate"><span class="pre">name</span></code> 与 <code class="code docutils literal notranslate"><span class="pre">shape</span></code> ，可以选择性输入的参数有 <code class="code docutils literal notranslate"><span class="pre">value</span></code>、 <code class="code docutils literal notranslate"><span class="pre">is_parameter</span></code> 、 <code class="code docutils literal notranslate"><span class="pre">is_sparse</span></code>、 <code class="code docutils literal notranslate"><span class="pre">init</span></code>、 <code class="code docutils literal notranslate"><span class="pre">min</span></code> 与 <code class="code docutils literal notranslate"><span class="pre">max</span></code> 。</p>
+<p><code class="code docutils literal notranslate"><span class="pre">name</span></code> 决定了该变量在后端存储时的 <code class="code docutils literal notranslate"><span class="pre">key</span></code>，而 <code class="code docutils literal notranslate"><span class="pre">shape</span></code> 决定了维度, code:<cite>value</cite> 代表了这个变量的值，<code class="code docutils literal notranslate"><span class="pre">init</span></code> 决定了该变量在每一次初始化之后的值
+<code class="code docutils literal notranslate"><span class="pre">is_parameter</span></code> 这个参数决定了该变量是否是可训练的参数，若为 <code class="code docutils literal notranslate"><span class="pre">true</span></code> ，则可以添加</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="save_model.html" class="btn btn-neutral float-right" title="保存与读取模型" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="input_output.html" class="btn btn-neutral float-left" title="输入输出" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

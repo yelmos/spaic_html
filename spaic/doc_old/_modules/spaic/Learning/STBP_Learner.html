@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Learning.STBP_Learner &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.Learning.STBP_Learner</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.Learning.STBP_Learner 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on 2021/3/30</span>
+<span class="sd">@project: SPAIC</span>
+<span class="sd">@filename: STBP_Learner</span>
+<span class="sd">@author: Mengxiao Zhang</span>
+<span class="sd">@contact: mxzhangice@gmail.com</span>
+
+<span class="sd">@description:</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">.Learner</span> <span class="kn">import</span> <span class="n">Learner</span>
+
+
+<div class="viewcode-block" id="STBP"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.STBP_Learner.STBP">[文档]</a><span class="k">class</span> <span class="nc">STBP</span><span class="p">(</span><span class="n">Learner</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        STBP learning rule.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            alpha(num) : The parameter alpha of STBP learning model.</span>
+<span class="sd">            trainable : The parameter whether it can be trained.</span>
+
+<span class="sd">        Methods:</span>
+<span class="sd">            build(self, backend): Build the backend, realize the algorithm of STBP model.</span>
+<span class="sd">            threshold(self, x, v_th): Get the threshold of the STBP model.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Net._learner = STBP(0.5, Net)</span>
+
+<span class="sd">        Reference:</span>
+<span class="sd">            Yujie Wu et al. &quot;Spatio-Temporal Backpropagation for Training High-performance Spiking Neural Networks&quot; In:</span>
+<span class="sd">            Frontiers in Neuroscience, 2018. Volume 12. pp. 331.</span>
+<span class="sd">            doi:10.3389/fnins.2018.00331</span>
+<span class="sd">            url:ttps://www.frontiersin.org/article/10.3389/fnins.2018.00331</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">trainable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">STBP</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">trainable</span><span class="o">=</span><span class="n">trainable</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefered_backend</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pytorch&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;STBP&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">firing_func</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">kwargs</span>
+
+<div class="viewcode-block" id="STBP.build"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.STBP_Learner.STBP.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Build the backend, realize the algorithm of STBP model.</span>
+<span class="sd">            Args：</span>
+<span class="sd">                backend: The backend we used to compute.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">STBP</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">device</span>
+        <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">backend_name</span> <span class="o">==</span> <span class="s1">&#39;pytorch&#39;</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">torch</span>
+            <span class="kn">import</span> <span class="nn">math</span>
+            <span class="k">class</span> <span class="nc">ActFun</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
+                <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Approximate firing func.</span>
+<span class="sd">                &quot;&quot;&quot;</span>
+                <span class="nd">@staticmethod</span>
+                <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span>
+                        <span class="n">ctx</span><span class="p">,</span>
+                        <span class="nb">input</span><span class="p">,</span>
+                        <span class="n">thresh</span><span class="p">,</span>
+                        <span class="n">alpha</span>
+                <span class="p">):</span>
+                    <span class="kn">import</span> <span class="nn">torch</span>
+                    <span class="kn">import</span> <span class="nn">math</span>
+                    <span class="n">ctx</span><span class="o">.</span><span class="n">thresh</span> <span class="o">=</span> <span class="n">thresh</span>
+                    <span class="n">ctx</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+                    <span class="n">ctx</span><span class="o">.</span><span class="n">save_for_backward</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="nb">input</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="n">thresh</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+
+                <span class="nd">@staticmethod</span>
+                <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span>
+                        <span class="n">ctx</span><span class="p">,</span>
+                        <span class="n">grad_output</span>
+                <span class="p">):</span>
+                    <span class="nb">input</span><span class="p">,</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">saved_tensors</span>
+                    <span class="n">grad_input</span> <span class="o">=</span> <span class="n">grad_output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+                    <span class="n">temp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="nb">input</span> <span class="o">-</span> <span class="n">ctx</span><span class="o">.</span><span class="n">thresh</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">ctx</span><span class="o">.</span><span class="n">alpha</span><span class="p">))</span> \
+                           <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">ctx</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">grad_input</span> <span class="o">*</span> <span class="n">temp</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+                    <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">firing_func</span> <span class="o">=</span> <span class="n">ActFun</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="c1"># self.backend.basic_operate[&#39;threshold&#39;] = self.threshold</span>
+
+            <span class="c1"># replace threshold operation in all trainable neuron_groups</span>
+            <span class="k">for</span> <span class="n">neuron</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">neuron</span><span class="o">.</span><span class="n">_operations</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="s1">&#39;threshold&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                        <span class="n">neuron</span><span class="o">.</span><span class="n">_operations</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span></div>
+
+
+<div class="viewcode-block" id="STBP.threshold"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.STBP_Learner.STBP.threshold">[文档]</a>    <span class="k">def</span> <span class="nf">threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">v_th</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Get the threshold of the STBP model.</span>
+
+<span class="sd">            return:</span>
+<span class="sd">                A method that use STBP model to compute the threshold.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">firing_func</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v_th</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span></div></div>
+
+
+<span class="n">Learner</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s2">&quot;stbp&quot;</span><span class="p">,</span> <span class="n">STBP</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

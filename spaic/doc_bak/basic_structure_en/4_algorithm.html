@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Algorithm &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Algorithm</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/basic_structure_en/4_algorithm.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="algorithm">
+<h1>Algorithm<a class="headerlink" href="#algorithm" title="永久链接至标题">¶</a></h1>
+<p>本章节主要介绍在SPAIC平台中内置的算法，目前我们已经在平台中添加了STCA、STBP、STDP、R-STDP与Tempotron算法。其中，STCA与STBP都是采用了替代梯度的梯度反传算法，而STDP则是SNN中经典的无监督突触可塑性算法，R-STDP在STDP的基础上添加了 <code class="code docutils literal notranslate"><span class="pre">reward</span></code> 机制，更好的适用于强化学习。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">learner</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Learner</span><span class="p">(</span><span class="n">trainable</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s1">&#39;STCA&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">learner</span><span class="o">.</span><span class="n">set_optimizer</span><span class="p">(</span><span class="s1">&#39;Adam&#39;</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">learner</span><span class="o">.</span><span class="n">set_schedule</span><span class="p">(</span><span class="s1">&#39;StepLR&#39;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在示例中，采用了STCA算法，用户在 <code class="code docutils literal notranslate"><span class="pre">trainable</span></code> 参数中传入需要训练的对象， <code class="code docutils literal notranslate"><span class="pre">self</span></code> 代指整个网络。如果用户有针对性训练的需要，可以在trainable的地方传入指定的层，例如 <code class="code docutils literal notranslate"><span class="pre">self.layer1</span></code> 等，若需要传入多个指定层，则采用列表的方式: <code class="code docutils literal notranslate"><span class="pre">[self.layer1,</span> <span class="pre">self.layer2]</span></code> 。而最后的 <code class="code docutils literal notranslate"><span class="pre">alpha=0.5</span></code> 则是传入STCA自身的一个参数，在SPAIC中，算法自有的参数都在末尾以传参的形式进行传递。</p>
+<p>此处还使用了 <code class="code docutils literal notranslate"><span class="pre">Adam</span></code> 优化算法与 <code class="code docutils literal notranslate"><span class="pre">StepLR</span></code> 学习率调整机制，在平台中我们设置了诸多可供使用的优化算法:</p>
+<p>‘Adam’, ‘AdamW’, ‘SparseAdam’, ‘Adamx’, ‘ASGD’, ‘LBFGS’, ‘RMSprop’, ‘Rpop’, ‘SGD’,‘Adadelta’, ‘Adagrad’</p>
+<p>以及学习率调整机制：</p>
+<p>‘LambdaLR’, ‘StepLR’, ‘MultiStepLR’, ‘ExponentialLR’, ‘CosineAnnealingLR’, ‘ReduceLROnPlateau’,
+‘CyclicLR’, ‘CosineAnnealingWarmRestarts’</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>对于RSTDPET学习算法，batch_size应设为1</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

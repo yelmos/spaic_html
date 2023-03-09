@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>编码解码 &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="输入输出" href="../input_output.html" />
+    <link rel="prev" title="算法" href="4_algorithm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="0_index.html">基础结构</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_neuron.html">神经元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_connection.html">连接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_synaptic.html">突触</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_algorithm.html">算法</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">编码解码</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="0_index.html">基础结构</a> &raquo;</li>
+        
+      <li>编码解码</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/basic_structure/5_encode_decode.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>编码解码<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>本章节主要关注SPAIC平台中的编码、解码、信号生成、奖励以及动作生成。该章节主要分为五大块，编码器、生成器、解码器、奖励器以及动作器。</p>
+<div class="section" id="encoder">
+<h2>编码器(Encoder)<a class="headerlink" href="#encoder" title="永久链接至标题">¶</a></h2>
+<p><code class="code docutils literal notranslate"><span class="pre">Encoder</span></code> 类是 <code class="code docutils literal notranslate"><span class="pre">Node</span></code> 类的子类，编码器主要用于在脉冲神经网络中，将输入的数据转化为脉冲神经网络可用的时序脉冲数据。因为对于脉冲神经网络而言，以往人工神经网络中的数值输入不符合生理特征，通常使用二值的脉冲数据数据输入。并且静态的数据输入无法获取数据的时间特征，转化为具有时序的脉冲数据能够更好地表现数据的时序特征。在SPAIC中，我们内置了一系列较为常见的编码方式：</p>
+<ul class="simple">
+<li><p>sstb - SingleSpikeToBinary</p></li>
+<li><p>mstb - MultipleSpikeToBinary</p></li>
+<li><p>Poisson - Poisson</p></li>
+<li><p>Latency - Latency</p></li>
+<li><p>relative_latency - Relative_Latency</p></li>
+<li><p>null - NullEncoder</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>The shape of encoded date should be (batch, time_step, shape)</p>
+</div>
+<p>编码器主要在脉冲输入阶段使用，以构建具有100个神经元的Poisson编码类实例为例：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Encoder</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="n">unit_conversion</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="c1"># unit_conversion为缩放参数，将会对脉冲的发放频率进行缩放</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generator">
+<h2>生成器(Generator)<a class="headerlink" href="#generator" title="永久链接至标题">¶</a></h2>
+<p><code class="code docutils literal notranslate"><span class="pre">Generator</span></code> 类是 <code class="code docutils literal notranslate"><span class="pre">Node</span></code> 类的子类，生成器主要的作用在于，有时在进行神经元动力学仿真时，我们需要特殊的输入模式，因此我们需要有一些特殊的电压或者是电流模式的生成器。在SPAIC中，我们内置了一些模式生成器：</p>
+<ul class="simple">
+<li><p>poisson_generator - Poisson spike according input rate</p></li>
+<li><p>cc_generator - Constant current generator</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Generator</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="s1">&#39;cc_generator&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">cc_generator</span></code> 将会生成持续的脉冲输出，用于用户观察模拟各类神经元动力学。而另一种 <code class="code docutils literal notranslate"><span class="pre">poisson_generator</span></code> 则会生成poisson噪声输出。</p>
+</div>
+<div class="section" id="decoder">
+<h2>解码器(Decoder)<a class="headerlink" href="#decoder" title="永久链接至标题">¶</a></h2>
+<p><code class="code docutils literal notranslate"><span class="pre">Decoder</span></code> 类是 <code class="code docutils literal notranslate"><span class="pre">Node</span></code> 类的子类，其主用于在脉冲神经网络中，将输出的脉冲信号进行一定程度的取舍和转换，例如根据<code class="code docutils literal notranslate"><span class="pre">spike_counts</span></code> 的规则选取发放脉冲数量最多的神经元作为预测结果，亦或是根据 <code class="code docutils literal notranslate"><span class="pre">first_spike</span></code> 的规则选取第一个发放脉冲的神经元作为预测结果。在SPAIC中，我们也内置了大多数较为常见的解码方式：</p>
+<ul class="simple">
+<li><p>spike_counts - Spike_Counts</p></li>
+<li><p>final_step_voltage - Final_Step_Voltage</p></li>
+<li><p>first_spike - First_Spike</p></li>
+<li><p>time_spike_counts - TimeSpike_Counts</p></li>
+<li><p>time_softmax - Time_Softmax</p></li>
+</ul>
+<p>解码器主要在脉冲输出阶段使用，例如当解码含有10个LIF神经元的 <code class="code docutils literal notranslate"><span class="pre">NeuronGroup</span></code> 对象的脉冲活动时,我们可以这样建立 <code class="code docutils literal notranslate"><span class="pre">spike_counts</span></code> 类实例:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">NeuronGroup</span><span class="p">(</span><span class="n">neuron_number</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">neuron_model</span><span class="o">=</span><span class="s1">&#39;lif&#39;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Decoder</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span>
+                <span class="n">coding_method</span><span class="o">=</span><span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>这里较为需要注意的是，<code class="code docutils literal notranslate"><span class="pre">output</span></code> 层的数量需要与其 <code class="code docutils literal notranslate"><span class="pre">dec_target</span></code> 目标层的神经元数量一致。</p>
+</div>
+</div>
+<div class="section" id="reward">
+<h2>奖励(Reward)<a class="headerlink" href="#reward" title="永久链接至标题">¶</a></h2>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">Reward</span></code> 类是 <code class="code docutils literal notranslate"><span class="pre">Node</span></code> 类的子类，主要作用是在执行强化任务的时候，有时需要根据任务目的解码指定对象的活动并</p>
+</div></blockquote>
+<p>设定奖励规则来获取奖励。例如分类任务下的 <code class="code docutils literal notranslate"><span class="pre">global_reward</span></code> 的规则，根据脉冲发放数量或者最大膜电位确定预测结果，若预测结果是期望的结果，则返回正奖励；若不等，则返回负奖励。样本的batch_size&gt;1时，返回取均值后的奖励作为全局奖励。在SPAIC中，我们内置了一些奖励类：</p>
+<ul class="simple">
+<li><p>global_reward - Global_Reward</p></li>
+<li><p>xor_reward - XOR_Reward</p></li>
+<li><p>da_reward - DA_Reward: get rewards in the same dimension as neurons in the dec_target</p></li>
+<li><p>environment_reward - Environment_Reward: get reward from environment</p></li>
+</ul>
+<p>用户根据自己的需要指定在 <code class="code docutils literal notranslate"><span class="pre">Reward</span></code> 中要解码对象的神经元数量、解码对象名、奖励方法、解码对象的变量名及与其方法相关的参数等。</p>
+</div>
+<div class="section" id="global-reward">
+<h2>Global_Reward<a class="headerlink" href="#global-reward" title="永久链接至标题">¶</a></h2>
+<p>例如当解码含有10个LIF神经元的NeuronGroup对象的脉冲活动以获得全局奖励时，我们可以这样建立Global_Reward类实例:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">NeuronGroup</span><span class="p">(</span><span class="n">neuron_number</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">neuron_model</span><span class="o">=</span><span class="s1">&#39;lif&#39;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">reward</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Reward</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span>
+                <span class="n">coding_method</span><span class="o">=</span><span class="s1">&#39;global_reward&#39;</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>这里需要注意的是，reward实例的神经元数量需要与其dec_target目标层的神经元数量一致。</p>
+</div>
+<p>一个解码self.layer1的脉冲活动以获取全局奖励的全局奖励实例就建立好了。然而许多时候我们需要按需定制不同的 <code class="code docutils literal notranslate"><span class="pre">Reward</span></code> 以获得不同的奖励方案，这时候就需要在建立 <code class="code docutils literal notranslate"><span class="pre">Reward</span></code> 时，指定一些参数：</p>
+<ul class="simple">
+<li><p>pop_size - 解码神经元的群体尺寸，默认为1</p></li>
+<li><p>dec_sample_step - 解码采样时间步，默认为1</p></li>
+<li><p>reward_signal - 奖励信号，默认为1</p></li>
+<li><p>punish_signal - 惩罚信号，默认为-1</p></li>
+</ul>
+<p>如果用户需要调整这些变量，可以在建立Reward的时候输入想改变的参数即可：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">reward</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Reward</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="s1">&#39;global_reward&#39;</span><span class="p">,</span>
+                <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">reward_signal</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">punish_signal</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这样，一个自定义参数的Global_Reward实例就建好了。</p>
+</div>
+<div class="section" id="action">
+<h2>动作(Action)<a class="headerlink" href="#action" title="永久链接至标题">¶</a></h2>
+<p>Action类是 <code class="code docutils literal notranslate"><span class="pre">Node</span></code> 类的子类，主要作用是在执行GYM强化环境中的强化任务时，需要根据指定对象的活动设定动作选择机制选择接下来要执行的动作。例如PopulationRate_Action规则，解码对象的神经元的群体数与动作数目个数一致，以每个群体的发放速率为权重来选择下一步动作，群体的发放速率越大，选中的可能性越大。在SPAIC中，我们内置了一些动作类：</p>
+<ul class="simple">
+<li><p>pop_rate_action - PopulationRate_Action</p></li>
+<li><p>softmax_action - Softmax_Action</p></li>
+<li><p>highest_spikes_action - Highest_Spikes_Action</p></li>
+<li><p>highest_voltage_action - Highest_Voltage_Action</p></li>
+<li><p>first_spike_action - First_Spike_Action</p></li>
+<li><p>random_action - Random_Action</p></li>
+</ul>
+<p>用户根据自己的需要指定在Action中要解码对象的神经元数量、解码对象名、动作方法、解码对象的变量名及与其方法相关的参数等。</p>
+</div>
+<div class="section" id="populationrate-action">
+<h2>PopulationRate_Action<a class="headerlink" href="#populationrate-action" title="永久链接至标题">¶</a></h2>
+<p>例如当解码含有5个LIF神经元的NeuronGroup对象的脉冲活动以获得下一步活动时，我们可以这样建立 <code class="code docutils literal notranslate"><span class="pre">PopulationRate_Action</span></code> 类实例:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">NeuronGroup</span><span class="p">(</span><span class="n">neuron_number</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">neuron_model</span><span class="o">=</span><span class="s1">&#39;lif&#39;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Action</span><span class="p">(</span><span class="n">num</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span>
+                <span class="n">coding_method</span><span class="o">=</span><span class="s1">&#39;pop_rate_action&#39;</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>一个解码 <code class="code docutils literal notranslate"><span class="pre">self.layer1</span></code> 的脉冲活动以获取下一步动作的群体速率动作实例就建立好了。然而许多时候我们需要按需定制不同的Action以获得不同的奖励方案，这时候就需要在建立 <code class="code docutils literal notranslate"><span class="pre">Reward</span></code> 时，指定一些参数：</p>
+<ul class="simple">
+<li><p>pop_size - 解码神经元的群体尺寸，默认为1</p></li>
+</ul>
+<p>如果用户需要调整这些变量，可以在建立 <code class="code docutils literal notranslate"><span class="pre">Reward</span></code> 的时候输入想改变的参数即可：</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>这里需要注意的是，action实例的神经元数量需要与其dec_target目标层的神经元数量一致，且num/pop_size的结果应为整数且与强化环境的动作数目相同。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../input_output.html" class="btn btn-neutral float-right" title="输入输出" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="4_algorithm.html" class="btn btn-neutral float-left" title="算法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

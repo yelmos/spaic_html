@@ -1,0 +1,591 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Neuron.Decoders &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.Neuron.Decoders</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.Neuron.Decoders 源代码</h1><div class="highlight"><pre>
+<span></span>
+<span class="c1"># encoding: utf-8</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: Yuan Mengwen</span>
+<span class="sd">@contact: mwyuan94@gmail.com</span>
+<span class="sd">@project: PyCharm</span>
+<span class="sd">@filename: Decoders.py</span>
+<span class="sd">@time:2021/5/7 14:50</span>
+<span class="sd">@description:</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">.Node</span> <span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">Decoder</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="Spike_Counts"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Spike_Counts">[文档]</a><span class="k">class</span> <span class="nc">Spike_Counts</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Spike_Counts</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pop_size&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Spike_Counts.numpy_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Spike_Counts.numpy_coding">[文档]</a>    <span class="k">def</span> <span class="nf">numpy_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># the shape of record is (time_step, batch_size, n_neurons)</span>
+        <span class="n">spike_rate</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">pop_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">)</span>
+        <span class="n">pop_spikes_temp</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">spike_rate</span><span class="p">[:,</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">):</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pop_num</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">pop_spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">pop_spikes_temp</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># spikes_list = pop_spikes.tolist()</span>
+        <span class="c1"># max_value = np.max(pop_spikes, 1)</span>
+        <span class="c1"># batch_size = pop_spikes.shape[0]</span>
+        <span class="c1"># predict_labels = []</span>
+        <span class="c1"># for i in range(batch_size):</span>
+        <span class="c1">#     index = spikes_list[i].index(max_value[i])</span>
+        <span class="c1">#     predict_labels.append(index)</span>
+        <span class="k">return</span> <span class="n">pop_spikes</span></div>
+
+<div class="viewcode-block" id="Spike_Counts.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Spike_Counts.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># the shape of record is (time_step, batch_size, n_neurons)</span>
+        <span class="k">if</span> <span class="s1">&#39;[2]&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">coding_var_name</span><span class="p">:</span>
+            <span class="n">pop_spikes</span> <span class="o">=</span> <span class="n">record</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">spike_rate</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">pop_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">)</span>
+            <span class="n">pop_spikes_temp</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">spike_rate</span><span class="p">[:,</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">):</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pop_num</span><span class="p">)</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">pop_spikes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">pop_spikes_temp</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pop_spikes</span></div></div>
+
+<span class="n">Decoder</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="n">Spike_Counts</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Final_Step_Voltage"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Final_Step_Voltage">[文档]</a><span class="k">class</span> <span class="nc">Final_Step_Voltage</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get label that has the highest voltage.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Final_Step_Voltage</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Final_Step_Voltage.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Final_Step_Voltage.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># the shape of record is (time_step, batch_size, n_neurons)</span>
+        <span class="n">final_step_voltage</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+
+        <span class="k">return</span> <span class="n">final_step_voltage</span></div></div>
+
+<span class="n">Decoder</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;final_step_voltage&#39;</span><span class="p">,</span> <span class="n">Final_Step_Voltage</span><span class="p">)</span>
+
+<div class="viewcode-block" id="First_Spike"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.First_Spike">[文档]</a><span class="k">class</span> <span class="nc">First_Spike</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">First_Spike</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># def numpy_decoding(self, record):</span>
+    <span class="c1">#     # the shape of record is (time_step, batch_size, n_neurons)</span>
+    <span class="c1">#     # get predict label</span>
+    <span class="c1">#     spikes_list = record.tolist()</span>
+    <span class="c1">#</span>
+    <span class="c1">#     return predict_matrix</span>
+
+<div class="viewcode-block" id="First_Spike.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.First_Spike.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># the shape of record is (time_step, batch_size, n_neurons)</span>
+        <span class="n">record_temp</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">[</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">time_step</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">]</span> <span class="o">=</span> <span class="n">record_temp</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">batch_index</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">record_temp</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">::])</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">first_spike_row</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">time_step</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">first_spike_row</span> <span class="o">=</span> <span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">time_step</span>
+
+            <span class="n">batch_index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">first_spike_row</span><span class="p">)</span>
+        <span class="n">batch_index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">batch_index</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">record_temp</span> <span class="o">=</span> <span class="n">record_temp</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">batch_size</span><span class="o">*</span><span class="n">time_step</span><span class="p">,</span> <span class="n">n_neurons</span><span class="p">)</span>
+        <span class="n">predict_matrix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">index_select</span><span class="p">(</span><span class="n">record_temp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">batch_index</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">predict_matrix</span></div></div>
+
+<span class="n">Decoder</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;first_spike&#39;</span><span class="p">,</span> <span class="n">First_Spike</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TimeSpike_Counts"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.TimeSpike_Counts">[文档]</a><span class="k">class</span> <span class="nc">TimeSpike_Counts</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TimeSpike_Counts</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TimeSpike_Counts.numpy_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.TimeSpike_Counts.numpy_coding">[文档]</a>    <span class="k">def</span> <span class="nf">numpy_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># the shape of record is (batch_size, n_neurons)</span>
+        <span class="c1"># get predict label</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">spikes_list</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">predict_labels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">spikes_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">max_value</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">predict_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">predict_labels</span></div>
+
+<div class="viewcode-block" id="TimeSpike_Counts.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.TimeSpike_Counts.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># the shape of record is (batch_size, n_neurons)</span>
+        <span class="n">tlen</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">tt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tlen</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+        <span class="n">tw</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">tt</span><span class="o">/</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">tlen</span><span class="p">))</span>
+        <span class="n">predict_labels</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">record</span><span class="o">*</span><span class="n">tw</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">predict_labels</span></div></div>
+
+<span class="n">Decoder</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;time_spike_counts&#39;</span><span class="p">,</span><span class="n">TimeSpike_Counts</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="V_Trajectory"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.V_Trajectory">[文档]</a><span class="k">class</span> <span class="nc">V_Trajectory</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">V_Trajectory</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="V_Trajectory.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.V_Trajectory.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># the shape of record is (batch_size, n_neurons)</span>
+
+        <span class="k">return</span> <span class="n">record</span></div></div>
+
+<span class="n">Decoder</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;v_t&#39;</span><span class="p">,</span> <span class="n">V_Trajectory</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Time_Softmax"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Time_Softmax">[文档]</a><span class="k">class</span> <span class="nc">Time_Softmax</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Time_Softmax</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Time_Softmax.numpy_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Time_Softmax.numpy_coding">[文档]</a>    <span class="k">def</span> <span class="nf">numpy_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+      
+<div class="viewcode-block" id="Time_Softmax.torch_coding1"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Time_Softmax.torch_coding1">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">grad_regulate_hook</span><span class="p">(</span><span class="n">grad</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">grad</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">grad</span><span class="p">)</span>
+
+        <span class="n">spike_i</span> <span class="o">=</span> <span class="n">record</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+        <span class="n">spike_t</span> <span class="o">=</span> <span class="n">record</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+        <span class="n">old_shape</span> <span class="o">=</span> <span class="n">spike_t</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">tlen</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">time_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tlen</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+        <span class="n">spike_t</span> <span class="o">=</span> <span class="n">spike_i</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">*</span><span class="n">time_array</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">spike_t</span><span class="c1"># + (1-spike_i.detach())*1000.0</span>
+        <span class="n">max_t</span><span class="p">,</span> <span class="n">ind</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">spike_t</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">old_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">detach</span><span class="p">(),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">mshape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">spike_t</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">spike_t</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">max_t</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">mshape</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">spike_i</span> <span class="o">-</span> <span class="n">spike_i</span><span class="o">.</span><span class="n">detach</span><span class="p">())</span> <span class="o">-</span> <span class="n">spike_t</span><span class="p">)</span><span class="o">*</span><span class="n">spike_i</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+        <span class="c1"># spike_t.register_hook(grad_regulate_hook)</span>
+        <span class="c1"># spike_t[:,0] = 7</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">spike_t</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># torch.sum(spike_t, dim=-1)     *spike_t.view(old_shape[0],-1)</span>
+        <span class="c1"># from matplotlib import pyplot as plt</span>
+        <span class="c1"># plt.plot(out.detach().cpu().numpy()[0,:])</span>
+        <span class="c1"># plt.show()</span>
+        <span class="c1"># out = out.view(old_shape)</span>
+        <span class="c1"># out = torch.sum(out, dim=-1)</span>
+        <span class="c1"># if torch.mean(out) &lt;1:</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="Time_Softmax.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Time_Softmax.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># def grad_regulate_hook(grad):</span>
+        <span class="c1">#     return grad - torch.mean(grad)</span>
+
+        <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span>
+        <span class="n">shape</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">record</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">)</span>
+
+
+        <span class="n">spike_i</span> <span class="o">=</span> <span class="n">record</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+        <span class="n">spike_t</span> <span class="o">=</span> <span class="n">record</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+        <span class="n">spike</span> <span class="o">=</span> <span class="n">spike_t</span> <span class="o">+</span> <span class="n">spike_i</span>
+        <span class="c1"># spk_ind = spike_t.clamp_max(1.0).detach()</span>
+        <span class="c1"># old_shape = spike_t.shape</span>
+        <span class="n">tlen</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">time_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tlen</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+        <span class="n">spike_t</span> <span class="o">=</span> <span class="n">time_array</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">spike</span> <span class="o">+</span> <span class="n">spike</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">+</span> <span class="n">spike_i</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="o">*</span><span class="n">tlen</span>
+        <span class="c1"># spike_t = spike_i.gt(0.0)*time_array.view(-1, 1, 1) - spike_t</span>
+        <span class="n">frist_times</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">spike_t</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+        <span class="c1"># spike_ft = torch.amin(spike_t, dim=0, keepdim=True)</span>
+        <span class="c1"># target_frist = torch.gather(frist_times, 2, target.view(1,-1,1,1)).detach()</span>
+        <span class="n">out_count</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">spike_i</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1.0</span>
+        <span class="n">out_ti</span> <span class="o">=</span> <span class="mf">5.0</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">frist_times</span><span class="o">-</span><span class="n">spike_t</span><span class="p">)</span><span class="o">/</span><span class="mf">50.0</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">out_ti</span><span class="p">,</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">/</span><span class="n">out_count</span> <span class="o">+</span> <span class="n">out</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="n">out_count</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">out_count</span>
+        <span class="n">rateloss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">spike_i</span><span class="p">,</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mf">3.0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">rateloss</span></div>
+
+<div class="viewcode-block" id="Time_Softmax.torch_coding3"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Time_Softmax.torch_coding3">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding3</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># def grad_regulate_hook(grad):</span>
+        <span class="c1">#     return grad - 10000#torch.mean(grad)</span>
+        <span class="n">spike_i</span> <span class="o">=</span> <span class="n">record</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+        <span class="n">spike_t</span> <span class="o">=</span> <span class="n">record</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">spike_t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">tlen</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">time_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tlen</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+            <span class="n">spike_t</span> <span class="o">=</span> <span class="n">time_array</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">spike_t</span>
+            <span class="n">exp_n</span> <span class="o">=</span> <span class="n">spike_i</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">spike_t</span><span class="o">/</span><span class="mf">20.0</span><span class="p">)</span>
+            <span class="n">exp_sum</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">exp_n</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0e-20</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exp_n</span> <span class="o">=</span> <span class="n">exp_n</span><span class="o">/</span><span class="n">exp_sum</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exp_n</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">pos_n</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exp_n</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+            <span class="n">sum_pos</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pos_n</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0e-20</span>
+            <span class="n">pos_n</span> <span class="o">=</span> <span class="p">(</span><span class="n">sum_pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">pos_n</span> <span class="o">+</span> <span class="mf">1.0e-18</span><span class="p">)</span> <span class="o">/</span> <span class="n">sum_pos</span>
+            <span class="n">out_grad</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exp_n</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="n">sum_pos</span><span class="p">,</span> <span class="mf">1.0e-10</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">pos_n</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">requires_grad</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">out_grad</span><span class="p">)</span>
+        <span class="k">return</span>  <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">sum_pos</span><span class="p">))</span></div>
+
+<span class="n">Decoder</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;time_softmax&#39;</span><span class="p">,</span> <span class="n">Time_Softmax</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Voltage_Sum"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Voltage_Sum">[文档]</a><span class="k">class</span> <span class="nc">Voltage_Sum</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Voltage_Sum</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Voltage_Sum.numpy_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Voltage_Sum.numpy_coding">[文档]</a>    <span class="k">def</span> <span class="nf">numpy_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># the shape of record is (time_step, batch_size, n_neurons)</span>
+        <span class="n">record_temp</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">spikes_list</span> <span class="o">=</span> <span class="n">record_temp</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">record_temp</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">record_temp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">predict_labels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">spikes_list</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">max_value</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">predict_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">predict_labels</span></div>
+
+<div class="viewcode-block" id="Voltage_Sum.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Voltage_Sum.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="c1"># the shape of record is (time_step, batch_size, n_neurons)</span>
+        <span class="n">predict_matrix</span> <span class="o">=</span> <span class="n">record</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">mp</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">predict_matrix</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">(</span><span class="n">predict_matrix</span> <span class="o">-</span> <span class="n">mp</span><span class="p">)</span>
+        <span class="c1"># predict_matrix = predict_temp.permute(1, 0)</span>
+        <span class="k">return</span> <span class="n">out</span></div></div>
+
+<span class="n">Decoder</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;voltage_sum&#39;</span><span class="p">,</span> <span class="n">Voltage_Sum</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Complex_Count"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Complex_Count">[文档]</a><span class="k">class</span> <span class="nc">Complex_Count</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Complex_Count</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Complex_Count.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Complex_Count.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">record</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">is_complex</span>
+        <span class="n">tlen</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">time_array</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tlen</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+        <span class="c1"># count = record.real</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">imag</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">time_array</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">count</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">record</span><span class="o">.</span><span class="n">imag</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0e-6</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">time</span>
+        <span class="k">return</span> <span class="n">out</span><span class="p">,</span> <span class="n">rate</span></div></div>
+
+<span class="n">Decoder</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;complex_count&#39;</span><span class="p">,</span> <span class="n">Complex_Count</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Complex_Phase"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Complex_Phase">[文档]</a><span class="k">class</span> <span class="nc">Complex_Phase</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Complex_Phase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trange</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;trange&#39;</span><span class="p">,</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="k">class</span> <span class="nc">TransClamp</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
+            <span class="nd">@staticmethod</span>
+            <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">min</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span>
+
+            <span class="nd">@staticmethod</span>
+            <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">grad_outputs</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">grad_outputs</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clamp</span> <span class="o">=</span> <span class="n">TransClamp</span><span class="o">.</span><span class="n">apply</span>
+
+
+<div class="viewcode-block" id="Complex_Phase.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Complex_Phase.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="n">record</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="n">tlen</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">time_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">tlen</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+        <span class="n">spk</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">spk</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">spk_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">spk</span><span class="o">*</span><span class="n">count</span> <span class="o">+</span> <span class="mf">1.0e6</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">spk</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)))</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+        <span class="n">sort_spk_count</span><span class="p">,</span> <span class="n">sort_spk_index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">spk_count</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sort_spk</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">spk</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">sort_spk_index</span><span class="p">)</span>
+
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">spk</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">time</span>
+
+        <span class="n">time</span> <span class="o">=</span> <span class="n">time_array</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">record</span><span class="o">.</span><span class="n">imag</span>
+        <span class="n">sort_time</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">sort_spk_index</span><span class="p">)</span>
+        <span class="n">sort_time_aim</span> <span class="o">=</span> <span class="n">sort_time</span>
+        <span class="n">sort_time_target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">sort_time</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span>
+        <span class="n">sort_time_diff</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">sort_time_target</span><span class="o">-</span><span class="n">sort_time_aim</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">trange</span><span class="p">)</span><span class="o">*</span><span class="n">sort_spk</span>
+        <span class="n">out_time_score</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sort_time_diff</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0e-4</span> <span class="o">+</span> <span class="n">rate</span>
+        <span class="c1"># (0.9 ** sort_spk_count) *</span>
+
+        <span class="k">return</span> <span class="n">out_time_score</span><span class="p">,</span> <span class="n">rate</span></div></div>
+
+<span class="n">Decoder</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;complex_phase&#39;</span><span class="p">,</span> <span class="n">Complex_Phase</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Complex_Trajectory"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Complex_Trajectory">[文档]</a><span class="k">class</span> <span class="nc">Complex_Trajectory</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Complex_Trajectory</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tau_d</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tau_d&#39;</span><span class="p">,</span> <span class="mf">20.0</span><span class="o">+</span><span class="mi">20</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tau_r</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tau_r&#39;</span><span class="p">,</span> <span class="mf">10.0</span><span class="o">+</span><span class="mi">50</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group_num</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;group_num&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+        <span class="k">assert</span> <span class="n">num</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">group_num</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tau_d</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tau_d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tau_d</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tau_r</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tau_r</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tau_r</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Complex_Trajectory.build"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Complex_Trajectory.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Complex_Trajectory</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+        <span class="n">tau_d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="o">+</span><span class="s1">&#39;_Complex_Trajectory_tau_d&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau_d</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau_d</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">tau_r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="o">+</span><span class="s1">&#39;_Complex_Trajectory_tau_r&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau_r</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau_r</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="o">+</span><span class="s1">&#39;_Complex_Trajectory_weight&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tau_d</span> <span class="o">=</span> <span class="n">tau_d</span><span class="o">.</span><span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tau_r</span> <span class="o">=</span> <span class="n">tau_r</span><span class="o">.</span><span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="o">.</span><span class="n">value</span></div>
+
+
+
+
+<div class="viewcode-block" id="Complex_Trajectory.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Complex_Trajectory.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="n">record</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="n">decay</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">tau_d</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">rota</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">tau_r</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">complex_beta</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">view_as_complex</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">decay</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="o">-</span><span class="n">rota</span><span class="p">),</span>
+                                                          <span class="n">decay</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="o">-</span><span class="n">rota</span><span class="p">)],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">tlen</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">Xs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">record</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tlen</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">complex_beta</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">record</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mf">0.0</span><span class="o">+</span><span class="mf">1.0</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">complex_beta</span><span class="o">**</span><span class="n">record</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">imag</span>
+            <span class="n">Xs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">Xs</span> <span class="o">=</span> <span class="n">weight</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">Xs</span> <span class="o">=</span> <span class="n">Xs</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">group_num</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="o">//</span><span class="bp">self</span><span class="o">.</span><span class="n">group_num</span><span class="p">,</span> <span class="n">tlen</span><span class="p">)</span>
+
+        <span class="c1"># trace = Xs.real</span>
+        <span class="c1"># dtrace = rota*Xs.imag - Xs.real/self.tau_d</span>
+
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Xs</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span></div></div>
+
+<span class="n">Decoder</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;complex_trajectory&#39;</span><span class="p">,</span> <span class="n">Complex_Trajectory</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Spike_Conv"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Decoders.Spike_Conv">[文档]</a><span class="k">class</span> <span class="nc">Spike_Conv</span><span class="p">(</span><span class="n">Decoder</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_cou nts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">decay</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">ocillate</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Spike_Conv</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>突触、连接模型自定义 &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="算法自定义" href="4_custom_algorithm.html" />
+    <link rel="prev" title="神经元模型自定义" href="2_custom_neuron.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../save_model_en.html">save or load model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="0_index.html">Custom</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_custom_encoding.html">编解码模型自定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_custom_neuron.html">神经元模型自定义</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">突触、连接模型自定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_custom_algorithm.html">算法自定义</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="0_index.html">Custom</a> &raquo;</li>
+        
+      <li>突触、连接模型自定义</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/custom_en/3_custom_connection.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="my-custom-connection">
+<span id="id1"></span><h1>突触、连接模型自定义<a class="headerlink" href="#my-custom-connection" title="永久链接至标题">¶</a></h1>
+<p>本章节主要介绍连接模型的自定义，以便当本平台提供的内置方法无法满足用户需求时，用户可以方便的添加符合自己需求的连接方案。</p>
+<div class="section" id="id2">
+<h2>连接模型自定义<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>连接作为脉冲神经网络最为基本的组成结构之一，包含了网络最为重要的权重信息。不同的连接方法会生成不同的空间连接结构，为了满足用户的大多数应用需求，在本平台中内置了10种最常用的连接模型，包含了全连接，卷积连接，一对一连接，稀疏连接等。与此同时，作为类脑计算平台，本平台中的连接支持仿生连接的形式，即支持反馈连接与连接延迟以及突触连接等具有一定生理特征的连接方式。内置的连接方法可能无法满足用户的任意需求，这时候就需要用户自己添加一些更符合其实验目的的连接模型。定义连接模型的这一步可以依照 <code class="code docutils literal notranslate"><span class="pre">Network.Connection</span></code> 文件中的格式进行添加。</p>
+</div>
+<div class="section" id="id3">
+<h2>连接方法初始化<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>自定义的连接方法需继承 <code class="code docutils literal notranslate"><span class="pre">Connection</span></code> 类，其初始化方法中的参数名需与 <code class="code docutils literal notranslate"><span class="pre">Connection</span></code> 类的一致，若需要传入初始化参数以外的参数，可以通过 <code class="code docutils literal notranslate"><span class="pre">kwargs</span></code> 传入，以 <code class="code docutils literal notranslate"><span class="pre">FullConnection</span></code> 类初始化函数为例：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pre_assembly</span><span class="p">,</span> <span class="n">post_assembly</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;full&#39;</span><span class="p">,</span> <span class="s1">&#39;sparse_connect&#39;</span><span class="p">,</span> <span class="s1">&#39;conv&#39;</span><span class="p">,</span><span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">policies</span><span class="o">=</span><span class="p">[],</span>
+             <span class="n">max_delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sparse_with_mask</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pre_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">post_var_name</span><span class="o">=</span><span class="s1">&#39;WgtSum&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="nb">super</span><span class="p">(</span><span class="n">FullConnection</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">pre_assembly</span><span class="o">=</span><span class="n">pre_assembly</span><span class="p">,</span> <span class="n">post_assembly</span><span class="o">=</span><span class="n">post_assembly</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                                         <span class="n">link_type</span><span class="o">=</span><span class="n">link_type</span><span class="p">,</span> <span class="n">policies</span><span class="o">=</span><span class="n">policies</span><span class="p">,</span> <span class="n">max_delay</span><span class="o">=</span><span class="n">max_delay</span><span class="p">,</span>
+                                         <span class="n">sparse_with_mask</span><span class="o">=</span><span class="n">sparse_with_mask</span><span class="p">,</span>
+                                         <span class="n">pre_var_name</span><span class="o">=</span><span class="n">pre_var_name</span><span class="p">,</span> <span class="n">post_var_name</span><span class="o">=</span><span class="n">post_var_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">w_std</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w_std&#39;</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">w_mean</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w_mean&#39;</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">w_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w_max&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">w_min</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w_min&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">param_init</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;param_init&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">is_parameter</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;is_parameter&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">is_sparse</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;is_sparse&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在这个初始化方法中， <code class="code docutils literal notranslate"><span class="pre">FullConnection</span></code> 类所额外需要的参数，通过从 <code class="code docutils literal notranslate"><span class="pre">kwargs</span></code> 中获取的方式来设定。</p>
+</div>
+<div class="section" id="id4">
+<h2>定义单元连接函数<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>单元连接函数主要需要实现连接方法的权值生成、用于后端变量添加的变量代码 <code class="code docutils literal notranslate"><span class="pre">var_code</span></code> 以及用于后端基础计算操作的操作代码 <code class="code docutils literal notranslate"><span class="pre">op_code</span></code> 的定义，我们以 <code class="code docutils literal notranslate"><span class="pre">FullConnection</span></code> 连接方法的 <code class="code docutils literal notranslate"><span class="pre">unit_connect</span></code> 实现过程作为示例进行展示：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unit_connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pre_group</span><span class="p">,</span> <span class="n">post_group</span><span class="p">):</span>
+    <span class="c1"># Getting the number of neurons in pre and post neuron group</span>
+    <span class="n">pre_num</span> <span class="o">=</span> <span class="n">pre_group</span><span class="o">.</span><span class="n">num</span>
+    <span class="n">post_num</span> <span class="o">=</span> <span class="n">post_group</span><span class="o">.</span><span class="n">num</span>
+    <span class="n">link_num</span> <span class="o">=</span> <span class="n">pre_num</span> <span class="o">*</span> <span class="n">post_num</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">post_num</span><span class="p">,</span> <span class="n">pre_num</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Connection weight</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_std</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">shape</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_mean</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">shape</span><span class="p">),</span> <span class="n">f</span> <span class="s2">&quot;The size of the given weight </span><span class="si">{self.weight.shape}</span><span class="s2"> does not correspond to the size of synaptic matrix </span><span class="si">{shape}</span><span class="s2"> &quot;</span>
+        <span class="n">weight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span>
+
+    <span class="c1"># The name for backend variables</span>
+    <span class="n">input_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_input_name</span><span class="p">(</span><span class="n">pre_group</span><span class="p">,</span> <span class="n">post_group</span><span class="p">)</span>
+    <span class="n">weight_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_link_name</span><span class="p">(</span><span class="n">pre_group</span><span class="p">,</span> <span class="n">post_group</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+    <span class="n">target_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_post_name</span><span class="p">(</span><span class="n">post_group</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">post_var_name</span><span class="p">)</span>
+
+    <span class="c1"># The backend variable</span>
+    <span class="n">var_code</span> <span class="o">=</span> <span class="p">(</span><span class="n">weight_name</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_parameter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_sparse</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_init</span><span class="p">)</span>
+
+    <span class="c1"># The backend basic operation</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_delay</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span>
+        <span class="n">op_code</span> <span class="o">=</span> <span class="p">[</span><span class="n">target_name</span><span class="p">,</span> <span class="s1">&#39;mult_sum_weight&#39;</span><span class="p">,</span> <span class="n">input_name</span><span class="p">,</span> <span class="n">weight_name</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">op_code</span> <span class="o">=</span> <span class="p">[</span><span class="n">target_name</span><span class="p">,</span> <span class="s1">&#39;mat_mult_weight&#39;</span><span class="p">,</span> <span class="n">input_name</span><span class="p">,</span> <span class="n">weight_name</span><span class="p">]</span>
+
+    <span class="n">connection_information</span> <span class="o">=</span> <span class="p">(</span><span class="n">pre_group</span><span class="p">,</span> <span class="n">post_group</span><span class="p">,</span> <span class="n">link_num</span><span class="p">,</span> <span class="n">var_code</span><span class="p">,</span> <span class="n">op_code</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">unit_connections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">connection_information</span><span class="p">)</span>
+
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>在代码的最后，需要添加 <code class="code docutils literal notranslate"><span class="pre">Connection.register('full',FullConnection)</span></code> 用于将该连接方法添加至连接方法的库中，以便前端的调用。</p>
+</div>
+<div class="section" id="id5">
+<h2>突触模型自定义<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>突触模型是进行神经动力学仿真环节中非常重要的一步，不同的模型与不同的参数都会产生不同的现象。为了应对用户不同的应用需求，SPAIC内置了两种最常用的突触模型（化学突触和电突触），但是偶尔还是会有力所不能及，这时候就需要用户自己添加一些更符合其实验的个性化突触模型。定义突触的这一步可以 <code class="code docutils literal notranslate"><span class="pre">Network.Connection</span></code> 文件中依照格式进行添加。</p>
+</div>
+<div class="section" id="id6">
+<h2>定义是否需要使用突触模型、使用哪种突触模型<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>如果需要使用突触模型需要提前传入两个参数 <code class="code docutils literal notranslate"><span class="pre">self.synapse</span></code> 、 <code class="code docutils literal notranslate"><span class="pre">self.synapse_type</span></code> 这两个参数分别决定了是否要使用突触模型以及突触种类。这两个参数都是通过 <code class="code docutils literal notranslate"><span class="pre">kwargs</span></code> 中获取的方式来改变：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">synapse</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;synapse&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">synapse_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;synapse_type&#39;</span><span class="p">,</span> <span class="s1">&#39;chemistry_i_synapse&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>定义可从外部获取的参数<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>在定义神经元模型的最初部分，我们需要先定义该神经元模型可以变更的一些参数，这些参数可由传参来改变。例如在化学突触模型中，我们将其原本的公式经过变换后可得：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Chemistry current synapse</span>
+<span class="c1"># I = tauP*I + WgtSum</span>
+</pre></div>
+</div>
+<p>在这个公式中，<code class="code docutils literal notranslate"><span class="pre">self.synapse</span></code> 是可变参数，所以我们通过 <code class="code docutils literal notranslate"><span class="pre">kwargs</span></code> 中获取的方式来改变：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">tau_p</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tau_p&#39;</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>定义变量<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>在定义变量阶段，我们要先了解突触的几个变量形式：</p>
+<ul class="simple">
+<li><p>_syn_tau_constant_variables: 指数衰减常数</p></li>
+<li><p>_syn_variables: 普通变量</p></li>
+</ul>
+<p>对于 <code class="code docutils literal notranslate"><span class="pre">_syn_tau_constant_variables</span></code> 我们会进行一个变换 <code class="code docutils literal notranslate"><span class="pre">value</span> <span class="pre">=</span> <span class="pre">np.exp(-self.dt</span> <span class="pre">/</span> <span class="pre">var)</span></code> ,</p>
+<p>在定义变量时，同时需要设定初始值，在网络的每一次运行后，神经元的参数都会被重置为此处设定的初始值。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">_syn_variables</span><span class="p">[</span><span class="n">I</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">_syn_variables</span><span class="p">[</span><span class="n">WgtSum</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">_syn_tau_constant_variables</span><span class="p">[</span><span class="n">tauP</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tau_p</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>定义计算式<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<p>计算式是突触模型最为重要的部分，一行一行的计算式决定了各个参数在模拟过程中将会经过一些什么样的变化。</p>
+<p>在添加计算式时，有一些需要遵守的规则。首先，每一行只能计算一个特定的计算符，所以需要将原公式进行分解，分解为独立的计算符。目前在平台中内置的计算符可以参考 <code class="code docutils literal notranslate"><span class="pre">backend.basic_operation</span></code> :</p>
+<ul class="simple">
+<li><p>add, minus, div</p></li>
+<li><p>var_mult, mat_mult, mat_mult_pre, sparse_mat_mult, reshape_mat_mult</p></li>
+<li><p>var_linear, mat_linear</p></li>
+<li><p>reduce_sum, mult_sum</p></li>
+<li><p>threshold</p></li>
+<li><p>cat</p></li>
+<li><p>exp</p></li>
+<li><p>stack</p></li>
+<li><p>conv_2d, conv_max_pool2d</p></li>
+</ul>
+<p>在使用这些计算符时的格式，我们以化学突触模型中计算化学电流的过程作为示例：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># I = tauP * I + WgtSum 的公式转化为以下计算式并添加至self.._syn_operations中，I作为计算结果放置在第一位，计算符var_linear放置在第二位</span>
+<span class="c1"># [updated]符号目前代表该数值取的是本轮计算中计算出的新值，临时变量无需添加，</span>
+<span class="bp">self</span><span class="o">..</span><span class="n">_syn_operations</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">I</span><span class="p">,</span> <span class="s1">&#39;var_linear&#39;</span><span class="p">,</span> <span class="n">tauP</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">WgtSum</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="4_custom_algorithm.html" class="btn btn-neutral float-right" title="算法自定义" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="2_custom_neuron.html" class="btn btn-neutral float-left" title="神经元模型自定义" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

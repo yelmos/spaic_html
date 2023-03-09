@@ -1,0 +1,784 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Learning package &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>spaic.Learning package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/spaic.Learning.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spaic-learning-package">
+<h1>spaic.Learning package<a class="headerlink" href="#spaic-learning-package" title="永久链接至标题">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.Learning.Learner">
+<span id="spaic-learning-learner-module"></span><h2>spaic.Learning.Learner module<a class="headerlink" href="#module-spaic.Learning.Learner" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/12
+&#64;project: SPAIC
+&#64;filename: Learner
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+定义学习模块，包括各种学习算法对仿真计算过程中插入的各种计算模块，以及记录需要学习连接的接口</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.Learner.</span></span><span class="sig-name descname"><span class="pre">Learner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('STCA',</span> <span class="pre">'STBP',</span> <span class="pre">'RSTDP',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="spaic.Network.html#spaic.Network.BaseModule.BaseModule" title="spaic.Network.BaseModule.BaseModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.BaseModule.BaseModule</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Base learner model for all the learner model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameters</strong> (<em>dict</em>) – The parameters for learner.</p></li>
+<li><p><strong>super_parameters</strong> (<em>dict</em>) – Super parameters for future use.</p></li>
+<li><p><strong>backend_functions</strong> (<em>dict</em>) – Contains all the learner model we can choose.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The typical name for the learner.</p></li>
+<li><p><strong>preferred_backend</strong> (<em>str</em>) – Choose which kind of backend to use. Like “Pytorch”, “Tensorflow” or “Jax”.</p></li>
+<li><p><strong>trainable_groups</strong> (<em>dict</em>) – Trainable container, includes nodes and layers to train.</p></li>
+<li><p><strong>trainable_connections</strong> (<em>dict</em>) – Trainable container, includes connections to train.</p></li>
+<li><p><strong>init_trainable</strong> – The initial state of this learner of whether it is trainable.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.add_trainable">
+<span class="sig-name descname"><span class="pre">add_trainable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trainable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.add_trainable"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.add_trainable" title="永久链接至目标">¶</a></dt>
+<dd><p>Add target object (Network, Assembly, Connection,
+or list of them) to the trainable container</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.build" title="永久链接至目标">¶</a></dt>
+<dd><p>Build Learner, choose the backend as user wish, if we have already finished the api.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.learning_algorithms">
+<span class="sig-name descname"><span class="pre">learning_algorithms</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'conv2d_rstdp':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Learning.Conv_RSTDP.Conv2d_RSTDP'&gt;,</span> <span class="pre">'conv2d_stdp':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Learning.Conv_STDP.Conv2d_STDP'&gt;,</span> <span class="pre">'full_online_stdp':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Learning.STDP_Learner.full_online_STDP'&gt;,</span> <span class="pre">'nearest_online_stdp':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Learning.STDP_Learner.nearest_online_STDP'&gt;,</span> <span class="pre">'rstdp':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Learning.RSTDP.RSTDP'&gt;,</span> <span class="pre">'rstdpet':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Learning.RSTDP.RSTDPET'&gt;,</span> <span class="pre">'stbp':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Learning.STBP_Learner.STBP'&gt;,</span> <span class="pre">'stca':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Learning.STCA_Learner.STCA'&gt;}</span></em><a class="headerlink" href="#spaic.Learning.Learner.Learner.learning_algorithms" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.learning_optims">
+<span class="sig-name descname"><span class="pre">learning_optims</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{}</span></em><a class="headerlink" href="#spaic.Learning.Learner.Learner.learning_optims" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.optim_dict">
+<span class="sig-name descname"><span class="pre">optim_dict</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'ASGD':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.asgd.ASGD'&gt;,</span> <span class="pre">'Adadelta':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.adadelta.Adadelta'&gt;,</span> <span class="pre">'Adagrad':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.adagrad.Adagrad'&gt;,</span> <span class="pre">'Adam':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.adam.Adam'&gt;,</span> <span class="pre">'AdamW':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.adamw.AdamW'&gt;,</span> <span class="pre">'Adamax':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.adamax.Adamax'&gt;,</span> <span class="pre">'LBFGS':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.lbfgs.LBFGS'&gt;,</span> <span class="pre">'RMSprop':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.rmsprop.RMSprop'&gt;,</span> <span class="pre">'Rpop':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.rprop.Rprop'&gt;,</span> <span class="pre">'SGD':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.sgd.SGD'&gt;,</span> <span class="pre">'SparseAdam':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.sparse_adam.SparseAdam'&gt;}</span></em><a class="headerlink" href="#spaic.Learning.Learner.Learner.optim_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.lr_schedule_dict">
+<span class="sig-name descname"><span class="pre">lr_schedule_dict</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'CosineAnnealingLR':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.lr_scheduler.CosineAnnealingLR'&gt;,</span> <span class="pre">'CosineAnnealingWarmRestarts':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.lr_scheduler.CosineAnnealingWarmRestarts'&gt;,</span> <span class="pre">'CyclicLR':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.lr_scheduler.CyclicLR'&gt;,</span> <span class="pre">'ExponentialLR':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.lr_scheduler.ExponentialLR'&gt;,</span> <span class="pre">'LambdaLR':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.lr_scheduler.LambdaLR'&gt;,</span> <span class="pre">'MultiStepLR':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.lr_scheduler.MultiStepLR'&gt;,</span> <span class="pre">'ReduceLROnPlateau':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.lr_scheduler.ReduceLROnPlateau'&gt;,</span> <span class="pre">'StepLR':</span> <span class="pre">&lt;class</span> <span class="pre">'torch.optim.lr_scheduler.StepLR'&gt;}</span></em><a class="headerlink" href="#spaic.Learning.Learner.Learner.lr_schedule_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">add_trainable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.add_trainable"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id0" title="永久链接至目标">¶</a></dt>
+<dd><p>Add target object (Assembly, Connection, or list of them) to the trainable container
+:param trainable: The trainable target waiting for added.
+:type trainable: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.add_pathway">
+<span class="sig-name descname"><span class="pre">add_pathway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathway</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.add_pathway"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.add_pathway" title="永久链接至目标">¶</a></dt>
+<dd><p>Add target object (Assembly, Connection, or list of them) to the pathway container
+:param pathway: The pathway target waiting for added.
+:type pathway: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id1" title="永久链接至目标">¶</a></dt>
+<dd><p>Build Learner, choose the backend as user wish, if we have already finished the api.
+:param backend: Backend we have.
+:type backend: backend</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.set_optimizer">
+<span class="sig-name descname"><span class="pre">set_optimizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optim_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optim_lr</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.set_optimizer"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.set_optimizer" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.set_schedule">
+<span class="sig-name descname"><span class="pre">set_schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lr_schedule_name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.set_schedule"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.set_schedule" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.get_param">
+<span class="sig-name descname"><span class="pre">get_param</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.get_param"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.get_param" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.get_varname">
+<span class="sig-name descname"><span class="pre">get_varname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.get_varname"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.get_varname" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.build_optimizer">
+<span class="sig-name descname"><span class="pre">build_optimizer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.build_optimizer"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.build_optimizer" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.build_lr_shedule">
+<span class="sig-name descname"><span class="pre">build_lr_shedule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.build_lr_shedule"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.build_lr_shedule" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.optim_step">
+<span class="sig-name descname"><span class="pre">optim_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.optim_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.optim_step" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.optim_zero_grad">
+<span class="sig-name descname"><span class="pre">optim_zero_grad</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.optim_zero_grad"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.optim_zero_grad" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.optim_shedule">
+<span class="sig-name descname"><span class="pre">optim_shedule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.optim_shedule"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.optim_shedule" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.register">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.register"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.register" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.connection_function">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">connection_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_vars_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execute_condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['initial',</span> <span class="pre">'iterative',</span> <span class="pre">'end']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['trainable',</span> <span class="pre">'pathway']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.connection_function"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.connection_function" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.Learner.Assamble_function">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">Assamble_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_vars_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execute_condition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['initial',</span> <span class="pre">'iterative',</span> <span class="pre">'end']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['trainable',</span> <span class="pre">'pathway']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#Learner.Assamble_function"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.Learner.Assamble_function" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.SpikeProp">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.Learner.</span></span><span class="sig-name descname"><span class="pre">SpikeProp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('STCA',</span> <span class="pre">'STBP',</span> <span class="pre">'RSTDP',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#SpikeProp"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.SpikeProp" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Learning.Learner.Learner" title="spaic.Learning.Learner.Learner"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Learning.Learner.Learner</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.ReSuMe">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.Learner.</span></span><span class="sig-name descname"><span class="pre">ReSuMe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('STCA',</span> <span class="pre">'STBP',</span> <span class="pre">'RSTDP',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#ReSuMe"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.ReSuMe" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Learning.Learner.Learner" title="spaic.Learning.Learner.Learner"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Learning.Learner.Learner</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.Learner.FORCE">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.Learner.</span></span><span class="sig-name descname"><span class="pre">FORCE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('STCA',</span> <span class="pre">'STBP',</span> <span class="pre">'RSTDP',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/Learner.html#FORCE"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.Learner.FORCE" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Learning.Learner.Learner" title="spaic.Learning.Learner.Learner"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Learning.Learner.Learner</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Learning.RSTDP">
+<span id="spaic-learning-rstdp-module"></span><h2>spaic.Learning.RSTDP module<a class="headerlink" href="#module-spaic.Learning.RSTDP" title="永久链接至标题">¶</a></h2>
+<p>&#64;author: Yuan Mengwen
+&#64;contact: <a class="reference external" href="mailto:mwyuan94&#37;&#52;&#48;gmail&#46;com">mwyuan94<span>&#64;</span>gmail<span>&#46;</span>com</a>
+&#64;project: PyCharm
+&#64;filename: RSTDP.py
+&#64;time:2021/4/8 10:46
+&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.RSTDP.RSTDP">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.RSTDP.</span></span><span class="sig-name descname"><span class="pre">RSTDP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('STCA',</span> <span class="pre">'STBP',</span> <span class="pre">'RSTDP',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/RSTDP.html#RSTDP"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.RSTDP.RSTDP" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Learning.Learner.Learner" title="spaic.Learning.Learner.Learner"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Learning.Learner.Learner</span></code></a></p>
+<p>Reward-modulated STDP. Adapted from <cite>(Florian 2007)
+&lt;https://florian.io/papers/2007_Florian_Modulated_STDP.pdf&gt;</cite>.
+:param lr: learning rate
+:type lr: int or float
+:param trainable: It can be network or neurongroups</p>
+<dl class="field-list simple">
+<dt class="field-odd">变量</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tau_plus</strong> (<em>int</em><em> or </em><em>float</em>) – Time constant for pre -synaptic firing trace determines the range of interspike intervals over which synaptic occur.</p></li>
+<li><p><strong>tau_minus</strong> (<em>int</em><em> or </em><em>float</em>) – Time constant for post-synaptic firing trace.</p></li>
+<li><p><strong>a_plus</strong> (<em>float</em>) – Learning rate for post-synaptic.</p></li>
+<li><p><strong>a_minus</strong> (<em>flaot</em>) – Learning rate for pre-synaptic.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.RSTDP.RSTDP.weight_update">
+<span class="sig-name descname"><span class="pre">weight_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eligibility</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/RSTDP.html#RSTDP.weight_update"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.RSTDP.RSTDP.weight_update" title="永久链接至目标">¶</a></dt>
+<dd><p>RSTDP learning rule for <code class="docutils literal notranslate"><span class="pre">Connection</span></code> subclass of <code class="docutils literal notranslate"><span class="pre">AbstractConnection</span></code> class.
+:param weight: weight between pre and post neurongroup
+:param eligibility: a decaying memory of the relationships between the recent pairs of pre and postsynaptic spike pairs
+:param reward: reward signal</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.RSTDP.RSTDP.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/RSTDP.html#RSTDP.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.RSTDP.RSTDP.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.RSTDP.RSTDPET">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.RSTDP.</span></span><span class="sig-name descname"><span class="pre">RSTDPET</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('STCA',</span> <span class="pre">'STBP',</span> <span class="pre">'RSTDP',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/RSTDP.html#RSTDPET"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.RSTDP.RSTDPET" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Learning.Learner.Learner" title="spaic.Learning.Learner.Learner"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Learning.Learner.Learner</span></code></a></p>
+<p>Reward-modulated STDP with eligibility trace. Adapted from <cite>(Florian 2007)
+&lt;https://florian.io/papers/2007_Florian_Modulated_STDP.pdf&gt;</cite>.
+:param lr: learning rate
+:type lr: int or float
+:param trainable: It can be network or neurongroups</p>
+<dl class="field-list simple">
+<dt class="field-odd">变量</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tau_plus</strong> (<em>int</em><em> or </em><em>float</em>) – Time constant for pre -synaptic firing trace determines the range of interspike intervals over which synaptic occur.</p></li>
+<li><p><strong>tau_minus</strong> (<em>int</em><em> or </em><em>float</em>) – Time constant for post-synaptic firing trace.</p></li>
+<li><p><strong>a_plus</strong> (<em>float</em>) – Learning rate for post-synaptic.</p></li>
+<li><p><strong>a_minus</strong> (<em>flaot</em>) – Learning rate for pre-synaptic.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">提示</p>
+<p>Batch_size for network using RSTDPET as learning algorithm must be 1.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.RSTDP.RSTDPET.weight_update">
+<span class="sig-name descname"><span class="pre">weight_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eligibility_trace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/RSTDP.html#RSTDPET.weight_update"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.RSTDP.RSTDPET.weight_update" title="永久链接至目标">¶</a></dt>
+<dd><p>RSTDPET learning rule for <code class="docutils literal notranslate"><span class="pre">Connection</span></code> subclass of <code class="docutils literal notranslate"><span class="pre">AbstractConnection</span></code> class.
+.. rubric:: 提示</p>
+<p>The batch of pre and post should be 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>weight</strong> – weight between pre and post neurongroup</p></li>
+<li><p><strong>eligibility_trace</strong> – a decaying memory of the relationships between the recent pairs of pre and postsynaptic spike pairs</p></li>
+<li><p><strong>reward</strong> – reward signal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.RSTDP.RSTDPET.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/RSTDP.html#RSTDPET.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.RSTDP.RSTDPET.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="spaic-learning-rate-modulation-module">
+<h2>spaic.Learning.Rate_Modulation module<a class="headerlink" href="#spaic-learning-rate-modulation-module" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.Learning.STBP_Learner">
+<span id="spaic-learning-stbp-learner-module"></span><h2>spaic.Learning.STBP_Learner module<a class="headerlink" href="#module-spaic.Learning.STBP_Learner" title="永久链接至标题">¶</a></h2>
+<p>Created on 2021/3/30
+&#64;project: SPAIC
+&#64;filename: STBP_Learner
+&#64;author: Mengxiao Zhang
+&#64;contact: <a class="reference external" href="mailto:mxzhangice&#37;&#52;&#48;gmail&#46;com">mxzhangice<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.STBP_Learner.STBP">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.STBP_Learner.</span></span><span class="sig-name descname"><span class="pre">STBP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('STCA',</span> <span class="pre">'STBP',</span> <span class="pre">'RSTDP',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STBP_Learner.html#STBP"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STBP_Learner.STBP" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Learning.Learner.Learner" title="spaic.Learning.Learner.Learner"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Learning.Learner.Learner</span></code></a></p>
+<p>STBP learning rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<em>num</em>) – The parameter alpha of STBP learning model.</p></li>
+<li><p><strong>trainable</strong> – The parameter whether it can be trained.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STBP_Learner.STBP.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STBP_Learner.html#STBP.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STBP_Learner.STBP.build" title="永久链接至目标">¶</a></dt>
+<dd><p>Build the backend, realize the algorithm of STBP model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STBP_Learner.STBP.threshold">
+<span class="sig-name descname"><span class="pre">threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STBP_Learner.html#STBP.threshold"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STBP_Learner.STBP.threshold" title="永久链接至目标">¶</a></dt>
+<dd><p>Get the threshold of the STBP model.</p>
+</dd></dl>
+
+<p class="rubric">示例</p>
+<p>Net._learner = STBP(0.5, Net)</p>
+<dl class="simple">
+<dt>Reference:</dt><dd><p>Yujie Wu et al. “Spatio-Temporal Backpropagation for Training High-performance Spiking Neural Networks” In:
+Frontiers in Neuroscience, 2018. Volume 12. pp. 331.
+doi:10.3389/fnins.2018.00331
+url:ttps://www.frontiersin.org/article/10.3389/fnins.2018.00331</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STBP_Learner.html#STBP.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id2" title="永久链接至目标">¶</a></dt>
+<dd><p>Build the backend, realize the algorithm of STBP model.
+Args：</p>
+<blockquote>
+<div><p>backend: The backend we used to compute.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STBP_Learner.html#STBP.threshold"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id3" title="永久链接至目标">¶</a></dt>
+<dd><p>Get the threshold of the STBP model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>A method that use STBP model to compute the threshold.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Learning.STCA_Learner">
+<span id="spaic-learning-stca-learner-module"></span><h2>spaic.Learning.STCA_Learner module<a class="headerlink" href="#module-spaic.Learning.STCA_Learner" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/11/9
+&#64;project: SPAIC
+&#64;filename: STCA_Learner
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.STCA_Learner.ActFun">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.STCA_Learner.</span></span><span class="sig-name descname"><span class="pre">ActFun</span></span><a class="reference internal" href="_modules/spaic/Learning/STCA_Learner.html#ActFun"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STCA_Learner.ActFun" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.function.Function</span></code></p>
+<p>Approximate firing func.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STCA_Learner.ActFun.forward">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thresh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STCA_Learner.html#ActFun.forward"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STCA_Learner.ActFun.forward" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STCA_Learner.ActFun.backward">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STCA_Learner.html#ActFun.backward"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STCA_Learner.ActFun.backward" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Learning.STCA_Learner.firing_func">
+<span class="sig-prename descclassname"><span class="pre">spaic.Learning.STCA_Learner.</span></span><span class="sig-name descname"><span class="pre">firing_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_th</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STCA_Learner.html#firing_func"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STCA_Learner.firing_func" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.STCA_Learner.STCA">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.STCA_Learner.</span></span><span class="sig-name descname"><span class="pre">STCA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('STCA',</span> <span class="pre">'STBP',</span> <span class="pre">'RSTDP',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STCA_Learner.html#STCA"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STCA_Learner.STCA" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Learning.Learner.Learner" title="spaic.Learning.Learner.Learner"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Learning.Learner.Learner</span></code></a></p>
+<p>STCA learning rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<em>num</em>) – The parameter alpha of STCA learning model.</p></li>
+<li><p><strong>preferred_backend</strong> (<em>list</em>) – The backend prefer to use, should be a list.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of this learning model. Should be ‘STCA’.</p></li>
+<li><p><strong>firing_func</strong> – The function of fire.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STCA_Learner.STCA.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STCA_Learner.html#STCA.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STCA_Learner.STCA.build" title="永久链接至目标">¶</a></dt>
+<dd><p>Build the backend, realize the algorithm of STCA model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STCA_Learner.STCA.threshold">
+<span class="sig-name descname"><span class="pre">threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_th</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Learning.STCA_Learner.STCA.threshold" title="永久链接至目标">¶</a></dt>
+<dd><p>Get the threshold of the STCA model.</p>
+</dd></dl>
+
+<p class="rubric">示例</p>
+<p>Net._learner = STCA(0.5, Net)</p>
+<dl class="simple">
+<dt>Reference:</dt><dd><p>Pengjie Gu et al. “STCA: Spatio-Temporal Credit Assignment with Delayed Feedback in Deep SpikingNeural
+Networks.” In:Proceedings of the Twenty-Eighth International Joint Conference on Artificial Intelligence,
+IJCAI-19. International Joint Conferences on Artificial Intelligence Organization, July 2019,pp. 1366–1372.
+doi:10.24963/ijcai.2019/189.
+url:https://doi.org/10.24963/ijcai.2019/189.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STCA_Learner.html#STCA.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id4" title="永久链接至目标">¶</a></dt>
+<dd><p>Build the backend, realize the algorithm of STCA model.</p>
+<dl class="simple">
+<dt>Args：</dt><dd><p>backend: The backend we used to compute.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STCA_Learner.STCA.torch_threshold">
+<span class="sig-name descname"><span class="pre">torch_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STCA_Learner.html#STCA.torch_threshold"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STCA_Learner.STCA.torch_threshold" title="永久链接至目标">¶</a></dt>
+<dd><p>Get the threshold of the STCA model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>A method that use STCA model to compute the threshold.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Learning.STDP_Learner">
+<span id="spaic-learning-stdp-learner-module"></span><h2>spaic.Learning.STDP_Learner module<a class="headerlink" href="#module-spaic.Learning.STDP_Learner" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.STDP_Learner.nearest_online_STDP">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.STDP_Learner.</span></span><span class="sig-name descname"><span class="pre">nearest_online_STDP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('STCA',</span> <span class="pre">'STBP',</span> <span class="pre">'RSTDP',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STDP_Learner.html#nearest_online_STDP"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STDP_Learner.nearest_online_STDP" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Learning.Learner.Learner" title="spaic.Learning.Learner.Learner"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Learning.Learner.Learner</span></code></a></p>
+<p>nearest_online STDP learning rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Apost</strong> (<em>num</em>) – The parameter Apost of nearest_online STDP learning model.</p></li>
+<li><p><strong>Apre</strong> (<em>num</em>) – The parameter Apre of nearest_online STDP learning model.</p></li>
+<li><p><strong>trace_decay</strong> (<em>num</em>) – The parameter trace_decay of nearest_online STDP learning model.</p></li>
+<li><p><strong>preferred_backend</strong> (<em>list</em>) – The backend prefer to use, should be a list.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of this learning model. Should be ‘nearest_online_STDP’.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STDP_Learner.nearest_online_STDP.initial_param">
+<span class="sig-name descname"><span class="pre">initial_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Learning.STDP_Learner.nearest_online_STDP.initial_param" title="永久链接至目标">¶</a></dt>
+<dd><p>initialize the output_trace and the input_trace for each batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STDP_Learner.nearest_online_STDP.nearest_online_stdp_weightupdate">
+<span class="sig-name descname"><span class="pre">nearest_online_stdp_weightupdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STDP_Learner.html#nearest_online_STDP.nearest_online_stdp_weightupdate"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STDP_Learner.nearest_online_STDP.nearest_online_stdp_weightupdate" title="永久链接至目标">¶</a></dt>
+<dd><p>calculate the update of weight</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STDP_Learner.nearest_online_STDP.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STDP_Learner.html#nearest_online_STDP.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STDP_Learner.nearest_online_STDP.build" title="永久链接至目标">¶</a></dt>
+<dd><p>Build the backend, realize the algorithm of nearest_online STDP learning model.</p>
+</dd></dl>
+
+<p class="rubric">示例</p>
+<p>self._learner = BaseLearner(algorithm=’nearest_online_STDP’, lr=0.5, trainable=self, conn=self.connection1)</p>
+<dl class="simple">
+<dt>Reference:</dt><dd><p>Unsupervised learning of digit recognition using spike-timing-dependent plasticity.
+doi: 10.3389/fncom.2015.00099.
+url: <a class="reference external" href="http://journal.frontiersin.org/article/10.3389/fncom.2015.00099/abstract">http://journal.frontiersin.org/article/10.3389/fncom.2015.00099/abstract</a></p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">nearest_online_stdp_weightupdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STDP_Learner.html#nearest_online_STDP.nearest_online_stdp_weightupdate"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id5" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dw</strong> – the change of weight</p></li>
+<li><p><strong>weight</strong> – weight between pre and post neurongroup</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Updated weight.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STDP_Learner.html#nearest_online_STDP.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id6" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Learning.STDP_Learner.full_online_STDP">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Learning.STDP_Learner.</span></span><span class="sig-name descname"><span class="pre">full_online_STDP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">algorithm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('STCA',</span> <span class="pre">'STBP',</span> <span class="pre">'RSTDP',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STDP_Learner.html#full_online_STDP"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STDP_Learner.full_online_STDP" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Learning.Learner.Learner" title="spaic.Learning.Learner.Learner"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Learning.Learner.Learner</span></code></a></p>
+<p>nearest_online STDP learning rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Apost</strong> (<em>num</em>) – The parameter Apost of full_online STDP learning model.</p></li>
+<li><p><strong>Apre</strong> (<em>num</em>) – The parameter Apre of full_online STDP learning model.</p></li>
+<li><p><strong>trace_decay</strong> (<em>num</em>) – The parameter trace_decay of full_online STDP learning model.</p></li>
+<li><p><strong>preferred_backend</strong> (<em>list</em>) – The backend prefer to use, should be a list.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of this learning model. Should be ‘full_online_STDP’.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STDP_Learner.full_online_STDP.initial_param">
+<span class="sig-name descname"><span class="pre">initial_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Learning.STDP_Learner.full_online_STDP.initial_param" title="永久链接至目标">¶</a></dt>
+<dd><p>initialize the output_trace and the input_trace for each batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STDP_Learner.full_online_STDP.nearest_online_stdp_weightupdate">
+<span class="sig-name descname"><span class="pre">nearest_online_stdp_weightupdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Learning.STDP_Learner.full_online_STDP.nearest_online_stdp_weightupdate" title="永久链接至目标">¶</a></dt>
+<dd><p>calculate the update of weight</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STDP_Learner.full_online_STDP.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STDP_Learner.html#full_online_STDP.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STDP_Learner.full_online_STDP.build" title="永久链接至目标">¶</a></dt>
+<dd><p>Build the backend, realize the algorithm of full_online STDP learning model.</p>
+</dd></dl>
+
+<p class="rubric">示例</p>
+<p>self._learner = BaseLearner(algorithm=’full_online_STDP’, lr=0.5, trainable=self, conn=self.connection1)</p>
+<dl class="simple">
+<dt>Reference:</dt><dd><p>Unsupervised learning of digit recognition using spike-timing-dependent plasticity.
+doi: 10.3389/fncom.2015.00099.
+url: <a class="reference external" href="http://journal.frontiersin.org/article/10.3389/fncom.2015.00099/abstract">http://journal.frontiersin.org/article/10.3389/fncom.2015.00099/abstract</a></p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Learning.STDP_Learner.full_online_STDP.full_online_stdp_weightupdate">
+<span class="sig-name descname"><span class="pre">full_online_stdp_weightupdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STDP_Learner.html#full_online_STDP.full_online_stdp_weightupdate"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Learning.STDP_Learner.full_online_STDP.full_online_stdp_weightupdate" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dw</strong> – the change of weight</p></li>
+<li><p><strong>weight</strong> – weight between pre and post neurongroup</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Updated weight.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Learning/STDP_Learner.html#full_online_STDP.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id7" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="spaic-learning-spikeprop-learner-module">
+<h2>spaic.Learning.SpikeProp_Learner module<a class="headerlink" href="#spaic-learning-spikeprop-learner-module" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="spaic-learning-true-learner-module">
+<h2>spaic.Learning.TRUE_Learner module<a class="headerlink" href="#spaic-learning-true-learner-module" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.Learning">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spaic.Learning" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/11
+&#64;project: SPAIC
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

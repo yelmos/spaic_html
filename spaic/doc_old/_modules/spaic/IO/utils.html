@@ -1,0 +1,879 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.IO.utils &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.IO.utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.IO.utils 源代码</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: Yuan Mengwen</span>
+<span class="sd">@contact: mwyuan94@gmail.com</span>
+<span class="sd">@project: PyCharm</span>
+<span class="sd">@filename: utils.py</span>
+<span class="sd">@time:2021/4/1 14:33</span>
+<span class="sd">@description:</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KMP_DUPLICATE_LIB_OK&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;True&#39;</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">shuffle</span>
+<span class="kn">from</span> <span class="nn">shutil</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span> <span class="k">as</span> <span class="nn">signal</span>
+<span class="kn">import</span> <span class="nn">scipy.io.wavfile</span> <span class="k">as</span> <span class="nn">wav</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">maximum_filter</span>
+<span class="c1"># import soundfile as sf</span>
+<span class="c1"># import cv2</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">from</span> <span class="nn">spaic.utils</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">gtgram</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">scipy.io.wavfile</span> <span class="k">as</span> <span class="nn">wav</span>
+
+
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">==================audio preprocess method==================</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="wav_file_resample"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.wav_file_resample">[文档]</a><span class="k">def</span> <span class="nf">wav_file_resample</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">dest_sample</span><span class="o">=</span><span class="mf">16e3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    对WAV文件进行resample的操作</span>
+<span class="sd">    Args:</span>
+<span class="sd">        file_path: 需要进行resample操作的wav文件的路径</span>
+<span class="sd">        dest_sample:目标采样率</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        resampled: 降采样后的数据</span>
+<span class="sd">        dest_sample: 目标采样率</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sample_rate</span><span class="p">,</span> <span class="n">sound_signal</span> <span class="o">=</span> <span class="n">wav</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">signal_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">sound_signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">sample_rate</span> <span class="o">*</span> <span class="n">dest_sample</span><span class="p">)</span>
+    <span class="n">resampled</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">sound_signal</span><span class="p">,</span> <span class="n">signal_num</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resampled</span><span class="p">,</span> <span class="n">dest_sample</span></div>
+
+<div class="viewcode-block" id="wav_file_cut"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.wav_file_cut">[文档]</a><span class="k">def</span> <span class="nf">wav_file_cut</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">signal_num</span><span class="o">=</span><span class="mf">16e3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    对WAV文件进行裁剪操作</span>
+<span class="sd">    Args:</span>
+<span class="sd">        file_path: 需要进行resample操作的wav文件的路径</span>
+<span class="sd">        signal_num:目标数据数量</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        cropped_data: 裁剪后的数据</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sample_rate</span><span class="p">,</span> <span class="n">sound_signal</span> <span class="o">=</span> <span class="n">wav</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="n">cropped_data</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">sound_signal</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">signal_num</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">cropped_data</span></div>
+
+<span class="k">def</span> <span class="nf">_dataset_exists</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">class_labels</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">cls_id</span> <span class="ow">in</span> <span class="n">class_labels</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">cls_id</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">cls_id</span><span class="p">)):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="save_mfcc_feature"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.save_mfcc_feature">[文档]</a><span class="k">def</span> <span class="nf">save_mfcc_feature</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">npz_name</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="mf">16e3</span><span class="p">,</span> <span class="n">signal_num</span><span class="o">=</span><span class="mf">16e3</span><span class="p">,</span> <span class="n">class_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">python_speech_features</span> <span class="kn">import</span> <span class="n">mfcc</span>
+    <span class="k">if</span> <span class="n">npz_name</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">feature_name</span> <span class="o">=</span> <span class="s1">&#39;mfcc_feature&#39;</span>
+
+    <span class="c1"># set class labels</span>
+    <span class="k">if</span> <span class="n">class_labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Missing class labels dict&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">classes</span> <span class="o">=</span> <span class="n">class_labels</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;train_audios&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;train_labels&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;test_audios&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;test_labels&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;neuron_num&#39;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="n">dataset_name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">]</span>  <span class="c1"># if is_train else &#39;test&#39;</span>
+    <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">dataset_name</span><span class="p">:</span>
+        <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">classes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">cur_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">subset</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">cur_dir</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;wav&#39;</span><span class="p">):</span>
+                    <span class="k">continue</span>
+                <span class="n">wavform</span> <span class="o">=</span> <span class="n">wav_file_cut</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cur_dir</span><span class="p">,</span> <span class="n">file</span><span class="p">),</span> <span class="n">signal_num</span><span class="p">)</span>
+                <span class="kn">from</span> <span class="nn">python_speech_features</span> <span class="kn">import</span> <span class="n">mfcc</span>
+                <span class="n">feature_mfcc</span> <span class="o">=</span> <span class="n">mfcc</span><span class="p">(</span><span class="n">wavform</span><span class="p">,</span> <span class="n">samplerate</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">)</span>
+                <span class="n">feature_mfcc</span> <span class="o">=</span> <span class="n">feature_mfcc</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+                <span class="n">audios_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_audios&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+                <span class="n">labels_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_labels&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">audios_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature_mfcc</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">labels_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classes</span><span class="p">[</span><span class="bp">cls</span><span class="p">])</span>
+
+    <span class="c1"># 将音频数据存储为.npz文件</span>
+    <span class="n">data_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">)</span>
+    <span class="n">npz_name</span> <span class="o">=</span> <span class="n">feature_name</span> <span class="o">+</span> <span class="s1">&#39;.npz&#39;</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;neuron_num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_audios&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">trainMaxTime</span> <span class="o">=</span> <span class="n">get_Max</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_audios&#39;</span><span class="p">])</span>
+    <span class="n">testMaxTime</span> <span class="o">=</span> <span class="n">get_Max</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_audios&#39;</span><span class="p">])</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">trainMaxTime</span><span class="p">,</span> <span class="n">testMaxTime</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">data_root</span><span class="p">,</span> <span class="n">train_audios</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_audios&#39;</span><span class="p">],</span> <span class="n">train_labels</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_labels&#39;</span><span class="p">],</span>
+             <span class="n">test_audios</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_audios&#39;</span><span class="p">],</span> <span class="n">test_labels</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_labels&#39;</span><span class="p">],</span> <span class="n">Time</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">],</span> <span class="n">neuron_num</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;neuron_num&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&gt;&gt; mfcc_features saved&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">npz_name</span></div>
+
+<div class="viewcode-block" id="save_kp_feature"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.save_kp_feature">[文档]</a><span class="k">def</span> <span class="nf">save_kp_feature</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">npz_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="mf">16e3</span><span class="p">,</span> <span class="n">class_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="c1"># parameters for extracting key points of audio</span>
+    <span class="n">window_size</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;window_size&#39;</span><span class="p">,</span> <span class="mf">0.016</span><span class="p">)</span>
+    <span class="n">stride</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;stride&#39;</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">)</span>
+    <span class="n">kernels_num</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;kernels_num&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">freq_min</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;freq_min&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">Dr</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Dr&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">Dc</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Dc&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">significance_level</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;significance_level&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">npz_name</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+        <span class="n">feature_name</span> <span class="o">=</span> <span class="s1">&#39;kp_feature&#39;</span>
+
+    <span class="c1"># set class labels</span>
+    <span class="k">if</span> <span class="n">class_labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Missing class labels dict&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">classes</span> <span class="o">=</span> <span class="n">class_labels</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;train_audios&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;train_labels&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;test_audios&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;test_labels&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;train_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;test_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;neuron_num&#39;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="n">dataset_name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">]</span>  <span class="c1"># if is_train else &#39;test&#39;</span>
+    <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">dataset_name</span><span class="p">:</span>
+        <span class="k">for</span> <span class="bp">cls</span> <span class="ow">in</span> <span class="n">classes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">cur_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">subset</span><span class="p">,</span> <span class="bp">cls</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">cur_dir</span><span class="p">):</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;wav&#39;</span><span class="p">):</span>
+                    <span class="k">continue</span>
+
+                <span class="n">wavform</span><span class="p">,</span> <span class="n">sr</span> <span class="o">=</span> <span class="n">wav_file_resample</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cur_dir</span><span class="p">,</span> <span class="n">file</span><span class="p">),</span> <span class="n">sample_rate</span><span class="p">)</span>
+                <span class="n">gmspec</span> <span class="o">=</span> <span class="n">fetchGmSpectrogram</span><span class="p">(</span><span class="n">wavform</span><span class="p">,</span> <span class="n">sample_rate</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">kernels_num</span><span class="p">,</span> <span class="n">freq_min</span><span class="p">)</span> <span class="c1"># gtgram.gtgram(wavform, sample_rate, window_size, stride, kernels_num, freq_min, show=True)</span>
+                <span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ival</span> <span class="o">=</span> <span class="n">extractKeyPoints</span><span class="p">(</span><span class="n">gmspec</span><span class="p">,</span> <span class="n">Dr</span><span class="p">,</span> <span class="n">Dc</span><span class="p">,</span> <span class="n">significance_level</span><span class="p">)</span>
+                <span class="n">audios_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_audios&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+                <span class="n">labels_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_labels&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+                <span class="n">id_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">_ids&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">audios_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ival</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">labels_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classes</span><span class="p">[</span><span class="bp">cls</span><span class="p">])</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">id_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">irow</span><span class="p">)</span>
+
+    <span class="c1"># 将音频数据存储为.npz文件</span>
+    <span class="n">data_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">feature_name</span><span class="p">)</span>
+    <span class="n">npz_name</span> <span class="o">=</span> <span class="n">feature_name</span> <span class="o">+</span> <span class="s1">&#39;.npz&#39;</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;neuron_num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kernels_num</span>
+    <span class="n">trainMaxTime</span> <span class="o">=</span> <span class="n">get_Max</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_audios&#39;</span><span class="p">])</span>
+    <span class="n">testMaxTime</span> <span class="o">=</span> <span class="n">get_Max</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_audios&#39;</span><span class="p">])</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">trainMaxTime</span><span class="p">,</span> <span class="n">testMaxTime</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">data_root</span><span class="p">,</span> <span class="n">train_audios</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_audios&#39;</span><span class="p">],</span> <span class="n">train_labels</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_labels&#39;</span><span class="p">],</span> <span class="n">train_ids</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_ids&#39;</span><span class="p">],</span>
+             <span class="n">test_audios</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_audios&#39;</span><span class="p">],</span> <span class="n">test_labels</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_labels&#39;</span><span class="p">],</span> <span class="n">test_ids</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_ids&#39;</span><span class="p">],</span> <span class="n">Time</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">],</span> <span class="n">neuron_num</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;neuron_num&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&gt;&gt; kp_feature saved&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">npz_name</span></div>
+
+<div class="viewcode-block" id="load_kp_data"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.load_kp_data">[文档]</a><span class="k">def</span> <span class="nf">load_kp_data</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;train_audios&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;test_audios&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;train_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;test_ids&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;train_labels&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;test_labels&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;neuron_num&#39;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+    <span class="n">fileroot</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">data_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fileroot</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_audios&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;train_audios&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_audios&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;test_audios&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;train_labels&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;test_labels&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_ids&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;train_ids&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_ids&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;test_ids&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;neuron_num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;neuron_num&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&gt;&gt; &quot;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot; loaded&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="load_mfcc_data"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.load_mfcc_data">[文档]</a><span class="k">def</span> <span class="nf">load_mfcc_data</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;train_audios&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;test_audios&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;train_labels&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;test_labels&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;Time&#39;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s1">&#39;neuron_num&#39;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+    <span class="n">fileroot</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">data_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fileroot</span><span class="p">,</span> <span class="n">allow_pickle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_audios&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;train_audios&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_audios&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;test_audios&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;train_labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;train_labels&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;test_labels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;test_labels&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;neuron_num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_temp</span><span class="p">[</span><span class="s1">&#39;neuron_num&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&gt;&gt; &quot;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s2">&quot; loaded&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="dataset_split"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.dataset_split">[文档]</a><span class="k">def</span> <span class="nf">dataset_split</span><span class="p">(</span><span class="n">source_root</span><span class="p">,</span> <span class="n">target_root</span><span class="p">,</span> <span class="n">ratio</span><span class="p">,</span> <span class="n">is_shuffle</span><span class="p">):</span>
+    <span class="n">train_root</span> <span class="o">=</span> <span class="n">target_root</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s1">&#39;train&#39;</span>
+    <span class="n">test_root</span> <span class="o">=</span> <span class="n">target_root</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s1">&#39;test&#39;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">train_root</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">train_root</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">test_root</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">test_root</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">source_root</span><span class="p">):</span>
+        <span class="n">class_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_root</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+
+        <span class="n">train_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_root</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+        <span class="n">test_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">test_root</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">train_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">train_dir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">test_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">test_dir</span><span class="p">)</span>
+
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">class_root</span><span class="p">)</span>
+        <span class="n">samples_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">is_shuffle</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">shuffle</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+
+        <span class="c1"># i 用来计算文件数量</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">to_path</span> <span class="o">=</span> <span class="n">train_dir</span>
+        <span class="k">for</span> <span class="n">data_name</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+            <span class="n">split_num</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">ratio</span><span class="o">*</span><span class="n">samples_len</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">to_path</span> <span class="o">=</span> <span class="n">train_dir</span>
+            <span class="k">elif</span> <span class="p">((</span><span class="n">i</span> <span class="o">%</span> <span class="n">split_num</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">to_path</span> <span class="o">=</span> <span class="n">test_dir</span>
+            <span class="n">from_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">class_root</span><span class="p">,</span> <span class="n">data_name</span><span class="p">)</span>
+            <span class="n">copy</span><span class="p">(</span><span class="n">from_path</span><span class="p">,</span> <span class="n">to_path</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="reclassification"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.reclassification">[文档]</a><span class="k">def</span> <span class="nf">reclassification</span><span class="p">(</span><span class="n">source_root</span><span class="p">,</span> <span class="n">target_root</span><span class="p">,</span> <span class="n">class_num</span><span class="p">,</span> <span class="n">perperson_perclass_samplenum</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    将按录音者分类的digit语音数据集重保存为按录的音频的类别分类</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># 想保存到的根路径</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">class_num</span><span class="p">):</span>
+        <span class="n">save_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target_root</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+        <span class="c1"># 如果目录不存在，则创建</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">save_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">save_dir</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">source_root</span><span class="p">):</span>
+        <span class="n">all_files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">source_root</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The path&#39;</span><span class="o">+</span> <span class="n">source_root</span> <span class="o">+</span><span class="s1">&#39; is not exist&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">all_files</span><span class="p">:</span>
+        <span class="n">file_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_root</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">file_root</span><span class="p">)</span>
+        <span class="c1"># i 用来计算文件数量，k 用来计算应存放到哪一类中</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">data_name</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">elif</span> <span class="p">((</span><span class="n">i</span><span class="o">%</span><span class="n">perperson_perclass_samplenum</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">):</span>
+                <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">from_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_root</span><span class="p">,</span> <span class="n">data_name</span><span class="p">)</span>
+            <span class="n">to_path</span> <span class="o">=</span> <span class="n">target_root</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="n">copy</span><span class="p">(</span><span class="n">from_path</span><span class="p">,</span> <span class="n">to_path</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></div>
+
+<div class="viewcode-block" id="datasetAlignment"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.datasetAlignment">[文档]</a><span class="k">def</span> <span class="nf">datasetAlignment</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">maxNum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Zeros are padded to each sample in the dataset according to the value of maxNum</span>
+<span class="sd">    Args:</span>
+<span class="sd">        source (ndarray): samples of dataset</span>
+<span class="sd">        maxNum (int): The length of longest sample</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The data after padding</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">source</span><span class="p">)):</span>
+        <span class="n">pad_len</span> <span class="o">=</span> <span class="n">maxNum</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+        <span class="n">source</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pad_len</span><span class="p">),</span> <span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">source</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">source</span></div>
+
+<div class="viewcode-block" id="batchAlignment"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.batchAlignment">[文档]</a><span class="k">def</span> <span class="nf">batchAlignment</span><span class="p">(</span><span class="n">source</span><span class="p">):</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">maxNum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">source</span><span class="p">)):</span>
+        <span class="n">wav_sig</span> <span class="o">=</span> <span class="n">source</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">maxNum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxNum</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">wav_sig</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">source</span><span class="p">)):</span>
+        <span class="n">pad_len</span> <span class="o">=</span> <span class="n">maxNum</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+        <span class="n">source</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">source</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">pad_len</span><span class="p">),</span> <span class="s1">&#39;constant&#39;</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">source</span></div>
+
+<div class="viewcode-block" id="fetchGmSpectrogram"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.fetchGmSpectrogram">[文档]</a><span class="k">def</span> <span class="nf">fetchGmSpectrogram</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mf">16e3</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="mf">0.016</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mf">0.008</span><span class="p">,</span> <span class="n">kernels_num</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">freq_min</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">gmspec</span> <span class="o">=</span> <span class="n">gtgram</span><span class="o">.</span><span class="n">gtgram</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">kernels_num</span><span class="p">,</span> <span class="n">freq_min</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">log</span><span class="p">:</span>
+        <span class="n">gmspec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">gmspec</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="s1">&#39;spectrum&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">])</span>
+        <span class="n">plot</span><span class="o">.</span><span class="n">gtgram_plot</span><span class="p">(</span><span class="n">gtgram</span><span class="o">.</span><span class="n">gtgram</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">fs</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">kernels_num</span><span class="p">,</span> <span class="n">freq_min</span><span class="p">)</span>
+        <span class="c1"># plt.show()</span>
+        <span class="c1"># print(&#39;&#39;)</span>
+    <span class="k">return</span> <span class="n">gmspec</span></div>
+
+<div class="viewcode-block" id="extractKeyPoints"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.extractKeyPoints">[文档]</a><span class="k">def</span> <span class="nf">extractKeyPoints</span><span class="p">(</span><span class="n">gmspec</span><span class="p">,</span> <span class="n">Dr</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">Dc</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">significance_level</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+    <span class="c1"># print(&#39;begin extractKeyPoints&#39;)</span>
+    <span class="n">row_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">Dr</span><span class="p">])</span>
+    <span class="n">colum_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="n">Dc</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">plus_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">Dc</span><span class="p">,</span> <span class="n">Dr</span><span class="p">])</span>
+    <span class="n">plus_mask</span><span class="p">[:,</span> <span class="n">Dr</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">plus_mask</span><span class="p">[</span><span class="n">Dc</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">row_filter_spec</span> <span class="o">=</span> <span class="n">maximum_filter</span><span class="p">(</span><span class="n">gmspec</span><span class="p">,</span> <span class="n">footprint</span><span class="o">=</span><span class="n">row_mask</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;reflect&#39;</span><span class="p">)</span>
+    <span class="n">colum_filter_spec</span> <span class="o">=</span> <span class="n">maximum_filter</span><span class="p">(</span><span class="n">gmspec</span><span class="p">,</span> <span class="n">footprint</span><span class="o">=</span><span class="n">colum_mask</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;reflect&#39;</span><span class="p">)</span>
+
+    <span class="n">is_keypoint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">((</span><span class="n">row_filter_spec</span> <span class="o">==</span> <span class="n">gmspec</span><span class="p">),</span> <span class="p">(</span><span class="n">colum_filter_spec</span> <span class="o">==</span> <span class="n">gmspec</span><span class="p">))</span>
+    <span class="p">[</span><span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_keypoint</span> <span class="o">==</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">ival</span> <span class="o">=</span> <span class="n">gmspec</span><span class="p">[</span><span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">]</span>
+    <span class="c1"># center_points = np.concatenate([irow,ival,])</span>
+    <span class="n">pad_gmspec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">gmspec</span><span class="p">,</span> <span class="p">((</span><span class="n">Dc</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Dc</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">Dr</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Dr</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;symmetric&#39;</span><span class="p">)</span>
+
+    <span class="c1"># todo: L默认填为矩形，其余位置由mask决定</span>
+    <span class="n">Lrow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">Dr</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">irow</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">row_tmp</span> <span class="o">=</span> <span class="n">pad_gmspec</span><span class="p">[</span><span class="n">irow</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dc</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="n">icol</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">icol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dr</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">Lrow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">Lrow</span><span class="p">,</span> <span class="n">row_tmp</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">Lcol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Dc</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">icol</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">col_tmp</span> <span class="o">=</span> <span class="n">pad_gmspec</span><span class="p">[</span><span class="n">irow</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">irow</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dc</span><span class="p">,</span> <span class="n">icol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">Dr</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">Lcol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">Lcol</span><span class="p">,</span> <span class="n">col_tmp</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">avg_Lrow</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Lrow</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">avg_Lcol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Lcol</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">ival</span><span class="o">.</span><span class="n">size</span><span class="p">])</span>
+    <span class="n">noise</span><span class="p">[</span><span class="n">avg_Lrow</span> <span class="o">&lt;</span> <span class="n">avg_Lcol</span><span class="p">]</span> <span class="o">=</span> <span class="n">avg_Lrow</span><span class="p">[</span><span class="n">avg_Lrow</span> <span class="o">&lt;</span> <span class="n">avg_Lcol</span><span class="p">]</span>
+    <span class="n">noise</span><span class="p">[</span><span class="n">avg_Lcol</span> <span class="o">&lt;=</span> <span class="n">avg_Lrow</span><span class="p">]</span> <span class="o">=</span> <span class="n">avg_Lcol</span><span class="p">[</span><span class="n">avg_Lcol</span> <span class="o">&lt;=</span> <span class="n">avg_Lrow</span><span class="p">]</span>
+    <span class="n">significant</span> <span class="o">=</span> <span class="p">((</span><span class="n">ival</span> <span class="o">-</span> <span class="n">noise</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">significance_level</span><span class="p">)</span>
+
+    <span class="c1"># 去除噪点</span>
+    <span class="n">irow</span> <span class="o">=</span> <span class="n">irow</span><span class="p">[</span><span class="n">significant</span><span class="p">]</span>
+    <span class="n">icol</span> <span class="o">=</span> <span class="n">icol</span><span class="p">[</span><span class="n">significant</span><span class="p">]</span>
+    <span class="n">ival</span> <span class="o">=</span> <span class="n">ival</span><span class="p">[</span><span class="n">significant</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">significant</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">irow</span><span class="p">,</span> <span class="n">icol</span><span class="p">,</span> <span class="n">ival</span></div>
+
+<div class="viewcode-block" id="get_Max"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.get_Max">[文档]</a><span class="k">def</span> <span class="nf">get_Max</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    get the maximum number of data</span>
+<span class="sd">    Args:</span>
+<span class="sd">        data (): can be spiking time or neuron ids</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">maxData</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+        <span class="n">tempMax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">maxData</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxData</span><span class="p">,</span> <span class="n">tempMax</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">maxData</span></div>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">==================image preprocess method==================</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="RGBtoGray"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.RGBtoGray">[文档]</a><span class="k">def</span> <span class="nf">RGBtoGray</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts RGB image into gray image.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        image: RGB image.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Gray image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">cv2</span>
+    <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_RGB2GRAY</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GraytoBinary"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.GraytoBinary">[文档]</a><span class="k">def</span> <span class="nf">GraytoBinary</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts input image into black and white (binary)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        image: Gray image.</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Binary image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">cv2</span>
+    <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">THRESH_BINARY</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="reshape"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.reshape">[文档]</a><span class="k">def</span> <span class="nf">reshape</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Scale the image to (x, y).</span>
+
+<span class="sd">    Args：</span>
+<span class="sd">        image: Image to be rescaled.</span>
+<span class="sd">        shape: Changed shape</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Re-scaled image.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">cv2</span>
+    <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="im2col"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.im2col">[文档]</a><span class="k">def</span> <span class="nf">im2col</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">kh</span><span class="p">,</span> <span class="n">kw</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    :param img: 4D array</span>
+<span class="sd">    :param kh: kernel_height</span>
+<span class="sd">    :param kw: kernel_width</span>
+<span class="sd">    :param stride:</span>
+<span class="sd">    :param padding:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">padding</span> <span class="o">==</span> <span class="s1">&#39;same&#39;</span><span class="p">:</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">kh</span><span class="o">//</span><span class="mi">2</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="n">kw</span><span class="o">//</span><span class="mi">2</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p1</span><span class="p">),</span> <span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="n">p2</span><span class="p">),),</span> <span class="s1">&#39;constant&#39;</span><span class="p">)</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">W</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">out_h</span> <span class="o">=</span> <span class="p">(</span><span class="n">H</span><span class="o">-</span><span class="n">kh</span><span class="p">)</span><span class="o">//</span><span class="n">stride</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">out_w</span> <span class="o">=</span> <span class="p">(</span><span class="n">W</span><span class="o">-</span><span class="n">kw</span><span class="p">)</span><span class="o">//</span><span class="n">stride</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">outsize</span> <span class="o">=</span> <span class="n">out_w</span><span class="o">*</span><span class="n">out_h</span>
+    <span class="n">col</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">kw</span><span class="o">*</span><span class="n">kh</span><span class="p">,</span> <span class="n">outsize</span><span class="p">,))</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">out_h</span><span class="p">):</span>
+        <span class="n">y_start</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">stride</span>
+        <span class="n">y_end</span> <span class="o">=</span> <span class="n">y_start</span> <span class="o">+</span> <span class="n">kh</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">out_w</span><span class="p">):</span>
+            <span class="n">x_start</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">stride</span>
+            <span class="n">x_end</span> <span class="o">=</span> <span class="n">x_start</span> <span class="o">+</span> <span class="n">kw</span>
+            <span class="n">col</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">:,</span> <span class="n">y</span><span class="o">*</span><span class="n">out_w</span><span class="o">+</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">y_start</span><span class="p">:</span><span class="n">y_end</span><span class="p">,</span> <span class="n">x_start</span><span class="p">:</span><span class="n">x_end</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">kh</span> <span class="o">*</span> <span class="n">kw</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">col</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">outsize</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="un_tar"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.un_tar">[文档]</a><span class="k">def</span> <span class="nf">un_tar</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">output_root</span><span class="p">):</span>
+    <span class="c1"># untar zip file to folder whose name is same as tar file</span>
+    <span class="kn">import</span> <span class="nn">tarfile</span>
+    <span class="n">tar</span> <span class="o">=</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">tar</span><span class="o">.</span><span class="n">getnames</span><span class="p">()</span>
+
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+    <span class="n">extract_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_root</span><span class="p">,</span> <span class="n">file_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># create folder if nessessary</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">extract_dir</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">extract_dir</span><span class="p">)</span>
+
+    <span class="n">file_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_dir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">file_list</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+            <span class="n">tar</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">extract_dir</span><span class="p">)</span>
+    <span class="n">tar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">==================DVS preprocess method==================</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="load_aedat_v3"><a class="viewcode-back" href="../../../spaic.IO.html#spaic.IO.utils.load_aedat_v3">[文档]</a><span class="k">def</span> <span class="nf">load_aedat_v3</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Args:</span>
+<span class="sd">        file_name(str): path of the aedat v3 file</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        a dict whose keys are [&#39;t&#39;, &#39;x&#39;, &#39;y&#39;, &#39;p&#39;] and values are ``numpy.ndarray``</span>
+<span class="sd">    This function is written by referring to https://gitlab.com/inivation/dv/dv-python. It can be used for DVS128 Gesture.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">bin_f</span><span class="p">:</span>
+        <span class="c1"># skip ascii header</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">bin_f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;#&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;#!END-HEADER</span><span class="se">\r\n</span><span class="s1">&#39;</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">bin_f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+
+        <span class="n">txyp</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="n">bin_f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">28</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">header</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">header</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="c1"># read header</span>
+            <span class="n">e_type</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">header</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">e_size</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">header</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">e_tsoverflow</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">header</span><span class="p">[</span><span class="mi">12</span><span class="p">:</span><span class="mi">16</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">e_capacity</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">header</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">20</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="n">data_length</span> <span class="o">=</span> <span class="n">e_capacity</span> <span class="o">*</span> <span class="n">e_size</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">bin_f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">data_length</span><span class="p">)</span>
+            <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="k">if</span> <span class="n">e_type</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">data</span><span class="p">[</span><span class="n">counter</span><span class="p">:</span><span class="n">counter</span> <span class="o">+</span> <span class="n">e_size</span><span class="p">]:</span>
+                    <span class="n">aer_data</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">counter</span><span class="p">:</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">4</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">4</span><span class="p">:</span><span class="n">counter</span> <span class="o">+</span> <span class="mi">8</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="o">|</span> <span class="n">e_tsoverflow</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">aer_data</span> <span class="o">&gt;&gt;</span> <span class="mi">17</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x00007FFF</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">aer_data</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x00007FFF</span>
+                    <span class="n">pol</span> <span class="o">=</span> <span class="p">(</span><span class="n">aer_data</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x00000001</span>
+                    <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="n">e_size</span>
+                    <span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                    <span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+                    <span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
+                    <span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pol</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># non-polarity event packet, not implemented</span>
+                <span class="k">pass</span>
+        <span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+        <span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+        <span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">])</span>
+        <span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">txyp</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">txyp</span></div>
+
+
+<span class="c1"># if __name__ == &quot;__main__&quot;:</span>
+<span class="c1">#     import numpy as np</span>
+<span class="c1">#     import matplotlib.pyplot as plt</span>
+<span class="c1">#     import os</span>
+<span class="c1">#     import wave</span>
+<span class="c1">#</span>
+<span class="c1">#     # 读入音频。</span>
+<span class="c1">#     path = r&quot;F:\GitCode\Python\datasets\TidigitsWAV1\train\zero&quot;</span>
+<span class="c1">#     name = &#39;1.wav&#39;</span>
+<span class="c1">#     # 我音频的路径为E:\SpeechWarehouse\zmkm\zmkm0.wav</span>
+<span class="c1">#     filename = os.path.join(path, name)</span>
+<span class="c1">#</span>
+<span class="c1">#     # 打开语音文件。</span>
+<span class="c1">#     f = wave.open(filename, &#39;rb&#39;)</span>
+<span class="c1">#     # 得到语音参数</span>
+<span class="c1">#     params = f.getparams()</span>
+<span class="c1">#     nchannels, sampwidth, framerate, nframes = params[:4]</span>
+<span class="c1">#     # ---------------------------------------------------------------#</span>
+<span class="c1">#     # 将字符串格式的数据转成int型</span>
+<span class="c1">#     print(&quot;reading wav file......&quot;)</span>
+<span class="c1">#     strData = f.readframes(nframes)</span>
+<span class="c1">#     waveData = np.fromstring(strData, dtype=np.short)</span>
+<span class="c1">#     # 归一化</span>
+<span class="c1">#     waveData = waveData * 1.0 / max(abs(waveData))</span>
+<span class="c1">#     # 将音频信号规整乘每行一路通道信号的格式，即该矩阵一行为一个通道的采样点，共nchannels行</span>
+<span class="c1">#     waveData = np.reshape(waveData, [nframes, nchannels]).T  # .T 表示转置</span>
+<span class="c1">#     f.close()  # 关闭文件</span>
+<span class="c1">#     print(&quot;file is closed!&quot;)</span>
+<span class="c1">#     # ----------------------------------------------------------------#</span>
+<span class="c1">#     &#39;&#39;&#39;绘制语音波形&#39;&#39;&#39;</span>
+<span class="c1">#     print(&quot;plotting signal wave...&quot;)</span>
+<span class="c1">#     time = np.arange(0, nframes) * (1.0 / framerate)  # 计算时间</span>
+<span class="c1">#     time = np.reshape(time, [nframes, 1]).T</span>
+<span class="c1">#     plt.plot(time[0, :nframes], waveData[0, :nframes], c=&quot;b&quot;)</span>
+<span class="c1">#     plt.axis(&#39;off&#39;)  # no axis</span>
+<span class="c1">#     plt.axes([0., 0., 1., 1.], frameon=False, xticks=[], yticks=[])</span>
+<span class="c1">#     # plt.xlabel(&quot;time&quot;)</span>
+<span class="c1">#     # plt.ylabel(&quot;amplitude&quot;)</span>
+<span class="c1">#     # plt.title(&quot;Original wave&quot;)</span>
+<span class="c1">#     plt.show()</span>
+<span class="c1">#     print(&#39;end&#39;)</span>
+
+
+<span class="c1">#     sroot = r&#39;F:\GitCode\Python\datasets\TidigitsWAV&#39;</span>
+<span class="c1">#     troot = r&#39;F:\GitCode\Python\datasets\TidigitsWAV1&#39;</span>
+    <span class="c1"># classes = {</span>
+    <span class="c1">#     &quot;zero&quot;: 0,</span>
+    <span class="c1">#     &quot;one&quot;: 1,</span>
+    <span class="c1">#     &quot;two&quot;: 2,</span>
+    <span class="c1">#     &quot;three&quot;: 3,</span>
+    <span class="c1">#     &quot;four&quot;: 4,</span>
+    <span class="c1">#     &quot;five&quot;: 5,</span>
+    <span class="c1">#     &quot;six&quot;: 6,</span>
+    <span class="c1">#     &quot;seven&quot;: 7,</span>
+    <span class="c1">#     &quot;eight&quot;: 8,</span>
+    <span class="c1">#     &quot;nine&quot;: 9,</span>
+    <span class="c1">#     &quot;oh&quot;: 10</span>
+    <span class="c1"># }</span>
+    <span class="c1"># save_mfcc_feature(root=troot, npz_name=&#39;mfcc_test.npz&#39;, class_labels=classes)</span>
+<span class="c1">#     dataset_split(sroot, troot, 0.7, True)</span>
+<span class="c1">#     print(&#39;end&#39;)</span>
+
+
+
+
+    <span class="c1"># sroot = r&#39;C:\Users\hp\Desktop\AudioMNIST&#39;</span>
+    <span class="c1"># troot = r&#39;C:\Users\hp\Desktop\SpeechMNIST&#39;</span>
+    <span class="c1"># reclassification(sroot, troot, 10, 50)</span>
+
+    <span class="c1"># time_now = time.time()</span>
+    <span class="c1"># path = r&#39;F:\GitCode\Python\dataset\AudioMNIST\train\0\0_01_2.wav&#39;</span>
+    <span class="c1"># sound, sampling_freq = wav_file_resample(path, 16e3)</span>
+    <span class="c1"># print(time.time() - time_now)</span>
+    <span class="c1"># time_now1 = time.time()</span>
+    <span class="c1"># sound1, fs = librosa.load(path, sr=16e3)</span>
+    <span class="c1"># print(time.time() - time_now1)</span>
+
+    <span class="c1"># root = r&#39;F:\GitCode\Python\datasets\AudioMNIST&#39;</span>
+    <span class="c1"># save_numpy_format(root, True, sample_rate=16e3)</span>
+    <span class="c1"># save_numpy_format(root, False, sample_rate=16e3)</span>
+
+    <span class="c1"># load_audio_data(root, True)</span>
+    <span class="c1"># load_audio_data(root, False)</span>
+    <span class="c1"># source = data[&#39;train_audios&#39;]</span>
+    <span class="c1"># maxNum = data[&#39;maxNum&#39;]</span>
+    <span class="c1"># datasetAlignment(source, maxNum)</span>
+
+    <span class="c1"># root = r&#39;F:\GitCode\Python\datasets\AudioMNIST&#39;</span>
+    <span class="c1"># filenameTr = &#39;train.npz&#39;</span>
+    <span class="c1"># root = r&#39;F:\GitCode\Python\datasets\DigitsVoices&#39;</span>
+    <span class="c1"># filenameTr = &#39;train_kernels_num50significance_level10.npz&#39;</span>
+    <span class="c1"># filerootTr = os.path.join(root, filenameTr)</span>
+    <span class="c1"># dataTr = np.load(filerootTr, allow_pickle=True)</span>
+    <span class="c1"># trian_audios0 = dataTr[&#39;train_ids&#39;][0]</span>
+    <span class="c1"># trian_audios1 = dataTr[&#39;train_ids&#39;][1]</span>
+    <span class="c1"># trian_audios2 = dataTr[&#39;train_ids&#39;][2]</span>
+    <span class="c1"># trian_audios3 = dataTr[&#39;train_ids&#39;][3]</span>
+    <span class="c1"># train_ids = dataTr[&#39;train_ids&#39;]</span>
+    <span class="c1"># maxvalue = get_Max(dataTr[&#39;train_audios&#39;])</span>
+    <span class="c1"># filenameTe = &#39;test_kernels_num50significance_level10.npz&#39;</span>
+    <span class="c1"># filerootTe = os.path.join(root, filenameTe)</span>
+    <span class="c1"># dataTe = np.load(filerootTe, allow_pickle=True)</span>
+    <span class="c1"># test_audios0 = dataTe[&#39;test_audios&#39;][0]</span>
+    <span class="c1"># test_audios1 = dataTe[&#39;test_audios&#39;][1]</span>
+    <span class="c1"># test_audios2 = dataTe[&#39;test_audios&#39;][2]</span>
+    <span class="c1"># test_audios3 = dataTe[&#39;test_audios&#39;][3]</span>
+    <span class="c1"># test_audios = dataTe[&#39;test_audios&#39;]</span>
+    <span class="c1"># test_ids = dataTe[&#39;test_ids&#39;]</span>
+    <span class="c1"># maxvalue = get_Max(dataTe[&#39;test_audios&#39;])</span>
+    <span class="c1"># print(maxvalue)</span>
+    <span class="c1"># print(&#39;&#39;)</span>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

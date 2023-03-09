@@ -1,0 +1,1380 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Neuron package &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>spaic.Neuron package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/spaic.Neuron.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spaic-neuron-package">
+<h1>spaic.Neuron package<a class="headerlink" href="#spaic-neuron-package" title="永久链接至标题">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.Neuron.Decoders">
+<span id="spaic-neuron-decoders-module"></span><h2>spaic.Neuron.Decoders module<a class="headerlink" href="#module-spaic.Neuron.Decoders" title="永久链接至标题">¶</a></h2>
+<p>&#64;author: Yuan Mengwen
+&#64;contact: <a class="reference external" href="mailto:mwyuan94&#37;&#52;&#48;gmail&#46;com">mwyuan94<span>&#64;</span>gmail<span>&#46;</span>com</a>
+&#64;project: PyCharm
+&#64;filename: Decoders.py
+&#64;time:2021/5/7 14:50
+&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Spike_Counts">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">Spike_Counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Spike_Counts"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Spike_Counts" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Spike_Counts.numpy_coding">
+<span class="sig-name descname"><span class="pre">numpy_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Spike_Counts.numpy_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Spike_Counts.numpy_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Spike_Counts.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Spike_Counts.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Spike_Counts.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Final_Step_Voltage">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">Final_Step_Voltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Final_Step_Voltage"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Final_Step_Voltage" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+<p>Get label that has the highest voltage.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Final_Step_Voltage.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Final_Step_Voltage.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Final_Step_Voltage.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.First_Spike">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">First_Spike</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#First_Spike"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.First_Spike" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.First_Spike.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#First_Spike.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.First_Spike.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.TimeSpike_Counts">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">TimeSpike_Counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#TimeSpike_Counts"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.TimeSpike_Counts" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.TimeSpike_Counts.numpy_coding">
+<span class="sig-name descname"><span class="pre">numpy_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#TimeSpike_Counts.numpy_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.TimeSpike_Counts.numpy_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.TimeSpike_Counts.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#TimeSpike_Counts.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.TimeSpike_Counts.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.V_Trajectory">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">V_Trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#V_Trajectory"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.V_Trajectory" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.V_Trajectory.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#V_Trajectory.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.V_Trajectory.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Time_Softmax">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">Time_Softmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Time_Softmax"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Time_Softmax" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Time_Softmax.numpy_coding">
+<span class="sig-name descname"><span class="pre">numpy_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Time_Softmax.numpy_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Time_Softmax.numpy_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Time_Softmax.torch_coding1">
+<span class="sig-name descname"><span class="pre">torch_coding1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Time_Softmax.torch_coding1"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Time_Softmax.torch_coding1" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Time_Softmax.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Time_Softmax.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Time_Softmax.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Time_Softmax.torch_coding3">
+<span class="sig-name descname"><span class="pre">torch_coding3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Time_Softmax.torch_coding3"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Time_Softmax.torch_coding3" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Time_Softmax.loss">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">loss</span></span><a class="headerlink" href="#spaic.Neuron.Decoders.Time_Softmax.loss" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Voltage_Sum">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">Voltage_Sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Voltage_Sum"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Voltage_Sum" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Voltage_Sum.numpy_coding">
+<span class="sig-name descname"><span class="pre">numpy_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Voltage_Sum.numpy_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Voltage_Sum.numpy_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Voltage_Sum.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Voltage_Sum.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Voltage_Sum.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Complex_Count">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">Complex_Count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Complex_Count"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Complex_Count" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Complex_Count.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Complex_Count.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Complex_Count.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Complex_Phase">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">Complex_Phase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Complex_Phase"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Complex_Phase" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Complex_Phase.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Complex_Phase.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Complex_Phase.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Complex_Trajectory">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">Complex_Trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Complex_Trajectory"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Complex_Trajectory" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Complex_Trajectory.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Complex_Trajectory.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Complex_Trajectory.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Complex_Trajectory.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Complex_Trajectory.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Complex_Trajectory.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Decoders.Spike_Conv">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Decoders.</span></span><span class="sig-name descname"><span class="pre">Spike_Conv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Decoders.html#Spike_Conv"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Decoders.Spike_Conv" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Decoder" title="spaic.Neuron.Node.Decoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Decoder</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Neuron.Encoders">
+<span id="spaic-neuron-encoders-module"></span><h2>spaic.Neuron.Encoders module<a class="headerlink" href="#module-spaic.Neuron.Encoders" title="永久链接至标题">¶</a></h2>
+<p>&#64;author: Yuan Mengwen
+&#64;contact: <a class="reference external" href="mailto:mwyuan94&#37;&#52;&#48;gmail&#46;com">mwyuan94<span>&#64;</span>gmail<span>&#46;</span>com</a>
+&#64;project: PyCharm
+&#64;filename: Encoders.py
+&#64;time:2021/5/7 14:50
+&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.NullEncoder">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Encoders.</span></span><span class="sig-name descname"><span class="pre">NullEncoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#NullEncoder"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.NullEncoder" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Encoder" title="spaic.Neuron.Node.Encoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Encoder</span></code></a></p>
+<p>Pass the encoded data.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.NullEncoder.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#NullEncoder.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.NullEncoder.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.SigleSpikeToBinary">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Encoders.</span></span><span class="sig-name descname"><span class="pre">SigleSpikeToBinary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#SigleSpikeToBinary"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.SigleSpikeToBinary" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Encoder" title="spaic.Neuron.Node.Encoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Encoder</span></code></a></p>
+<p>Transform the spike train (each neuron firing one spike) into a binary matrix
+The source is the encoded time value in the range of [0,time]. The shape of encoded source should be [time_step, batch_size, neuron_shape].</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.SigleSpikeToBinary.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#SigleSpikeToBinary.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.SigleSpikeToBinary.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.MultipleSpikeToBinary">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Encoders.</span></span><span class="sig-name descname"><span class="pre">MultipleSpikeToBinary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#MultipleSpikeToBinary"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.MultipleSpikeToBinary" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Encoder" title="spaic.Neuron.Node.Encoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Encoder</span></code></a></p>
+<p>Transform the spike train (each neuron firing multiple spikes) into a binary matrix
+The source is the encoded time value in the range of [0,time]. The shape of encoded source should be [time_step, batch_size, neuron_shape].</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.MultipleSpikeToBinary.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#MultipleSpikeToBinary.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.MultipleSpikeToBinary.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.PoissonEncoding">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Encoders.</span></span><span class="sig-name descname"><span class="pre">PoissonEncoding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#PoissonEncoding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.PoissonEncoding" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Encoder" title="spaic.Neuron.Node.Encoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Encoder</span></code></a></p>
+<p>泊松频率编码，发放脉冲的概率即为刺激强度，刺激强度需被归一化到[0, 1]。
+Generate a poisson spike train.
+time: encoding window ms
+dt: time step</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.PoissonEncoding.numpy_coding">
+<span class="sig-name descname"><span class="pre">numpy_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#PoissonEncoding.numpy_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.PoissonEncoding.numpy_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.PoissonEncoding.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#PoissonEncoding.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.PoissonEncoding.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.Latency">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Encoders.</span></span><span class="sig-name descname"><span class="pre">Latency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#Latency"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.Latency" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Encoder" title="spaic.Neuron.Node.Encoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Encoder</span></code></a></p>
+<p>延迟编码，刺激强度越大，脉冲发放越早。刺激强度被归一化到[0, 1]。
+Generate a latency encoding spike train.
+time: encoding window ms
+dt: time step</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.Latency.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#Latency.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.Latency.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.Relative_Latency">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Encoders.</span></span><span class="sig-name descname"><span class="pre">Relative_Latency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#Relative_Latency"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.Relative_Latency" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Encoder" title="spaic.Neuron.Node.Encoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Encoder</span></code></a></p>
+<p>相对延迟编码，在一个样本中，其相对强度越大，放电越靠前</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.Relative_Latency.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#Relative_Latency.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.Relative_Latency.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.Constant_Current">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Encoders.</span></span><span class="sig-name descname"><span class="pre">Constant_Current</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#Constant_Current"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.Constant_Current" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Encoder" title="spaic.Neuron.Node.Encoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Encoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.Constant_Current.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#Constant_Current.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.Constant_Current.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.UniformEncoding">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Encoders.</span></span><span class="sig-name descname"><span class="pre">UniformEncoding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#UniformEncoding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.UniformEncoding" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Encoder" title="spaic.Neuron.Node.Encoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Encoder</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Encoders.UniformEncoding.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Encoders.html#UniformEncoding.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Encoders.UniformEncoding.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Neuron.Generators">
+<span id="spaic-neuron-generators-module"></span><h2>spaic.Neuron.Generators module<a class="headerlink" href="#module-spaic.Neuron.Generators" title="永久链接至标题">¶</a></h2>
+<p>&#64;author: Yuan Mengwen
+&#64;contact: <a class="reference external" href="mailto:mwyuan94&#37;&#52;&#48;gmail&#46;com">mwyuan94<span>&#64;</span>gmail<span>&#46;</span>com</a>
+&#64;project: PyCharm
+&#64;filename: Generators.py
+&#64;time:2021/6/21 16:35
+&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Generators.Poisson_Generator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Generators.</span></span><span class="sig-name descname"><span class="pre">Poisson_Generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson_generator',</span> <span class="pre">'cc_generator',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Generators.html#Poisson_Generator"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Generators.Poisson_Generator" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Generator" title="spaic.Neuron.Node.Generator"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Generator</span></code></a></p>
+<p>泊松生成器，根据输入脉冲速率生成。
+Generate a poisson spike train according input rate.
+time: encoding window ms
+dt: time step
+HZ: cycles/s</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Generators.Poisson_Generator.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Generators.html#Poisson_Generator.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Generators.Poisson_Generator.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Generators.Poisson_Generator2">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Generators.</span></span><span class="sig-name descname"><span class="pre">Poisson_Generator2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson_generator',</span> <span class="pre">'cc_generator',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Generators.html#Poisson_Generator2"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Generators.Poisson_Generator2" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Generator" title="spaic.Neuron.Node.Generator"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Generator</span></code></a></p>
+<p>泊松生成器，根据输入脉冲速率生成。
+Generate a poisson spike train according input rate.
+time: encoding window ms
+dt: time step</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Generators.Poisson_Generator2.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Generators.html#Poisson_Generator2.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Generators.Poisson_Generator2.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Generators.CC_Generator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Generators.</span></span><span class="sig-name descname"><span class="pre">CC_Generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson_generator',</span> <span class="pre">'cc_generator',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Generators.html#CC_Generator"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Generators.CC_Generator" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Generator" title="spaic.Neuron.Node.Generator"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Generator</span></code></a></p>
+<p>恒定电流生成器。
+Generate a constant current input.
+time: encoding window ms
+dt: time step</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Generators.CC_Generator.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Generators.html#CC_Generator.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Generators.CC_Generator.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Generators.Sin_Generator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Generators.</span></span><span class="sig-name descname"><span class="pre">Sin_Generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson_generator',</span> <span class="pre">'cc_generator',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Generators.html#Sin_Generator"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Generators.Sin_Generator" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Generator" title="spaic.Neuron.Node.Generator"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Generator</span></code></a></p>
+<p>Generate a sin current input.
+time: encoding window ms
+dt: time step</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Generators.Sin_Generator.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Generators.html#Sin_Generator.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Generators.Sin_Generator.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Generators.Ramp_Generator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Generators.</span></span><span class="sig-name descname"><span class="pre">Ramp_Generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson_generator',</span> <span class="pre">'cc_generator',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Generators.html#Ramp_Generator"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Generators.Ramp_Generator" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Generator" title="spaic.Neuron.Node.Generator"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Generator</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Generators.Ramp_Generator.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Generators.html#Ramp_Generator.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Generators.Ramp_Generator.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Neuron.Module">
+<span id="spaic-neuron-module-module"></span><h2>spaic.Neuron.Module module<a class="headerlink" href="#module-spaic.Neuron.Module" title="永久链接至标题">¶</a></h2>
+<p>Created on 2021/4/12
+&#64;project: SPAIC
+&#64;filename: Module
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+wrap around deep learning module such as a cnn network lstm cell</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Module.Module">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Module.</span></span><span class="sig-name descname"><span class="pre">Module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_targets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_var_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['O']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_tragets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_var_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['Isyn']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pytorch'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Module.html#Module"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Module.Module" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="spaic.Network.html#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.Assembly.Assembly</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Module.Module.standalone_run">
+<span class="sig-name descname"><span class="pre">standalone_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Module.html#Module.standalone_run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Module.Module.standalone_run" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Module.Module.init_variable">
+<span class="sig-name descname"><span class="pre">init_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_shapes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_value_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Module.html#Module.init_variable"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Module.Module.init_variable" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Module.Module.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Module.html#Module.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Module.Module.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Neuron.Module.Module.parameters">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#spaic.Neuron.Module.Module.parameters" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Module.Module.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Module.html#Module.train"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Module.Module.train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Neuron.Neuron">
+<span id="spaic-neuron-neuron-module"></span><h2>spaic.Neuron.Neuron module<a class="headerlink" href="#module-spaic.Neuron.Neuron" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/5
+&#64;project: SPAIC
+&#64;filename: Neuron
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+定义神经集群和神经元模型。
+神经元集群保存神经元数目、神经元编号、类型、模型、模型参数、神经元位置等信息，参与网络构建</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronGroup">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">NeuronGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neuron_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neuron_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neuron_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neuron_position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'x,</span> <span class="pre">y,</span> <span class="pre">z'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neuron_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NeuronGroup"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronGroup" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="spaic.Network.html#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.Assembly.Assembly</span></code></a></p>
+<p>Class for a group of neurons.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronGroup.set_num_shape">
+<span class="sig-name descname"><span class="pre">set_num_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NeuronGroup.set_num_shape"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronGroup.set_num_shape" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronGroup.set_parameter">
+<span class="sig-name descname"><span class="pre">set_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NeuronGroup.set_parameter"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronGroup.set_parameter" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronGroup.get_model">
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NeuronGroup.get_model"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronGroup.get_model" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronGroup.add_neuron_label">
+<span class="sig-name descname"><span class="pre">add_neuron_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NeuronGroup.add_neuron_label"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronGroup.add_neuron_label" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronGroup.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NeuronGroup.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronGroup.build" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>backend</strong> (<a class="reference internal" href="spaic.Simulation.html#spaic.Backend.Backend.Backend" title="spaic.Backend.Backend.Backend"><em>Backend.Backend</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronGroup.custom_model">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">custom_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_vars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_vars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_vars_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">equation_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('iterative',</span> <span class="pre">'euler_iterative',</span> <span class="pre">'exp_euler_iterative',</span> <span class="pre">'ode')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'torch'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_function_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NeuronGroup.custom_model"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronGroup.custom_model" title="永久链接至目标">¶</a></dt>
+<dd><p class="rubric">实际案例</p>
+<p>&#64;NeuronGroup.custom_model(input_vars=[‘M’, ‘S’, ‘WgtSum’], output_vars=[‘V’, ‘M’, ‘S’],
+new_vars_dict={‘V’:0, ‘M’:0, ‘S’:0, ‘WgtSum’:0}, equation_type=’exp_euler_iterative’)
+def func(M, S, WgtSum):</p>
+<blockquote>
+<div><p>M = (WgtSum-M)/tau
+S = (WgtSum-S)/tau
+V = M - S
+return V, M, S</p>
+</div></blockquote>
+<p>NeuronGroup(…., neuron_model=func)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">NeuronModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NeuronModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>op -&gt; (return_name, operation_name, input_name1, input_name2…)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronModel.neuron_models">
+<span class="sig-name descname"><span class="pre">neuron_models</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'adex':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.aEIFModel'&gt;,</span> <span class="pre">'aeif':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.aEIFModel'&gt;,</span> <span class="pre">'cann_field':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.CANN_MeanFieldModel'&gt;,</span> <span class="pre">'clif':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.CLIFModel'&gt;,</span> <span class="pre">'constantcurrentlif':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.ConstantCurrentLIFModel'&gt;,</span> <span class="pre">'glif':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.GLIFModel'&gt;,</span> <span class="pre">'hh':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.HodgkinHuxleyModel'&gt;,</span> <span class="pre">'if':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.IFModel'&gt;,</span> <span class="pre">'izh':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.IZHModel'&gt;,</span> <span class="pre">'lif':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.LIFModel'&gt;,</span> <span class="pre">'lifm':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.LIFMModel'&gt;,</span> <span class="pre">'lifstdp_ex':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.LIFSTDPEXModel'&gt;,</span> <span class="pre">'lifstdp_ih':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.LIFSTDPIHModel'&gt;,</span> <span class="pre">'meanfield':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.MeanFieldModel'&gt;,</span> <span class="pre">'nonspikinglif':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.NonSpikingLIFModel'&gt;,</span> <span class="pre">'null':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.NullModel'&gt;,</span> <span class="pre">'qlif':</span> <span class="pre">&lt;class</span> <span class="pre">'spaic.Neuron.Neuron.QLIFModel'&gt;}</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronModel.neuron_models" title="永久链接至目标">¶</a></dt>
+<dd><p>A dictionary mapping neuron model names to <cite>Model</cite> objects</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronModel.register">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NeuronModel.register"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronModel.register" title="永久链接至目标">¶</a></dt>
+<dd><p>Register a neuron model. Registered neuron models can be referred to
+# via their name.
+:param name: A short name for the state updater (e.g. <cite>‘lif’</cite>)
+:type name: str
+:param model: The neuron model object, e.g. an <cite>CLIFModel</cite>, ‘SLIFModel’.
+:type model: <cite>NeuronModel</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NeuronModel.apply_model">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">apply_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NeuronModel.apply_model"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NeuronModel.apply_model" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>model_name</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.CLIFModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">CLIFModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#CLIFModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.CLIFModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>Current LIF 3-kernel model:
+V(t) = M(t) − S(t) − E(t)
+I^n[t] = V0 * Isyn^n[t-1] #sum(w * O^(n-1)[t])
+M^n[t] = betaM * M^n[t-1] + I^n[t-1]
+S^n[t] = betaS * S^n[t-1] + I^n[t-1]
+E^n[t] = betaM * E^n[t-1] + Vth * O^n[t-1]
+O^n[t] = spike_func(V^n[t-1])</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.CLIFModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'clif'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.CLIFModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.IFModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">IFModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#IFModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.IFModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>IF model:
+V(t) = V(t-1) * (1 - O(t-1)) + Isyn[t] - ConstantDecay</p>
+<p>O^n[t] = spike_func(V^n[t-1])</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.IFModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'if'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.IFModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NullModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">NullModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NullModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NullModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>return ‘O’</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NullModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'null'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.NullModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.QLIFModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">QLIFModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#QLIFModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.QLIFModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>LIF neuron model for Q-Backprop learning</p>
+<p>E[t] = beta_m*E[t-1] + Vth*O[t-1]
+V[t] = WgtSum(PSP[t]) - E[t]
+O[t] = spike_function(V[t])</p>
+<p># Q for non-spiking
+Mp[t] = beta_m*Mp[t-1] + WpSum[t]
+Sp[t] = beta_s*Sp[t-1] + WpSum[t]
+P[t] = Mp[t] - Sp[t]</p>
+<p># Q for spiking
+Mq[t] = beta_m*Mq[t-1] + WqSum[t]
+Sq[t] = beta_s*Sq[t-1] + WqSum[t]
+Q[t] = Mq[t] - Sq[t]</p>
+<p>R[t] = ~O[t]*beta_s*R[t-1] + O[t]
+F[t] = 1 - R[t]
+QP[t] = Q[t] - P[t]
+BQ[t] = R[t]*Q[t] + F[t]*P[t]</p>
+<p>TP[t] = R[t]*P[t] + F[t]*Reward - P[t-1]
+TQ[t] = F[t]*Q[t] + R[t]*Reward - Q[t-1]</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.QLIFModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'qlif'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.QLIFModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.SELIFDebugModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">SELIFDebugModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau_m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau_q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_th</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outlayer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#SELIFDebugModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.SELIFDebugModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.SELIFDebugModel.attach_learner">
+<span class="sig-name descname"><span class="pre">attach_learner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learner</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#SELIFDebugModel.attach_learner"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.SELIFDebugModel.attach_learner" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.SELIFDebugModel.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#SELIFDebugModel.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.SELIFDebugModel.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.SELIFDebugModel.initial">
+<span class="sig-name descname"><span class="pre">initial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#SELIFDebugModel.initial"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.SELIFDebugModel.initial" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.SELIFDebugModel.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">WgtSum</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#SELIFDebugModel.update"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.SELIFDebugModel.update" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.SELIFDebugModel.return_V">
+<span class="sig-name descname"><span class="pre">return_V</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#SELIFDebugModel.return_V"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.SELIFDebugModel.return_V" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.LIFModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">LIFModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#LIFModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.LIFModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>LIF model:
+# V(t) = tuaM * V^n[t-1] + Isyn[t]   # tauM: constant membrane time (tauM=RmCm)
+O^n[t] = spike_func(V^n[t-1])</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.LIFModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'lif'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.LIFModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.ConstantCurrentLIFModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">ConstantCurrentLIFModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#ConstantCurrentLIFModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.ConstantCurrentLIFModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>ConstantCurrentLIF model:
+V(t) = V^n[t-1] + (dt/taum) * (Ureset-V^n[t-1]+I)  # tauM: constant membrane time (tauM=RmCm)  Isyn = I*Weight
+O^n[t] = spike_func(V^n[t-1])</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.ConstantCurrentLIFModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'constantcurrentlif'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.ConstantCurrentLIFModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NonSpikingLIFModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">NonSpikingLIFModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#NonSpikingLIFModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.NonSpikingLIFModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>NonSpikingLIF model:
+# V(t) = -tuaM * V^n[t-1] + M^n[t] - S^n[t]   # tauM: constant membrane time (tauM=RmCm)
+V(t) = V^n[t-1] + (dt/taum) * (PSP-V^n[t-1])  # tauM: constant membrane time (tauM=RmCm)
+I^n[t] = V0 * Isyn^n[t-1]                # sum(w * O^(n-1)[t])
+M^n[t] = tauP * M^n[t-1] + I^n[t-1]        # tauP: decaying time constants of membrane integration
+S^n[t] = tauQ * S^n[t-1] + I^n[t-1]        # tauQ: decaying time constants of synaptic currents
+PSP = M - S</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.NonSpikingLIFModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'nonspikinglif'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.NonSpikingLIFModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.LIFMModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">LIFMModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#LIFMModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.LIFMModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>LIF model:
+# I_che = tauP*I + Isyn^n[t-1] + b^n                         # sum(w * O^(n-1)[t])
+# I = I_che + I_ele
+# F = tauM * exp(-O^n[t-1] / tauM)
+# V(t) = V^n[t-1] * F + I
+# O^(n)[t] = spike_func(V^n(t))</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.LIFMModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'lifm'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.LIFMModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.IZHModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">IZHModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#IZHModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.IZHModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>IZH model:
+V = V + dt / tauM * (C1 * V * V + C2 * V + C3 - U + PSP)  # tauM=1 此处加tauM是为了添加op时和LIF模型保存一致
+V = V + dt / tauM * (V* (C1 * V + C2) + C3 - U + PSP)     # 由上式拆分而来
+U = U + a. * (b. * V - U)
+PSP = M^n[t] - S^n[t]
+M^n[t] = tauP * M^n[t-1] + I^n[t-1]        # tauP: decaying time constants of membrane integration
+S^n[t] = tauQ * S^n[t-1] + I^n[t-1]        # tauQ: decaying time constants of synaptic currents
+I^n[t] = V0 * Isyn^n[t-1]                # Isyn = sum(w * O^(n-1)[t])
+O^n[t] = spike_func(V^n[t-1])</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.IZHModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'izh'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.IZHModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.aEIFModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">aEIFModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#aEIFModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.aEIFModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>aEIF model:</p>
+<p>V = V + dt / tauM * (EL - V + EXP - U + I^n[t])
+U = U + dt / tauW * (a * (V - EL) - U)
+EXP = delta_t * delta_t2 * exp(du_th/delta_t2)
+du = V - EL
+du_th = V - Vth
+I^n[t] = V0 * Isyn^n[t-1]</p>
+<p>O^n[t] = spike_func(V^n[t-1])</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.aEIFModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'adex'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.aEIFModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.GLIFModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">GLIFModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#GLIFModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.GLIFModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>Current GLIF5 model:</p>
+<p>V = V + dt/tau_m * (R * (I + I1 + I2) - (V - E_L))
+Theta_s = Theta_s - b_s * Theta_s
+I_j = I_j - k_j * I_j (j = 1, 2)
+Theta_v = Theta_v + a_v * (V - E_L) - b_v * Theta_v
+v_th = Theta_v + Theta_s + Theta_inf
+O = spike_func(V)</p>
+<p>Reset function:</p>
+<p>V = E_L + f_v * (V - E_L) - delta_v
+Theta_s = Theta_s + delta_Theta_s
+I_j = f_j * I_j + delta_I_j (j = 1, 2; f_j = 1)
+Theta_v = Theta_v</p>
+<p>After transform:
+part I:
+I^n[t] = tau_p * I + Isyn^n[t-1]
+I_sum = I1 + I2
+I_sum = I_sum + I^n[t]
+S^n[t] = tau_q * S^n[t-1] + I_sum</p>
+<p>dv = V^n[t-1] - E_L
+decay = S^n[t] - dv
+V = tauM * decay + V</p>
+<p>Theta_s = (-b_s) * Theta_s + Theta_s
+I_j = (-k_j) * I_j + I_j
+Theta_temp = a_v * dv + Theta_v
+Theta_v = (-b_v) * Theta_v + Theta_temp
+Theta = Theta_v + Theta_s
+v_th = Theta + Theta_inf
+O = spike_func(V, v_th)</p>
+<p>part II(reset part):
+dv_reset = V^n[t] - E_L
+deltaV(constant) = E_L - delta_v
+Vreset = f_v * dv_reset + deltaV
+Vreset = Vreset - V</p>
+<p>V = Vreset * O + V
+Theta_s = Theta_s + delta_Theta_s * O
+I_j = I_j + delta_I_j * O</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.GLIFModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'glif'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.GLIFModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.HodgkinHuxleyModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">HodgkinHuxleyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#HodgkinHuxleyModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.HodgkinHuxleyModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>Hodgkin-Huxley model:</p>
+<p>V = V + dt/tau_v * (I - Ik)
+Ik = NA + K + L
+NA = g_NA * m^3 * h * (V - V_NA)
+K = g_K * n^4 * (V - V_K)
+L = g_L * (V - V_L)</p>
+<p>m = m + dt/tau_m * (alpha_m * (1-m) - beta_m * m)
+n = n + dt/tau_n * (alpha_n * (1-n) - beta_n * n)
+h = h + dt/tau_h * (alpha_h * (1-h) - beta_h * h)</p>
+<p>original function:
+alpha_m = 0.1 * (-V + 25) / (exp((-V+25)/10) - 1)
+beta_m = 4 * exp(-V/18)
+alpha_n = 0.01 * (-V + 10) / (exp((-V+10)/10) - 1)
+beta_n = 0.125 * exp(-V/80)
+alpha_h = 0.07 * exp(-V/20)
+beta_h = 1/(exp((-V+30)/10) + 1)</p>
+<p>O^n[t] = spike_func(V^n[t-1])</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.HodgkinHuxleyModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'hh'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.HodgkinHuxleyModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.LIFSTDPEXModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">LIFSTDPEXModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#LIFSTDPEXModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.LIFSTDPEXModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>LIF model:
+V(t) = decay_v * (v - v_rest) + v_rest + I^n[t]
+I^n[t] = V0 * Isyn^n[t]  #V0 = 1
+theta(t) = decay_th * theta[t-1]
+if v &gt;= (vth + theta) then s_out = 1; else s_out = 0;
+Reset:
+V(t) = s_out * v_reset + (1 - s_out) * v; theta = theta + s_out * th_inc</p>
+<p>O^n[t] = spike_func(V^n[t-1])</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.LIFSTDPEXModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'lifstdp_ex'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.LIFSTDPEXModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.LIFSTDPIHModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">LIFSTDPIHModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#LIFSTDPIHModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.LIFSTDPIHModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>LIF model:
+V(t) = decay_v * (v - v_rest) + v_rest + I^n[t]
+I^n[t] = V0 * Isyn^n[t]  #V0 = 1</p>
+<p>Reset:
+V(t) = s_out * v_reset + (1 - s_out) * v;</p>
+<p>O^n[t] = spike_func(V^n[t-1])</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.LIFSTDPIHModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'lifstdp_ih'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.LIFSTDPIHModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.CANN_MeanFieldModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">CANN_MeanFieldModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#CANN_MeanFieldModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.CANN_MeanFieldModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>Mean Field Model used in “Fung CC, Wong KY, Wu S. A moving bump in a continuous manifold: a comprehensive study of
+the tracking dynamics of continuous attractor neural networks. Neural Comput. 2010 Mar;22(3):752-92. doi: 10.1162/neco.2009.07-08-824. ”
+“Wu S, Wong KY, Fung CC, Mi Y, Zhang W. Continuous Attractor Neural Networks: Candidate of a Canonical Model for
+Neural Information Representation.F1000Res. 2016 Feb 10;5:F1000 Faculty Rev-156. doi: 10.12688/f1000research.7387.1. “</p>
+<p>U = U + dt/tau * (Iext + rho*WgtSum - U)
+O = U^2/(1 + k*rho*sum(U^2))
+(WgtSum = weight*O_pre)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.CANN_MeanFieldModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'cann_field'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.CANN_MeanFieldModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.MeanFieldModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">MeanFieldModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#MeanFieldModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.MeanFieldModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>Mean Field Model of LIF neuron “</p>
+<p>U = U + dt/tau * (rho*(Iext + WgtSum) - U)
+O = relu(U)
+(WgtSum = weight*O_pre)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.MeanFieldModel.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'meanfield'</span></em><a class="headerlink" href="#spaic.Neuron.Neuron.MeanFieldModel.name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Neuron.SimpleRateModel">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Neuron.</span></span><span class="sig-name descname"><span class="pre">SimpleRateModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Neuron.html#SimpleRateModel"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Neuron.SimpleRateModel" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Neuron.NeuronModel" title="spaic.Neuron.Neuron.NeuronModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Neuron.NeuronModel</span></code></a></p>
+<p>Rate model  “</p>
+<p>U = U + dt/tau * (sigmoid(Iext + WgtSum) - U)
+(WgtSum = weight*O_pre)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Neuron.Node">
+<span id="spaic-neuron-node-module"></span><h2>spaic.Neuron.Node module<a class="headerlink" href="#module-spaic.Neuron.Node" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/11
+&#64;project: SPAIC
+&#64;filename: Node
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+定义神经网络的输入输出接口</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Node.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Node"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Node" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="spaic.Network.html#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.Assembly.Assembly</span></code></a></p>
+<p>Base class for input encoder and output decoders.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node.init_state">
+<span class="sig-name descname"><span class="pre">init_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Node.init_state"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Node.init_state" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node.dt">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dt</span></span><a class="headerlink" href="#spaic.Neuron.Node.Node.dt" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node.time_step">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">time_step</span></span><a class="headerlink" href="#spaic.Neuron.Node.Node.time_step" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node.time">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">time</span></span><a class="headerlink" href="#spaic.Neuron.Node.Node.time" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node.get_var_names">
+<span class="sig-name descname"><span class="pre">get_var_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Node.get_var_names"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Node.get_var_names" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node.register">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Node.register"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Node.register" title="永久链接至目标">¶</a></dt>
+<dd><p>Register a coding class. Registered encoding or decoding classes can be referred to
+# via their name.
+:param name: A short name for the state updater (e.g. ‘poisson’, ‘spike_counts’)
+:type name: str
+:param coding_class: The subclass of coding object, e.g. an ‘PoissonEncoding’, ‘Spike_Counts’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Node.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Node.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>)</strong> (<em>device</em>) – It is input spike trains for encoding class and output spike trains for decoding class.</p></li>
+<li><p><strong>(</strong><strong>)</strong> – It is None  for encodoing class and labels for decoding class.</p></li>
+<li><p><strong>(</strong><strong>)</strong> – CPU or CUDA, this parameter is taken from backend</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node.numpy_coding">
+<span class="sig-name descname"><span class="pre">numpy_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Node.numpy_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Node.numpy_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node.tensorflow_coding">
+<span class="sig-name descname"><span class="pre">tensorflow_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Node.tensorflow_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Node.tensorflow_coding" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Node.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Node.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Node.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Encoder">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Node.</span></span><span class="sig-name descname"><span class="pre">Encoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Encoder"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Encoder" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Node" title="spaic.Neuron.Node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Node</span></code></a></p>
+<p>Five encoding method are provided, as shown below (key: class):
+1. ‘sstb’: SigleSpikeToBinary,
+2. ‘mstb’: MultipleSpikeToBinary
+3. ‘poisson’: PoissonEncoding
+4. ‘latency’: Latency
+5. ‘relative_latency’: Relative_Latency</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Encoder.register">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Encoder.register"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Encoder.register" title="永久链接至目标">¶</a></dt>
+<dd><p>Register a coding class. Registered encoding or decoding classes can be referred to
+# via their name.
+:param name: A short name for the state updater (e.g. ‘poisson’, ‘spike_counts’)
+:type name: str
+:param coding_class: The subclass of coding object, e.g. an ‘PoissonEncoding’, ‘Spike_Counts’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Encoder.init_state">
+<span class="sig-name descname"><span class="pre">init_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Encoder.init_state"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Encoder.init_state" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Encoder.get_input">
+<span class="sig-name descname"><span class="pre">get_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Encoder.get_input"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Encoder.get_input" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Encoder.next_stage">
+<span class="sig-name descname"><span class="pre">next_stage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Encoder.next_stage"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Encoder.next_stage" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Encoder.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Encoder.reset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Encoder.reset" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Encoder.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Encoder.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Encoder.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Decoder">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Node.</span></span><span class="sig-name descname"><span class="pre">Decoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Decoder"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Decoder" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Node" title="spaic.Neuron.Node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Node</span></code></a></p>
+<p>Five decoding method are provided, as shown below (key: class):
+1. ‘spike_counts’: Spike_Counts
+2. ‘first_spike’: First_Spike
+3. ‘time_spike_counts’: TimeSpike_Counts
+4. ‘time_softmax’: Time_Softmax
+5. ‘final_step_voltage’: Final_Step_Voltage</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Decoder.register">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Decoder.register"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Decoder.register" title="永久链接至目标">¶</a></dt>
+<dd><p>Register a coding class. Registered encoding or decoding classes can be referred to
+# via their name.
+:param name: A short name for the state updater (e.g. ‘poisson’, ‘spike_counts’)
+:type name: str
+:param coding_class: The subclass of coding object, e.g. an ‘PoissonEncoding’, ‘Spike_Counts’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Decoder.init_state">
+<span class="sig-name descname"><span class="pre">init_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Decoder.init_state"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Decoder.init_state" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Decoder.get_output">
+<span class="sig-name descname"><span class="pre">get_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Decoder.get_output"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Decoder.get_output" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Decoder.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Decoder.reset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Decoder.reset" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Decoder.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Decoder.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Decoder.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Reward">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Node.</span></span><span class="sig-name descname"><span class="pre">Reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Reward"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Reward" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Node" title="spaic.Neuron.Node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Node</span></code></a></p>
+<p>Three reward method are provided, as shown below (key: class):
+1. ‘global_reward’, Global_Reward
+2. ‘xor_reward’: XOR_Reward
+3. ‘da_reward’: DA_Reward
+4. ‘environment_reward’: Environment_Reward</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Reward.register">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Reward.register"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Reward.register" title="永久链接至目标">¶</a></dt>
+<dd><p>Register a Reward class. Registered reward classes can be referred to
+# via their name.
+:param name: A short name for the state updater (e.g. ‘step_reward’)
+:type name: str
+:param coding_class: The subclass of coding object, e.g. an ‘Step_Reward’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Reward.init_state">
+<span class="sig-name descname"><span class="pre">init_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Reward.init_state"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Reward.init_state" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Reward.get_reward">
+<span class="sig-name descname"><span class="pre">get_reward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Reward.get_reward"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Reward.get_reward" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Reward.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Reward.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Reward.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Generator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Node.</span></span><span class="sig-name descname"><span class="pre">Generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson_generator',</span> <span class="pre">'cc_generator',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Generator"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Generator" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Node" title="spaic.Neuron.Node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Node</span></code></a></p>
+<p>Two generator method are provided, as shown below (key: class):
+1. ‘poisson_generator’: Poisson_Generator,
+2. ‘cosine_generator’: Cosine_Generator</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Generator.register">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Generator.register"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Generator.register" title="永久链接至目标">¶</a></dt>
+<dd><p>Register a coding class. Registered encoding or decoding classes can be referred to
+# via their name.
+:param name: A short name for the state updater (e.g. ‘poisson’, ‘spike_counts’)
+:type name: str
+:param coding_class: The subclass of coding object, e.g. an ‘PoissonEncoding’, ‘Spike_Counts’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Generator.init_state">
+<span class="sig-name descname"><span class="pre">init_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Generator.init_state"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Generator.init_state" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Generator.torch_coding">
+<span class="sig-name descname"><span class="pre">torch_coding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Generator.torch_coding"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Generator.torch_coding" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>(</strong><strong>)</strong> (<em>device</em>) – It is input spike trains for encoding class and output spike trains for decoding class.</p></li>
+<li><p><strong>(</strong><strong>)</strong> – CPU or CUDA, this parameter is taken from backend</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Generator.get_input">
+<span class="sig-name descname"><span class="pre">get_input</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Generator.get_input"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Generator.get_input" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Generator.next_stage">
+<span class="sig-name descname"><span class="pre">next_stage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Generator.next_stage"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Generator.next_stage" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Generator.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Generator.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Generator.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Action">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Neuron.Node.</span></span><span class="sig-name descname"><span class="pre">Action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('poisson',</span> <span class="pre">'spike_counts',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('excitatory',</span> <span class="pre">'inhibitory',</span> <span class="pre">'pyramidal',</span> <span class="pre">'...')</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Action"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Action" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Neuron.Node.Node" title="spaic.Neuron.Node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Neuron.Node.Node</span></code></a></p>
+<p>Six action method are provided, as shown below (key: class):
+1. ‘pop_rate_action’: PopulationRate_Action
+2. ‘softmax_action’: Softmax_Action
+3. ‘highest_spikes_action’: Highest_Spikes_Action
+4. ‘highest_voltage_action’, Highest_Voltage_Action
+5. ‘first_spike_action’: First_Spike_Action
+6. ‘random_action’: Random_Action</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Action.register">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Action.register"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Action.register" title="永久链接至目标">¶</a></dt>
+<dd><p>Register an action class. Registered action classes can be referred to
+# via their name.
+:param name: A short name for the state updater (e.g. ‘pop_rate_action’)
+:type name: str
+:param coding_class: The subclass of coding object, e.g. an ‘PopulationRate_Action’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Action.init_state">
+<span class="sig-name descname"><span class="pre">init_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Action.init_state"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Action.init_state" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Action.get_action">
+<span class="sig-name descname"><span class="pre">get_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Action.get_action"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Action.get_action" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Neuron.Node.Action.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Neuron/Node.html#Action.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Neuron.Node.Action.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Neuron">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spaic.Neuron" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/11
+&#64;project: SPAIC
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

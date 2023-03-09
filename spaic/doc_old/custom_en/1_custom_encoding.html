@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>编解码模型自定义 &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="神经元模型自定义" href="2_custom_neuron.html" />
+    <link rel="prev" title="Custom" href="0_index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../save_model_en.html">save or load model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="0_index.html">Custom</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">编解码模型自定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_custom_neuron.html">神经元模型自定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_custom_connection.html">突触、连接模型自定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_custom_algorithm.html">算法自定义</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="0_index.html">Custom</a> &raquo;</li>
+        
+      <li>编解码模型自定义</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/custom_en/1_custom_encoding.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="my-custom-encoding">
+<span id="id1"></span><h1>编解码模型自定义<a class="headerlink" href="#my-custom-encoding" title="永久链接至标题">¶</a></h1>
+<p>本章节主要介绍编码器、生成器、解码器、奖励器以及动作器的自定义，以便当本平台提供的内置方法无法满足用户需求时，用户可以方便的添加符合自己需求的编解码方案。</p>
+<div class="section" id="id2">
+<h2>编码器自定义<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>编码是将输入的数据转化为脉冲神经网络可用的时序脉冲数据，是搭建神经网络要考虑的重要一步，不同的编码方法会生成不同的时序脉冲数据，为了满足用户的大多数应用需求，在本平台中内置了6种最常用的编码方法，内置的编码方法可能无法满足用户的任意需求，这时候就需要用户自己添加一些更符合其实验目的的编码方案。定义编码方案的这一步可以依照 <code class="code docutils literal notranslate"><span class="pre">Neuron.Encoders</span></code> 文件中的格式进行添加。</p>
+</div>
+<div class="section" id="id3">
+<h2>编码方法初始化<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>自定义的编码方法需继承 <code class="code docutils literal notranslate"><span class="pre">Encoder</span></code> 类，其初始化方法中的参数名需与 <code class="code docutils literal notranslate"><span class="pre">Encoder</span></code> 类的一致，若需要传入初始化参数以外的参数，可以通过 <code class="code docutils literal notranslate"><span class="pre">kwargs</span></code> 传入，以 <code class="code docutils literal notranslate"><span class="pre">PoissonEncoding</span></code> 类初始化函数为例：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+         <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">PoissonEncoding</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span>
+                                      <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">unit_conversion</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;unit_conversion&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在这个初始化方法中，<code class="code docutils literal notranslate"><span class="pre">unit_conversion</span></code> 是 <code class="code docutils literal notranslate"><span class="pre">PoissonEncoding</span></code> 类所需要的参数，我们通过从 <code class="code docutils literal notranslate"><span class="pre">kwargs</span></code> 中获取的方式来设定。</p>
+</div>
+<div class="section" id="id4">
+<h2>定义编码函数<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>编码函数是编码方法的实现部分，因为平台支持多后端（ <code class="code docutils literal notranslate"><span class="pre">pytorch</span></code> 、 <code class="code docutils literal notranslate"><span class="pre">TensorFlow</span></code> 以及 <code class="code docutils literal notranslate"><span class="pre">numpy</span></code> ），不同的后端支持的数据类型不同，相关的数据操作也不同，所以针对不同的计算后端需要在前端编码方法中实现对应的编码函数，根据平台支持的后端，内置的编码方法主要实现了三种编码函数，分别是 <code class="code docutils literal notranslate"><span class="pre">torch_coding</span></code> 、 <code class="code docutils literal notranslate"><span class="pre">tensorflow_coding</span></code> 以及 <code class="code docutils literal notranslate"><span class="pre">numpy_coding</span></code> ，用户可以根据想要使用的后端实现其中任意一种编码函数。我们以 <code class="code docutils literal notranslate"><span class="pre">PoissonEncoding</span></code> 编码方法的 <code class="code docutils literal notranslate"><span class="pre">torch_coding</span></code> 实现过程作为示例进行展示：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+    <span class="c1"># Source is raw real value data.</span>
+    <span class="c1"># For full connection, the shape of source is [batch_size, num]</span>
+    <span class="c1"># For convolution connection, the shape of source is [batch_size] + shape</span>
+    <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;ndarray&#39;</span><span class="p">:</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">shape</span>
+    <span class="c1"># The shape of the encoded spike trains.</span>
+    <span class="n">spk_shape</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">spikes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">spk_shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">le</span><span class="p">(</span><span class="n">source</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_conversion</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">spikes</span>
+</pre></div>
+</div>
+<p>在代码的最后，需要添加 <code class="code docutils literal notranslate"><span class="pre">Encoder.register(&quot;poisson&quot;,</span> <span class="pre">PoissonEncoding)</span></code> 用于将该编码方法添加至编码方法的库中，以便前端的调用。</p>
+</div>
+<div class="section" id="id5">
+<h2>生成器自定义<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>生成器可用于生成服从特定分布的时空脉冲数据或者一些特殊的电流模式，在平台中内置了2种最常用的生成器方法，内置的生成器方法可能无法满足用户的任意需求，这时候就需要用户自己添加一些更符合其实验目的的生成器方案。定义生成器方案的这一步可以依照 <code class="code docutils literal notranslate"><span class="pre">Neuron.Generators</span></code> 文件中的格式进行添加。</p>
+</div>
+<div class="section" id="id6">
+<h2>生成器方法初始化<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>自定义的生成器方法需继承 <code class="code docutils literal notranslate"><span class="pre">Generator</span></code> 类，其初始化方法中的参数名需与 <code class="code docutils literal notranslate"><span class="pre">Generator</span></code> 类的一致，若需要传入初始化参数以外的参数，可以通过 <code class="code docutils literal notranslate"><span class="pre">kwargs</span></code> 传入，以恒定电流生成器 <code class="code docutils literal notranslate"><span class="pre">CC_Generator</span></code> 类的初始化函数为例：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+             <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;cc_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+             <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">CC_Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span>
+                                   <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+</pre></div>
+</div>
+<p>在这个初始化方法中，</p>
+</div>
+<div class="section" id="id7">
+<h2>定义生成器函数<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>生成函数是生成方法的实现部分，因为平台支持多后端（ <code class="code docutils literal notranslate"><span class="pre">pytorch</span></code> 、 <code class="code docutils literal notranslate"><span class="pre">TensorFlow</span></code> 以及 <code class="code docutils literal notranslate"><span class="pre">numpy</span></code> ），不同的后端支持的数据类型不同，相关的数据操作也不同，所以针对不同的计算后端需要在前端生成方法中实现对应的生成函数，根据平台支持的后端，内置的生成方法主要实现了三种生成函数，分别是 <code class="code docutils literal notranslate"><span class="pre">torch_coding</span></code> 、 <code class="code docutils literal notranslate"><span class="pre">tensorflow_coding</span></code> 以及 <code class="code docutils literal notranslate"><span class="pre">numpy_coding</span></code> ，用户可以根据想要使用的后端实现其中任意一种生成函数。我们以 <code class="code docutils literal notranslate"><span class="pre">CC_Generator</span></code> 生成方法的 <code class="code docutils literal notranslate"><span class="pre">torch_coding</span></code> 实现过程作为示例进行展示：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;ndarray&#39;</span><span class="p">:</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">source</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">batch</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">batch</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="n">batch</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">]</span>
+    <span class="n">spk_shape</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">spikes</span> <span class="o">=</span> <span class="n">source</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">spk_shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">spikes</span>
+</pre></div>
+</div>
+<p>在代码的最后，需要添加 <code class="code docutils literal notranslate"><span class="pre">Generator.register('cc_generator',</span> <span class="pre">CC_Generator)</span></code> 用于将该生成器方法添加至生成器方法的库中，以便前端的调用。</p>
+</div>
+<div class="section" id="id8">
+<h2>解码器自定义<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>解码是将输出的脉冲信号进行一定程度的取舍和转换，为了满足用户的大多数应用需求，平台中内置了5种常用的解码方法，内置的解码方法可能无法满足用户的任意需求，这时候就需要用户自己添加一些更符合其实验目的的解码方案。定义解码方案的这一步可以依照 <code class="code docutils literal notranslate"><span class="pre">Neuron.Decoders</span></code> 文件中的格式进行添加。</p>
+</div>
+<div class="section" id="id9">
+<h2>解码方法初始化<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<p>自定义的解码方法需继承 <code class="code docutils literal notranslate"><span class="pre">Decoder</span></code> 类，其初始化方法中的参数名需与 <code class="code docutils literal notranslate"><span class="pre">Decoder</span></code> 类的一致，若需要传入初始化参数以外的参数，可以通过 <code class="code docutils literal notranslate"><span class="pre">kwargs</span></code> 传入，以 <code class="code docutils literal notranslate"><span class="pre">Spike_Counts</span></code> 类的初始化函数为例：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+        <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">Spike_Counts</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span>
+                                  <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pop_size&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在这个初始化方法中，<code class="code docutils literal notranslate"><span class="pre">pop_size</span></code> 是 <code class="code docutils literal notranslate"><span class="pre">Spike_Counts</span></code> 类实现群体脉冲数解码所需要的参数，我们通过从 <code class="code docutils literal notranslate"><span class="pre">kwargs</span></code> 中获取的方式来设定。</p>
+</div>
+<div class="section" id="id10">
+<h2>定义解码函数<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<p>解码函数是解码方法的实现部分，因为平台支持多后端（ <code class="code docutils literal notranslate"><span class="pre">pytorch</span></code> 、 <code class="code docutils literal notranslate"><span class="pre">TensorFlow</span></code> 以及 <code class="code docutils literal notranslate"><span class="pre">numpy</span></code> ），不同的后端支持的数据类型不同，相关的数据操作也不同，所以针对不同的计算后端需要在前端解码方法中实现对应的解码函数，根据平台支持的后端，内置的解码方法主要实现了三种解码函数，分别是 <code class="code docutils literal notranslate"><span class="pre">torch_coding</span></code> 、 <code class="code docutils literal notranslate"><span class="pre">tensorflow_coding</span></code> 以及 <code class="code docutils literal notranslate"><span class="pre">numpy_coding</span></code> ，用户可以根据想要使用的后端实现其中任意一种解码函数。我们以 <code class="code docutils literal notranslate"><span class="pre">Spike_Counts</span></code> 解码方法的 <code class="code docutils literal notranslate"><span class="pre">torch_coding</span></code> 实现过程作为示例进行展示：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+    <span class="c1"># record is the activities of the NeuronGroup to be decoded</span>
+    <span class="c1"># the shape of record is (time_step, batch_size, n_neurons)</span>
+    <span class="c1"># target is the label of the sample</span>
+    <span class="n">spike_rate</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">pop_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">)</span>
+    <span class="n">pop_spikes_temp</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">spike_rate</span><span class="p">[:,</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">):</span> <span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">pop_size</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pop_num</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">pop_spikes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">pop_spikes_temp</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pop_spikes</span>
+</pre></div>
+</div>
+<p>在代码的最后，需要添加 <code class="code docutils literal notranslate"><span class="pre">Decoder.register('spike_counts',</span> <span class="pre">Spike_Counts)</span></code> 用于将该解码方法添加至解码方法的库中，以便前端的调用。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="2_custom_neuron.html" class="btn btn-neutral float-right" title="神经元模型自定义" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="0_index.html" class="btn btn-neutral float-left" title="Custom" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

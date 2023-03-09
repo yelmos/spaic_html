@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Network.Network &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.Network.Network</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.Network.Network 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on 2020/8/5</span>
+<span class="sd">@project: SPAIC</span>
+<span class="sd">@filename: Network</span>
+<span class="sd">@author: Hong Chaofei</span>
+<span class="sd">@contact: hongchf@gmail.com</span>
+
+<span class="sd">@description:</span>
+<span class="sd">定义网络以及子网络，网络包含所有的神经网络元素、如神经集群、连接以及学习算法、仿真器等，实现最终的网络仿真与学习。</span>
+<span class="sd">执行过程：网络定义-&gt;网络生成-&gt;网络仿真与学习</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">spaic.Network.Assembly</span> <span class="kn">import</span> <span class="n">Assembly</span>
+<span class="c1"># from spaic.Network.Topology import Connection</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">import</span> <span class="nn">spaic</span>
+
+<div class="viewcode-block" id="Network"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network">[文档]</a><span class="k">class</span> <span class="nc">Network</span><span class="p">(</span><span class="n">Assembly</span><span class="p">):</span>
+
+    <span class="n">_class_label</span> <span class="o">=</span> <span class="s1">&#39;&lt;net&gt;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">Network</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_monitors</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_learners</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pipline</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># --------- Frontend code ----------</span>
+<div class="viewcode-block" id="Network.set_backend"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.set_backend">[文档]</a>    <span class="k">def</span> <span class="nf">set_backend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">backend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Torch_Backend</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Backend</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">backend</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;torch&#39;</span> <span class="ow">or</span> <span class="n">backend</span> <span class="o">==</span><span class="s1">&#39;pytorch&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Torch_Backend</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">backend</span> <span class="o">==</span> <span class="s1">&#39;tensorflow&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Tensorflow_Backend</span><span class="p">(</span><span class="n">device</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Network.set_backend_dt"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.set_backend_dt">[文档]</a>    <span class="k">def</span> <span class="nf">set_backend_dt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;have not set backend, default pytorch backend is set automatically&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Torch_Backend</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">dt</span></div>
+
+<div class="viewcode-block" id="Network.set_random_seed"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.set_random_seed">[文档]</a>    <span class="k">def</span> <span class="nf">set_random_seed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Torch_Backend</span><span class="p">):</span>
+            <span class="kn">import</span> <span class="nn">torch</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">seed</span><span class="p">))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">device</span> <span class="o">==</span> <span class="s1">&#39;cuda&#39;</span><span class="p">:</span>
+                <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">seed</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="Network.get_testparams"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.get_testparams">[文档]</a>    <span class="k">def</span> <span class="nf">get_testparams</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_Wparams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">all_Wparams</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_Wparams</span></div>
+
+    <span class="c1"># TODO: 这里的setattr是否有必要要，是否可以全部放到Assembly里？</span>
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">..Monitor.Monitor</span> <span class="kn">import</span> <span class="n">Monitor</span>
+        <span class="kn">from</span> <span class="nn">..Learning.Learner</span> <span class="kn">import</span> <span class="n">Learner</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Network</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Monitor</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_monitors</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Learner</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_learners</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="c1"># ---------  backend code  ----------</span>
+
+<div class="viewcode-block" id="Network.build"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">backend</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_backend</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">clear_step</span><span class="p">()</span>
+
+        <span class="c1"># build 试运行时，假设一个runtime</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">runtime</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">runtime</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="n">all_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_groups</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">asb</span> <span class="ow">in</span> <span class="n">all_groups</span><span class="p">:</span>
+            <span class="n">asb</span><span class="o">.</span><span class="n">set_id</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_projections</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+
+        <span class="n">all_connections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_connections</span><span class="p">()</span>
+
+
+        <span class="k">for</span> <span class="n">con</span> <span class="ow">in</span> <span class="n">all_connections</span><span class="p">:</span>
+            <span class="n">con</span><span class="o">.</span><span class="n">set_id</span><span class="p">()</span>
+
+            <span class="c1">#----根据连接，对每个神经元建立input_connection和output_connection</span>
+            <span class="n">con</span><span class="o">.</span><span class="n">pre_assembly</span><span class="o">.</span><span class="n">register_connection</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+            <span class="n">con</span><span class="o">.</span><span class="n">post_assembly</span><span class="o">.</span><span class="n">register_connection</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+
+        <span class="c1"># if strategy == 1:</span>
+        <span class="c1">#     # 采取单纯的从头递归地build，一旦出现环路会陷入死循环，可以避开固有延迟的问题</span>
+        <span class="c1">#     self.forward_build(all_groups, all_connections)</span>
+        <span class="k">if</span> <span class="n">strategy</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># 采取策略性构建，但是目前存在两个问题：</span>
+            <span class="c1">#   1. 网络中存在Assembly块时会出现bug，尚未修复</span>
+            <span class="c1">#   2. Connection所使用的input_spike为上一步的，需要添加[updated]，目前暂不使用所以未添加</span>
+            <span class="c1">#   该构建方式可以较大程度上避开固有延迟的问题</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">strategy_build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_groups</span><span class="p">(</span><span class="kc">False</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># 原本的构建方式，首先构建连接，每个连接都是用上一轮神经元的输出脉冲，从而存在固有延迟的问题</span>
+            <span class="c1"># 但是可以避开环路的问题。</span>
+            <span class="k">for</span> <span class="n">connection</span> <span class="ow">in</span> <span class="n">all_connections</span><span class="p">:</span>
+                <span class="n">connection</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">all_groups</span><span class="p">:</span>
+                <span class="n">group</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">monitor</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitors</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">monitor</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">learner</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_learners</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">learner</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">build_graph</span><span class="p">()</span>
+        <span class="c1"># self._backend.build()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+
+        <span class="c1"># for group in all_groups:</span>
+        <span class="c1">#     if hasattr(group, &#39;index&#39;):</span>
+        <span class="c1">#         group.index = 0</span>
+
+        <span class="k">pass</span></div>
+
+    <span class="c1"># def forward_build(self, all_groups=None, all_connections=None):</span>
+    <span class="c1">#     builded_groups = []</span>
+    <span class="c1">#     builded_connections = []</span>
+    <span class="c1">#     for group in all_groups:</span>
+    <span class="c1">#         if (group._class_label == &#39;&lt;nod&gt;&#39;) and (&#39;predict&#39; not in dir(group)):</span>
+    <span class="c1">#             group.build(self._backend)</span>
+    <span class="c1">#             builded_groups.append(group)</span>
+    <span class="c1">#             all_groups.remove(group)</span>
+    <span class="c1">#     while all_groups or all_connections:</span>
+    <span class="c1">#         for conn in all_connections:</span>
+    <span class="c1">#             if conn.pre_assembly in builded_groups: # 如果连接的突触前神经元已经build，则可以build</span>
+    <span class="c1">#                 conn.build(self._backend)</span>
+    <span class="c1">#                 builded_connections.append(conn)</span>
+    <span class="c1">#                 all_connections.remove(conn)</span>
+    <span class="c1">#         for group in all_groups:</span>
+    <span class="c1">#             can_build = 1</span>
+    <span class="c1">#             if not all_connections:</span>
+    <span class="c1">#                 group.build(self._backend)</span>
+    <span class="c1">#                 builded_groups.append(group)</span>
+    <span class="c1">#                 all_groups.remove(group)</span>
+    <span class="c1">#             else:</span>
+    <span class="c1">#                 for conn in all_connections:</span>
+    <span class="c1">#                     if group == conn.post_assembly:</span>
+    <span class="c1">#                         can_build = 0</span>
+    <span class="c1">#                         break</span>
+    <span class="c1">#                 if can_build:</span>
+    <span class="c1">#                     group.build(self._backend)</span>
+    <span class="c1">#                     builded_groups.append(group)</span>
+    <span class="c1">#                     all_groups.remove(group)</span>
+
+<div class="viewcode-block" id="Network.strategy_build"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.strategy_build">[文档]</a>    <span class="k">def</span> <span class="nf">strategy_build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">all_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">builded_groups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">unbuild_groups</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">output_groups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="kn">from</span> <span class="nn">..Neuron.Node</span> <span class="kn">import</span> <span class="n">Encoder</span><span class="p">,</span> <span class="n">Decoder</span><span class="p">,</span> <span class="n">Generator</span>
+        <span class="c1"># ===================从input开始按深度构建计算图==============</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">all_groups</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">Encoder</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">Generator</span><span class="p">):</span>
+                <span class="c1"># 如果是input节点，则开始深度构建计算图</span>
+                <span class="n">group</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+                <span class="n">builded_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+                <span class="c1"># all_groups.remove(group)</span>
+                <span class="k">for</span> <span class="n">conn</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">_output_connections</span><span class="p">:</span>
+                    <span class="n">builded_groups</span><span class="p">,</span> <span class="n">unbuild_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deep_build_conn</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">builded_groups</span><span class="p">,</span>
+                                                                          <span class="n">unbuild_groups</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">Decoder</span><span class="p">):</span>
+                <span class="c1"># 如果节点是output节点，则放入output组在最后进行构建</span>
+                <span class="n">output_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">group</span><span class="o">.</span><span class="n">_input_connections</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">group</span><span class="o">.</span><span class="n">_output_connections</span><span class="p">):</span>
+                    <span class="c1"># 孤立点的情况</span>
+                    <span class="kn">import</span> <span class="nn">warnings</span>
+                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Isolated group occurs, please check the network.&#39;</span><span class="p">)</span>
+                    <span class="n">group</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">unbuild_groups</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Loop occurs&#39;</span><span class="p">)</span>
+        <span class="c1"># ====================开始构建环路==================</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">unbuild_groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">unbuild_groups</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">builded_groups</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">builded_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deep_build_neurongroup_with_delay</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">builded_groups</span><span class="p">)</span>
+
+        <span class="c1"># ====================构建output节点===============</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">output_groups</span><span class="p">:</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Network.deep_build_neurongroup"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.deep_build_neurongroup">[文档]</a>    <span class="k">def</span> <span class="nf">deep_build_neurongroup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neuron</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">builded_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unbuild_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">conns</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">neuron</span><span class="o">.</span><span class="n">_input_connections</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">builded_groups</span><span class="p">]</span>
+        <span class="c1"># conns表示神经元还没有被建立的依赖连接</span>
+        <span class="k">if</span> <span class="n">conns</span><span class="p">:</span> <span class="c1">#==========如果存在conns说明有input_connections还没有被build===========</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">level</span><span class="p">)</span> <span class="ow">in</span> <span class="n">unbuild_groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">unbuild_groups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">level</span><span class="p">)]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neuron</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">unbuild_groups</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">level</span><span class="p">)]</span> <span class="o">=</span> <span class="p">[</span><span class="n">neuron</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">builded_groups</span><span class="p">,</span> <span class="n">unbuild_groups</span>
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">neuron</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">builded_groups</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">neuron</span><span class="o">.</span><span class="n">_class_label</span> <span class="o">==</span> <span class="s1">&#39;&lt;asb&gt;&#39;</span><span class="p">:</span>
+                    <span class="n">neuron</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">neuron</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+                <span class="n">builded_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neuron</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">conn</span> <span class="ow">in</span> <span class="n">neuron</span><span class="o">.</span><span class="n">_output_connections</span><span class="p">:</span>
+                    <span class="n">builded_groups</span><span class="p">,</span> <span class="n">unbuild_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deep_build_conn</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">builded_groups</span><span class="p">,</span>
+                                                                          <span class="n">unbuild_groups</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">builded_groups</span><span class="p">,</span> <span class="n">unbuild_groups</span></div>
+
+<div class="viewcode-block" id="Network.deep_build_conn"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.deep_build_conn">[文档]</a>    <span class="k">def</span> <span class="nf">deep_build_conn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">builded_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unbuild_groups</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+        <span class="n">builded_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+        <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">builded_groups</span><span class="p">,</span> <span class="n">unbuild_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deep_build_neurongroup</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">post_assembly</span><span class="p">,</span> <span class="n">builded_groups</span><span class="p">,</span> <span class="n">unbuild_groups</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">builded_groups</span><span class="p">,</span> <span class="n">unbuild_groups</span></div>
+
+<div class="viewcode-block" id="Network.deep_build_conn_with_delay"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.deep_build_conn_with_delay">[文档]</a>    <span class="k">def</span> <span class="nf">deep_build_conn_with_delay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">builded_groups</span><span class="p">):</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+        <span class="n">builded_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">conn</span><span class="o">.</span><span class="n">post_assembly</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">builded_groups</span><span class="p">:</span>
+            <span class="n">builded_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deep_build_neurongroup_with_delay</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">post_assembly</span><span class="p">,</span> <span class="n">builded_groups</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">builded_groups</span></div>
+
+<div class="viewcode-block" id="Network.deep_build_neurongroup_with_delay"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.deep_build_neurongroup_with_delay">[文档]</a>    <span class="k">def</span> <span class="nf">deep_build_neurongroup_with_delay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">neuron</span><span class="p">,</span> <span class="n">builded_groups</span><span class="p">):</span>
+        <span class="n">conns</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">neuron</span><span class="o">.</span><span class="n">_input_connections</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">builded_groups</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">conns</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">conn</span> <span class="ow">in</span> <span class="n">conns</span><span class="p">:</span>
+                <span class="n">conn</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+                <span class="n">builded_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+            <span class="n">neuron</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">neuron</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">)</span>
+        <span class="n">builded_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neuron</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">conn</span> <span class="ow">in</span> <span class="n">neuron</span><span class="o">.</span><span class="n">_output_connections</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">conn</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">builded_groups</span><span class="p">:</span>
+                <span class="n">builded_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">deep_build_conn_with_delay</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">builded_groups</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">builded_groups</span></div>
+
+<div class="viewcode-block" id="Network.run"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.run">[文档]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend_time</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">set_runtime</span><span class="p">(</span><span class="n">backend_time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">initial_step</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">update_time_steps</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Network.run_continue"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.run_continue">[文档]</a>    <span class="k">def</span> <span class="nf">run_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend_time</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">set_runtime</span><span class="p">(</span><span class="n">backend_time</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">initial_step</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">initial_continue_step</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">update_time_steps</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Network.reset"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.reset">[文档]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">initial_step</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Network.init_run"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.init_run">[文档]</a>    <span class="k">def</span> <span class="nf">init_run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">initial_step</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Network.add_monitor"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.add_monitor">[文档]</a>    <span class="k">def</span> <span class="nf">add_monitor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">monitor</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">spaic.Monitor.Monitor</span> <span class="kn">import</span> <span class="n">Monitor</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">monitor</span><span class="p">,</span> <span class="n">Monitor</span><span class="p">),</span> <span class="s2">&quot;Type Error, it is not monitor&quot;</span>
+        <span class="k">assert</span> <span class="n">monitor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitors</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="s2">&quot;monitor </span><span class="si">%s</span><span class="s2"> is already added&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitors</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="s2">&quot;monitor with name: </span><span class="si">%s</span><span class="s2"> have the same name with an already exists monitor&quot;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">name</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">monitor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Network.save_state"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.save_state">[文档]</a>    <span class="k">def</span> <span class="nf">save_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">direct</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">hdf5</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save weights in memory or on hard disk.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            direct: Target direction for saving state.</span>
+<span class="sd">            mode: Determines whether saved in hard disk, default set false, it means will not save on disk.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            state: Connections&#39; weight of the network.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">save</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">state</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">else</span> <span class="s1">&#39;autoname&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">direct</span><span class="p">:</span>
+            <span class="n">direct</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span>
+        <span class="n">file</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">direct</span> <span class="o">+</span> <span class="n">file</span> <span class="o">+</span> <span class="s1">&#39;/parameters/&#39;</span>
+        <span class="kn">import</span> <span class="nn">os</span>
+        <span class="kn">import</span> <span class="nn">torch</span>
+        <span class="n">origin_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">direct</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">file</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;parameters&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">file</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">file</span> <span class="o">+</span> <span class="s1">&#39;/parameters&#39;</span><span class="p">)</span>
+            <span class="c1"># os.mkdir(&#39;./NetData/&#39; + dict + &#39;/backend/_parameters_dict&#39;)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">file</span> <span class="o">+</span> <span class="s1">&#39;/parameters&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">hdf5</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">h5py</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span> <span class="k">if</span> <span class="n">direct</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.hdf5&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">direct</span> <span class="o">+</span> <span class="s1">&#39;.hdf5&#39;</span>
+            <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">direct</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+                    <span class="n">f</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+                    <span class="c1"># torch.save(self._backend._parameters_dict[item], os.getcwd()+&#39;/&#39;+str(i)+&#39;.pt&#39;)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="s1">&#39;: saved&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="p">,</span> <span class="s1">&#39;./_parameters_dict.pt&#39;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">origin_path</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="Network.state_from_dict"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Network.Network.state_from_dict">[文档]</a>    <span class="k">def</span> <span class="nf">state_from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">direct</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reload states from memory or disk.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state: contains backend._parameters_dict .</span>
+<span class="sd">            direct: Target direction for reloading state.</span>
+<span class="sd">            mode: Determines whether saved in hard disk, default set false, it means will not save on disk.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            state: Connections&#39; weight of the network.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="s1">&#39;torch&#39;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">device</span> <span class="o">!=</span> <span class="n">device</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Backend device setting is &#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">device</span><span class="o">+</span><span class="s1">&#39;. Backend device selection is priority.&#39;</span><span class="p">)</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">device</span>
+        <span class="k">if</span> <span class="n">state</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">torch</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">para</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">backend_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">check_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="p">[</span><span class="n">backend_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+                <span class="c1"># if self._backend.device</span>
+                <span class="k">return</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Given state has wrong type&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">direct</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">direct</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;/parameters/&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">direct</span> <span class="o">+</span> <span class="s1">&#39;/parameters/&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span> <span class="o">+</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;/parameters/&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;./parameters/&#39;</span>
+
+        <span class="kn">import</span> <span class="nn">os</span>
+        <span class="kn">import</span> <span class="nn">torch</span>
+        <span class="n">origin_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Wrong Path.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;_parameters_dict.pt&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;./_parameters_dict.pt&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">para</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">backend_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">check_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">backend_key</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="p">[</span><span class="n">backend_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.hdf5&#39;</span><span class="p">):</span>
+                    <span class="kn">import</span> <span class="nn">h5py</span>
+                    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">direct</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">para</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                            <span class="n">backend_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">check_key</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="p">[</span><span class="n">backend_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">origin_path</span><span class="p">)</span>
+        <span class="k">return</span></div></div>
+
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

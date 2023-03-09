@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Monitor package &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>spaic.Monitor package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/spaic.Monitor.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spaic-monitor-package">
+<h1>spaic.Monitor package<a class="headerlink" href="#spaic-monitor-package" title="永久链接至标题">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.Monitor.Monitor">
+<span id="spaic-monitor-monitor-module"></span><h2>spaic.Monitor.Monitor module<a class="headerlink" href="#module-spaic.Monitor.Monitor" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/12
+&#64;project: SPAIC
+&#64;filename: Monitor
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+定义神经集群放电以及神经元状态量、连接状态量的仿真记录模块</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.Monitor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Monitor.Monitor.</span></span><span class="sig-name descname"><span class="pre">Monitor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_grad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbatch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#Monitor"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.Monitor" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="spaic.Network.html#spaic.Network.BaseModule.BaseModule" title="spaic.Network.BaseModule.BaseModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.BaseModule.BaseModule</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.Monitor.check_var_name">
+<span class="sig-name descname"><span class="pre">check_var_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#Monitor.check_var_name"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.Monitor.check_var_name" title="永久链接至目标">¶</a></dt>
+<dd><p>Check if variable is in the traget model, and add the target id label to the variable name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>var_name</strong> (<em>original variable name</em>) – </p></li>
+<li><p><strong>Returns</strong> (<em>modified variable name</em>) – </p></li>
+<li><p><strong>-------</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.Monitor.get_str">
+<span class="sig-name descname"><span class="pre">get_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#Monitor.get_str"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.Monitor.get_str" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.Monitor.monitor_on">
+<span class="sig-name descname"><span class="pre">monitor_on</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#Monitor.monitor_on"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.Monitor.monitor_on" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.Monitor.monitor_off">
+<span class="sig-name descname"><span class="pre">monitor_off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#Monitor.monitor_off"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.Monitor.monitor_off" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.Monitor.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#Monitor.clear"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.Monitor.clear" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.Monitor.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="spaic.Simulation.html#spaic.Backend.Backend.Backend" title="spaic.Backend.Backend.Backend"><span class="pre">spaic.Backend.Backend.Backend</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#Monitor.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.Monitor.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.Monitor.init_record">
+<span class="sig-name descname"><span class="pre">init_record</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#Monitor.init_record"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.Monitor.init_record" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.Monitor.update_step">
+<span class="sig-name descname"><span class="pre">update_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#Monitor.update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.Monitor.update_step" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.Monitor.push_data">
+<span class="sig-name descname"><span class="pre">push_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#Monitor.push_data"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.Monitor.push_data" title="永久链接至目标">¶</a></dt>
+<dd><p>push data to monitor by backend</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Monitor.Monitor.</span></span><span class="sig-name descname"><span class="pre">SpikeMonitor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'O'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_grad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbatch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#SpikeMonitor"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Monitor.Monitor.Monitor" title="spaic.Monitor.Monitor.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Monitor.Monitor.Monitor</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="spaic.Simulation.html#spaic.Backend.Backend.Backend" title="spaic.Backend.Backend.Backend"><span class="pre">spaic.Backend.Backend.Backend</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#SpikeMonitor.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#SpikeMonitor.clear"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.clear" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.init_record">
+<span class="sig-name descname"><span class="pre">init_record</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#SpikeMonitor.init_record"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.init_record" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.push_spike_train">
+<span class="sig-name descname"><span class="pre">push_spike_train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spk_times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spk_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#SpikeMonitor.push_spike_train"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.push_spike_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.update_step">
+<span class="sig-name descname"><span class="pre">update_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#SpikeMonitor.update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.update_step" title="永久链接至目标">¶</a></dt>
+<dd><p>Recoding the variable values of the current step.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.spk_times">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">spk_times</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.spk_times" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.spk_index">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">spk_index</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.spk_index" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.spk_grad">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">spk_grad</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.spk_grad" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.time_spk_rate">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">time_spk_rate</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.time_spk_rate" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.time_pop_rate">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">time_pop_rate</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.time_pop_rate" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.spk_count">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">spk_count</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.spk_count" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.SpikeMonitor.time">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">time</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.SpikeMonitor.time" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Monitor.Monitor.</span></span><span class="sig-name descname"><span class="pre">StateMonitor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'full'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_grad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbatch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#StateMonitor"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Monitor.Monitor.Monitor" title="spaic.Monitor.Monitor.Monitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Monitor.Monitor.Monitor</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="spaic.Simulation.html#spaic.Backend.Backend.Backend" title="spaic.Backend.Backend.Backend"><span class="pre">spaic.Backend.Backend.Backend</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#StateMonitor.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#StateMonitor.clear"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor.clear" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor.init_record">
+<span class="sig-name descname"><span class="pre">init_record</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#StateMonitor.init_record"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor.init_record" title="永久链接至目标">¶</a></dt>
+<dd><p>Inite record of new trial
+Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor.update_step">
+<span class="sig-name descname"><span class="pre">update_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#StateMonitor.update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor.update_step" title="永久链接至目标">¶</a></dt>
+<dd><p>Recoding the variable values of the current step.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor.nbatch_values">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">nbatch_values</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor.nbatch_values" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor.nbatch_times">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">nbatch_times</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor.nbatch_times" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor.values">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">values</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor.values" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor.grads">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">grads</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor.grads" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor.times">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">times</span></span><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor.times" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Monitor.Monitor.StateMonitor.plot_weight">
+<span class="sig-name descname"><span class="pre">plot_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Monitor/Monitor.html#StateMonitor.plot_weight"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Monitor.Monitor.StateMonitor.plot_weight" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Monitor">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spaic.Monitor" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/12
+&#64;project: SPAIC
+&#64;filename: __init__.py
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>神经元 &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="连接" href="2_connection.html" />
+    <link rel="prev" title="基础结构" href="0_index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="0_index.html">基础结构</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">神经元</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_connection.html">连接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_synaptic.html">突触</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_algorithm.html">算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_encode_decode.html">编码解码</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="0_index.html">基础结构</a> &raquo;</li>
+        
+      <li>神经元</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/basic_structure/1_neuron.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>神经元<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>本章节主要介绍在训练以及仿真中如何选择神经元模型，以及如何根据需求在原模型的基础上更改一些重要的参数。</p>
+<div class="section" id="id2">
+<h2>脉冲神经元模型<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>神经元模型是脉冲神经网络中极为重要的一个组成部分，不同的神经元模型通常代表了对不同的神经元动力学的仿真与模拟。在脉冲神经网络中，我们通常将神经元模型关于电压的变化特征化为微分方程，再由差分方程来对其进行逼近，最后获得了计算机可以进行运算的神经元模型。在SPAIC中，我们包含了大多数较为常见的神经元模型：</p>
+<ul class="simple">
+<li><p>LIF - Leaky Integrate-and-Fire models</p></li>
+<li><p>CLIF - Current Leaky Integrate-and-Fire model</p></li>
+<li><p>GLIF - Generalized Leaky Integrate-and-Fire model</p></li>
+<li><p>aEIF - Adaptive Exponential Integrate-and-Fire model</p></li>
+<li><p>IZH - Izhikevich model</p></li>
+<li><p>HH - Hodgkin-Huxley model</p></li>
+</ul>
+<p>在SPAIC中，NeuronGroup是作为网络节点的组成，如同Pytorch中的layer，SPAIC中的每个layer都是一个NeuronGroup，用户需要根据自己的需要指定在这个NeuronGroup中所包含的神经元数量、神经元类型、神经元的位置、神经元类型及与其类型相关的参数等。首先需要的就是导入NeuronGroup库：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">spaic</span> <span class="kn">import</span> <span class="n">NeuronGroup</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lif">
+<h2>LIF神经元<a class="headerlink" href="#lif" title="永久链接至标题">¶</a></h2>
+<p>以建立一层含有100个LIF神经元的layer为例:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">NeuronGroup</span><span class="p">(</span><span class="n">neuron_number</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">neuron_model</span><span class="o">=</span><span class="s1">&#39;lif&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>一个含有100个标准LIF神经元的layer就建立好了。然而许多时候我们需要按需定制不同的LIF神经元以获得不同的神经元的表现，这时候就需要在建立NeuronGroup时，指定一些参数：</p>
+<ul class="simple">
+<li><p>tau_p, tau_q - 突触的时间常量，默认为4.0和1.0</p></li>
+<li><p>tau_m - 神经元膜电位的时间常量，默认为6.0</p></li>
+<li><p>v_th - 神经元的阈值电压，默认为1.0</p></li>
+<li><p>v_reset - 神经元的重置电压，默认为0.0，因为平台内置的LIF模型的电压稳定点为0.0</p></li>
+</ul>
+<p>如果用户需要调整这些变量，可以在建立NeuronGroup的时候输入想改变的参数即可：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">layer2</span> <span class="o">=</span> <span class="n">NeuronGroup</span><span class="p">(</span><span class="n">neuron_number</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">neuron_model</span><span class="o">=</span><span class="s1">&#39;lif&#39;</span><span class="p">,</span>
+                <span class="n">tau_p</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">tau_q</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">tau_m</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">v_th</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">v_reset</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这样，一个自定义参数的LIF神经元就建好了。</p>
+</div>
+<div class="section" id="clif">
+<h2>CLIF神经元<a class="headerlink" href="#clif" title="永久链接至标题">¶</a></h2>
+<p>CLIF(Current Leaky Integrated-and-Fire Model)神经元的参数:</p>
+<ul class="simple">
+<li><p>tau_p, tau_q - 突触的时间常量，默认为12.0和8.0</p></li>
+<li><p>tau_m - 神经元膜电位的时间常量，默认为20.0</p></li>
+<li><p>v_th - 神经元的阈值电压，默认为1.0</p></li>
+</ul>
+</div>
+<div class="section" id="glif">
+<h2>GLIF神经元<a class="headerlink" href="#glif" title="永久链接至标题">¶</a></h2>
+<p>GLIF(Generalized Leaky Integrate-and-Fire Model) <a class="footnote-reference brackets" href="#f1" id="id3">1</a> 神经元参数:</p>
+<ul class="simple">
+<li><p>R, C, E_L</p></li>
+<li><p>Theta_inf</p></li>
+<li><p>f_v</p></li>
+<li><p>delta_v</p></li>
+<li><p>b_s</p></li>
+<li><p>delta_Theta_s</p></li>
+<li><p>k_1, k_2</p></li>
+<li><p>delta_I1, delta_i2</p></li>
+<li><p>a_v, b_v</p></li>
+<li><p>tau_p, tau_q</p></li>
+</ul>
+</div>
+<div class="section" id="aeif">
+<h2>aEIF神经元<a class="headerlink" href="#aeif" title="永久链接至标题">¶</a></h2>
+<p>aEIF(Adaptive Exponential Integrated-and-Fire Model) <a class="footnote-reference brackets" href="#f2" id="id4">2</a> 神经元参数:</p>
+<ul class="simple">
+<li><p>tau_p, tau_q, tau_w, tau_m</p></li>
+<li><p>a, b</p></li>
+<li><p>delta_t, delta_t2</p></li>
+<li><p>EL</p></li>
+</ul>
+</div>
+<div class="section" id="izh">
+<h2>IZH神经元<a class="headerlink" href="#izh" title="永久链接至标题">¶</a></h2>
+<p>IZH(Izhikevich Model) 神经元参数:
+- tau_p, tau_q
+- a, b
+- Vrest, Ureset</p>
+</div>
+<div class="section" id="hh">
+<h2>HH神经元<a class="headerlink" href="#hh" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>dt</p></li>
+<li><p>g_NA, g_K, g_L</p></li>
+<li><p>E_NA, E_K, E_L</p></li>
+<li><p>alpha_m1, alpha_m2, alpha_m3</p></li>
+<li><p>beta_m1, beta_m2, beta_m3</p></li>
+<li><p>alpha_n1, alpha_n2, alpha_n3</p></li>
+<li><p>beta_n1, beta_n2, beta_n3</p></li>
+<li><p>alpha_h1, alpha_h2, alpha_h3</p></li>
+<li><p>beta_1, beta_h2, beta_h3</p></li>
+<li><p>V65</p></li>
+<li><p>m, n, h</p></li>
+<li><p>V, vth</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>自定义<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>在稍后的 <a class="reference internal" href="../custom_en/2_custom_neuron.html#my-custom-neuron"><span class="std std-ref">Custom neuron model</span></a> 这一章节中，我们会更加详细具体地讲述该如何在我们平台上添加自定义的神经元模型。</p>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dd><p>GLIF model. Mihalaş S, Niebur E. A generalized linear integrate-and-fire neural model produces diverse spiking behaviors. Neural Comput. 2009 Mar;21(3):704-18.` doi:10.1162/neco.2008.12-07-680. &lt;https://doi.org/10.1162/neco.2008.12-07-680&gt;`_ . PMID: 18928368; PMCID: PMC2954058.</p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id4">2</a></span></dt>
+<dd><p>AEIF model. Brette, Romain &amp; Gerstner, Wulfram. (2005). Adaptive Exponential Integrate-And-Fire Model As An Effective Description Of Neuronal Activity. Journal of neurophysiology. 94. 3637-42.` doi:10.1152/jn.00686.2005. &lt;https://doi.org/10.1152/jn.00686.2005&gt;`_</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="2_connection.html" class="btn btn-neutral float-right" title="连接" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="0_index.html" class="btn btn-neutral float-left" title="基础结构" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

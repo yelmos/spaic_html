@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Library.Network_saver &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.Library.Network_saver</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.Library.Network_saver 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on 2020/8/17</span>
+<span class="sd">@project: SPAIC</span>
+<span class="sd">@filename: Network_saver</span>
+<span class="sd">@author: Mengxiao Zhang</span>
+<span class="sd">@contact: mxzhangice@gmail.com</span>
+
+<span class="sd">@description:</span>
+<span class="sd">对既定格式网络的存储</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">..Network.Assembly</span> <span class="kn">import</span> <span class="n">Assembly</span>
+<span class="kn">from</span> <span class="nn">..Neuron.Neuron</span> <span class="kn">import</span> <span class="n">NeuronGroup</span>
+<span class="kn">from</span> <span class="nn">..Neuron.Node</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span> <span class="nn">..Network.Topology</span> <span class="kn">import</span> <span class="n">Connection</span>
+<span class="kn">from</span> <span class="nn">..Backend.Backend</span> <span class="kn">import</span> <span class="n">Backend</span>
+<span class="kn">from</span> <span class="nn">..Network.Topology</span> <span class="kn">import</span> <span class="n">Projection</span>
+<span class="kn">from</span> <span class="nn">..Monitor.Monitor</span> <span class="kn">import</span> <span class="n">Monitor</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<div class="viewcode-block" id="network_save"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_saver.network_save">[文档]</a><span class="k">def</span> <span class="nf">network_save</span><span class="p">(</span><span class="n">Net</span><span class="p">:</span> <span class="n">Assembly</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">trans_format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save_weight</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Save network to files.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            Net(Assembly) : The network needed to be saved.</span>
+<span class="sd">            filename(Str) : The filename of the file that save target network.</span>
+<span class="sd">            trans_format(str) : The format of file, could be &#39;json&#39; or &#39;yaml&#39;</span>
+<span class="sd">            combine(Boolen) : Whether combine weight and structure of the Network into on file, False by default.</span>
+<span class="sd">            save(Boolen) : Whether need to save the structure.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            filename(str) : The filename of the file we save network, since it</span>
+<span class="sd">                will give an auto name if no name given.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            &gt;&gt;&gt; save_file = network_save(Net, &quot;TestNetwork&quot;, trans_format=&#39;yaml&#39;, combine=True, save=True)</span>
+<span class="sd">            (&quot;TestNetwork&quot;, a dict of the structure of the network)</span>
+<span class="sd">            or</span>
+<span class="sd">            &gt;&gt;&gt; save_file = network_save(Net, &quot;TestNetwork&quot;, trans_format=&#39;json&#39;, combine=True, save=False)</span>
+<span class="sd">            a dict of the structure of the network</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">Net</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">Net</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;autoname&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+
+    <span class="n">origin_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+        <span class="n">filedir</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">filename</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span>
+        <span class="n">filedir</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="n">filename</span>
+
+    <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">filename</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">filedir</span><span class="p">)</span>
+
+    <span class="n">result_dict</span> <span class="o">=</span> <span class="n">trans_net</span><span class="p">(</span><span class="n">Net</span><span class="o">=</span><span class="n">Net</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="n">combine</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="n">save</span><span class="p">,</span> <span class="n">save_weight</span><span class="o">=</span><span class="n">save_weight</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">trans_format</span> <span class="o">==</span> <span class="s2">&quot;yaml&quot;</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">yaml</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">result_dict</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+            <span class="n">ends</span> <span class="o">=</span> <span class="s1">&#39;.yml&#39;</span>
+        <span class="k">elif</span> <span class="n">trans_format</span> <span class="o">==</span> <span class="s1">&#39;json&#39;</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">json</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">result_dict</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+            <span class="n">ends</span> <span class="o">=</span> <span class="s1">&#39;.json&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Wrong data format. Only support yaml/json format.&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="o">+</span><span class="n">filename</span><span class="o">+</span><span class="n">ends</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">origin_path</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Save Complete.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">filename</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">origin_path</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Complete.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result_dict</span></div>
+
+
+
+
+
+<div class="viewcode-block" id="trans_net"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_saver.trans_net">[文档]</a><span class="k">def</span> <span class="nf">trans_net</span><span class="p">(</span><span class="n">Net</span><span class="p">:</span> <span class="n">Assembly</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">combine</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">save_weight</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Transform the structure of the network for saving.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            Net(Assembly): target network.</span>
+<span class="sd">            path(string): Target path for saving net data.</span>
+
+<span class="sd">        return:</span>
+<span class="sd">            result_dict(dictionary) : the result diction of the whole Network.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            yaml_net = trans_net(Net)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">result_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">net_name</span> <span class="o">=</span> <span class="n">Net</span><span class="o">.</span><span class="n">name</span>
+    <span class="n">result_dict</span><span class="p">[</span><span class="n">net_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">Net</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">_class_label</span> <span class="o">==</span> <span class="s1">&#39;&lt;asb&gt;&#39;</span><span class="p">:</span>  <span class="c1"># translate other assemblies</span>
+            <span class="n">sub_net_name</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">result_dict</span><span class="p">[</span><span class="n">net_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trans_net</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">path</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sub_net_name</span><span class="p">),</span>
+                                                   <span class="n">combine</span><span class="p">,</span> <span class="n">save</span><span class="p">,</span> <span class="n">save_weight</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">g</span><span class="o">.</span><span class="n">_class_label</span> <span class="o">==</span> <span class="s1">&#39;&lt;neg&gt;&#39;</span><span class="p">:</span>  <span class="c1"># translate layers</span>
+            <span class="n">result_dict</span><span class="p">[</span><span class="n">net_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trans_layer</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">g</span><span class="o">.</span><span class="n">_class_label</span> <span class="o">==</span> <span class="s1">&#39;&lt;nod&gt;&#39;</span><span class="p">:</span>  <span class="c1"># translate nodes</span>
+            <span class="n">result_dict</span><span class="p">[</span><span class="n">net_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trans_node</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># TODO: if get wrong _class_label, need check the type of</span>
+            <span class="c1">#  this element</span>
+            <span class="k">pass</span>
+
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">Net</span><span class="o">.</span><span class="n">_projections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">result_dict</span><span class="p">[</span><span class="n">net_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trans_projection</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">Net</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>  <span class="c1"># translate connections</span>
+        <span class="n">result_dict</span><span class="p">[</span><span class="n">net_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trans_connection</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">combine</span><span class="p">,</span> <span class="n">save_weight</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="s1">&#39;_monitors&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">Net</span><span class="p">):</span>
+        <span class="n">mon_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;monitor&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+        <span class="n">result_dict</span><span class="p">[</span><span class="n">net_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mon_dict</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">monitor</span> <span class="ow">in</span> <span class="n">Net</span><span class="o">.</span><span class="n">_monitors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">mon_dict</span><span class="p">[</span><span class="s1">&#39;monitor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trans_monitor</span><span class="p">(</span><span class="n">monitor</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="s1">&#39;_learners&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">Net</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">Net</span><span class="o">.</span><span class="n">_learners</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>  <span class="c1"># translate learners</span>
+            <span class="n">result_dict</span><span class="p">[</span><span class="n">net_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="n">trans_learner</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">key</span><span class="p">)})</span>
+    <span class="c1"># result_dict[net_name].append({&#39;learners&#39;:trans_learner(Net._learners)})</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">combine</span><span class="p">)</span> <span class="ow">and</span> <span class="n">save_weight</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">Net</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span>
+            <span class="n">result_dict</span><span class="p">[</span><span class="n">net_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span><span class="s1">&#39;backend&#39;</span><span class="p">:</span> <span class="n">trans_backend</span><span class="p">(</span><span class="n">Net</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="n">save</span><span class="p">)}</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">warnings</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Net._backend not exist. Please check whether need save weight&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result_dict</span></div>
+
+
+<div class="viewcode-block" id="trans_node"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_saver.trans_node">[文档]</a><span class="k">def</span> <span class="nf">trans_node</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Transform the structure of the Node layer for saving and extract the</span>
+<span class="sd">            parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node (Node): target node layer, like input layer and output layer</span>
+
+<span class="sd">        return:</span>
+<span class="sd">            result_dict (dictionary): the result diction with necessary</span>
+<span class="sd">                parameters of the layer.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">needed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;shape&#39;</span><span class="p">,</span> <span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="s1">&#39;_time&#39;</span><span class="p">,</span> <span class="s1">&#39;_dt&#39;</span><span class="p">,</span> <span class="s1">&#39;coding_method&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;coding_var_name&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;coding_param&#39;</span><span class="p">]</span>
+
+    <span class="n">result_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">para_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">para</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">needed</span><span class="p">:</span>
+            <span class="n">para_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_var_type</span><span class="p">(</span><span class="n">para</span><span class="p">)</span>
+
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;shape&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">is_encoded</span><span class="p">:</span>
+        <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;shape&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;shape&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="k">if</span> <span class="s1">&#39;dt&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;dt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">dt</span>
+    <span class="k">if</span> <span class="s1">&#39;time&#39;</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">time</span>
+
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;dec_target&#39;</span><span class="p">]:</span>
+        <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;dec_target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;dec_target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">if</span> <span class="s1">&#39;action&#39;</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Action&#39;</span>
+    <span class="k">elif</span> <span class="s1">&#39;reward&#39;</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Reward&#39;</span>
+    <span class="k">elif</span> <span class="s1">&#39;predict&#39;</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Decoder&#39;</span>
+    <span class="k">elif</span> <span class="s1">&#39;gen_first&#39;</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Generator&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;kind&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Encoder&#39;</span>
+
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;_class_label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;nod&gt;&#39;</span>
+    <span class="n">result_dict</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">para_dict</span>
+    <span class="k">return</span> <span class="n">result_dict</span></div>
+
+
+<div class="viewcode-block" id="trans_layer"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_saver.trans_layer">[文档]</a><span class="k">def</span> <span class="nf">trans_layer</span><span class="p">(</span><span class="n">layer</span><span class="p">:</span> <span class="n">NeuronGroup</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Transform the structure of the layer for saving and extract the</span>
+<span class="sd">            parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            layer (NeuronGroup): target layer</span>
+
+<span class="sd">        return:</span>
+<span class="sd">            result_dict (dictionary): the result diction with necessary</span>
+<span class="sd">                parameters of the layer.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">result_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">para_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+
+    <span class="n">unneeded</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;enabled&#39;</span><span class="p">,</span> <span class="s1">&#39;_backend&#39;</span><span class="p">,</span> <span class="s1">&#39;_connections&#39;</span><span class="p">,</span> <span class="s1">&#39;_supers&#39;</span><span class="p">,</span> <span class="s1">&#39;_input_connections&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;_output_connections&#39;</span><span class="p">,</span> <span class="s1">&#39;_var_names&#39;</span><span class="p">,</span> <span class="s1">&#39;model_class&#39;</span><span class="p">,</span> <span class="s1">&#39;_operations&#39;</span><span class="p">,</span> <span class="s1">&#39;model&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;_groups&#39;</span><span class="p">]</span>
+    <span class="n">needed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="s1">&#39;shape&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;parameters&#39;</span><span class="p">]</span>
+    <span class="c1"># Needed parameters: neuron_number, neuron_shape, neuron_type,</span>
+    <span class="c1"># neuron_position, neuron_model, name, parameters.</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">para</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">needed</span><span class="p">:</span>
+            <span class="n">para_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_var_type</span><span class="p">(</span><span class="n">para</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;position&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="p">(</span><span class="s1">&#39;x, y, z&#39;</span> <span class="ow">or</span> <span class="s1">&#39;x, y&#39;</span><span class="p">):</span>
+        <span class="n">para_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;position&#39;</span><span class="p">)</span>
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;_class_label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;neg&gt;&#39;</span>
+
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">parameters</span>
+
+    <span class="n">result_dict</span><span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">para_dict</span>
+    <span class="k">return</span> <span class="n">result_dict</span></div>
+
+
+<div class="viewcode-block" id="trans_projection"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_saver.trans_projection">[文档]</a><span class="k">def</span> <span class="nf">trans_projection</span><span class="p">(</span><span class="n">projection</span><span class="p">:</span> <span class="n">Projection</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Transform the structure of the projection for saving and extract the</span>
+<span class="sd">            parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            projection (Projection): target projection</span>
+
+<span class="sd">        return:</span>
+<span class="sd">            result_dict (dictionary): the result diction with necessary</span>
+<span class="sd">                parameters of the projection.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">result_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">para_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">name_needed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pre_assembly&#39;</span><span class="p">,</span> <span class="s1">&#39;post_assembly&#39;</span><span class="p">]</span>
+    <span class="n">needed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;link_type&#39;</span><span class="p">,</span> <span class="s1">&#39;ConnectionParameters&#39;</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">para</span> <span class="ow">in</span> <span class="n">projection</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">name_needed</span><span class="p">:</span>
+            <span class="n">para_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">needed</span><span class="p">:</span>
+            <span class="n">para_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_var_type</span><span class="p">(</span><span class="n">para</span><span class="p">)</span>
+
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;_class_label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;prj&gt;&#39;</span>
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;_policies&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ply</span> <span class="ow">in</span> <span class="n">projection</span><span class="o">.</span><span class="n">_policies</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ply</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Index_policy&#39;</span><span class="p">:</span>
+            <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;_policies&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">ply</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                 <span class="s1">&#39;pre_indexs&#39;</span><span class="p">:</span> <span class="n">ply</span><span class="o">.</span><span class="n">pre_indexs</span><span class="p">,</span>
+                 <span class="s1">&#39;post_indexs&#39;</span><span class="p">:</span> <span class="n">ply</span><span class="o">.</span><span class="n">post_indexs</span><span class="p">,</span>
+                 <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">ply</span><span class="o">.</span><span class="n">level</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;_policies&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">ply</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                 <span class="s1">&#39;pre_types&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">ply</span><span class="o">.</span><span class="n">pre_types</span><span class="p">)</span> <span class="k">if</span> <span class="n">ply</span><span class="o">.</span><span class="n">pre_types</span> <span class="k">else</span> <span class="n">ply</span><span class="o">.</span><span class="n">pre_types</span><span class="p">,</span>
+                 <span class="s1">&#39;post_types&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">ply</span><span class="o">.</span><span class="n">post_types</span><span class="p">)</span> <span class="k">if</span> <span class="n">ply</span><span class="o">.</span><span class="n">post_types</span> <span class="k">else</span> <span class="n">ply</span><span class="o">.</span><span class="n">post_types</span><span class="p">,</span>
+                 <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">ply</span><span class="o">.</span><span class="n">level</span><span class="p">}</span>
+            <span class="p">)</span>
+
+    <span class="n">result_dict</span><span class="p">[</span><span class="n">projection</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">para_dict</span>
+
+    <span class="k">return</span> <span class="n">result_dict</span></div>
+
+
+<div class="viewcode-block" id="trans_connection"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_saver.trans_connection">[文档]</a><span class="k">def</span> <span class="nf">trans_connection</span><span class="p">(</span><span class="n">connection</span><span class="p">:</span> <span class="n">Connection</span><span class="p">,</span> <span class="n">combine</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">save_weight</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Transform the structure of the connection for saving and extract the</span>
+<span class="sd">            parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            connection (Connection): target connection</span>
+<span class="sd">            combine (bool): whether combine weights.</span>
+
+<span class="sd">        return:</span>
+<span class="sd">            result_dict (dictionary): the result diction with necessary</span>
+<span class="sd">                parameters of the connection.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">result_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">para_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="n">name_needed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pre_assembly&#39;</span><span class="p">,</span> <span class="s1">&#39;post_assembly&#39;</span><span class="p">]</span>
+    <span class="n">needed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;link_type&#39;</span><span class="p">,</span> <span class="s1">&#39;synapse_type&#39;</span><span class="p">,</span> <span class="s1">&#39;max_delay&#39;</span><span class="p">,</span> <span class="s1">&#39;sparse_with_mask&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;pre_var_name&#39;</span><span class="p">,</span> <span class="s1">&#39;post_var_name&#39;</span><span class="p">,</span> <span class="s1">&#39;parameters&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">]</span>
+    <span class="n">unneeded</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hided&#39;</span><span class="p">,</span> <span class="s1">&#39;pre_groups&#39;</span><span class="p">,</span> <span class="s1">&#39;post_groups&#39;</span><span class="p">,</span> <span class="s1">&#39;pre_assemblies&#39;</span><span class="p">,</span> <span class="s1">&#39;post_assemblies&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;unit_connections&#39;</span><span class="p">,</span> <span class="s1">&#39;_var_names&#39;</span><span class="p">,</span> <span class="s1">&#39;_supers&#39;</span><span class="p">,</span> <span class="s1">&#39;_backend&#39;</span><span class="p">]</span>
+    <span class="c1"># **link_parameters</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">para</span> <span class="ow">in</span> <span class="n">connection</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">name_needed</span><span class="p">:</span>
+            <span class="n">para_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">id</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">needed</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;parameters&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;weight&#39;</span> <span class="ow">in</span> <span class="n">para</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="k">del</span> <span class="n">para</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>
+            <span class="n">para_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_var_type</span><span class="p">(</span><span class="n">para</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">combine</span><span class="p">:</span>     <span class="c1"># 是否需要在文件中存储weight</span>
+        <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_var_type</span><span class="p">(</span><span class="n">connection</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;_class_label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;con&gt;&#39;</span>
+    <span class="n">result_dict</span><span class="p">[</span><span class="n">connection</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">para_dict</span>
+
+    <span class="k">return</span> <span class="n">result_dict</span></div>
+
+
+<div class="viewcode-block" id="trans_backend"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_saver.trans_backend">[文档]</a><span class="k">def</span> <span class="nf">trans_backend</span><span class="p">(</span><span class="n">backend</span><span class="p">:</span> <span class="n">Backend</span><span class="p">,</span> <span class="n">save</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Transform the data of backend for saving.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        backend: target backend.</span>
+<span class="sd">        path(string): Target path for saving net data.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        result(dict): Contain the parameters of backend to be saved.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># Needed parameters: _variables, _parameters_dict, _InitVariables_dict,</span>
+    <span class="c1"># dt, time, time_step, _graph_var_dicts,</span>
+
+    <span class="c1"># key_parameters_dict = [&#39;_variables&#39;, &#39;_parameters_dict&#39;, &#39;_InitVariables_dict&#39;]</span>
+    <span class="n">key_parameters_dict</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_parameters_dict&#39;</span><span class="p">]</span>
+    <span class="n">key_parameters_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="s1">&#39;runtime&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;n_time_step&#39;</span><span class="p">]</span>
+
+
+    <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">warnings</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Backend end don</span><span class="se">\&#39;</span><span class="s1">t have variables. Have not built Backend. Weight not exists.&#39;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;parameters&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">():</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s1">&#39;parameters&#39;</span><span class="p">)</span>
+    <span class="n">ori_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">sim_path</span> <span class="o">=</span> <span class="n">ori_path</span> <span class="o">+</span> <span class="s1">&#39;/parameters&#39;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">sim_path</span><span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">torch</span>
+
+    <span class="n">result_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">key_parameters_dict</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">save</span><span class="p">:</span>
+            <span class="n">save_path</span> <span class="o">=</span> <span class="n">sim_path</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;.pt&#39;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">save_path</span><span class="p">)</span>
+            <span class="n">result_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;./parameters/&#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;.pt&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result_dict</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">_parameter_dict</span>
+            <span class="c1"># raise ValueError(&quot;Wrong save choosen, since parameters can be get from network&quot;</span>
+            <span class="c1">#                  &quot;unneeded to use network_save function.&quot;)</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">key_parameters_list</span><span class="p">:</span>
+        <span class="n">result_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">ori_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result_dict</span></div>
+
+
+<div class="viewcode-block" id="trans_learner"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_saver.trans_learner">[文档]</a><span class="k">def</span> <span class="nf">trans_learner</span><span class="p">(</span><span class="n">learner</span><span class="p">,</span> <span class="n">learn_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transform learner parameters to dict.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        learner: Target learner with needed parameters.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        result(dict): Contain the parameters of learner to be saved.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">torch</span>
+    <span class="c1"># result_dict = dict()</span>
+    <span class="n">para_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">trainables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;trainable_connections&#39;</span><span class="p">,</span> <span class="s1">&#39;trainable_groups&#39;</span><span class="p">,</span> <span class="s1">&#39;trainable_nodes&#39;</span><span class="p">]</span>
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;trainable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">needed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;parameters&#39;</span><span class="p">,</span> <span class="s1">&#39;optim_name&#39;</span><span class="p">,</span> <span class="s1">&#39;optim_lr&#39;</span><span class="p">,</span> <span class="s1">&#39;optim_para&#39;</span><span class="p">,</span> <span class="s1">&#39;lr_schedule_name&#39;</span><span class="p">,</span> <span class="s1">&#39;lr_schedule_para&#39;</span><span class="p">]</span>
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;_class_label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&lt;learner&gt;&#39;</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">needed</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">learner</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">para</span> <span class="o">=</span> <span class="n">learner</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">para_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_var_type</span><span class="p">(</span><span class="n">para</span><span class="p">)</span>
+                <span class="c1"># if type(para) != torch.Tensor \</span>
+                <span class="c1">#     else para.detach().cpu().numpy().tolist()</span>
+
+    <span class="k">for</span> <span class="n">train_name</span> <span class="ow">in</span> <span class="n">trainables</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">train</span> <span class="ow">in</span> <span class="n">learner</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">train_name</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;trainable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">check_var_type</span><span class="p">(</span><span class="n">train</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;algorithm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_var_type</span><span class="p">(</span><span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+    <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_var_type</span><span class="p">(</span><span class="n">learn_name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="s1">&#39;algorithm&#39;</span> <span class="ow">in</span> <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">del</span> <span class="n">para_dict</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;algorithm&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">para_dict</span></div>
+
+
+<div class="viewcode-block" id="trans_monitor"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_saver.trans_monitor">[文档]</a><span class="k">def</span> <span class="nf">trans_monitor</span><span class="p">(</span><span class="n">monitor</span><span class="p">:</span> <span class="n">Monitor</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">spaic.Monitor.Monitor</span> <span class="kn">import</span> <span class="n">StateMonitor</span><span class="p">,</span> <span class="n">SpikeMonitor</span>
+    <span class="n">needed</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;var_name&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="s1">&#39;get_grad&#39;</span><span class="p">,</span> <span class="s1">&#39;nbatch&#39;</span><span class="p">]</span>
+    <span class="n">name</span><span class="p">,</span> <span class="n">mon</span> <span class="o">=</span> <span class="n">monitor</span>
+    <span class="n">result_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">needed</span><span class="p">:</span>
+        <span class="n">result_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mon</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">result_dict</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mon</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">id</span>
+    <span class="n">result_dict</span><span class="p">[</span><span class="s1">&#39;monitor_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;StateMonitor&#39;</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">monitor</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="n">StateMonitor</span> <span class="k">else</span> <span class="s1">&#39;SpikeMonitor&#39;</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">result_dict</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="check_var_type"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_saver.check_var_type">[文档]</a><span class="k">def</span> <span class="nf">check_var_type</span><span class="p">(</span><span class="n">var</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">torch</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">json</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">var</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">var</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">var</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_var_type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">var</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">var_list</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">var_list</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Please check type of parameters, we only support tensor or python build-in types.&#39;</span><span class="p">)</span></div>
+        <span class="c1"># if len(var) &gt;= 2:</span>
+        <span class="c1">#     res_list = var.tolist()</span>
+        <span class="c1">#     return [check_var_type(i) for i in res_list]</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     return check_var_type(var.tolist()[0])</span>
+    <span class="c1"># if isinstance(var, torch.Tensor) or isinstance(var, np.ndarray):</span>
+    <span class="c1">#     if len(var) &gt;= 2:</span>
+    <span class="c1">#         return var.tolist()</span>
+    <span class="c1">#     else:</span>
+    <span class="c1">#         return var.tolist()[0]</span>
+    <span class="c1"># # elif isinstance(var, np.ndarray):</span>
+    <span class="c1"># #     if len(var) &gt;= 2:</span>
+    <span class="c1"># #         return var.tolist()</span>
+    <span class="c1"># #     else:</span>
+    <span class="c1"># #         return var.tolist()[0]</span>
+    <span class="c1"># elif isinstance(var, set):</span>
+    <span class="c1">#     return list(var)</span>
+    <span class="c1"># elif isinstance(var, list):  # 如果出现list中还有别的类型，考虑去后端解决</span>
+    <span class="c1">#     return var</span>
+    <span class="c1"># elif isinstance(var, dict):</span>
+    <span class="c1">#     for key, value in var.items():</span>
+    <span class="c1">#         var[key] = check_var_type(value)</span>
+    <span class="c1">#     return var</span>
+    <span class="c1"># else:</span>
+    <span class="c1">#     return var</span>
+
+
+
+<span class="c1"># def</span>
+
+
+
+
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1269 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Network package &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>spaic.Network package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/spaic.Network.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spaic-network-package">
+<h1>spaic.Network package<a class="headerlink" href="#spaic-network-package" title="永久链接至标题">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.Network.Assembly">
+<span id="spaic-network-assembly-module"></span><h2>spaic.Network.Assembly module<a class="headerlink" href="#module-spaic.Network.Assembly" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/5
+&#64;project: SPAIC
+&#64;filename: Assembly
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a>
+&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Network.Assembly.</span></span><span class="sig-name descname"><span class="pre">Assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Network.BaseModule.BaseModule" title="spaic.Network.BaseModule.BaseModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.BaseModule.BaseModule</span></code></a></p>
+<p>Base class for all network units.</p>
+<p>The Assembly represent an abstract network structure, it defines the basic network construct behavior and attributes.
+It can contain any neural network units like neurongroups, nodes, other assemblies and their connections.
+The classes like Node, NeuronGroup, and Network are special cases of Assembly.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.add_assembly">
+<span class="sig-name descname"><span class="pre">add_assembly</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.add_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.add_assembly" title="永久链接至目标">¶</a></dt>
+<dd><p>Add a new assembly to this assembly as its member.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.del_assembly">
+<span class="sig-name descname"><span class="pre">del_assembly</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.del_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.del_assembly" title="永久链接至目标">¶</a></dt>
+<dd><p>Delete an existed member assembly of this assembly.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.add_connection">
+<span class="sig-name descname"><span class="pre">add_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.add_connection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.add_connection" title="永久链接至目标">¶</a></dt>
+<dd><p>Add the connection between two member assemblies of this assembly.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.del_connection">
+<span class="sig-name descname"><span class="pre">del_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.del_connection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.del_connection" title="永久链接至目标">¶</a></dt>
+<dd><p>Delete an existed connection between member assemblies of this assembly.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.copy_assembly">
+<span class="sig-name descname"><span class="pre">copy_assembly</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.copy_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.copy_assembly" title="永久链接至目标">¶</a></dt>
+<dd><p>Copy an existed assembly structure into this assembly.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.replace_assembly">
+<span class="sig-name descname"><span class="pre">replace_assembly</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.replace_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.replace_assembly" title="永久链接至目标">¶</a></dt>
+<dd><p>Replace an existed member assembly with a new assembly.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.merge_assembly">
+<span class="sig-name descname"><span class="pre">merge_assembly</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.merge_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.merge_assembly" title="永久链接至目标">¶</a></dt>
+<dd><p>Add the member assemblies and connections of the target assembly, which are not already included in this assembly, to this assembly.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.select_assembly">
+<span class="sig-name descname"><span class="pre">select_assembly</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.select_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.select_assembly" title="永久链接至目标">¶</a></dt>
+<dd><p>Select a list of member assemblies in this assembly, and form a new assembly that contains those selected assemblies.</p>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">变量</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_class_label</strong> (<em>str</em>) – the label is a static variable to imply the class of this object</p></li>
+<li><p><strong>_backend</strong> (<a class="reference internal" href="spaic.Simulation.html#spaic.Backend.Backend.Backend" title="spaic.Backend.Backend.Backend"><em>Backend</em></a>) – the backend backend this assembly runs on</p></li>
+<li><p><strong>_groups</strong> (<em>OrderedDict</em>) – the container of member assemblies</p></li>
+<li><p><strong>_connections</strong> (<em>OrderedDict</em>) – the container of member connections</p></li>
+<li><p><strong>_supers</strong> (<em>list</em>) – the super assemblies that add this assembly as their member assemblies</p></li>
+<li><p><strong>_input_connections</strong> (<em>list</em>) – the connections that use this assembly as post-synaptic target</p></li>
+<li><p><strong>_output_connections</strong> (<em>list</em>) – the connections that use this assembly as pre-synaptic target</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – the total number of neurons this assembly contains</p></li>
+<li><p><strong>position</strong> (<em>Tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – the top level positon of this assembly</p></li>
+<li><p><strong>_var_names</strong> – The backend variable names this assembly and its members contains</p></li>
+</ul>
+</dd>
+</dl>
+<p>Base class for  neural network units, and defines the basic attributes of a group object.</p>
+<p>It contains other Assemblies (including neuron_groups, networks and nodes) and their connections.
+This class provides a abstract representation of network topology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – name of the network assembly</p>
+</dd>
+<dt class="field-even">变量</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>_backend</strong> (<a class="reference internal" href="spaic.Simulation.html#spaic.Backend.Backend.Backend" title="spaic.Backend.Backend.Backend"><em>Backend</em></a>) – the backend backend this assembly runs on</p></li>
+<li><p><strong>_groups</strong> (<em>OrderedDict</em>) – the container of member assemblies</p></li>
+<li><p><strong>_connections</strong> (<em>OrderedDict</em>) – the container of member connections</p></li>
+<li><p><strong>_supers</strong> (<em>list</em>) – the super assemblies that add this assembly as their member assemblies</p></li>
+<li><p><strong>_input_connections</strong> (<em>list</em>) – the connections that use this assembly as post-synaptic target</p></li>
+<li><p><strong>_output_connections</strong> (<em>list</em>) – the connections that use this assembly as pre-synaptic target</p></li>
+<li><p><strong>num</strong> (<em>int</em>) – the total number of neurons this assembly contains</p></li>
+<li><p><strong>position</strong> (<em>Tuple</em><em>(</em><em>int</em><em>, </em><em>int</em><em>)</em>) – the top level positon of this assembly</p></li>
+<li><p><strong>_var_names</strong> – The backend variable names this assembly and its members contains</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.add_type">
+<span class="sig-name descname"><span class="pre">add_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.add_type"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.add_type" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.get_labeled_name">
+<span class="sig-name descname"><span class="pre">get_labeled_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.get_labeled_name"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.get_labeled_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">add_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.add_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id0" title="永久链接至目标">¶</a></dt>
+<dd><p>Add a new assembly to this assembly as its member.
+This is the basic method to build the network structure, neurongroups, nodes and other assemblies is added
+to this assembly by calling add_assembly function, explicitly or implicitly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – the attribute name of the added assembly</p></li>
+<li><p><strong>assembly</strong> (<a class="reference internal" href="#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><em>Assembly</em></a>) – the assembly to be added</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<p>if you want to add a new assembly to in assembly initialization, you can explicitly use add_assembly:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span>   <span class="bp">self</span><span class="o">.</span><span class="n">add_assembly</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;layer1&#39;</span><span class="p">,</span> <span class="n">assembly</span><span class="o">=</span><span class="n">Assembly</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>or implicitly use add_assembly:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>you can also add new assemblies after the target assembly has been created:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span><span class="o">.</span><span class="n">add_assembly</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;layer1&#39;</span><span class="p">,</span> <span class="n">assembly</span><span class="o">=</span><span class="n">Assembly</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">del_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assembly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.del_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id1" title="永久链接至目标">¶</a></dt>
+<dd><p>Delete an existed member assembly of this assembly.</p>
+<p>User can delete by assembly object or delete by assembly name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assembly</strong> (<a class="reference internal" href="#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><em>Assembly</em></a>) – the member assembly to be deleted</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – the member name of the assembly to be deleted</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<p>User can delete member assembly by object:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming contains neurongroups and network structure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span><span class="o">.</span><span class="n">del_assembly</span><span class="p">(</span><span class="n">assembly</span><span class="o">=</span><span class="n">TestAsb</span><span class="o">.</span><span class="n">layer1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>User can also delete member assembly by the name:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming contains neurongroups and network structure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span><span class="o">.</span><span class="n">del_assembly</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;layer1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">add_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.add_connection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id2" title="永久链接至目标">¶</a></dt>
+<dd><p>Add the connection between two member assemblies of this assembly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of this connection</p></li>
+<li><p><strong>connection</strong> (<em>Connection</em>) – the new connection to be added to the assembly</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming contains neurongroups and network structure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;con1&#39;</span><span class="p">,</span> <span class="n">connection</span><span class="o">=</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">del_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.del_connection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id3" title="永久链接至目标">¶</a></dt>
+<dd><p>Delete an existed connection between member assemblies of this assembly.</p>
+<p>User can delete the connection by connection object or by connection name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<em>Connection</em>) – the connection object to be deleted</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – the name of connection to be deleted</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<p>Delete by object:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming it contains neurongroups and network structure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span><span class="o">.</span><span class="n">del_connection</span><span class="p">(</span><span class="n">connection</span><span class="o">=</span><span class="n">TestAsb</span><span class="o">.</span><span class="n">con1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Delete by name:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span><span class="o">.</span><span class="n">del_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;con1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.add_projection">
+<span class="sig-name descname"><span class="pre">add_projection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">projection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.add_projection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.add_projection" title="永久链接至目标">¶</a></dt>
+<dd><p>Add the projection between two member assemblies of this assembly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of this projection</p></li>
+<li><p><strong>projection</strong> (<em>Projection</em>) – the new projection to be added to the assembly</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming contains neurongroups and network structure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span><span class="o">.</span><span class="n">add_projection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;prj1&#39;</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">Projection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">copy_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.copy_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id4" title="永久链接至目标">¶</a></dt>
+<dd><p>Copy an existed assembly structure into this assembly.</p>
+<p>A new assembly is initialized which copy the structure(type and connection of the assembly members) of the original assembly,
+and the new assembly is added to this assembly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – the name of the new copy assembly</p></li>
+<li><p><strong>assembly</strong> (<a class="reference internal" href="#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><em>Assembly</em></a>) – the assembly object to be copied</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Asb1</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming it contains neurongroups and network structure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Asb2</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming it contains neurongroups and network structure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Asb1</span><span class="o">.</span><span class="n">copy_assembly</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;layer2&#39;</span><span class="p">,</span> <span class="n">assembly</span><span class="o">=</span><span class="n">Asb2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">replace_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_assembly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.replace_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id5" title="永久链接至目标">¶</a></dt>
+<dd><p>Replace an existed member assembly with a new assembly.</p>
+<p>Delete the existed old member assembly, add the new assembly to this assembly,
+and redirect related connections from the old assembly to the new assembly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_assembly</strong> (<a class="reference internal" href="#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><em>Assembly</em></a>) – the old member assembly to be replaced</p></li>
+<li><p><strong>new_assembly</strong> (<a class="reference internal" href="#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><em>Assembly</em></a>) – the new assembly</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">templateAsb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming templateAsb contains a member assembly called asb1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asb2</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming it contains neurongroups and network structure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">templateAsb</span><span class="o">.</span><span class="n">replace_assembly</span><span class="p">(</span><span class="n">templateAsb</span><span class="o">.</span><span class="n">asb1</span><span class="p">,</span> <span class="n">asb2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">merge_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.merge_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id6" title="永久链接至目标">¶</a></dt>
+<dd><p>Add the member assemblies and connections of the target assembly, which are not already included in this assembly, to this assembly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>assembly</strong> (<a class="reference internal" href="#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><em>Assembly</em></a>) – the target assembly, from which this assembly will copy member assemblies and connections.</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">target_asb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span>  <span class="c1"># assuming it contains neurongroups and network structure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_asb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming it contains neurongroups and network structure</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">test_asb</span><span class="o">.</span><span class="n">merge_assembly</span><span class="p">(</span><span class="n">target_asb</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">select_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assemblies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_connection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.select_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id7" title="永久链接至目标">¶</a></dt>
+<dd><p>Select a list of member assemblies in this assembly, and form a new assembly that contains those selected assemblies
+and their connections(if with_connection is True).</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>assemblies</strong> (<em>List</em><em>[</em><a class="reference internal" href="#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><em>Assembly</em></a><em>]</em>) – list of assemblies (or member assembly names) to be selected to form a new assembly</p></li>
+<li><p><strong>name</strong> – the name of the new assembly</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>a new assembly that contains the selected assemblies and their connections (if with_coonection is True)</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">testAsb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span> <span class="c1"># assuming it contains member assemblies named asb1, asb2, asb3...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newAsb1</span> <span class="o">=</span> <span class="n">testAsb</span><span class="o">.</span><span class="n">select_assembly</span><span class="p">([</span><span class="s1">&#39;asb1&#39;</span><span class="p">,</span> <span class="s1">&#39;asb2&#39;</span><span class="p">],</span> <span class="s1">&#39;newAsb&#39;</span><span class="p">)</span> <span class="c1"># using names</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">newAsb2</span> <span class="o">=</span> <span class="n">testAsb</span><span class="o">.</span><span class="n">select_assembly</span><span class="p">([</span><span class="n">testAsb</span><span class="o">.</span><span class="n">asb2</span><span class="p">,</span> <span class="n">testAsb</span><span class="o">.</span><span class="n">asb3</span><span class="p">],</span> <span class="s1">&#39;newAsb&#39;</span><span class="p">)</span> <span class="c1"># using assembly objects</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.assembly_hide">
+<span class="sig-name descname"><span class="pre">assembly_hide</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.assembly_hide"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.assembly_hide" title="永久链接至目标">¶</a></dt>
+<dd><p>Prohibit this assembly from building and display, but keep this assembly for later use.</p>
+<p>The set this assembly and its member assemblies with the flag hided = True.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">TestAsb</span><span class="o">.</span><span class="n">assembly_hide</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.assembly_show">
+<span class="sig-name descname"><span class="pre">assembly_show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.assembly_show"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.assembly_show" title="永久链接至目标">¶</a></dt>
+<dd><p>Make the hided assembly to normal assembly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+<p>Examples:
+&gt;&gt;&gt; TestAsb = Assembly() # assuming hided
+&gt;&gt;&gt; TestAsb.assembly_show()</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.get_groups">
+<span class="sig-name descname"><span class="pre">get_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.get_groups"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.get_groups" title="永久链接至目标">¶</a></dt>
+<dd><p>Get all member neurongroups and neurongroups in member assemblies in a list.
+:param recursive: flag to decide if members of the member assemblies should be returned.
+:type recursive: bool</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>list of all member groups</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.get_leveled_groups">
+<span class="sig-name descname"><span class="pre">get_leveled_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.get_leveled_groups"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.get_leveled_groups" title="永久链接至目标">¶</a></dt>
+<dd><p>Get list of all sup groups in leveled order, such as [ [self], [subgroups], [subgroup of subgroups], …]
+Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.get_assemblies">
+<span class="sig-name descname"><span class="pre">get_assemblies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.get_assemblies"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.get_assemblies" title="永久链接至目标">¶</a></dt>
+<dd><p>Get all the member assemblies and assemblies in member assemblies.
+:param recursive: flag to decide if members of the member assemblies should be returned.
+:type recursive: bool</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>list of all member assemblies</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.get_assembly_key">
+<span class="sig-name descname"><span class="pre">get_assembly_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.get_assembly_key"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.get_assembly_key" title="永久链接至目标">¶</a></dt>
+<dd><p>Get the key of the target assembly if it is a member of this assembly
+:param assembly: the target assembly</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>the key of target assembly</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.get_super_assemblies">
+<span class="sig-name descname"><span class="pre">get_super_assemblies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.get_super_assemblies"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.get_super_assemblies" title="永久链接至目标">¶</a></dt>
+<dd><p>Get all the super assembly of the target assembly if it is a member or member’s member of self assembly
+:param assembly: the target assembly</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>list of super assemblies or []</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.get_connections">
+<span class="sig-name descname"><span class="pre">get_connections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.get_connections"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.get_connections" title="永久链接至目标">¶</a></dt>
+<dd><blockquote>
+<div><p>Get the Connections in this assembly</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>recursive</strong> (<em>bool</em>) – flag to decide if member connections of the member assemblies should be returned.</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>List of Connections</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.get_var_names">
+<span class="sig-name descname"><span class="pre">get_var_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.get_var_names"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.get_var_names" title="永久链接至目标">¶</a></dt>
+<dd><p>Get a list of variable names the assembly member contains.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.get_str">
+<span class="sig-name descname"><span class="pre">get_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.get_str"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.get_str" title="永久链接至目标">¶</a></dt>
+<dd><p>Get a string description of the strcuture of this assembly
+:param level: the deepth of this assembly relative to the top network</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>String representations</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.build" title="永久链接至目标">¶</a></dt>
+<dd><p>Build the front-end network structure into a back-end computation graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>backend</strong> (<a class="reference internal" href="spaic.Simulation.html#spaic.Backend.Backend.Backend" title="spaic.Backend.Backend.Backend"><em>Backend</em></a>) – the backend backend to be builded into</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.build_projections">
+<span class="sig-name descname"><span class="pre">build_projections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.build_projections"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.build_projections" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.set_id">
+<span class="sig-name descname"><span class="pre">set_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.set_id"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.set_id" title="永久链接至目标">¶</a></dt>
+<dd><p>Get the ID of this assembly</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.register_connection">
+<span class="sig-name descname"><span class="pre">register_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection_obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">presynaptic</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.register_connection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.register_connection" title="永久链接至目标">¶</a></dt>
+<dd><p>Register input or output connection of this assembly
+:param connection_obj: the connection
+:type connection_obj: Connection.Connection
+:param presynaptic: if this assembly is presynaptic neuron
+:type presynaptic: bool</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.structure_copy">
+<span class="sig-name descname"><span class="pre">structure_copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.structure_copy"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.structure_copy" title="永久链接至目标">¶</a></dt>
+<dd><p>Copy the structure of this assembly with new members
+:param name: name of the new Assembly</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>the new assembly</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.add_super">
+<span class="sig-name descname"><span class="pre">add_super</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.add_super"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.add_super" title="永久链接至目标">¶</a></dt>
+<dd><p>Tell this assemlby  the target assembly is it’s super assembly
+:param assembly: the target super assembly</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.del_super">
+<span class="sig-name descname"><span class="pre">del_super</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.del_super"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.del_super" title="永久链接至目标">¶</a></dt>
+<dd><p>Delete certain assembly from super assemblies of this assembly
+:param assembly: the target super assembly</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.train"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Assembly.Assembly.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Assembly.html#Assembly.eval"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Assembly.Assembly.eval" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Network.BaseModule">
+<span id="spaic-network-basemodule-module"></span><h2>spaic.Network.BaseModule module<a class="headerlink" href="#module-spaic.Network.BaseModule" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/9/9
+&#64;project: SPAIC
+&#64;filename: BaseModule
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.BaseModule">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Network.BaseModule.</span></span><span class="sig-name descname"><span class="pre">BaseModule</span></span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#BaseModule"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.BaseModule" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for all snn modules (assemblies, connection, learner, monitor, piplines).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.BaseModule.build">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#BaseModule.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.BaseModule.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.BaseModule.get_str">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">get_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#BaseModule.get_str"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.BaseModule.get_str" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.BaseModule.set_name">
+<span class="sig-name descname"><span class="pre">set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">given_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#BaseModule.set_name"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.BaseModule.set_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.BaseModule.set_id">
+<span class="sig-name descname"><span class="pre">set_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#BaseModule.set_id"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.BaseModule.set_id" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.BaseModule.set_build_level">
+<span class="sig-name descname"><span class="pre">set_build_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#BaseModule.set_build_level"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.BaseModule.set_build_level" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.BaseModule.variable_to_backend">
+<span class="sig-name descname"><span class="pre">variable_to_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_parameter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_param</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#BaseModule.variable_to_backend"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.BaseModule.variable_to_backend" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.BaseModule.get_full_name">
+<span class="sig-name descname"><span class="pre">get_full_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#BaseModule.get_full_name"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.BaseModule.get_full_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.BaseModule.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#BaseModule.get_value"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.BaseModule.get_value" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.BaseModule.set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#BaseModule.set_value"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.BaseModule.set_value" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.VariableAgent">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Network.BaseModule.</span></span><span class="sig-name descname"><span class="pre">VariableAgent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_parameter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#VariableAgent"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.VariableAgent" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.VariableAgent.var_name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">var_name</span></span><a class="headerlink" href="#spaic.Network.BaseModule.VariableAgent.var_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.VariableAgent.value">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#spaic.Network.BaseModule.VariableAgent.value" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.OperationCommand">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Network.BaseModule.</span></span><span class="sig-name descname"><span class="pre">OperationCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">front_module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/BaseModule.html#OperationCommand"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.BaseModule.OperationCommand" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.Network.BaseModule.OperationCommand.enabled">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">enabled</span></span><a class="headerlink" href="#spaic.Network.BaseModule.OperationCommand.enabled" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Network.Connection">
+<span id="spaic-network-connection-module"></span><h2>spaic.Network.Connection module<a class="headerlink" href="#module-spaic.Network.Connection" title="永久链接至标题">¶</a></h2>
+<p>Base class for all kinds of connections, including full connection, sparse connection, conv connection,….
+Ten connection methods are provided, as shown below (key: class):</p>
+<blockquote>
+<div><p>‘full’, FullConnection
+‘one_to_one_sparse’, one_to_one_sparse
+‘one_to_one’, one_to_one_mask
+‘conv’, conv_connect
+‘sparse_connect_sparse’, sparse_connect_sparse
+‘sparse_connect’, sparse_connect_mask
+‘random_connect_sparse’, random_connect_sparse
+‘random_connect’, random_connect_mask</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">param pre_assembly</dt>
+<dd class="field-odd"><p>the assembly which needs to be connected.</p>
+</dd>
+<dt class="field-even">type pre_assembly</dt>
+<dd class="field-even"><p>Assembly</p>
+</dd>
+<dt class="field-odd">param post_assembly</dt>
+<dd class="field-odd"><p>the assembly which needs to connect the pre_assembly.</p>
+</dd>
+<dt class="field-even">type post_assembly</dt>
+<dd class="field-even"><p>Assembly</p>
+</dd>
+<dt class="field-odd">param link_type</dt>
+<dd class="field-odd"><p>the type for connection: full, sparse, conv…</p>
+</dd>
+<dt class="field-even">type link_type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">ivar ~Connection.pre_group</dt>
+<dd class="field-odd"><p>the neuron group which need to be connected in the pre_assembly.</p>
+</dd>
+<dt class="field-even">vartype ~Connection.pre_group</dt>
+<dd class="field-even"><p>groups</p>
+</dd>
+<dt class="field-odd">ivar ~Connection.post_group</dt>
+<dd class="field-odd"><p>the neuron group which need to connect with pre_group neuron.</p>
+</dd>
+<dt class="field-even">vartype ~Connection.post_group</dt>
+<dd class="field-even"><p>groups</p>
+</dd>
+<dt class="field-odd">ivar ~Connection._var_names</dt>
+<dd class="field-odd"><p>a list contain variable names.</p>
+</dd>
+<dt class="field-even">vartype ~Connection._var_names</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Connection.__new__">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Network.Connection.__new__" title="永久链接至目标">¶</a></dt>
+<dd><p>before build a new connection, do some checks.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Connection.get_var_names">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">get_var_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Network.Connection.get_var_names" title="永久链接至目标">¶</a></dt>
+<dd><p>get variable names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Connection.register">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Network.Connection.register" title="永久链接至目标">¶</a></dt>
+<dd><p>register a connection class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Connection.build">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Network.Connection.build" title="永久链接至目标">¶</a></dt>
+<dd><p>add the connection variable, variable name and opperation to the backend.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Connection.get_str">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">get_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Network.Connection.get_str" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Connection.condition_check">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">condition_check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Network.Connection.condition_check" title="永久链接至目标">¶</a></dt>
+<dd><p>check whether the pre_group.type is equal to the post_group.type, only if they are equal, return flag=Ture.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Connection.connect">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Network.Connection.connect" title="永久链接至目标">¶</a></dt>
+<dd><p>connect the preg with postg.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Connection.get_weight_name">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">get_weight_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Network.Connection.get_weight_name" title="永久链接至目标">¶</a></dt>
+<dd><p>give a name for each connection weight.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Connection.get_post_name">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">get_post_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Network.Connection.get_post_name" title="永久链接至目标">¶</a></dt>
+<dd><p>give a name for each post group.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Connection.get_input_name">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">get_input_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#spaic.Network.Connection.get_input_name" title="永久链接至目标">¶</a></dt>
+<dd><p>give a name for each input group.</p>
+</dd></dl>
+
+<p class="rubric">实际案例</p>
+<p>when building the network:
+self.connection1 = spaic.Connection(self.input, self.layer1, link_type=’full’)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Network.Connection.all_connections">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">all_connections</span></span><a class="headerlink" href="#spaic.Network.Connection.all_connections" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Network.Connection.all_projections">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">all_projections</span></span><a class="headerlink" href="#spaic.Network.Connection.all_projections" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Network.Connection.dt">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">dt</span></span><a class="headerlink" href="#spaic.Network.Connection.dt" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Network.Connection.leaf_connections">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">leaf_connections</span></span><a class="headerlink" href="#spaic.Network.Connection.leaf_connections" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Network.Connection.sub_connections">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">sub_connections</span></span><a class="headerlink" href="#spaic.Network.Connection.sub_connections" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Network.Connection.sub_projections">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">sub_projections</span></span><a class="headerlink" href="#spaic.Network.Connection.sub_projections" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Network.Connection.top">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Connection.</span></span><span class="sig-name descname"><span class="pre">top</span></span><a class="headerlink" href="#spaic.Network.Connection.top" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="spaic-network-connectionpolicy-module">
+<h2>spaic.Network.ConnectionPolicy module<a class="headerlink" href="#spaic-network-connectionpolicy-module" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.Network.Construct">
+<span id="spaic-network-construct-module"></span><h2>spaic.Network.Construct module<a class="headerlink" href="#module-spaic.Network.Construct" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/12/23
+&#64;project: SPAIC
+&#64;filename: WithBuildFuncs
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Network.Construct.add_assembly">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Construct.</span></span><span class="sig-name descname"><span class="pre">add_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Construct.html#add_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Construct.add_assembly" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Network.Construct.del_assembly">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Construct.</span></span><span class="sig-name descname"><span class="pre">del_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assembly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Construct.html#del_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Construct.del_assembly" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Network.Construct.add_connection">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Construct.</span></span><span class="sig-name descname"><span class="pre">add_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Construct.html#add_connection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Construct.add_connection" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Network.Construct.del_connection">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Construct.</span></span><span class="sig-name descname"><span class="pre">del_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Construct.html#del_connection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Construct.del_connection" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Network.Construct.copy_assembly">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Construct.</span></span><span class="sig-name descname"><span class="pre">copy_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Construct.html#copy_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Construct.copy_assembly" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Network.Construct.replace_assembly">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Construct.</span></span><span class="sig-name descname"><span class="pre">replace_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_assembly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Construct.html#replace_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Construct.replace_assembly" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Network.Construct.merge_assembly">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Construct.</span></span><span class="sig-name descname"><span class="pre">merge_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assembly</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Construct.html#merge_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Construct.merge_assembly" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Network.Construct.select_assembly">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.Construct.</span></span><span class="sig-name descname"><span class="pre">select_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">assemblies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Construct.html#select_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Construct.select_assembly" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Network.DelayQueue">
+<span id="spaic-network-delayqueue-module"></span><h2>spaic.Network.DelayQueue module<a class="headerlink" href="#module-spaic.Network.DelayQueue" title="永久链接至标题">¶</a></h2>
+<p>Created on 2021/4/1
+&#64;project: SPAIC
+&#64;filename: DelayQueue
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+定义网络传递延迟的基本组件</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.DelayQueue">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Network.DelayQueue.</span></span><span class="sig-name descname"><span class="pre">DelayQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#DelayQueue"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.DelayQueue" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.DelayQueue.register">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deque_class</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#DelayQueue.register"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.DelayQueue.register" title="永久链接至目标">¶</a></dt>
+<dd><p>Register a DelayQueue class. Registered DelayQueue classes can be referred to
+# via their name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – A short name for the backend (e.g. <cite>‘pytorch’</cite>)</p></li>
+<li><p><strong>deque_class</strong> (<cite>ConnectionModel</cite>) – The subclass of Delaydeque object.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.DelayQueue.push">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#DelayQueue.push"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.DelayQueue.push" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.DelayQueue.select">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#DelayQueue.select"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.DelayQueue.select" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.DelayQueue.initial">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#DelayQueue.initial"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.DelayQueue.initial" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.TorchDelayQueue">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Network.DelayQueue.</span></span><span class="sig-name descname"><span class="pre">TorchDelayQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#TorchDelayQueue"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.TorchDelayQueue" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Network.DelayQueue.DelayQueue" title="spaic.Network.DelayQueue.DelayQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.DelayQueue.DelayQueue</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.TorchDelayQueue.initial">
+<span class="sig-name descname"><span class="pre">initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#TorchDelayQueue.initial"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.TorchDelayQueue.initial" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.TorchDelayQueue.transform_delay_output">
+<span class="sig-name descname"><span class="pre">transform_delay_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#TorchDelayQueue.transform_delay_output"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.TorchDelayQueue.transform_delay_output" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.TorchDelayQueue.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#TorchDelayQueue.push"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.TorchDelayQueue.push" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.TorchDelayQueue.select">
+<span class="sig-name descname"><span class="pre">select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.Tensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#TorchDelayQueue.select"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.TorchDelayQueue.select" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Network.DelayQueue.test_queue">
+<span class="sig-prename descclassname"><span class="pre">spaic.Network.DelayQueue.</span></span><span class="sig-name descname"><span class="pre">test_queue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/DelayQueue.html#test_queue"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.DelayQueue.test_queue" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Network.Network">
+<span id="spaic-network-network-module"></span><h2>spaic.Network.Network module<a class="headerlink" href="#module-spaic.Network.Network" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/5
+&#64;project: SPAIC
+&#64;filename: Network
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+定义网络以及子网络，网络包含所有的神经网络元素、如神经集群、连接以及学习算法、仿真器等，实现最终的网络仿真与学习。
+执行过程：网络定义-&gt;网络生成-&gt;网络仿真与学习</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Network.Network.</span></span><span class="sig-name descname"><span class="pre">Network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.Assembly.Assembly</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.set_backend">
+<span class="sig-name descname"><span class="pre">set_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.set_backend"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.set_backend" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.set_backend_dt">
+<span class="sig-name descname"><span class="pre">set_backend_dt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.set_backend_dt"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.set_backend_dt" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.set_random_seed">
+<span class="sig-name descname"><span class="pre">set_random_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.set_random_seed"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.set_random_seed" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.get_testparams">
+<span class="sig-name descname"><span class="pre">get_testparams</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.get_testparams"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.get_testparams" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.strategy_build">
+<span class="sig-name descname"><span class="pre">strategy_build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.strategy_build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.strategy_build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.deep_build_neurongroup">
+<span class="sig-name descname"><span class="pre">deep_build_neurongroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neuron</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builded_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unbuild_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.deep_build_neurongroup"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.deep_build_neurongroup" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.deep_build_conn">
+<span class="sig-name descname"><span class="pre">deep_build_conn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builded_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unbuild_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.deep_build_conn"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.deep_build_conn" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.deep_build_conn_with_delay">
+<span class="sig-name descname"><span class="pre">deep_build_conn_with_delay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builded_groups</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.deep_build_conn_with_delay"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.deep_build_conn_with_delay" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.deep_build_neurongroup_with_delay">
+<span class="sig-name descname"><span class="pre">deep_build_neurongroup_with_delay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">neuron</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builded_groups</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.deep_build_neurongroup_with_delay"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.deep_build_neurongroup_with_delay" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.run" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.run_continue">
+<span class="sig-name descname"><span class="pre">run_continue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.run_continue"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.run_continue" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.reset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.reset" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.init_run">
+<span class="sig-name descname"><span class="pre">init_run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.init_run"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.init_run" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.add_monitor">
+<span class="sig-name descname"><span class="pre">add_monitor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">monitor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.add_monitor"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.add_monitor" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.save_state">
+<span class="sig-name descname"><span class="pre">save_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hdf5</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.save_state"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.save_state" title="永久链接至目标">¶</a></dt>
+<dd><p>Save weights in memory or on hard disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – The name of saved file.</p></li>
+<li><p><strong>direct</strong> – Target direction for saving state.</p></li>
+<li><p><strong>mode</strong> (<em>#</em>) – Determines whether saved in hard disk, default set false, it means will not save on disk.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Connections’ weight of the network.</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>state</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Network.Network.Network.state_from_dict">
+<span class="sig-name descname"><span class="pre">state_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Network/Network.html#Network.state_from_dict"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Network.Network.Network.state_from_dict" title="永久链接至目标">¶</a></dt>
+<dd><p>Reload states from memory or disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> – contains backend._parameters_dict .</p></li>
+<li><p><strong>filename</strong> – The name of saved file.</p></li>
+<li><p><strong>direct</strong> – Target direction for reloading state.</p></li>
+<li><p><strong>mode</strong> – Determines whether saved in hard disk, default set false, it means will not save on disk.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Connections’ weight of the network.</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>state</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Network">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spaic.Network" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/11
+&#64;project: SPAIC
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1303 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.IO package &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>spaic.IO package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/spaic.IO.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spaic-io-package">
+<h1>spaic.IO package<a class="headerlink" href="#spaic-io-package" title="永久链接至标题">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.IO.Dataloader">
+<span id="spaic-io-dataloader-module"></span><h2>spaic.IO.Dataloader module<a class="headerlink" href="#module-spaic.IO.Dataloader" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/12
+&#64;project: SPAIC
+&#64;filename: Dataloader
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a>
+&#64;description:
+定义数据导入模块</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.Dataloader.default_collate">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataloader.</span></span><span class="sig-name descname"><span class="pre">default_collate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataloader.html#default_collate"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataloader.default_collate" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataloader.Dataloader">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataloader.</span></span><span class="sig-name descname"><span class="pre">Dataloader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_sampler</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collate_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_last</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataloader.html#Dataloader"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataloader.Dataloader" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>sampler的作用是生成一系列的index
+而batch_sampler则是将sampler生成的indices打包分组，得到一个又一个batch的index</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Dataloader.Dataloader.try_fetch">
+<span class="sig-name descname"><span class="pre">try_fetch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataloader.html#Dataloader.try_fetch"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataloader.Dataloader.try_fetch" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.IO.Dataset">
+<span id="spaic-io-dataset-module"></span><h2>spaic.IO.Dataset module<a class="headerlink" href="#module-spaic.IO.Dataset" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.Dataset">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#Dataset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.Dataset" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>All datasets that represent a map from keys to data samples should subclass it.
+All subclasses should overwrite <code class="xref py py-meth docutils literal notranslate"><span class="pre">__getitem__()</span></code>, supporting fetching a data
+sample for a given key.
+Subclasses should also overwrite <code class="xref py py-meth docutils literal notranslate"><span class="pre">__len__()</span></code>, which is expected to return
+the size of the sample dataset.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.CustomDataset">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">CustomDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#CustomDataset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.CustomDataset" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>自定义数据集：
+个人采集的实值数据</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.CustomSpikeDataset">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">CustomSpikeDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spike_times</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neuron_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#CustomSpikeDataset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.CustomSpikeDataset" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>自定义数据集：
+编码后的脉冲数据（仅支持[spike_time, neuron_ids]表示）</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SpecifiedDataset">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">SpecifiedDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#SpecifiedDataset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.SpecifiedDataset" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>labels load from json file</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.cifar10">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">cifar10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#cifar10"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.cifar10" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.cifar10.files">
+<span class="sig-name descname"><span class="pre">files</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'test_dataset':</span> <span class="pre">'test_batch',</span> <span class="pre">'train_dataset1':</span> <span class="pre">'data_batch_1',</span> <span class="pre">'train_dataset2':</span> <span class="pre">'data_batch_2',</span> <span class="pre">'train_dataset3':</span> <span class="pre">'data_batch_3',</span> <span class="pre">'train_dataset4':</span> <span class="pre">'data_batch_4',</span> <span class="pre">'train_dataset5':</span> <span class="pre">'data_batch_5'}</span></em><a class="headerlink" href="#spaic.IO.Dataset.cifar10.files" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.cifar10.dataset_folder">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dataset_folder</span></span><a class="headerlink" href="#spaic.IO.Dataset.cifar10.dataset_folder" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.cifar10.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.cifar10.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.cifar10.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.cifar10.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.cifar10.load_cifar10_batch">
+<span class="sig-name descname"><span class="pre">load_cifar10_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#cifar10.load_cifar10_batch"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.cifar10.load_cifar10_batch" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.ImageNet">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">ImageNet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#ImageNet"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.ImageNet" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.ImageNet.files">
+<span class="sig-name descname"><span class="pre">files</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'train_dataset':</span> <span class="pre">'ILSVRC2012_img_train.tar',</span> <span class="pre">'val_dataset':</span> <span class="pre">'ILSVRC2012_img_val.tar',</span> <span class="pre">'val_label':</span> <span class="pre">'ILSVRC2012_devkit_t12.tar.gz'}</span></em><a class="headerlink" href="#spaic.IO.Dataset.ImageNet.files" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.ImageNet.dataset_folder">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dataset_folder</span></span><a class="headerlink" href="#spaic.IO.Dataset.ImageNet.dataset_folder" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.ImageNet.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.ImageNet.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.ImageNet.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.ImageNet.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.ImageNet.untar_train_tar">
+<span class="sig-name descname"><span class="pre">untar_train_tar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_tar</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#ImageNet.untar_train_tar"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.ImageNet.untar_train_tar" title="永久链接至目标">¶</a></dt>
+<dd><p>untar images from train_tar and save in corresponding folders
+organize like:
+/train</p>
+<blockquote>
+<div><dl class="option-list">
+<dt><kbd><span class="option">/n01440764</span></kbd></dt>
+<dd><p>images</p>
+</dd>
+<dt><kbd><span class="option">/n01443537</span></kbd></dt>
+<dd><blockquote>
+<div><p>images</p>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.ImageNet.move_val_img">
+<span class="sig-name descname"><span class="pre">move_val_img</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">devkit_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#ImageNet.move_val_img"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.ImageNet.move_val_img" title="永久链接至目标">¶</a></dt>
+<dd><p>move val_img to correspongding folders.
+val_id(start from 1) -&gt; ILSVRC_ID(start from 1) -&gt; WIND
+organize like:
+/val</p>
+<blockquote>
+<div><dl class="option-list">
+<dt><kbd><span class="option">/n01440764</span></kbd></dt>
+<dd><p>images</p>
+</dd>
+<dt><kbd><span class="option">/n01443537</span></kbd></dt>
+<dd><blockquote>
+<div><p>images</p>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNIST">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">MNIST</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#MNIST"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.MNIST" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>A 10-class multi-class classfication
+Args:
+root (string): Root directory of dataset where <code class="docutils literal notranslate"><span class="pre">MNIST/processed/training.pt</span></code></p>
+<blockquote>
+<div><p>and  <code class="docutils literal notranslate"><span class="pre">MNIST/processed/test.pt</span></code> exist.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>is_train (bool, optional): If True, creates dataset from <code class="docutils literal notranslate"><span class="pre">training.pt</span></code>,</dt><dd><p>otherwise from <code class="docutils literal notranslate"><span class="pre">test.pt</span></code>.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNIST.class_number">
+<span class="sig-name descname"><span class="pre">class_number</span></span><em class="property"> <span class="pre">=</span> <span class="pre">10</span></em><a class="headerlink" href="#spaic.IO.Dataset.MNIST.class_number" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNIST.maxNum">
+<span class="sig-name descname"><span class="pre">maxNum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">784</span></em><a class="headerlink" href="#spaic.IO.Dataset.MNIST.maxNum" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNIST.resources">
+<span class="sig-name descname"><span class="pre">resources</span></span><em class="property"> <span class="pre">=</span> <span class="pre">['http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz',</span> <span class="pre">'http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz',</span> <span class="pre">'http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz',</span> <span class="pre">'http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz']</span></em><a class="headerlink" href="#spaic.IO.Dataset.MNIST.resources" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNIST.files">
+<span class="sig-name descname"><span class="pre">files</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'test_images':</span> <span class="pre">'t10k-images-idx3-ubyte',</span> <span class="pre">'test_labels':</span> <span class="pre">'t10k-labels-idx1-ubyte',</span> <span class="pre">'train_images':</span> <span class="pre">'train-images-idx3-ubyte',</span> <span class="pre">'train_labels':</span> <span class="pre">'train-labels-idx1-ubyte'}</span></em><a class="headerlink" href="#spaic.IO.Dataset.MNIST.files" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNIST.dataset_folder">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dataset_folder</span></span><a class="headerlink" href="#spaic.IO.Dataset.MNIST.dataset_folder" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNIST.class_to_idx">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">class_to_idx</span></span><a class="headerlink" href="#spaic.IO.Dataset.MNIST.class_to_idx" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNIST.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.MNIST.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNIST.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.MNIST.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNIST.download">
+<span class="sig-name descname"><span class="pre">download</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#MNIST.download"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.MNIST.download" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.FashionMNIST">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">FashionMNIST</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#FashionMNIST"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.FashionMNIST" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>A 10-class multi-class classfication</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.FashionMNIST.class_number">
+<span class="sig-name descname"><span class="pre">class_number</span></span><em class="property"> <span class="pre">=</span> <span class="pre">10</span></em><a class="headerlink" href="#spaic.IO.Dataset.FashionMNIST.class_number" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.FashionMNIST.maxNum">
+<span class="sig-name descname"><span class="pre">maxNum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">784</span></em><a class="headerlink" href="#spaic.IO.Dataset.FashionMNIST.maxNum" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.FashionMNIST.resources">
+<span class="sig-name descname"><span class="pre">resources</span></span><em class="property"> <span class="pre">=</span> <span class="pre">['http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz',</span> <span class="pre">'http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-labels-idx1-ubyte.gz',</span> <span class="pre">'http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-images-idx3-ubyte.gz',</span> <span class="pre">'http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz']</span></em><a class="headerlink" href="#spaic.IO.Dataset.FashionMNIST.resources" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.FashionMNIST.files">
+<span class="sig-name descname"><span class="pre">files</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'test_images':</span> <span class="pre">'t10k-images-idx3-ubyte',</span> <span class="pre">'test_labels':</span> <span class="pre">'t10k-labels-idx1-ubyte',</span> <span class="pre">'train_images':</span> <span class="pre">'train-images-idx3-ubyte',</span> <span class="pre">'train_labels':</span> <span class="pre">'train-labels-idx1-ubyte'}</span></em><a class="headerlink" href="#spaic.IO.Dataset.FashionMNIST.files" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.FashionMNIST.dataset_folder">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dataset_folder</span></span><a class="headerlink" href="#spaic.IO.Dataset.FashionMNIST.dataset_folder" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.FashionMNIST.class_to_idx">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">class_to_idx</span></span><a class="headerlink" href="#spaic.IO.Dataset.FashionMNIST.class_to_idx" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.FashionMNIST.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.FashionMNIST.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.FashionMNIST.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.FashionMNIST.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.PathMNIST">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">PathMNIST</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#PathMNIST"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.PathMNIST" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>A 9-class multi-class classfication</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.PathMNIST.resources">
+<span class="sig-name descname"><span class="pre">resources</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'https://drive.google.com/drive/folders/1Tl_SP-ffDQg-jDG_EWPlWKgZTmGbvFXU'</span></em><a class="headerlink" href="#spaic.IO.Dataset.PathMNIST.resources" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.PathMNIST.class_number">
+<span class="sig-name descname"><span class="pre">class_number</span></span><em class="property"> <span class="pre">=</span> <span class="pre">9</span></em><a class="headerlink" href="#spaic.IO.Dataset.PathMNIST.class_number" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.PathMNIST.maxNum">
+<span class="sig-name descname"><span class="pre">maxNum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">2352</span></em><a class="headerlink" href="#spaic.IO.Dataset.PathMNIST.maxNum" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.PathMNIST.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.PathMNIST.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.PathMNIST.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.PathMNIST.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.OctMNIST">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">OctMNIST</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#OctMNIST"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.OctMNIST" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>A 4-class multi-class classfication</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.OctMNIST.resources">
+<span class="sig-name descname"><span class="pre">resources</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'https://drive.google.com/drive/folders/1Tl_SP-ffDQg-jDG_EWPlWKgZTmGbvFXU'</span></em><a class="headerlink" href="#spaic.IO.Dataset.OctMNIST.resources" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.OctMNIST.class_number">
+<span class="sig-name descname"><span class="pre">class_number</span></span><em class="property"> <span class="pre">=</span> <span class="pre">4</span></em><a class="headerlink" href="#spaic.IO.Dataset.OctMNIST.class_number" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.OctMNIST.maxNum">
+<span class="sig-name descname"><span class="pre">maxNum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">784</span></em><a class="headerlink" href="#spaic.IO.Dataset.OctMNIST.maxNum" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.OctMNIST.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.OctMNIST.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.OctMNIST.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.OctMNIST.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.RWCP10">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">RWCP10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#RWCP10"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.RWCP10" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.RWCP10.classes">
+<span class="sig-name descname"><span class="pre">classes</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'bells5':</span> <span class="pre">5,</span> <span class="pre">'bottle1':</span> <span class="pre">9,</span> <span class="pre">'buzzer':</span> <span class="pre">6,</span> <span class="pre">'cymbals':</span> <span class="pre">3,</span> <span class="pre">'horn':</span> <span class="pre">4,</span> <span class="pre">'kara':</span> <span class="pre">7,</span> <span class="pre">'metal15':</span> <span class="pre">8,</span> <span class="pre">'phone4':</span> <span class="pre">2,</span> <span class="pre">'ring':</span> <span class="pre">0,</span> <span class="pre">'whistle1':</span> <span class="pre">1}</span></em><a class="headerlink" href="#spaic.IO.Dataset.RWCP10.classes" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.RWCP10.class_number">
+<span class="sig-name descname"><span class="pre">class_number</span></span><em class="property"> <span class="pre">=</span> <span class="pre">10</span></em><a class="headerlink" href="#spaic.IO.Dataset.RWCP10.class_number" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.RWCP10.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.RWCP10.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.RWCP10.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.RWCP10.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNISTVoices">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">MNISTVoices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#MNISTVoices"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.MNISTVoices" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>Used to load any type of 0-9 audio dataset
+Class number: 10</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNISTVoices.class_number">
+<span class="sig-name descname"><span class="pre">class_number</span></span><em class="property"> <span class="pre">=</span> <span class="pre">10</span></em><a class="headerlink" href="#spaic.IO.Dataset.MNISTVoices.class_number" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNISTVoices.classes">
+<span class="sig-name descname"><span class="pre">classes</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'0':</span> <span class="pre">0,</span> <span class="pre">'1':</span> <span class="pre">1,</span> <span class="pre">'2':</span> <span class="pre">2,</span> <span class="pre">'3':</span> <span class="pre">3,</span> <span class="pre">'4':</span> <span class="pre">4,</span> <span class="pre">'5':</span> <span class="pre">5,</span> <span class="pre">'6':</span> <span class="pre">6,</span> <span class="pre">'7':</span> <span class="pre">7,</span> <span class="pre">'8':</span> <span class="pre">8,</span> <span class="pre">'9':</span> <span class="pre">9}</span></em><a class="headerlink" href="#spaic.IO.Dataset.MNISTVoices.classes" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNISTVoices.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.MNISTVoices.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.MNISTVoices.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.MNISTVoices.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.TIDIGITS">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">TIDIGITS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#TIDIGITS"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.TIDIGITS" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>Used to load any type of 0-9 and oh audio dataset
+Class number: 11</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.TIDIGITS.class_number">
+<span class="sig-name descname"><span class="pre">class_number</span></span><em class="property"> <span class="pre">=</span> <span class="pre">11</span></em><a class="headerlink" href="#spaic.IO.Dataset.TIDIGITS.class_number" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.TIDIGITS.classes">
+<span class="sig-name descname"><span class="pre">classes</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'eight':</span> <span class="pre">8,</span> <span class="pre">'five':</span> <span class="pre">5,</span> <span class="pre">'four':</span> <span class="pre">4,</span> <span class="pre">'nine':</span> <span class="pre">9,</span> <span class="pre">'oh':</span> <span class="pre">10,</span> <span class="pre">'one':</span> <span class="pre">1,</span> <span class="pre">'seven':</span> <span class="pre">7,</span> <span class="pre">'six':</span> <span class="pre">6,</span> <span class="pre">'three':</span> <span class="pre">3,</span> <span class="pre">'two':</span> <span class="pre">2,</span> <span class="pre">'zero':</span> <span class="pre">0}</span></em><a class="headerlink" href="#spaic.IO.Dataset.TIDIGITS.classes" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.TIDIGITS.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.TIDIGITS.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.TIDIGITS.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.TIDIGITS.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SHD">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">SHD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#SHD"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.SHD" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>Spiking Heidelberg Digits Dataset
+max spiking time: 136.9 ms
+max neuron num: 700
+Class number: 20
+number of train samples: 8156
+number of test samples: 2264</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SHD.class_number">
+<span class="sig-name descname"><span class="pre">class_number</span></span><em class="property"> <span class="pre">=</span> <span class="pre">20</span></em><a class="headerlink" href="#spaic.IO.Dataset.SHD.class_number" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SHD.maxNum">
+<span class="sig-name descname"><span class="pre">maxNum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">700</span></em><a class="headerlink" href="#spaic.IO.Dataset.SHD.maxNum" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SHD.Time">
+<span class="sig-name descname"><span class="pre">Time</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1.37</span></em><a class="headerlink" href="#spaic.IO.Dataset.SHD.Time" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SHD.files">
+<span class="sig-name descname"><span class="pre">files</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'test_dataset':</span> <span class="pre">'shd_test.h5',</span> <span class="pre">'train_dataset':</span> <span class="pre">'shd_train.h5'}</span></em><a class="headerlink" href="#spaic.IO.Dataset.SHD.files" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SHD.dataset_folder">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dataset_folder</span></span><a class="headerlink" href="#spaic.IO.Dataset.SHD.dataset_folder" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SHD.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.SHD.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SHD.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.SHD.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SSC">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">SSC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#SSC"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.SSC" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<p>Spiking Speech Command Dataset
+max spiking time: 99.95ms
+max neuron num: 700
+Class number: 35
+number of train samples: 75466
+number of test samples: 30363</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SSC.class_number">
+<span class="sig-name descname"><span class="pre">class_number</span></span><em class="property"> <span class="pre">=</span> <span class="pre">35</span></em><a class="headerlink" href="#spaic.IO.Dataset.SSC.class_number" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SSC.maxNum">
+<span class="sig-name descname"><span class="pre">maxNum</span></span><em class="property"> <span class="pre">=</span> <span class="pre">700</span></em><a class="headerlink" href="#spaic.IO.Dataset.SSC.maxNum" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SSC.Time">
+<span class="sig-name descname"><span class="pre">Time</span></span><em class="property"> <span class="pre">=</span> <span class="pre">1</span></em><a class="headerlink" href="#spaic.IO.Dataset.SSC.Time" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SSC.files">
+<span class="sig-name descname"><span class="pre">files</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'test_dataset':</span> <span class="pre">'ssc_test.h5',</span> <span class="pre">'train_dataset':</span> <span class="pre">'ssc_train.h5',</span> <span class="pre">'valid_dataset':</span> <span class="pre">'ssc_valid.h5'}</span></em><a class="headerlink" href="#spaic.IO.Dataset.SSC.files" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SSC.dataset_folder">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dataset_folder</span></span><a class="headerlink" href="#spaic.IO.Dataset.SSC.dataset_folder" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SSC.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.SSC.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.SSC.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.SSC.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.DVS128Gesture">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Dataset.</span></span><span class="sig-name descname"><span class="pre">DVS128Gesture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#DVS128Gesture"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.DVS128Gesture" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Dataset.Dataset</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.DVS128Gesture.resources">
+<span class="sig-name descname"><span class="pre">resources</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'https://ibm.ent.box.com/s/3hiq58ww1pbbjrinh367ykfdf60xsfm8/folder/50167556794'</span></em><a class="headerlink" href="#spaic.IO.Dataset.DVS128Gesture.resources" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.DVS128Gesture.files">
+<span class="sig-name descname"><span class="pre">files</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'test_dataset':</span> <span class="pre">'trials_to_test.txt',</span> <span class="pre">'train_dataset':</span> <span class="pre">'trials_to_train.txt'}</span></em><a class="headerlink" href="#spaic.IO.Dataset.DVS128Gesture.files" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.DVS128Gesture.dataset_folder">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">dataset_folder</span></span><a class="headerlink" href="#spaic.IO.Dataset.DVS128Gesture.dataset_folder" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.DVS128Gesture.data_dict">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">data_dict</span></span><a class="headerlink" href="#spaic.IO.Dataset.DVS128Gesture.data_dict" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.DVS128Gesture.is_train">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">is_train</span></span><a class="headerlink" href="#spaic.IO.Dataset.DVS128Gesture.is_train" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.DVS128Gesture.split_aedat_files_to_np">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">split_aedat_files_to_np</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aedat_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#DVS128Gesture.split_aedat_files_to_np"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.DVS128Gesture.split_aedat_files_to_np" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Dataset.DVS128Gesture.create_events_np_files">
+<span class="sig-name descname"><span class="pre">create_events_np_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">events_np_root</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Dataset.html#DVS128Gesture.create_events_np_files"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Dataset.DVS128Gesture.create_events_np_files" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>events_np_root</strong> (<em>str</em>) – Root directory path which saves events files in the <code class="docutils literal notranslate"><span class="pre">npz</span></code> format</p>
+</dd>
+</dl>
+<p>This function defines how to convert the origin binary data in <code class="docutils literal notranslate"><span class="pre">extract_root</span></code> to <code class="docutils literal notranslate"><span class="pre">npz</span></code> format and save converted files in <code class="docutils literal notranslate"><span class="pre">events_np_root</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.IO.Environment">
+<span id="spaic-io-environment-module"></span><h2>spaic.IO.Environment module<a class="headerlink" href="#module-spaic.IO.Environment" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/12
+&#64;project: SPAIC
+&#64;filename: Environment
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+定义强化学习的环境交互模块</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Environment.BaseEnvironment">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Environment.</span></span><span class="sig-name descname"><span class="pre">BaseEnvironment</span></span><a class="reference internal" href="_modules/spaic/IO/Environment.html#BaseEnvironment"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.BaseEnvironment" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract environment class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Environment.BaseEnvironment.step">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#BaseEnvironment.step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.BaseEnvironment.step" title="永久链接至目标">¶</a></dt>
+<dd><p>Abstract method for <code class="docutils literal notranslate"><span class="pre">step()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>action</strong> (<em>int</em>) – action to take in environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Environment.BaseEnvironment.reset">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#BaseEnvironment.reset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.BaseEnvironment.reset" title="永久链接至目标">¶</a></dt>
+<dd><p>Abstract method for <code class="docutils literal notranslate"><span class="pre">reset()</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Environment.BaseEnvironment.render">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#BaseEnvironment.render"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.BaseEnvironment.render" title="永久链接至目标">¶</a></dt>
+<dd><p>Abstract method for <code class="docutils literal notranslate"><span class="pre">render()</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Environment.BaseEnvironment.seed">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#BaseEnvironment.seed"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.BaseEnvironment.seed" title="永久链接至目标">¶</a></dt>
+<dd><p>Abstract method for <code class="docutils literal notranslate"><span class="pre">seed()</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Environment.BaseEnvironment.close">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#BaseEnvironment.close"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.BaseEnvironment.close" title="永久链接至目标">¶</a></dt>
+<dd><p>Abstract method for <code class="docutils literal notranslate"><span class="pre">close()</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Environment.GymEnvironment">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Environment.</span></span><span class="sig-name descname"><span class="pre">GymEnvironment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#GymEnvironment"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.GymEnvironment" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Environment.BaseEnvironment" title="spaic.IO.Environment.BaseEnvironment"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Environment.BaseEnvironment</span></code></a></p>
+<p>Wrapper the OpenAI <code class="docutils literal notranslate"><span class="pre">gym</span></code> environments.</p>
+<p>Initializes the environment wrapper. This class makes the
+assumption that the OpenAI <code class="docutils literal notranslate"><span class="pre">gym</span></code> environment will provide an image
+of format HxW as an observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of an OpenAI <code class="docutils literal notranslate"><span class="pre">gym</span></code> environment.</p></li>
+<li><p><strong>encoding</strong> (<em>str</em>) – The key of encoding class which is used to encode observations into spike trains.</p></li>
+</ul>
+</dd>
+<dt class="field-even">变量</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>max_prob</strong> (<em>float</em>) – Maximum spiking probability.</p></li>
+<li><p><strong>clip_rewards</strong> (<em>bool</em>) – Whether or not to use <code class="docutils literal notranslate"><span class="pre">np.sign</span></code> of rewards.</p></li>
+<li><p><strong>binary</strong> (<em>bool</em>) – Whether to convert the image to binary</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Environment.GymEnvironment.step">
+<span class="sig-name descname"><span class="pre">step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">action</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#GymEnvironment.step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.GymEnvironment.step" title="永久链接至目标">¶</a></dt>
+<dd><p>Wrapper around the OpenAI <code class="docutils literal notranslate"><span class="pre">gym</span></code> environment <code class="docutils literal notranslate"><span class="pre">step()</span></code> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>action</strong> (<em>int</em>) – Action to take in the environment.</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Observation, reward, done flag, and information dictionary.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Environment.GymEnvironment.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#GymEnvironment.reset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.GymEnvironment.reset" title="永久链接至目标">¶</a></dt>
+<dd><p>Wrapper around the OpenAI <code class="docutils literal notranslate"><span class="pre">gym</span></code> environment <code class="docutils literal notranslate"><span class="pre">reset()</span></code> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>Observation from the environment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Environment.GymEnvironment.render">
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#GymEnvironment.render"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.GymEnvironment.render" title="永久链接至目标">¶</a></dt>
+<dd><p>Wrapper around the OpenAI <code class="docutils literal notranslate"><span class="pre">gym</span></code> environment <code class="docutils literal notranslate"><span class="pre">render()</span></code> function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Environment.GymEnvironment.seed">
+<span class="sig-name descname"><span class="pre">seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#GymEnvironment.seed"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.GymEnvironment.seed" title="永久链接至目标">¶</a></dt>
+<dd><p>Wrapper around the OpenAI <code class="docutils literal notranslate"><span class="pre">gym</span></code> environment <code class="docutils literal notranslate"><span class="pre">render()</span></code> function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Environment.GymEnvironment.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Environment.html#GymEnvironment.close"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Environment.GymEnvironment.close" title="永久链接至目标">¶</a></dt>
+<dd><p>Wrapper around the OpenAI <code class="docutils literal notranslate"><span class="pre">gym</span></code> environment <code class="docutils literal notranslate"><span class="pre">close()</span></code> function.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.IO.Pipeline">
+<span id="spaic-io-pipeline-module"></span><h2>spaic.IO.Pipeline module<a class="headerlink" href="#module-spaic.IO.Pipeline" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/17
+&#64;project: SPAIC
+&#64;filename: IO
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.Pipline">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Pipeline.</span></span><span class="sig-name descname"><span class="pre">Pipline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Pipeline.html#Pipline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Pipeline.Pipline" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.Pipline.update_step">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">update_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Pipeline.html#Pipline.update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Pipeline.Pipline.update_step" title="永久链接至目标">¶</a></dt>
+<dd><p>Perform a pass of the network given the input batch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>batch</strong> – The current batch. This could be anything as long as the subclass
+agrees upon the format in some way.</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Any output that is need for recording purposes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.RLPipeline">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Pipeline.</span></span><span class="sig-name descname"><span class="pre">RLPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Pipeline.html#RLPipeline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Pipeline.RLPipeline" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Pipeline.Pipline" title="spaic.IO.Pipeline.Pipline"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Pipeline.Pipline</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.RLPipeline.env_step">
+<span class="sig-name descname"><span class="pre">env_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Pipeline.html#RLPipeline.env_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Pipeline.RLPipeline.env_step" title="永久链接至目标">¶</a></dt>
+<dd><p>Single step of the environment which includes rendering, getting and performing
+the action, and accumulating/delaying rewards.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>An OpenAI <code class="docutils literal notranslate"><span class="pre">gym</span></code> compatible tuple (next_state, reward, done).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.RLPipeline.update_step">
+<span class="sig-name descname"><span class="pre">update_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gym_batch</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Pipeline.html#RLPipeline.update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Pipeline.RLPipeline.update_step" title="永久链接至目标">¶</a></dt>
+<dd><p>Run a single iteration of the network and update it and the reward list when
+done.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>gym_batch</strong> (<em>tuple</em>) – An OpenAI <code class="docutils literal notranslate"><span class="pre">gym</span></code> compatible tuple (next_state, reward, done).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.RLPipeline.reset_pipeline">
+<span class="sig-name descname"><span class="pre">reset_pipeline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Pipeline.html#RLPipeline.reset_pipeline"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Pipeline.RLPipeline.reset_pipeline" title="永久链接至目标">¶</a></dt>
+<dd><p>Reset the pipeline.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.Transition">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Pipeline.</span></span><span class="sig-name descname"><span class="pre">Transition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reward</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#spaic.IO.Pipeline.Transition" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>Create new instance of Transition(state, action, next_state, reward)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.Transition.action">
+<span class="sig-name descname"><span class="pre">action</span></span><a class="headerlink" href="#spaic.IO.Pipeline.Transition.action" title="永久链接至目标">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.Transition.next_state">
+<span class="sig-name descname"><span class="pre">next_state</span></span><a class="headerlink" href="#spaic.IO.Pipeline.Transition.next_state" title="永久链接至目标">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.Transition.reward">
+<span class="sig-name descname"><span class="pre">reward</span></span><a class="headerlink" href="#spaic.IO.Pipeline.Transition.reward" title="永久链接至目标">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.Transition.state">
+<span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#spaic.IO.Pipeline.Transition.state" title="永久链接至目标">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.ReplayMemory">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.Pipeline.</span></span><span class="sig-name descname"><span class="pre">ReplayMemory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capacity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Pipeline.html#ReplayMemory"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Pipeline.ReplayMemory" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.ReplayMemory.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Pipeline.html#ReplayMemory.push"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Pipeline.ReplayMemory.push" title="永久链接至目标">¶</a></dt>
+<dd><p>Save a transition</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.IO.Pipeline.ReplayMemory.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/Pipeline.html#ReplayMemory.sample"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.Pipeline.ReplayMemory.sample" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.IO.SignalGenerator">
+<span id="spaic-io-signalgenerator-module"></span><h2>spaic.IO.SignalGenerator module<a class="headerlink" href="#module-spaic.IO.SignalGenerator" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/10/23
+&#64;project: SPAIC
+&#64;filename: SignalGenerator
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.SignalGenerator.SigGenerator">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.SignalGenerator.</span></span><span class="sig-name descname"><span class="pre">SigGenerator</span></span><a class="reference internal" href="_modules/spaic/IO/SignalGenerator.html#SigGenerator"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.SignalGenerator.SigGenerator" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.Pipeline.Pipline" title="spaic.IO.Pipeline.Pipline"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.Pipeline.Pipline</span></code></a></p>
+<p>Generate signals such as sin/cos wave, random process…</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.IO.sampler">
+<span id="spaic-io-sampler-module"></span><h2>spaic.IO.sampler module<a class="headerlink" href="#module-spaic.IO.sampler" title="永久链接至标题">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.sampler.Sampler">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.sampler.</span></span><span class="sig-name descname"><span class="pre">Sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/sampler.html#Sampler"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.sampler.Sampler" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for all Samplers.</p>
+<p>Every Sampler subclass has to provide an <code class="xref py py-meth docutils literal notranslate"><span class="pre">__iter__()</span></code> method, providing a
+way to iterate over indices of dataset elements, and a <code class="xref py py-meth docutils literal notranslate"><span class="pre">__len__()</span></code> method
+that returns the length of the returned iterators.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.sampler.SequentialSampler">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.sampler.</span></span><span class="sig-name descname"><span class="pre">SequentialSampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/sampler.html#SequentialSampler"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.sampler.SequentialSampler" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.sampler.Sampler" title="spaic.IO.sampler.Sampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.sampler.Sampler</span></code></a></p>
+<p>Samples elements sequentially, always in the same order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>data_source</strong> (<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><em>Dataset</em></a>) – dataset to sample from</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.sampler.RandomSampler">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.sampler.</span></span><span class="sig-name descname"><span class="pre">RandomSampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/sampler.html#RandomSampler"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.sampler.RandomSampler" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.sampler.Sampler" title="spaic.IO.sampler.Sampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.sampler.Sampler</span></code></a></p>
+<p>Samples elements randomly. If without replacement, then sample from a shuffled dataset.
+If with replacement, then user can specify <a class="reference internal" href="#spaic.IO.sampler.RandomSampler.num_samples" title="spaic.IO.sampler.RandomSampler.num_samples"><code class="xref py py-attr docutils literal notranslate"><span class="pre">num_samples</span></code></a> to draw.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_source</strong> (<a class="reference internal" href="#spaic.IO.Dataset.Dataset" title="spaic.IO.Dataset.Dataset"><em>Dataset</em></a>) – dataset to sample from</p></li>
+<li><p><strong>replacement</strong> (<em>bool</em>) – samples are drawn on-demand with replacement if <code class="docutils literal notranslate"><span class="pre">True</span></code>, default=``False``</p></li>
+<li><p><strong>num_samples</strong> (<em>int</em>) – number of samples to draw, default=`len(dataset)`. This argument
+is supposed to be specified only when <cite>replacement</cite> is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="spaic.IO.sampler.RandomSampler.num_samples">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">num_samples</span></span><a class="headerlink" href="#spaic.IO.sampler.RandomSampler.num_samples" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.IO.sampler.BatchSampler">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.IO.sampler.</span></span><span class="sig-name descname"><span class="pre">BatchSampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_last</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/sampler.html#BatchSampler"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.sampler.BatchSampler" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.IO.sampler.Sampler" title="spaic.IO.sampler.Sampler"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.IO.sampler.Sampler</span></code></a></p>
+<p>Wraps another sampler to yield a mini-batch of indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sampler</strong> (<a class="reference internal" href="#spaic.IO.sampler.Sampler" title="spaic.IO.sampler.Sampler"><em>Sampler</em></a><em> or </em><em>Iterable</em>) – Base sampler. Can be any iterable object</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – Size of mini-batch.</p></li>
+<li><p><strong>drop_last</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the sampler will drop the last batch if
+its size would be less than <code class="docutils literal notranslate"><span class="pre">batch_size</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">示例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">BatchSampler</span><span class="p">(</span><span class="n">SequentialSampler</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)),</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">drop_last</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="go">[[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">BatchSampler</span><span class="p">(</span><span class="n">SequentialSampler</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)),</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">drop_last</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">[[0, 1, 2], [3, 4, 5], [6, 7, 8]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.IO.utils">
+<span id="spaic-io-utils-module"></span><h2>spaic.IO.utils module<a class="headerlink" href="#module-spaic.IO.utils" title="永久链接至标题">¶</a></h2>
+<p>&#64;author: Yuan Mengwen
+&#64;contact: <a class="reference external" href="mailto:mwyuan94&#37;&#52;&#48;gmail&#46;com">mwyuan94<span>&#64;</span>gmail<span>&#46;</span>com</a>
+&#64;project: PyCharm
+&#64;filename: utils.py
+&#64;time:2021/4/1 14:33
+&#64;description:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.wav_file_resample">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">wav_file_resample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_sample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16000.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#wav_file_resample"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.wav_file_resample" title="永久链接至目标">¶</a></dt>
+<dd><p>对WAV文件进行resample的操作
+:param file_path: 需要进行resample操作的wav文件的路径
+:param dest_sample: 目标采样率</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>降采样后的数据
+dest_sample: 目标采样率</p>
+</dd>
+<dt class="field-even">返回类型</dt>
+<dd class="field-even"><p>resampled</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.wav_file_cut">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">wav_file_cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16000.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#wav_file_cut"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.wav_file_cut" title="永久链接至目标">¶</a></dt>
+<dd><p>对WAV文件进行裁剪操作
+:param file_path: 需要进行resample操作的wav文件的路径
+:param signal_num: 目标数据数量</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>裁剪后的数据</p>
+</dd>
+<dt class="field-even">返回类型</dt>
+<dd class="field-even"><p>cropped_data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.save_mfcc_feature">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">save_mfcc_feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npz_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#save_mfcc_feature"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.save_mfcc_feature" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.save_kp_feature">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">save_kp_feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npz_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#save_kp_feature"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.save_kp_feature" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.load_kp_data">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">load_kp_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#load_kp_data"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.load_kp_data" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.load_mfcc_data">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">load_mfcc_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#load_mfcc_data"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.load_mfcc_data" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.dataset_split">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">dataset_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_shuffle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#dataset_split"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.dataset_split" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.reclassification">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">reclassification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_num</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">perperson_perclass_samplenum</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#reclassification"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.reclassification" title="永久链接至目标">¶</a></dt>
+<dd><p>将按录音者分类的digit语音数据集重保存为按录的音频的类别分类</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.datasetAlignment">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">datasetAlignment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxNum</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#datasetAlignment"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.datasetAlignment" title="永久链接至目标">¶</a></dt>
+<dd><p>Zeros are padded to each sample in the dataset according to the value of maxNum
+:param source: samples of dataset
+:type source: ndarray
+:param maxNum: The length of longest sample
+:type maxNum: int</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>The data after padding</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.batchAlignment">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">batchAlignment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#batchAlignment"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.batchAlignment" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.fetchGmSpectrogram">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">fetchGmSpectrogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.016</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.008</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernels_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#fetchGmSpectrogram"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.fetchGmSpectrogram" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.extractKeyPoints">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">extractKeyPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gmspec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Dr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">13</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Dc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">13</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">significance_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#extractKeyPoints"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.extractKeyPoints" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.get_Max">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">get_Max</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#get_Max"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.get_Max" title="永久链接至目标">¶</a></dt>
+<dd><p>get the maximum number of data
+:param data (): can be spiking time or neuron ids</p>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.RGBtoGray">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">RGBtoGray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#RGBtoGray"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.RGBtoGray" title="永久链接至目标">¶</a></dt>
+<dd><p>Converts RGB image into gray image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>image</strong> – RGB image.</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Gray image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.GraytoBinary">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">GraytoBinary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#GraytoBinary"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.GraytoBinary" title="永久链接至目标">¶</a></dt>
+<dd><p>Converts input image into black and white (binary)</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>image</strong> – Gray image.</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Binary image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.reshape">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">reshape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#reshape"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.reshape" title="永久链接至目标">¶</a></dt>
+<dd><p>Scale the image to (x, y).</p>
+<dl class="simple">
+<dt>Args：</dt><dd><p>image: Image to be rescaled.
+shape: Changed shape</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>Re-scaled image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.im2col">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">im2col</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'same'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#im2col"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.im2col" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> – 4D array</p></li>
+<li><p><strong>kh</strong> – kernel_height</p></li>
+<li><p><strong>kw</strong> – kernel_width</p></li>
+<li><p><strong>stride</strong> – </p></li>
+<li><p><strong>padding</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.un_tar">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">un_tar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#un_tar"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.un_tar" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.IO.utils.load_aedat_v3">
+<span class="sig-prename descclassname"><span class="pre">spaic.IO.utils.</span></span><span class="sig-name descname"><span class="pre">load_aedat_v3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/IO/utils.html#load_aedat_v3"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.IO.utils.load_aedat_v3" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – path of the aedat v3 file</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>a dict whose keys are [‘t’, ‘x’, ‘y’, ‘p’] and values are <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></p>
+</dd>
+</dl>
+<p>This function is written by referring to <a class="reference external" href="https://gitlab.com/inivation/dv/dv-python">https://gitlab.com/inivation/dv/dv-python</a>. It can be used for DVS128 Gesture.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.IO">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spaic.IO" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/11
+&#64;project: SPAIC
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

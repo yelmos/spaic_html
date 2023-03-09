@@ -1,0 +1,656 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Library.Network_loader &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.Library.Network_loader</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.Library.Network_loader 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on 2020/8/17</span>
+<span class="sd">@project: SPAIC</span>
+<span class="sd">@filename: Network_loader</span>
+<span class="sd">@author: Mengxiao Zhang</span>
+<span class="sd">@contact: mxzhangice@gmail.com</span>
+
+<span class="sd">@description:</span>
+<span class="sd">对已按格式储存网络的加载和重建</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">spaic</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+
+<div class="viewcode-block" id="network_load"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.network_load">[文档]</a><span class="k">def</span> <span class="nf">network_load</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="n">load_weight</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        The main function for getting the target filename and reloading the</span>
+<span class="sd">            network.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filename(str) : The filename of the target network, given by user.</span>
+<span class="sd">            dataloader(dataloader) : The dataloader for input node layer,</span>
+<span class="sd">                should be given or crash.</span>
+<span class="sd">            encoding(str) : The encoding model chosen by user.</span>
+<span class="sd">            device(str) : The device type we choose to run our network.</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            net(Assembly) :The network that reloaded from the file.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Net = network_load(&#39;TestNetwork&#39;, dataloader, &#39;poisson&#39;)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+        <span class="n">filedir</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">filename</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span>
+        <span class="c1"># filedir = path + filename</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">origin_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;{&#39;</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.yml&#39;</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.yml&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.json&#39;</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.json&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.txt&#39;</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;{&#39;</span><span class="p">):</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Loader</span><span class="o">=</span><span class="n">yaml</span><span class="o">.</span><span class="n">FullLoader</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;file </span><span class="si">%s</span><span class="s2"> doesn&#39;t exist, please check the &quot;</span>
+                             <span class="s2">&quot;filename&quot;</span> <span class="o">%</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="n">net</span> <span class="o">=</span> <span class="n">ReloadedNetwork</span><span class="p">(</span><span class="n">net_data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">load_weight</span><span class="o">=</span><span class="n">load_weight</span><span class="p">)</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">origin_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">net</span></div>
+
+
+<div class="viewcode-block" id="ReloadedNetwork"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork">[文档]</a><span class="k">class</span> <span class="nc">ReloadedNetwork</span><span class="p">(</span><span class="n">spaic</span><span class="o">.</span><span class="n">Network</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        The network rebuild from the yaml file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            net_data(dict) : The network information reloaded from yaml files.</span>
+<span class="sd">            dataloader(dataloader) : The dataloader of input layer, since the</span>
+<span class="sd">                large scale of data, we will not save the data.</span>
+<span class="sd">            encoding(str) : The encoding model, default as poisson, will change</span>
+<span class="sd">                in the future.</span>
+<span class="sd">            backend(backend) : Backend that user want to use.</span>
+<span class="sd">            learner(str) : The learning model of this network, will change in</span>
+<span class="sd">                the future.</span>
+<span class="sd">            learner_alpha(int) : The parameter alpha for learning model, will</span>
+<span class="sd">                change in the future.</span>
+<span class="sd">            device(str) : The type of device that run our model.</span>
+
+<span class="sd">        Methods:</span>
+<span class="sd">            load_net(self, data: dict) : The function for load the whole</span>
+<span class="sd">                network, main function of this class.</span>
+<span class="sd">            load_layer(self, layer: dict) : The function for load layer.</span>
+<span class="sd">            load_connection(self, con: dict) : The function for load</span>
+<span class="sd">                connection.</span>
+<span class="sd">            load_node(self, node: dict) : The function for load node like input</span>
+<span class="sd">                or output.</span>
+<span class="sd">            load_backend(self, path: str): The function for load backend.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            Net = ReloadNetwork(net_data, dataloader, &#39;poisson&#39;, backend,</span>
+<span class="sd">                &#39;STCA&#39;, 0.5)</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">net_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="n">load_weight</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ReloadedNetwork</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">net_data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend_info</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">backend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">backend</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Torch_Backend</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_net</span><span class="p">(</span><span class="n">net_data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_backend</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+        <span class="c1"># self._learner = Learner(algorithm=&#39;STCA&#39;, lr=0.5, trainable=self)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">load_weight</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">load_backend</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend_info</span>
+
+<div class="viewcode-block" id="ReloadedNetwork.load_net"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork.load_net">[文档]</a>    <span class="k">def</span> <span class="nf">load_net</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            The function for load the whole network, main function of this class.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                data(dict) : The data should contains the network structure and</span>
+<span class="sd">                    parameter from yaml.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">setid</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;monitor&#39;</span><span class="p">:</span>
+                <span class="n">monitors</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;monitor&#39;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">monitor</span> <span class="ow">in</span> <span class="n">monitors</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">load_monitor</span><span class="p">(</span><span class="n">monitor</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;backend&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_backend_info</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+                <span class="k">continue</span>
+            <span class="n">para</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">para</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">dict</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_class_label&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;&lt;neg&gt;&#39;</span><span class="p">:</span>
+                    <span class="n">lay_name</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_assembly</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">lay_name</span><span class="p">,</span>
+                                      <span class="n">assembly</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">load_layer</span><span class="p">(</span><span class="n">para</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_class_label&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;&lt;nod&gt;&#39;</span><span class="p">:</span>
+                    <span class="n">nod_name</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_assembly</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">nod_name</span><span class="p">,</span>
+                                      <span class="n">assembly</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">load_node</span><span class="p">(</span><span class="n">para</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_class_label&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;&lt;con&gt;&#39;</span><span class="p">:</span>
+                    <span class="n">con_name</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">con_name</span><span class="p">,</span>
+                                        <span class="n">connection</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">load_connection</span><span class="p">(</span><span class="n">net</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">para</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_class_label&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;&lt;prj&gt;&#39;</span><span class="p">:</span>
+                    <span class="n">prj_name</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_projection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">prj_name</span><span class="p">,</span>
+                                        <span class="n">projection</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">load_projection</span><span class="p">(</span><span class="n">prj</span><span class="o">=</span><span class="n">para</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_class_label&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;&lt;learner&gt;&#39;</span><span class="p">:</span>
+                    <span class="n">learner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_learner</span><span class="p">(</span><span class="n">para</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_learners</span><span class="p">[</span><span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">learner</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unknown class label </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">para</span><span class="p">[</span><span class="s1">&#39;_class_label&#39;</span><span class="p">])</span>
+
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_assembly</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">assembly</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">load_assembly</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">para</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="ReloadedNetwork.load_assembly"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork.load_assembly">[文档]</a>    <span class="k">def</span> <span class="nf">load_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">assembly</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Assembly</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">assembly</span><span class="p">:</span>
+            <span class="n">para</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span>
+            <span class="k">if</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_class_label&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;&lt;neg&gt;&#39;</span><span class="p">:</span>
+                <span class="n">lay_name</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+                <span class="n">target</span><span class="o">.</span><span class="n">add_assembly</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">lay_name</span><span class="p">,</span>
+                                  <span class="n">assembly</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">load_layer</span><span class="p">(</span><span class="n">para</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_class_label&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;&lt;con&gt;&#39;</span><span class="p">:</span>
+                <span class="n">con_name</span> <span class="o">=</span> <span class="n">para</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+                <span class="n">target</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">con_name</span><span class="p">,</span>
+                                    <span class="n">connection</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">load_connection</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">para</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">target</span></div>
+
+
+<div class="viewcode-block" id="ReloadedNetwork.load_layer"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork.load_layer">[文档]</a>    <span class="k">def</span> <span class="nf">load_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            The function for load layer.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                layer(dict): Data contains the parameters of layers.</span>
+
+<span class="sd">            Return：</span>
+<span class="sd">                NeuronGroup with need parameters.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># layer.pop(&#39;_class_label&#39;)</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">trans_para</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parameters&#39;</span><span class="p">))</span>
+        <span class="n">return_neuron</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">NeuronGroup</span><span class="p">(</span>
+            <span class="n">neuron_number</span>   <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+            <span class="n">neuron_shape</span>    <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;shape&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">100</span><span class="p">]),</span>
+            <span class="n">neuron_type</span>     <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;non_type&#39;</span><span class="p">),</span>
+            <span class="n">neuron_position</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="s1">&#39;x, y, z&#39;</span><span class="p">),</span>
+            <span class="n">neuron_model</span>    <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;model_name&#39;</span><span class="p">,</span> <span class="s1">&#39;clif&#39;</span><span class="p">),</span>
+            <span class="n">name</span>            <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+            <span class="o">**</span><span class="n">parameters</span>
+        <span class="p">)</span>
+        <span class="n">return_neuron</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">return_neuron</span></div>
+
+<div class="viewcode-block" id="ReloadedNetwork.load_connection"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork.load_connection">[文档]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">load_connection</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">con</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            The function for load connections,</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                con(dict): Data contains the parameters of connections.</span>
+
+<span class="sd">            Return:</span>
+<span class="sd">                Connection with needed parameters.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># con.pop(&#39;_class_label&#39;)</span>
+
+        <span class="c1"># if con[&#39;pre_assembly&#39;] in net._groups.keys() and \</span>
+        <span class="c1">#         con[&#39;post_assembly&#39;] in net._groups.keys():</span>
+        <span class="c1">#     con[&#39;pre_assembly&#39;]  = net._groups[con[&#39;pre_assembly&#39;]]</span>
+        <span class="c1">#     con[&#39;post_assembly&#39;] = net._groups[con[&#39;post_assembly&#39;]]</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     print(&quot;Trans_error&quot;)</span>
+        <span class="c1">#     print(net._groups.keys())</span>
+        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">get_groups</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">con</span><span class="p">[</span><span class="s1">&#39;pre_assembly&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                <span class="n">con</span><span class="p">[</span><span class="s1">&#39;pre_assembly&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+            <span class="k">if</span> <span class="n">con</span><span class="p">[</span><span class="s1">&#39;post_assembly&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                <span class="n">con</span><span class="p">[</span><span class="s1">&#39;post_assembly&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+
+        <span class="c1"># con.pop(&#39;weight_path&#39;)</span>
+        <span class="n">return_conn</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span>
+            <span class="n">pre_assembly</span>     <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pre_assembly&#39;</span><span class="p">),</span>
+            <span class="n">post_assembly</span>    <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;post_assembly&#39;</span><span class="p">),</span>
+            <span class="n">name</span>             <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+            <span class="n">link_type</span>        <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;link_type&#39;</span><span class="p">,</span> <span class="s1">&#39;full&#39;</span><span class="p">),</span>
+            <span class="n">syn_type</span>         <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;synapse_type&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;basic_synapse&#39;</span><span class="p">]),</span>
+            <span class="n">max_delay</span>        <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max_delay&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+            <span class="n">sparse_with_mask</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;sparse_with_mask&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+            <span class="n">pre_var_name</span>     <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pre_var_name&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">),</span>
+            <span class="n">post_var_name</span>    <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;post_var_name&#39;</span><span class="p">,</span> <span class="s1">&#39;WgtSum&#39;</span><span class="p">),</span>
+            <span class="o">**</span><span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parameters&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">return_conn</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">return_conn</span></div>
+
+<div class="viewcode-block" id="ReloadedNetwork.load_projection"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork.load_projection">[文档]</a>    <span class="k">def</span> <span class="nf">load_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prj</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            The function for load projection,</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                prj(dict): Data contains the parameters of projection.</span>
+
+<span class="sd">            Return:</span>
+<span class="sd">                Projection with needed parameters.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">prj</span><span class="p">[</span><span class="s1">&#39;pre_assembly&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">and</span> \
+                <span class="n">prj</span><span class="p">[</span><span class="s1">&#39;post_assembly&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">prj</span><span class="p">[</span><span class="s1">&#39;pre_assembly&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">prj</span><span class="p">[</span><span class="s1">&#39;pre_assembly&#39;</span><span class="p">]]</span>
+            <span class="n">prj</span><span class="p">[</span><span class="s1">&#39;post_assembly&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">prj</span><span class="p">[</span><span class="s1">&#39;post_assembly&#39;</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Trans_error&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">prj</span><span class="p">[</span><span class="s1">&#39;policies&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="kn">from</span> <span class="nn">spaic.Network.ConnectPolicy</span> <span class="kn">import</span> <span class="n">IndexConnectPolicy</span><span class="p">,</span> <span class="n">ExcludedTypePolicy</span><span class="p">,</span> <span class="n">IncludedTypePolicy</span>
+        <span class="n">policy_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Included_policy&#39;</span><span class="p">:</span> <span class="n">IncludedTypePolicy</span><span class="p">,</span>
+                       <span class="s1">&#39;Excluded_policy&#39;</span><span class="p">:</span> <span class="n">ExcludedTypePolicy</span><span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">ply</span> <span class="ow">in</span> <span class="n">prj</span><span class="p">[</span><span class="s1">&#39;_policies&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">ply</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Index_policy&#39;</span><span class="p">:</span>
+                <span class="n">prj</span><span class="p">[</span><span class="s1">&#39;policies&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">IndexConnectPolicy</span><span class="p">(</span><span class="n">pre_indexs</span><span class="o">=</span><span class="n">ply</span><span class="p">[</span><span class="s1">&#39;pre_indexs&#39;</span><span class="p">],</span>
+                                                          <span class="n">post_indexs</span><span class="o">=</span><span class="n">ply</span><span class="p">[</span><span class="s1">&#39;post_indexs&#39;</span><span class="p">],</span>
+                                                          <span class="n">level</span><span class="o">=</span><span class="n">ply</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">prj</span><span class="p">[</span><span class="s1">&#39;policies&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">policy_dict</span><span class="p">[</span><span class="n">ply</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]](</span><span class="n">pre_types</span><span class="o">=</span><span class="n">ply</span><span class="p">[</span><span class="s1">&#39;pre_types&#39;</span><span class="p">],</span>
+                                                          <span class="n">post_types</span><span class="o">=</span><span class="n">ply</span><span class="p">[</span><span class="s1">&#39;post_types&#39;</span><span class="p">],</span>
+                                                          <span class="n">level</span><span class="o">=</span><span class="n">ply</span><span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">]))</span>
+
+        <span class="c1"># con.pop(&#39;weight_path&#39;)</span>
+        <span class="k">return</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Projection</span><span class="p">(</span>
+            <span class="n">pre</span>                  <span class="o">=</span> <span class="n">prj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pre_assembly&#39;</span><span class="p">),</span>
+            <span class="n">post</span>                 <span class="o">=</span> <span class="n">prj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;post_assembly&#39;</span><span class="p">),</span>
+            <span class="n">name</span>                 <span class="o">=</span> <span class="n">prj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span>
+            <span class="n">link_type</span>            <span class="o">=</span> <span class="n">prj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;link_type&#39;</span><span class="p">,</span> <span class="s1">&#39;full&#39;</span><span class="p">),</span>
+            <span class="n">policies</span>             <span class="o">=</span> <span class="n">prj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;policies&#39;</span><span class="p">,</span> <span class="p">[]),</span>
+            <span class="n">ConnectionParameters</span> <span class="o">=</span> <span class="n">prj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ConnectionParameters&#39;</span><span class="p">),</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ReloadedNetwork.load_node"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork.load_node">[文档]</a>    <span class="k">def</span> <span class="nf">load_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            The function for load node like input or output.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                node(dict): Data contains the parameters of nodes.</span>
+
+<span class="sd">            Return:</span>
+<span class="sd">                Node of input or output layer, contains needed parameters.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">Node_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Decoder&#39;</span><span class="p">:</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Decoder</span><span class="p">,</span> <span class="s1">&#39;Action&#39;</span><span class="p">:</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Action</span><span class="p">,</span> <span class="s1">&#39;Reward&#39;</span><span class="p">:</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Reward</span><span class="p">,</span>
+                     <span class="s1">&#39;Generator&#39;</span><span class="p">:</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Generator</span><span class="p">,</span> <span class="s1">&#39;Encoder&#39;</span><span class="p">:</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Encoder</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;kind&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;Decoder&#39;</span><span class="p">:</span>
+            <span class="n">return_node</span> <span class="o">=</span> <span class="n">Node_dict</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;kind&#39;</span><span class="p">)](</span>
+                <span class="n">num</span>             <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">),</span>
+                <span class="n">dec_target</span>      <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dec_target&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span><span class="p">),</span>
+                <span class="n">dt</span>              <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+                <span class="c1"># time            = node.get(&#39;time&#39;),</span>
+                <span class="n">coding_method</span>   <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coding_method&#39;</span><span class="p">,</span> <span class="s1">&#39;poisson&#39;</span><span class="p">),</span>
+                <span class="n">coding_var_name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coding_var_name&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">),</span>
+                <span class="n">node_type</span>       <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                <span class="o">**</span><span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coding_param&#39;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">return_node</span> <span class="o">=</span> <span class="n">Node_dict</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;kind&#39;</span><span class="p">)](</span>
+                <span class="n">shape</span>           <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;shape&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                <span class="n">num</span>             <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">),</span>
+                <span class="n">dec_target</span>      <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dec_target&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span><span class="p">),</span>
+                <span class="n">dt</span>              <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span>
+                <span class="c1"># time            = node.get(&#39;time&#39;),</span>
+                <span class="n">coding_method</span>   <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coding_method&#39;</span><span class="p">,</span> <span class="s1">&#39;poisson&#39;</span><span class="p">),</span>
+                <span class="n">coding_var_name</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coding_var_name&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">),</span>
+                <span class="n">node_type</span>       <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+                <span class="o">**</span><span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;coding_param&#39;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">return_node</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">return_node</span></div>
+
+<div class="viewcode-block" id="ReloadedNetwork.load_backend"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork.load_backend">[文档]</a>    <span class="k">def</span> <span class="nf">load_backend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            The function for load backend parameters.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># key_parameters_dict = [&#39;_variables&#39;, &#39;_parameters_dict&#39;, &#39;_InitVariables_dict&#39;]</span>
+        <span class="n">key_parameters_dict</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_parameters_dict&#39;</span><span class="p">]</span>
+        <span class="n">key_parameters_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dt&#39;</span><span class="p">,</span> <span class="s1">&#39;runtime&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;n_time_step&#39;</span><span class="p">]</span>
+        <span class="n">typical</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_graph_var_dicts&#39;</span><span class="p">]</span>
+
+        <span class="kn">import</span> <span class="nn">torch</span>
+        <span class="c1"># import os</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend_info</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">key_parameters_list</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend_info</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+            <span class="c1"># for key in key_parameters_dict:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend_info</span><span class="p">[</span><span class="s1">&#39;_parameters_dict&#39;</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="c1"># print(key, &#39;value:&#39;, value)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="c1"># #</span>
+        <span class="c1"># for key, value in self._backend.__dict__[&#39;_parameters_dict&#39;].items():</span>
+        <span class="c1">#     self._backend.__dict__[&#39;_variables&#39;][key] = value  # 这些变量的 requires_grad应该都是True</span>
+
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="ReloadedNetwork.load_learner"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork.load_learner">[文档]</a>    <span class="k">def</span> <span class="nf">load_learner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learner</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            The function for load learners&#39; parameters.</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="s1">&#39;&lt;net&gt;&#39;</span> <span class="ow">in</span> <span class="n">learner</span><span class="p">[</span><span class="s1">&#39;trainable&#39;</span><span class="p">]:</span>  <span class="c1">## If trainable == self, use the whole net as the trainable traget.</span>
+            <span class="n">learner</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;trainable&#39;</span><span class="p">)</span>
+            <span class="n">builded_learner</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Learner</span><span class="p">(</span>
+                <span class="n">algorithm</span> <span class="o">=</span> <span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;algorithm&#39;</span><span class="p">),</span>
+                <span class="n">trainable</span> <span class="o">=</span> <span class="bp">self</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parameters&#39;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">trainable_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">trains</span> <span class="ow">in</span> <span class="n">learner</span><span class="p">[</span><span class="s1">&#39;trainable&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">trains</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">:</span>
+                    <span class="n">trainable_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">trains</span><span class="p">])</span>
+                <span class="k">elif</span> <span class="n">trains</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">:</span>
+                    <span class="n">trainable_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">trains</span><span class="p">])</span>
+            <span class="n">learner</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;trainable&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parameters&#39;</span><span class="p">):</span>
+                <span class="n">builded_learner</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Learner</span><span class="p">(</span>
+                    <span class="n">trainable</span> <span class="o">=</span> <span class="n">trainable_list</span><span class="p">,</span>
+                    <span class="n">algorithm</span> <span class="o">=</span> <span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;algorithm&#39;</span><span class="p">),</span>
+                    <span class="o">**</span><span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parameters&#39;</span><span class="p">)</span>
+                    <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">builded_learner</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Learner</span><span class="p">(</span>
+                    <span class="n">trainable</span> <span class="o">=</span> <span class="n">trainable_list</span><span class="p">,</span>
+                    <span class="n">algorithm</span> <span class="o">=</span> <span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;algorithm&#39;</span><span class="p">)</span>
+                <span class="p">)</span>
+        <span class="k">if</span> <span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;optim_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">builded_learner</span><span class="o">.</span><span class="n">set_optimizer</span><span class="p">(</span><span class="n">optim_name</span><span class="o">=</span><span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;optim_name&#39;</span><span class="p">),</span>
+                                      <span class="n">optim_lr</span><span class="o">=</span><span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;optim_lr&#39;</span><span class="p">),</span>
+                                      <span class="o">**</span><span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;optim_para&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lr_schedule_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">builded_learner</span><span class="o">.</span><span class="n">set_schedule</span><span class="p">(</span><span class="n">lr_schedule_name</span><span class="o">=</span><span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lr_schedule_name&#39;</span><span class="p">),</span>
+                                         <span class="o">**</span><span class="n">learner</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lr_schedule_para&#39;</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">builded_learner</span></div>
+
+<div class="viewcode-block" id="ReloadedNetwork.load_monitor"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork.load_monitor">[文档]</a>    <span class="k">def</span> <span class="nf">load_monitor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monitor</span><span class="p">):</span>
+        <span class="n">monitor_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;StateMonitor&#39;</span><span class="p">:</span> <span class="n">spaic</span><span class="o">.</span><span class="n">StateMonitor</span><span class="p">,</span>
+                        <span class="s1">&#39;SpikeMonitor&#39;</span><span class="p">:</span> <span class="n">spaic</span><span class="o">.</span><span class="n">SpikeMonitor</span><span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">mon</span> <span class="ow">in</span> <span class="n">monitor</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_groups</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">mon</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                    <span class="n">mon</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+                    <span class="k">break</span>
+            <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_connections</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">mon</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                    <span class="n">mon</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+                    <span class="k">break</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_monitor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                                 <span class="n">monitor</span><span class="o">=</span><span class="n">monitor_dict</span><span class="p">[</span><span class="n">mon</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;monitor_type&#39;</span><span class="p">,</span> <span class="s1">&#39;StateMonitor&#39;</span><span class="p">)](</span>
+                                 <span class="n">target</span><span class="o">=</span><span class="n">mon</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span>
+                                 <span class="n">var_name</span><span class="o">=</span><span class="n">mon</span><span class="p">[</span><span class="s1">&#39;var_name&#39;</span><span class="p">],</span>
+                                 <span class="n">dt</span><span class="o">=</span><span class="n">mon</span><span class="p">[</span><span class="s1">&#39;dt&#39;</span><span class="p">],</span>
+                                 <span class="n">get_grad</span><span class="o">=</span><span class="n">mon</span><span class="p">[</span><span class="s1">&#39;get_grad&#39;</span><span class="p">],</span>
+                                 <span class="n">nbatch</span><span class="o">=</span><span class="n">mon</span><span class="p">[</span><span class="s1">&#39;nbatch&#39;</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="ReloadedNetwork.trans_para"><a class="viewcode-back" href="../../../spaic.Library.html#spaic.Library.Network_loader.ReloadedNetwork.trans_para">[文档]</a>    <span class="k">def</span> <span class="nf">trans_para</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">para</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">para</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">para</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">para</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># 暂定数据类型为单精度，以后可以根据网络中某个类型设置而更改</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">para</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">para</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">para</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

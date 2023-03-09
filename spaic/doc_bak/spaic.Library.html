@@ -1,0 +1,662 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Library package &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>spaic.Library package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/spaic.Library.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spaic-library-package">
+<h1>spaic.Library package<a class="headerlink" href="#spaic-library-package" title="永久链接至标题">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.Library.Library">
+<span id="spaic-library-library-module"></span><h2>spaic.Library.Library module<a class="headerlink" href="#module-spaic.Library.Library" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/17
+&#64;project: SPAIC
+&#64;filename: Library
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Library.Library.NetLibrary">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Library.Library.</span></span><span class="sig-name descname"><span class="pre">NetLibrary</span></span><a class="reference internal" href="_modules/spaic/Library/Library.html#NetLibrary"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Library.NetLibrary" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="spaic.Network.html#spaic.Network.BaseModule.BaseModule" title="spaic.Network.BaseModule.BaseModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.BaseModule.BaseModule</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Library.Network_loader">
+<span id="spaic-library-network-loader-module"></span><h2>spaic.Library.Network_loader module<a class="headerlink" href="#module-spaic.Library.Network_loader" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/17
+&#64;project: SPAIC
+&#64;filename: Network_loader
+&#64;author: Mengxiao Zhang
+&#64;contact: <a class="reference external" href="mailto:mxzhangice&#37;&#52;&#48;gmail&#46;com">mxzhangice<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+对已按格式储存网络的加载和重建</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.network_load">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_loader.</span></span><span class="sig-name descname"><span class="pre">network_load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#network_load"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.network_load" title="永久链接至目标">¶</a></dt>
+<dd><dl class="simple">
+<dt>The main function for getting the target filename and reloading the</dt><dd><p>network.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – The filename of the target network, given by user.</p></li>
+<li><p><strong>dataloader</strong> (<em>dataloader</em>) – The dataloader for input node layer,
+should be given or crash.</p></li>
+<li><p><strong>encoding</strong> (<em>str</em>) – The encoding model chosen by user.</p></li>
+<li><p><strong>device</strong> (<em>str</em>) – The device type we choose to run our network.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>The network that reloaded from the file.</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>net(<a class="reference internal" href="spaic.Network.html#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly">Assembly</a>)</p>
+</dd>
+</dl>
+<p class="rubric">示例</p>
+<p>Net = network_load(‘TestNetwork’, dataloader, ‘poisson’)</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_loader.</span></span><span class="sig-name descname"><span class="pre">ReloadedNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net_data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="spaic.Network.html#spaic.Network.Network.Network" title="spaic.Network.Network.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.Network.Network</span></code></a></p>
+<p>The network rebuild from the yaml file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>net_data</strong> (<em>dict</em>) – The network information reloaded from yaml files.</p></li>
+<li><p><strong>dataloader</strong> (<em>dataloader</em>) – The dataloader of input layer, since the
+large scale of data, we will not save the data.</p></li>
+<li><p><strong>encoding</strong> (<em>str</em>) – The encoding model, default as poisson, will change
+in the future.</p></li>
+<li><p><strong>backend</strong> (<em>backend</em>) – Backend that user want to use.</p></li>
+<li><p><strong>learner</strong> (<em>str</em>) – The learning model of this network, will change in
+the future.</p></li>
+<li><p><strong>learner_alpha</strong> (<em>int</em>) – The parameter alpha for learning model, will
+change in the future.</p></li>
+<li><p><strong>device</strong> (<em>str</em>) – The type of device that run our model.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">load_net(self,</span> <span class="pre">data</span></span></dt>
+<dd><p>dict) : The function for load the whole
+network, main function of this class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">load_layer(self,</span> <span class="pre">layer</span></span></dt>
+<dd><p>dict) : The function for load layer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">load_connection(self,</span> <span class="pre">con</span></span></dt>
+<dd><p>dict) : The function for load
+connection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">load_node(self,</span> <span class="pre">node</span></span></dt>
+<dd><p>dict) : The function for load node like input
+or output.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">load_backend(self,</span> <span class="pre">path</span></span></dt>
+<dd><p>str): The function for load backend.</p>
+</dd></dl>
+
+<p class="rubric">示例</p>
+<dl class="simple">
+<dt>Net = ReloadNetwork(net_data, dataloader, ‘poisson’, backend,</dt><dd><p>‘STCA’, 0.5)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork.load_net">
+<span class="sig-name descname"><span class="pre">load_net</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork.load_net"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork.load_net" title="永久链接至目标">¶</a></dt>
+<dd><p>The function for load the whole network, main function of this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>dict</em>) – The data should contains the network structure and
+parameter from yaml.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork.load_assembly">
+<span class="sig-name descname"><span class="pre">load_assembly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">assembly</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork.load_assembly"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork.load_assembly" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork.load_layer">
+<span class="sig-name descname"><span class="pre">load_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork.load_layer"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork.load_layer" title="永久链接至目标">¶</a></dt>
+<dd><p>The function for load layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>layer</strong> (<em>dict</em>) – Data contains the parameters of layers.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Return：</dt><dd><p>NeuronGroup with need parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork.load_connection">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">load_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">con</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork.load_connection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork.load_connection" title="永久链接至目标">¶</a></dt>
+<dd><p>The function for load connections,</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>con</strong> (<em>dict</em>) – Data contains the parameters of connections.</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Connection with needed parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork.load_projection">
+<span class="sig-name descname"><span class="pre">load_projection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork.load_projection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork.load_projection" title="永久链接至目标">¶</a></dt>
+<dd><p>The function for load projection,</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>prj</strong> (<em>dict</em>) – Data contains the parameters of projection.</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Projection with needed parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork.load_node">
+<span class="sig-name descname"><span class="pre">load_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork.load_node"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork.load_node" title="永久链接至目标">¶</a></dt>
+<dd><p>The function for load node like input or output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>dict</em>) – Data contains the parameters of nodes.</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Node of input or output layer, contains needed parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork.load_backend">
+<span class="sig-name descname"><span class="pre">load_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork.load_backend"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork.load_backend" title="永久链接至目标">¶</a></dt>
+<dd><p>The function for load backend parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork.load_learner">
+<span class="sig-name descname"><span class="pre">load_learner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learner</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork.load_learner"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork.load_learner" title="永久链接至目标">¶</a></dt>
+<dd><p>The function for load learners’ parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork.load_monitor">
+<span class="sig-name descname"><span class="pre">load_monitor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monitor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork.load_monitor"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork.load_monitor" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Library.Network_loader.ReloadedNetwork.trans_para">
+<span class="sig-name descname"><span class="pre">trans_para</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">para</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_loader.html#ReloadedNetwork.trans_para"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_loader.ReloadedNetwork.trans_para" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Library.Network_saver">
+<span id="spaic-library-network-saver-module"></span><h2>spaic.Library.Network_saver module<a class="headerlink" href="#module-spaic.Library.Network_saver" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/17
+&#64;project: SPAIC
+&#64;filename: Network_saver
+&#64;author: Mengxiao Zhang
+&#64;contact: <a class="reference external" href="mailto:mxzhangice&#37;&#52;&#48;gmail&#46;com">mxzhangice<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+对既定格式网络的存储</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_saver.network_save">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_saver.</span></span><span class="sig-name descname"><span class="pre">network_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Net</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="spaic.Network.html#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><span class="pre">spaic.Network.Assembly.Assembly</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trans_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'json'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_saver.html#network_save"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_saver.network_save" title="永久链接至目标">¶</a></dt>
+<dd><p>Save network to files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Net</strong> (<a class="reference internal" href="spaic.Network.html#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><em>Assembly</em></a>) – The network needed to be saved.</p></li>
+<li><p><strong>filename</strong> (<em>Str</em>) – The filename of the file that save target network.</p></li>
+<li><p><strong>trans_format</strong> (<em>str</em>) – The format of file, could be ‘json’ or ‘yaml’</p></li>
+<li><p><strong>combine</strong> (<em>Boolen</em>) – Whether combine weight and structure of the Network into on file, False by default.</p></li>
+<li><p><strong>save</strong> (<em>Boolen</em>) – Whether need to save the structure.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The filename of the file we save network, since it</dt><dd><p>will give an auto name if no name given.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>filename(str)</p>
+</dd>
+</dl>
+<p class="rubric">实际案例</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">save_file</span> <span class="o">=</span> <span class="n">network_save</span><span class="p">(</span><span class="n">Net</span><span class="p">,</span> <span class="s2">&quot;TestNetwork&quot;</span><span class="p">,</span> <span class="n">trans_format</span><span class="o">=</span><span class="s1">&#39;yaml&#39;</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">(&quot;TestNetwork&quot;, a dict of the structure of the network)</span>
+<span class="go">or</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">save_file</span> <span class="o">=</span> <span class="n">network_save</span><span class="p">(</span><span class="n">Net</span><span class="p">,</span> <span class="s2">&quot;TestNetwork&quot;</span><span class="p">,</span> <span class="n">trans_format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">a dict of the structure of the network</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_saver.trans_net">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_saver.</span></span><span class="sig-name descname"><span class="pre">trans_net</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Net</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="spaic.Network.html#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><span class="pre">spaic.Network.Assembly.Assembly</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_weight</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_saver.html#trans_net"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_saver.trans_net" title="永久链接至目标">¶</a></dt>
+<dd><p>Transform the structure of the network for saving.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Net</strong> (<a class="reference internal" href="spaic.Network.html#spaic.Network.Assembly.Assembly" title="spaic.Network.Assembly.Assembly"><em>Assembly</em></a>) – target network.</p></li>
+<li><p><strong>path</strong> (<em>string</em>) – Target path for saving net data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>the result diction of the whole Network.</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>result_dict(dictionary)</p>
+</dd>
+</dl>
+<p class="rubric">示例</p>
+<p>yaml_net = trans_net(Net)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_saver.trans_node">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_saver.</span></span><span class="sig-name descname"><span class="pre">trans_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="spaic.Neuron.html#spaic.Neuron.Node.Node" title="spaic.Neuron.Node.Node"><span class="pre">spaic.Neuron.Node.Node</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_saver.html#trans_node"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_saver.trans_node" title="永久链接至目标">¶</a></dt>
+<dd><dl class="simple">
+<dt>Transform the structure of the Node layer for saving and extract the</dt><dd><p>parameters.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>node</strong> (<a class="reference internal" href="spaic.Neuron.html#spaic.Neuron.Node.Node" title="spaic.Neuron.Node.Node"><em>Node</em></a>) – target node layer, like input layer and output layer</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>the result diction with necessary</dt><dd><p>parameters of the layer.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>result_dict (dictionary)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_saver.trans_layer">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_saver.</span></span><span class="sig-name descname"><span class="pre">trans_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="spaic.Neuron.html#spaic.Neuron.Neuron.NeuronGroup" title="spaic.Neuron.Neuron.NeuronGroup"><span class="pre">spaic.Neuron.Neuron.NeuronGroup</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_saver.html#trans_layer"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_saver.trans_layer" title="永久链接至目标">¶</a></dt>
+<dd><dl class="simple">
+<dt>Transform the structure of the layer for saving and extract the</dt><dd><p>parameters.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>layer</strong> (<a class="reference internal" href="spaic.Neuron.html#spaic.Neuron.Neuron.NeuronGroup" title="spaic.Neuron.Neuron.NeuronGroup"><em>NeuronGroup</em></a>) – target layer</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>the result diction with necessary</dt><dd><p>parameters of the layer.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>result_dict (dictionary)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_saver.trans_projection">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_saver.</span></span><span class="sig-name descname"><span class="pre">trans_projection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">projection</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">spaic.Network.Topology.Projection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_saver.html#trans_projection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_saver.trans_projection" title="永久链接至目标">¶</a></dt>
+<dd><dl class="simple">
+<dt>Transform the structure of the projection for saving and extract the</dt><dd><p>parameters.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>projection</strong> (<em>Projection</em>) – target projection</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>the result diction with necessary</dt><dd><p>parameters of the projection.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>result_dict (dictionary)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_saver.trans_connection">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_saver.</span></span><span class="sig-name descname"><span class="pre">trans_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connection</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">spaic.Network.Topology.Connection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combine</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_weight</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_saver.html#trans_connection"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_saver.trans_connection" title="永久链接至目标">¶</a></dt>
+<dd><dl class="simple">
+<dt>Transform the structure of the connection for saving and extract the</dt><dd><p>parameters.</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connection</strong> (<em>Connection</em>) – target connection</p></li>
+<li><p><strong>combine</strong> (<em>bool</em>) – whether combine weights.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>the result diction with necessary</dt><dd><p>parameters of the connection.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>result_dict (dictionary)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_saver.trans_backend">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_saver.</span></span><span class="sig-name descname"><span class="pre">trans_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="spaic.Simulation.html#spaic.Backend.Backend.Backend" title="spaic.Backend.Backend.Backend"><span class="pre">spaic.Backend.Backend.Backend</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_saver.html#trans_backend"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_saver.trans_backend" title="永久链接至目标">¶</a></dt>
+<dd><p>Transform the data of backend for saving.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>backend</strong> – target backend.</p></li>
+<li><p><strong>path</strong> (<em>string</em>) – Target path for saving net data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>Contain the parameters of backend to be saved.</p>
+</dd>
+<dt class="field-odd">返回类型</dt>
+<dd class="field-odd"><p>result(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_saver.trans_learner">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_saver.</span></span><span class="sig-name descname"><span class="pre">trans_learner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">learner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learn_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_saver.html#trans_learner"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_saver.trans_learner" title="永久链接至目标">¶</a></dt>
+<dd><p>Transform learner parameters to dict.
+:param learner: Target learner with needed parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>Contain the parameters of learner to be saved.</p>
+</dd>
+<dt class="field-even">返回类型</dt>
+<dd class="field-even"><p>result(dict)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_saver.trans_monitor">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_saver.</span></span><span class="sig-name descname"><span class="pre">trans_monitor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monitor</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="spaic.Monitor.html#spaic.Monitor.Monitor.Monitor" title="spaic.Monitor.Monitor.Monitor"><span class="pre">spaic.Monitor.Monitor.Monitor</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_saver.html#trans_monitor"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_saver.trans_monitor" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="spaic.Library.Network_saver.check_var_type">
+<span class="sig-prename descclassname"><span class="pre">spaic.Library.Network_saver.</span></span><span class="sig-name descname"><span class="pre">check_var_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Library/Network_saver.html#check_var_type"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.Network_saver.check_var_type" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Library.STCA_music_network">
+<span id="spaic-library-stca-music-network-module"></span><h2>spaic.Library.STCA_music_network module<a class="headerlink" href="#module-spaic.Library.STCA_music_network" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/12
+&#64;project: SPAIC
+&#64;filename: STCA_music_network
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+建立网络的例子</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Library.STCA_music_network.STCANet">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Library.STCA_music_network.</span></span><span class="sig-name descname"><span class="pre">STCANet</span></span><a class="reference internal" href="_modules/spaic/Library/STCA_music_network.html#STCANet"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Library.STCA_music_network.STCANet" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="spaic.Network.html#spaic.Network.Network.Network" title="spaic.Network.Network.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.Network.Network</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Library">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spaic.Library" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/11
+&#64;project: SPAIC
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:
+文件夹内包含所有预定义的网络结构和模型
+Model Zoo</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

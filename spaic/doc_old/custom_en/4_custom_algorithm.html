@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>算法自定义 &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Monitor" href="../monitor_en.html" />
+    <link rel="prev" title="突触、连接模型自定义" href="3_custom_connection.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../save_model_en.html">save or load model</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="0_index.html">Custom</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_custom_encoding.html">编解码模型自定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_custom_neuron.html">神经元模型自定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_custom_connection.html">突触、连接模型自定义</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">算法自定义</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="0_index.html">Custom</a> &raquo;</li>
+        
+      <li>算法自定义</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/custom_en/4_custom_algorithm.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="my-customalgorithm">
+<span id="id1"></span><h1>算法自定义<a class="headerlink" href="#my-customalgorithm" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>替代梯度算法<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>替代梯度算法最重要的过程即为使用用户自己的梯度函数替代计算图中原有的梯度函数，此处我们以STCA算法与STBP算法的差别举例。两个不同算法，在平台上以Pytorch后端进行实现时，仅有的差别在于，</p>
+<p>STCA算法 <a class="footnote-reference brackets" href="#f1" id="id3">1</a> 中，梯度函数为:
+<img class="math" src="../_images/math/4d020e91f8ee22626fdca157c3c44d8571d1da9a.png" alt="h(V)=\frac{1}{\alpha}sign(|V-\theta|&lt;\alpha)"/></p>
+<p>而STBP算法 <a class="footnote-reference brackets" href="#f2" id="id4">2</a> 中我们选取的梯度函数为:
+<img class="math" src="../_images/math/f5a55d395f442f48694b772a38ac6c0de9b1c6bd.png" alt="h_4(V)=\frac{1}{\sqrt{2\pi a_4}} e^{-\frac{(V-V_th)^2)}{2a_4}}"/></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">backward</span><span class="p">(</span>
+        <span class="n">ctx</span><span class="p">,</span>
+        <span class="n">grad_output</span>
+    <span class="p">):</span>
+    <span class="nb">input</span><span class="p">,</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">saved_tensors</span>
+    <span class="n">grad_input</span> <span class="o">=</span> <span class="n">grad_output</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">input</span> <span class="o">-</span> <span class="n">ctx</span><span class="o">.</span><span class="n">thresh</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">ctx</span><span class="o">.</span><span class="n">alpha</span>  <span class="c1"># 根据STCA，采用了sign函数</span>
+    <span class="c1"># temp = torch.exp(-(input - ctx.thresh) ** 2 / (2 * ctx.alpha)) \  # 根据STBP所用反传函数</span>
+    <span class="c1">#                  / (2 * math.pi * ctx.alpha)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">grad_input</span> <span class="o">*</span> <span class="n">temp</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>突触可塑性算法<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>在我们平台上实现了两种STDP学习算法，一种是在线STDP学习算法 <a class="footnote-reference brackets" href="#f3" id="id6">3</a> ，一种是传统STDP学习算法 <a class="footnote-reference brackets" href="#f4" id="id7">4</a> 。</p>
+<div class="section" id="stdp">
+<h3>在线STDP学习算法<a class="headerlink" href="#stdp" title="永久链接至标题">¶</a></h3>
+<p>该算法的权重更新公式为 <a class="footnote-reference brackets" href="#f2" id="id8">2</a> ：
+<img class="math" src="../_images/math/c7e5cc11dacf11e64505859e19243b4474aad223.png" alt="dw = Apost * (output_spike * input_trace) – Apre * (output_trace * input_spike)"/>
+<img class="math" src="../_images/math/8206cff868ee40992e88cbcd80384bb585c816ca.png" alt="weight = weight + dw"/>
+权重归一化公式：
+<img class="math" src="../_images/math/1c4732d4fab12d3ad0ea7f1766f0f20e2c5c363d.png" alt="weight = self.w_norm * weight/sum(torch.abs(weight))"/></p>
+<p>首先从 <code class="code docutils literal notranslate"><span class="pre">trainable_connection</span></code> 中获取该学习算法训练的突触前神经元组以及突触后神经元组</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">preg</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">pre_assembly</span>
+<span class="n">postg</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">post_assembly</span>
+</pre></div>
+</div>
+<p>之后获取学习算法需要的参数在后端的名称，例如：输入脉冲，输出脉冲，连接权重引用了 <code class="code docutils literal notranslate"><span class="pre">Connection</span></code> 中的获取名字的函数</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pre_name</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_input_name</span><span class="p">(</span><span class="n">preg</span><span class="p">,</span> <span class="n">postg</span><span class="p">)</span>
+<span class="n">post_name</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_target_output_name</span><span class="p">(</span><span class="n">postg</span><span class="p">)</span>
+<span class="n">weight_name</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_weight_name</span><span class="p">(</span><span class="n">preg</span><span class="p">,</span> <span class="n">postg</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>再将算法需要用到的参数添加到后端</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="n">input_trace_name</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">pre_name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="n">output_trace_name</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">post_name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_variable</span><span class="p">(</span><span class="n">dw_name</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">weight_name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>之后将运算公式添加进后端</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#dw = Apost * (output_spike * input_trace) – Apre * (output_trace * input_spike)</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;input_trace_s&#39;</span><span class="p">,</span> <span class="s1">&#39;var_mult&#39;</span><span class="p">,</span> <span class="n">input_trace_name</span><span class="p">,</span> <span class="s1">&#39;trace_decay&#39;</span><span class="p">])</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;input_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;minus&#39;</span><span class="p">,</span> <span class="s1">&#39;spike&#39;</span><span class="p">,</span> <span class="n">pre_name</span><span class="p">])</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">input_trace_name</span><span class="p">,</span> <span class="s1">&#39;var_linear&#39;</span><span class="p">,</span> <span class="s1">&#39;input_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;input_trace_s&#39;</span><span class="p">,</span> <span class="n">pre_name</span><span class="p">])</span>
+
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;output_trace_s&#39;</span><span class="p">,</span> <span class="s1">&#39;var_mult&#39;</span><span class="p">,</span> <span class="n">output_trace_name</span><span class="p">,</span> <span class="s1">&#39;trace_decay&#39;</span><span class="p">])</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;output_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;minus&#39;</span><span class="p">,</span> <span class="s1">&#39;spike&#39;</span><span class="p">,</span> <span class="n">post_name</span><span class="p">])</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">output_trace_name</span><span class="p">,</span> <span class="s1">&#39;var_linear&#39;</span><span class="p">,</span> <span class="s1">&#39;output_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;output_trace_s&#39;</span><span class="p">,</span> <span class="n">post_name</span><span class="p">])</span>
+
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;pre_post_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;mat_mult_pre&#39;</span><span class="p">,</span> <span class="n">post_name</span><span class="p">,</span> <span class="n">input_trace_name</span><span class="o">+</span><span class="s1">&#39;[updated]&#39;</span><span class="p">])</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;pre_post&#39;</span><span class="p">,</span> <span class="s1">&#39;var_mult&#39;</span><span class="p">,</span> <span class="s1">&#39;Apost&#39;</span><span class="p">,</span> <span class="s1">&#39;pre_post_temp&#39;</span><span class="p">])</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;post_pre_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;mat_mult_pre&#39;</span><span class="p">,</span> <span class="n">output_trace_name</span><span class="o">+</span><span class="s1">&#39;[updated]&#39;</span><span class="p">,</span> <span class="n">pre_name</span><span class="p">])</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;post_pre&#39;</span><span class="p">,</span> <span class="s1">&#39;var_mult&#39;</span><span class="p">,</span> <span class="s1">&#39;Apre&#39;</span><span class="p">,</span> <span class="s1">&#39;post_pre_temp&#39;</span><span class="p">])</span>
+<span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">dw_name</span><span class="p">,</span> <span class="s1">&#39;minus&#39;</span><span class="p">,</span> <span class="s1">&#39;pre_post&#39;</span><span class="p">,</span> <span class="s1">&#39;post_pre&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>之后将更新权重的函数添加进后端</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span><span class="o">.</span><span class="n">register_standalone</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nearest_online_stdp_weightupdate</span><span class="p">,</span> <span class="p">[</span><span class="n">dw_name</span><span class="p">,</span> <span class="n">weight_name</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>权重更新代码：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+    <span class="n">weight</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">dw</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>权重归一化代码：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weight</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_norm</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">weight</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
+<span class="n">weight</span><span class="o">.</span><span class="n">clamp_</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dd><p>Pengjie Gu et al. “STCA: Spatio-Temporal Credit Assignment with Delayed Feedback in Deep SpikingNeural Networks.” In:Proceedings of the Twenty-Eighth International Joint Conference on Artificial Intelligence, IJCAI-19. International Joint Conferences on Artificial Intelligence Organization, July 2019,pp. 1366–1372. <a class="reference external" href="https://doi.org/10.24963/ijcai.2019/189">doi:10.24963/ijcai.2019/189.</a></p>
+</dd>
+<dt class="label" id="f2"><span class="brackets">2</span><span class="fn-backref">(<a href="#id4">1</a>,<a href="#id8">2</a>)</span></dt>
+<dd><p>Yujie Wu et al. “Spatio-Temporal Backpropagation for Training High-Performance Spiking Neural Networks” Front. Neurosci., 23 May 2018 | <a href="#id9"><span class="problematic" id="id10">`doi:10.3389/fnins.2018.00331&lt;https://doi.org/10.3389/fnins.2018.00331&gt;`_</span></a></p>
+</dd>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id6">3</a></span></dt>
+<dd><p>Sjöström J, Gerstner W. Spike-timing dependent plasticity[J]. Spike-timing dependent plasticity, 2010, 35(0): 0-0._</p>
+</dd>
+<dt class="label" id="f4"><span class="brackets"><a class="fn-backref" href="#id7">4</a></span></dt>
+<dd><p>Gerstner W, Kempter R, van Hemmen JL, Wagner H. A neuronal learning rule for sub-millisecond temporal coding. Nature. 1996 Sep 5;383(6595):76-81. <a href="#id11"><span class="problematic" id="id12">`doi: 10.1038/383076a0&lt;https://doi.org/10.1038/383076a0&gt;`_</span></a> . PMID: 8779718.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../monitor_en.html" class="btn btn-neutral float-right" title="Monitor" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="3_custom_connection.html" class="btn btn-neutral float-left" title="突触、连接模型自定义" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,900 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Neuron.Node &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.Neuron.Node</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.Neuron.Node 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on 2020/8/11</span>
+<span class="sd">@project: SPAIC</span>
+<span class="sd">@filename: Node</span>
+<span class="sd">@author: Hong Chaofei</span>
+<span class="sd">@contact: hongchf@gmail.com</span>
+
+<span class="sd">@description:</span>
+<span class="sd">定义神经网络的输入输出接口</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">..Network.Assembly</span> <span class="kn">import</span> <span class="n">Assembly</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="Node"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Node">[文档]</a><span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="n">Assembly</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Base class for input encoder and output decoders.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">_class_label</span> <span class="o">=</span> <span class="s1">&#39;&lt;nod&gt;&#39;</span>
+    <span class="n">_is_terminal</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                 <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Node</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dt</span> <span class="o">=</span> <span class="n">dt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coding_var_name</span> <span class="o">=</span> <span class="n">coding_var_name</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">position</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">position</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">num</span><span class="p">,</span> <span class="s2">&quot; Neuron_position not equal to neuron number&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
+
+        <span class="k">if</span> <span class="n">coding_method</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Please specify the coding method such as poisson or spike_counts&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coding_method</span> <span class="o">=</span> <span class="n">coding_method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>  <span class="c1"># The name of coding method</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">coding_var_name</span> <span class="o">=</span> <span class="n">coding_var_name</span>
+
+        <span class="k">if</span> <span class="n">coding_method</span> <span class="o">==</span> <span class="s1">&#39;null&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_encoded</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_encoded</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;is_encoded&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># 单神经元多脉冲的语音数据集的shape包含脉冲时间以及发放神经元标签，所以不能通过np.prod(shape)获取num，最好还是外部输入num</span>
+        <span class="k">assert</span> <span class="n">num</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">shape</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;One of the shape and number must not be None&quot;</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">coding_method</span> <span class="o">==</span> <span class="s1">&#39;mstb&#39;</span> <span class="ow">or</span> <span class="n">coding_method</span> <span class="o">==</span> <span class="s1">&#39;sstb&#39;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Please set the number of node&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">num</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span>  <span class="c1"># 统一数据格式为Python内置格式</span>
+
+        <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_encoded</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">coding_method</span> <span class="o">==</span> <span class="s1">&#39;mstb&#39;</span> <span class="ow">or</span> <span class="n">coding_method</span> <span class="o">==</span> <span class="s1">&#39;sstb&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_encoded</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">shape</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">shape</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">node_type</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">node_type</span>
+
+
+
+        <span class="c1"># Coding parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coding_param</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dec_target</span> <span class="o">=</span> <span class="n">dec_target</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="c1">#TODO:现在 Encoder, Decoder, Generator功能拆开了，是不是应该把这段放到Decoder类里了, 上边的coding_method也是同理</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_target</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># The size of predict, reward and action is equal to batch_size</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">predict</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,))</span>
+            <span class="c1"># self.reward = np.zeros((1,))</span>
+            <span class="c1"># self.action = np.zeros((1,))</span>
+
+        <span class="c1"># Parameters of initial operation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_var_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Node.init_state"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Node.init_state">[文档]</a>    <span class="k">def</span> <span class="nf">init_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">dt</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dt</span>
+
+    <span class="nd">@dt</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">dt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dt</span> <span class="o">=</span> <span class="n">dt</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">runtime</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_time</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">time_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+
+
+    <span class="nd">@time</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_time</span> <span class="o">=</span> <span class="n">time</span>
+
+<div class="viewcode-block" id="Node.get_var_names"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Node.get_var_names">[文档]</a>    <span class="k">def</span> <span class="nf">get_var_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_var_names</span></div>
+
+<div class="viewcode-block" id="Node.register"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Node.register">[文档]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">coding_class</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Register a coding class. Registered encoding or decoding classes can be referred to</span>
+<span class="sd">        # via their name.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            A short name for the state updater (e.g. &#39;poisson&#39;, &#39;spike_counts&#39;)</span>
+<span class="sd">        coding_class :</span>
+<span class="sd">            The subclass of coding object, e.g. an &#39;PoissonEncoding&#39;, &#39;Spike_Counts&#39;.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Node.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Node.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            source (): It is input spike trains for encoding class and output spike trains for decoding class.</span>
+<span class="sd">            target (): It is None  for encodoing class and labels for decoding class.</span>
+<span class="sd">            device (): CPU or CUDA, this parameter is taken from backend</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Node.numpy_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Node.numpy_coding">[文档]</a>    <span class="k">def</span> <span class="nf">numpy_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Node.tensorflow_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Node.tensorflow_coding">[文档]</a>    <span class="k">def</span> <span class="nf">tensorflow_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="Node.build"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Node.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Encoder</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Generator</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Reward</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">data</span>
+                <span class="n">batch_size</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">data</span>
+                <span class="n">batch_size</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;__iter__&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">data</span><span class="p">])</span>
+                <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">set_batch_size</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Decoder</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span></div>
+
+
+<span class="c1"># ======================================================================================================================</span>
+<span class="c1"># Encoders</span>
+<span class="c1"># ======================================================================================================================</span>
+<div class="viewcode-block" id="Encoder"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Encoder">[文档]</a><span class="k">class</span> <span class="nc">Encoder</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Five encoding method are provided, as shown below (key: class):</span>
+<span class="sd">        1. &#39;sstb&#39;: SigleSpikeToBinary,</span>
+<span class="sd">        2. &#39;mstb&#39;: MultipleSpikeToBinary</span>
+<span class="sd">        3. &#39;poisson&#39;: PoissonEncoding</span>
+<span class="sd">        4. &#39;latency&#39;: Latency</span>
+<span class="sd">        5. &#39;relative_latency&#39;: Relative_Latency</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">_coding_subclasses</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                 <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Encoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">coding_method</span> <span class="o">=</span> <span class="n">coding_method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="c1"># if coding_method == &#39;null&#39;:</span>
+        <span class="c1">#     self.is_encoded = True</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     self.is_encoded = kwargs.get(&#39;is_encoded&#39;, False)</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">coding_method</span> <span class="o">=</span> <span class="n">coding_method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">Encoder</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">coding_method</span> <span class="ow">in</span> <span class="n">Encoder</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">Encoder</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">[</span><span class="n">coding_method</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No coding method: </span><span class="si">%s</span><span class="s2"> in Encoding classes&quot;</span> <span class="o">%</span> <span class="n">coding_method</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Encoder.register"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Encoder.register">[文档]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">coding_class</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Register a coding class. Registered encoding or decoding classes can be referred to</span>
+<span class="sd">        # via their name.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            A short name for the state updater (e.g. &#39;poisson&#39;, &#39;spike_counts&#39;)</span>
+<span class="sd">        coding_class :</span>
+<span class="sd">            The subclass of coding object, e.g. an &#39;PoissonEncoding&#39;, &#39;Spike_Counts&#39;.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># only deal with lower case names</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">Encoder</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s1">&#39;A coding class with the name &quot;</span><span class="si">%s</span><span class="s1">&quot; has already been registered&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">coding_class</span><span class="p">,</span> <span class="n">Encoder</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;Given class of type </span><span class="si">%s</span><span class="s1"> does not seem to be a valid encoding class.&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">coding_class</span><span class="p">))))</span>
+
+        <span class="n">Encoder</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">coding_class</span></div>
+
+<div class="viewcode-block" id="Encoder.init_state"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Encoder.init_state">[文档]</a>    <span class="k">def</span> <span class="nf">init_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+    <span class="c1"># initial operation: encoding input features into spike patterns</span>
+<div class="viewcode-block" id="Encoder.get_input"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Encoder.get_input">[文档]</a>    <span class="k">def</span> <span class="nf">get_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">==</span> <span class="s1">&#39;pytorch&#39;</span><span class="p">:</span>
+            <span class="n">spikes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">spikes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numpy_coding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_spikes</span> <span class="o">=</span> <span class="n">spikes</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_spikes</span></div>
+
+    <span class="c1"># stand alone operation: get spike pattern in every time step</span>
+<div class="viewcode-block" id="Encoder.next_stage"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Encoder.next_stage">[文档]</a>    <span class="k">def</span> <span class="nf">next_stage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># For hardware applications, call next_stage at each time step to get spike data of the current time step.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_input</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_spikes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Encoder.reset"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Encoder.reset">[文档]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Called at the start of each epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_state</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Encoder.build"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Encoder.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">backend_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">device</span>
+
+        <span class="c1"># if self.dt is None:</span>
+        <span class="c1">#     self.dt = backend.dt</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">set_batch_size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+
+        <span class="c1"># if self.sim_name == &#39;pytorch&#39;:</span>
+        <span class="c1">#     spikes = self.torch_coding(self.source, self.device)  # (time_step, batch_size, neuron_shape)</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     spikes = self.numpy_coding(self.source, self.device)</span>
+        <span class="c1"># self.all_spikes = spikes</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_encoded</span><span class="p">:</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span>
+        <span class="c1"># self.shape = spikes[0].shape</span>
+
+        <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">coding_var_name</span><span class="o">+</span><span class="s1">&#39;}&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">backend</span><span class="o">.</span><span class="n">register_initial</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_state</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">backend</span><span class="o">.</span><span class="n">register_standalone</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_stage</span><span class="p">,</span> <span class="p">[])</span></div></div>
+
+
+<span class="c1"># ======================================================================================================================</span>
+<span class="c1"># Decoders</span>
+<span class="c1"># ======================================================================================================================</span>
+
+<div class="viewcode-block" id="Decoder"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Decoder">[文档]</a><span class="k">class</span> <span class="nc">Decoder</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Five decoding method are provided, as shown below (key: class):</span>
+<span class="sd">        1. &#39;spike_counts&#39;: Spike_Counts</span>
+<span class="sd">        2. &#39;first_spike&#39;: First_Spike</span>
+<span class="sd">        3. &#39;time_spike_counts&#39;: TimeSpike_Counts</span>
+<span class="sd">        4. &#39;time_softmax&#39;: Time_Softmax</span>
+<span class="sd">        5. &#39;final_step_voltage&#39;: Final_Step_Voltage</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">_coding_subclasses</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                 <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Decoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">num</span> <span class="o">==</span> <span class="n">dec_target</span><span class="o">.</span><span class="n">num</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;The num of Decoder is not consistent with neuron_number of NeuronGroup&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">coding_method</span> <span class="o">=</span> <span class="n">coding_method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">Decoder</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">coding_method</span> <span class="ow">in</span> <span class="n">Decoder</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">Decoder</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">[</span><span class="n">coding_method</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No coding method: </span><span class="si">%s</span><span class="s2"> in Decoding classes&quot;</span> <span class="o">%</span> <span class="n">coding_method</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Decoder.register"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Decoder.register">[文档]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">coding_class</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Register a coding class. Registered encoding or decoding classes can be referred to</span>
+<span class="sd">        # via their name.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            A short name for the state updater (e.g. &#39;poisson&#39;, &#39;spike_counts&#39;)</span>
+<span class="sd">        coding_class :</span>
+<span class="sd">            The subclass of coding object, e.g. an &#39;PoissonEncoding&#39;, &#39;Spike_Counts&#39;.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># only deal with lower case names</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">Decoder</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s1">&#39;A coding class with the name &quot;</span><span class="si">%s</span><span class="s1">&quot; has already been registered&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">coding_class</span><span class="p">,</span> <span class="n">Decoder</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;Given class of type </span><span class="si">%s</span><span class="s1"> does not seem to be a valid decoding class.&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">coding_class</span><span class="p">))))</span>
+
+        <span class="n">Decoder</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">coding_class</span></div>
+
+<div class="viewcode-block" id="Decoder.init_state"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Decoder.init_state">[文档]</a>    <span class="k">def</span> <span class="nf">init_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+    <span class="c1"># stand alone operation: decoding spike patterns. Predict can be predict labels or RL action</span>
+<div class="viewcode-block" id="Decoder.get_output"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Decoder.get_output">[文档]</a>    <span class="k">def</span> <span class="nf">get_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">dec_shape</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">]</span> <span class="o">+</span> <span class="n">shape</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;Tensor&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">records</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">dec_shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">output</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">records</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">dec_shape</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">output</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">==</span> <span class="s1">&#39;pytorch&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">predict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">records</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">predict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numpy_coding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">records</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="Decoder.reset"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Decoder.reset">[文档]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Called at the start of each epoch</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_state</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Decoder.build"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Decoder.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">backend_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">device</span>
+        <span class="c1"># if self.dt is None:</span>
+        <span class="c1">#     self.dt = backend.dt</span>
+
+        <span class="n">output_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_target</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">coding_var_name</span><span class="o">+</span><span class="s1">&#39;}&#39;</span>
+        <span class="n">backend</span><span class="o">.</span><span class="n">register_initial</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_state</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">backend</span><span class="o">.</span><span class="n">register_standalone</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_output</span><span class="p">,</span> <span class="p">[</span><span class="n">output_name</span><span class="p">])</span></div></div>
+
+<span class="c1"># ======================================================================================================================</span>
+<span class="c1"># Rewards</span>
+<span class="c1"># ======================================================================================================================</span>
+
+<div class="viewcode-block" id="Reward"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Reward">[文档]</a><span class="k">class</span> <span class="nc">Reward</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Three reward method are provided, as shown below (key: class):</span>
+<span class="sd">        1. &#39;global_reward&#39;, Global_Reward</span>
+<span class="sd">        2. &#39;xor_reward&#39;: XOR_Reward</span>
+<span class="sd">        3. &#39;da_reward&#39;: DA_Reward</span>
+<span class="sd">        4. &#39;environment_reward&#39;: Environment_Reward</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">_coding_subclasses</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                 <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Reward</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dec_sample_step</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dec_sample_step&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reward_shape</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;reward_shape&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">coding_method</span> <span class="o">=</span> <span class="n">coding_method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">Reward</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">coding_method</span> <span class="ow">in</span> <span class="n">Reward</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">Reward</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">[</span><span class="n">coding_method</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No reward method: </span><span class="si">%s</span><span class="s2"> in Reward classes&quot;</span> <span class="o">%</span> <span class="n">coding_method</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Reward.register"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Reward.register">[文档]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">coding_class</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Register a Reward class. Registered reward classes can be referred to</span>
+<span class="sd">        # via their name.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            A short name for the state updater (e.g. &#39;step_reward&#39;)</span>
+<span class="sd">        coding_class :</span>
+<span class="sd">            The subclass of coding object, e.g. an &#39;Step_Reward&#39;.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># only deal with lower case names</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">Reward</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s1">&#39;A reward class with the name &quot;</span><span class="si">%s</span><span class="s1">&quot; has already been registered&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">coding_class</span><span class="p">,</span> <span class="n">Reward</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;Given class of type </span><span class="si">%s</span><span class="s1"> does not seem to be a valid reward class.&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">coding_class</span><span class="p">))))</span>
+
+        <span class="n">Reward</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">coding_class</span></div>
+
+<div class="viewcode-block" id="Reward.init_state"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Reward.init_state">[文档]</a>    <span class="k">def</span> <span class="nf">init_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+    <span class="c1"># stand alone operation: get reward from output activities</span>
+<div class="viewcode-block" id="Reward.get_reward"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Reward.get_reward">[文档]</a>    <span class="k">def</span> <span class="nf">get_reward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_sample_step</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">dec_shape</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dec_sample_step</span><span class="p">]</span> <span class="o">+</span> <span class="n">shape</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;Tensor&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">records</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">dec_shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">records</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">dec_shape</span><span class="p">)</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reward_shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">output</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_sample_step</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">==</span> <span class="s1">&#39;pytorch&#39;</span><span class="p">:</span>
+                <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">records</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">reward</span> <span class="o">=</span> <span class="n">reward</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numpy_coding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">records</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">reward</span></div>
+
+<div class="viewcode-block" id="Reward.build"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Reward.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">backend_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">device</span>
+        <span class="c1"># if self.dt is None:</span>
+        <span class="c1">#     self.dt = backend.dt</span>
+
+        <span class="n">output_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_target</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">coding_var_name</span><span class="o">+</span><span class="s1">&#39;}&#39;</span>
+        <span class="n">backend</span><span class="o">.</span><span class="n">register_initial</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_state</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">reward_name</span> <span class="o">=</span> <span class="s1">&#39;Output_Reward&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">reward_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reward_shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span> <span class="c1"># shape还是要让具体的子类定义吧</span>
+
+        <span class="n">backend</span><span class="o">.</span><span class="n">register_standalone</span><span class="p">(</span><span class="n">reward_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_reward</span><span class="p">,</span> <span class="p">[</span><span class="n">output_name</span><span class="p">])</span></div></div>
+
+
+<div class="viewcode-block" id="Generator"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Generator">[文档]</a><span class="k">class</span> <span class="nc">Generator</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Two generator method are provided, as shown below (key: class):</span>
+<span class="sd">        1. &#39;poisson_generator&#39;: Poisson_Generator,</span>
+<span class="sd">        2. &#39;cosine_generator&#39;: Cosine_Generator</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">_coding_subclasses</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">def</span>  <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;cc_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                  <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gen_first</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gen_first&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="c1">#only generate data for the first time, then use this date for later usage</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_spikes</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build_level</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;cc_generator&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">Generator</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">coding_method</span> <span class="ow">in</span> <span class="n">Generator</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">Generator</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">[</span><span class="n">coding_method</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No coding method: </span><span class="si">%s</span><span class="s2"> in Generator classes&quot;</span> <span class="o">%</span> <span class="n">coding_method</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Generator.register"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Generator.register">[文档]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">coding_class</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Register a coding class. Registered encoding or decoding classes can be referred to</span>
+<span class="sd">        # via their name.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            A short name for the state updater (e.g. &#39;poisson&#39;, &#39;spike_counts&#39;)</span>
+<span class="sd">        coding_class :</span>
+<span class="sd">            The subclass of coding object, e.g. an &#39;PoissonEncoding&#39;, &#39;Spike_Counts&#39;.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># only deal with lower case names</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">Generator</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s1">&#39;A coding class with the name &quot;</span><span class="si">%s</span><span class="s1">&quot; has already been registered&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">coding_class</span><span class="p">,</span> <span class="n">Generator</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;Given class of type </span><span class="si">%s</span><span class="s1"> does not seem to be a valid generator class.&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">coding_class</span><span class="p">))))</span>
+
+        <span class="n">Generator</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">coding_class</span></div>
+
+<div class="viewcode-block" id="Generator.init_state"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Generator.init_state">[文档]</a>    <span class="k">def</span> <span class="nf">init_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Generator.torch_coding"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Generator.torch_coding">[文档]</a>    <span class="k">def</span> <span class="nf">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            source (): It is input spike trains for encoding class and output spike trains for decoding class.</span>
+<span class="sd">            device (): CPU or CUDA, this parameter is taken from backend</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="c1"># initial operation: encoding input features into spike patterns</span>
+<div class="viewcode-block" id="Generator.get_input"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Generator.get_input">[文档]</a>    <span class="k">def</span> <span class="nf">get_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen_first</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_spikes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_first</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">==</span> <span class="s1">&#39;pytorch&#39;</span><span class="p">:</span>
+                <span class="n">spikes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">spikes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numpy_coding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">all_spikes</span> <span class="o">=</span> <span class="n">spikes</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_spikes</span></div>
+
+    <span class="c1"># stand alone operation: get spike pattern in every time step</span>
+<div class="viewcode-block" id="Generator.next_stage"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Generator.next_stage">[文档]</a>    <span class="k">def</span> <span class="nf">next_stage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_input</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">new_input</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_spikes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Generator.build"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Generator.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">backend_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">device</span>
+        <span class="c1"># if self.dt is None:</span>
+        <span class="c1">#     self.dt = backend.dt</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">==</span> <span class="s1">&#39;pytorch&#39;</span><span class="p">:</span>
+            <span class="n">singlestep_spikes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">singlestep_spikes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">coding_var_name</span><span class="o">+</span><span class="s1">&#39;}&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">singlestep_spikes</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_target</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">coding_var_name</span><span class="o">+</span><span class="s1">&#39;}&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_var_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">backend</span><span class="o">.</span><span class="n">register_initial</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_state</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">backend</span><span class="o">.</span><span class="n">register_standalone</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_stage</span><span class="p">,</span> <span class="p">[])</span></div></div>
+
+
+<span class="c1"># ======================================================================================================================</span>
+<span class="c1"># Actions</span>
+<span class="c1"># ======================================================================================================================</span>
+
+<div class="viewcode-block" id="Action"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Action">[文档]</a><span class="k">class</span> <span class="nc">Action</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Six action method are provided, as shown below (key: class):</span>
+<span class="sd">        1. &#39;pop_rate_action&#39;: PopulationRate_Action</span>
+<span class="sd">        2. &#39;softmax_action&#39;: Softmax_Action</span>
+<span class="sd">        3. &#39;highest_spikes_action&#39;: Highest_Spikes_Action</span>
+<span class="sd">        4. &#39;highest_voltage_action&#39;, Highest_Voltage_Action</span>
+<span class="sd">        5. &#39;first_spike_action&#39;: First_Spike_Action</span>
+<span class="sd">        6. &#39;random_action&#39;: Random_Action</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">_coding_subclasses</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                 <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Action</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">dec_target</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">coding_method</span><span class="p">,</span> <span class="n">coding_var_name</span><span class="p">,</span> <span class="n">node_type</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,))</span>
+
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dec_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">coding_method</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;poisson&#39;</span><span class="p">,</span> <span class="s1">&#39;spike_counts&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span>
+                <span class="n">coding_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">node_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;excitatory&#39;</span><span class="p">,</span> <span class="s1">&#39;inhibitory&#39;</span><span class="p">,</span> <span class="s1">&#39;pyramidal&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">coding_method</span> <span class="o">=</span> <span class="n">coding_method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">Action</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">coding_method</span> <span class="ow">in</span> <span class="n">Action</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">Action</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">[</span><span class="n">coding_method</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No action method: </span><span class="si">%s</span><span class="s2"> in Action classes&quot;</span> <span class="o">%</span> <span class="n">coding_method</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Action.register"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Action.register">[文档]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">coding_class</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Register an action class. Registered action classes can be referred to</span>
+<span class="sd">        # via their name.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            A short name for the state updater (e.g. &#39;pop_rate_action&#39;)</span>
+<span class="sd">        coding_class :</span>
+<span class="sd">            The subclass of coding object, e.g. an &#39;PopulationRate_Action&#39;.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="c1"># only deal with lower case names</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">Action</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s1">&#39;A action class with the name &quot;</span><span class="si">%s</span><span class="s1">&quot; has already been registered&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">coding_class</span><span class="p">,</span> <span class="n">Action</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;Given class of type </span><span class="si">%s</span><span class="s1"> does not seem to be a valid action class.&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">coding_class</span><span class="p">))))</span>
+
+        <span class="n">Action</span><span class="o">.</span><span class="n">_coding_subclasses</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">coding_class</span></div>
+
+<div class="viewcode-block" id="Action.init_state"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Action.init_state">[文档]</a>    <span class="k">def</span> <span class="nf">init_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="mi">0</span></div>
+
+    <span class="c1"># stand alone operation: decoding spike patterns. Output is RL action</span>
+<div class="viewcode-block" id="Action.get_action"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Action.get_action">[文档]</a>    <span class="k">def</span> <span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+            <span class="n">dec_shape</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">]</span> <span class="o">+</span> <span class="n">shape</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;Tensor&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">records</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">dec_shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">records</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">dec_shape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">records</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">output</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_step</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">==</span> <span class="s1">&#39;pytorch&#39;</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">torch_coding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">records</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numpy_coding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">records</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="Action.build"><a class="viewcode-back" href="../../../spaic.Neuron.html#spaic.Neuron.Node.Action.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sim_name</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">backend_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">device</span>
+        <span class="c1"># if self.dt is None:</span>
+        <span class="c1">#     self.dt = backend.dt</span>
+
+        <span class="n">output_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dec_target</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">coding_var_name</span><span class="o">+</span><span class="s1">&#39;}&#39;</span>
+        <span class="n">backend</span><span class="o">.</span><span class="n">register_initial</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_state</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">backend</span><span class="o">.</span><span class="n">register_standalone</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_action</span><span class="p">,</span> <span class="p">[</span><span class="n">output_name</span><span class="p">])</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

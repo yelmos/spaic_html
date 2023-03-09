@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>输入输出 &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="模拟后端 Backend" href="backend.html" />
+    <link rel="prev" title="编码解码" href="basic_structure/5_encode_decode.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>输入输出</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/input_output.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>输入输出<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="dataloader">
+<h2>数据加载(Dataloader)<a class="headerlink" href="#dataloader" title="永久链接至标题">¶</a></h2>
+<p><code class="code docutils literal notranslate"><span class="pre">Dataloader</span></code> 是数据集读取的接口，该接口的目的是将自定义的Dataset根据 <code class="code docutils literal notranslate"><span class="pre">batch_size</span></code> 大小、是否shuffle等封装成一个 <code class="code docutils literal notranslate"><span class="pre">batch_size</span></code> 大小的数组，用于网络的训练。</p>
+<p><code class="code docutils literal notranslate"><span class="pre">Dataloader</span></code> 由数据集和采样器组成，初始化参数如下：</p>
+<ul class="simple">
+<li><p>dataset(Dataset)： 传入的数据集</p></li>
+<li><p>batch_size(int, optional)： 每个batch的样本数, 默认为1</p></li>
+<li><p>shuffle(bool, optional)： 在每个epoch开始的时候，对数据进行重新排序，默认为False</p></li>
+<li><p>sampler(Sampler, optional)： 自定义从数据集中取样本的策略</p></li>
+<li><p>batch_sampler(Sampler, optional)： 与sampler类似，但是一次只返回一个batch的索引</p></li>
+<li><p>collate_fn (callable, optional)： 将一个list的sample组成一个mini-batch的函数</p></li>
+<li><p>drop_last (bool, optional)： 如果设置为True，对于最后一个batch，如果样本数小于batch_size就会被扔掉，比如batch_size设置为64，而数据集只有100个样本，那么训练的时候后面的36个就会被扔掉。如果为False（默认），那么会继续正常执行，只是最后的batch_size会小一点。</p></li>
+</ul>
+<p>以导入MNIST数据集为例：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">root</span> <span class="o">=</span> <span class="s1">&#39;./Datasets/MNIST&#39;</span> <span class="c1"># 数据集的地址</span>
+<span class="n">train_set</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># 训练集</span>
+<span class="n">test_set</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>   <span class="c1"># 测试集</span>
+<span class="n">bat_size</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="c1"># 创建DataLoader</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Dataloader</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">bat_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Dataloader</span><span class="p">(</span><span class="n">test_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">bat_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<dl>
+<dt>需要注意的是：</dt><dd><p>1、创建 <code class="code docutils literal notranslate"><span class="pre">Dataloader</span></code> 时如果指定了 <code class="code docutils literal notranslate"><span class="pre">sampler</span></code> 这个参数，那么 <code class="code docutils literal notranslate"><span class="pre">shuffle</span></code> 必须为False</p>
+<p>2、如果指定 <code class="code docutils literal notranslate"><span class="pre">batch_sampler</span></code> 这个参数，那么 <code class="code docutils literal notranslate"><span class="pre">batch_size</span></code> ，<code class="code docutils literal notranslate"><span class="pre">shuffle</span></code> ，<code class="code docutils literal notranslate"><span class="pre">sampler</span></code>， <code class="code docutils literal notranslate"><span class="pre">drop_last</span></code> 就不能再指定了</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="backend.html" class="btn btn-neutral float-right" title="模拟后端 Backend" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="basic_structure/5_encode_decode.html" class="btn btn-neutral float-left" title="编码解码" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

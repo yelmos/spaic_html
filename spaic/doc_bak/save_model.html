@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>保存与读取模型 &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="自定义" href="custom/0_index.html" />
+    <link rel="prev" title="模拟后端 Backend" href="backend.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>保存与读取模型</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/save_model.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>保存与读取模型<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>该部分将详细描述两种存取网络信息的方式。</p>
+<div class="section" id="network">
+<h2>Network中预先定义的函数<a class="headerlink" href="#network" title="永久链接至标题">¶</a></h2>
+<p>采用Network中预定义的 <code class="code docutils literal notranslate"><span class="pre">save_state</span></code> 与 <code class="code docutils literal notranslate"><span class="pre">state_from_dict</span></code> 函数将权重直接进行存储。</p>
+<p><code class="code docutils literal notranslate"><span class="pre">save_state</span></code> 函数可选的参数有 <code class="code docutils literal notranslate"><span class="pre">filename</span></code> 、<code class="code docutils literal notranslate"><span class="pre">direct</span></code> 以及 <code class="code docutils literal notranslate"><span class="pre">save</span></code> 。用户如果直接调用 <code class="code docutils literal notranslate"><span class="pre">save_state</span></code> 函数时，将会以默认的随机名称 <code class="code docutils literal notranslate"><span class="pre">autoname</span></code> 将后端中的权重变量直接存储于当前目录下的‘./autoname/parameters’文件夹下的’_parameters_dict.pt’文件中。而启用 <code class="code docutils literal notranslate"><span class="pre">filename</span></code> 时，将会以用户给予的 <code class="code docutils literal notranslate"><span class="pre">filename</span></code> 替换 <code class="code docutils literal notranslate"><span class="pre">autoname</span></code> 。
+而启用 <code class="code docutils literal notranslate"><span class="pre">direct</span></code> 参数则用于指定存储的目录。 :code:<a href="#id2"><span class="problematic" id="id3">`</span></a>save`参数默认为True，为启用保存，若为False，则该函数会直接返回后端中存储的权重信息。</p>
+<p><code class="code docutils literal notranslate"><span class="pre">state_from_dict</span></code> 函数的参数与 <code class="code docutils literal notranslate"><span class="pre">save_state</span></code> 类似，不同点在于多了 <code class="code docutils literal notranslate"><span class="pre">state</span></code> 与 <code class="code docutils literal notranslate"><span class="pre">device</span></code> 参数而少了 <code class="code docutils literal notranslate"><span class="pre">save</span></code> 参数。 <code class="code docutils literal notranslate"><span class="pre">state</span></code> 参数如果传入参数，则该函数会直接使用传入的参数来替代后端的权重参数，在该参数为None的情况下，则会根据 <code class="code docutils literal notranslate"><span class="pre">filename</span></code> 与 <code class="code docutils literal notranslate"><span class="pre">direct</span></code> 来决定文件的读取路径。 使用此函数时选用的 <code class="code docutils literal notranslate"><span class="pre">device</span></code> 则会将读取出来的权重参数存储于对应的设备上。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Net</span><span class="o">.</span><span class="n">save_state</span><span class="p">(</span><span class="s1">&#39;Test1&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">Net</span><span class="o">.</span><span class="n">state_from_dict</span><span class="p">(</span><span class="s1">&#39;Test1&#39;</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="network-save-network-load">
+<h2>network_save 与 network_load<a class="headerlink" href="#network-save-network-load" title="永久链接至标题">¶</a></h2>
+<p>Library中的网络存储模块 <code class="code docutils literal notranslate"><span class="pre">spaic.Network_saver.network_save</span></code> 函数与 <code class="code docutils literal notranslate"><span class="pre">spaic.Network_loader.network_load</span></code> 函数将会将完整的网络结构以及权重信息分别存储下来，该方式在使用时需要一个文件名dir_name，然后平台会在当前程序的运行目录下新建’NetData/dir_name/dir_name.json’用于保存网络结构，权重的存储路径与 <code class="code docutils literal notranslate"><span class="pre">net.save_state</span></code> 相同，都会在用户当前目录下新建NetData文件夹，然后存于NetData/。其次，用户在使用 <code class="code docutils literal notranslate"><span class="pre">network_save</span></code> 时，还可以选择存储的文件格式，是采用json文件的格式或是yaml。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">network_dir</span> <span class="o">=</span> <span class="n">network_save</span><span class="p">(</span><span class="n">Net</span><span class="o">=</span><span class="n">Net</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;TestNet&#39;</span><span class="p">,</span>
+                                        <span class="n">trans_format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># network_dir = &#39;TestNet&#39;</span>
+<span class="n">Net2</span> <span class="o">=</span> <span class="n">network_load</span><span class="p">(</span><span class="n">network_dir</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在 <code class="code docutils literal notranslate"><span class="pre">network_save</span></code> 中，</p>
+<ul class="simple">
+<li><p>Net: 具体SPAIC网络中的网络对象</p></li>
+<li><p>filename: 文件名称，network_save将会将Net以该名称进行存储</p></li>
+<li><p>trans_format 存储格式，此处可以选择的是‘json’或是’yaml‘，默认为‘json’结构。</p></li>
+<li><p>combine: 该参数制定了权重是否与网络结构存储在一起，默认为False，分开存储网络结构与权重信息。</p></li>
+<li><p>save: 该参数决定了平台是否会将网络结构存储下来，若为True，则最后会返回存储的名称以及网络信息，若为False，则不会存储网络，仅仅只会将网络结构以字典的形式返回</p></li>
+</ul>
+<p>下面，我举例说明保存下来的网络结构中各个参数所代表的意义：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 输入输出节点的存储格式</span>
+<span class="o">-</span>   <span class="nb">input</span><span class="p">:</span>
+        <span class="n">_class_label</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">nod</span><span class="o">&gt;</span> <span class="c1"># 表示该对象为节点类型</span>
+        <span class="n">_dt</span><span class="p">:</span> <span class="mf">0.1</span> <span class="c1"># 每个时间步的长度</span>
+        <span class="n">_time</span><span class="p">:</span> <span class="n">null</span> <span class="c1">#</span>
+        <span class="n">coding_method</span><span class="p">:</span> <span class="n">poisson</span> <span class="c1"># 编码方式</span>
+        <span class="n">coding_var_name</span><span class="p">:</span> <span class="n">O</span> <span class="c1"># 该节点输出的对象</span>
+        <span class="n">dec_target</span><span class="p">:</span> <span class="n">null</span> <span class="c1"># 解码对象，由于是input节点，没有解码对象</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">input</span> <span class="c1"># 节点名称</span>
+        <span class="n">num</span><span class="p">:</span> <span class="mi">784</span> <span class="c1"># 节点中的元素个数</span>
+        <span class="n">shape</span><span class="p">:</span> <span class="c1"># 维度</span>
+        <span class="o">-</span> <span class="mi">784</span>
+
+<span class="c1"># 神经元层的存储格式</span>
+<span class="o">-</span>   <span class="n">layer1</span><span class="p">:</span>
+        <span class="n">_class_label</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">neg</span><span class="o">&gt;</span> <span class="c1"># 表示该对象为NeuronGroup类型</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="n">autoname1</span><span class="o">&lt;</span><span class="n">net</span><span class="o">&gt;</span><span class="n">_layer1</span><span class="o">&lt;</span><span class="n">neg</span><span class="o">&gt;</span> <span class="c1"># 表示该NeuronGroup的id，具体含义为，该对象是在名为autoname1的网络下的名为layer1的神经元组</span>
+        <span class="n">model_name</span><span class="p">:</span> <span class="n">clif</span> <span class="c1"># 采用的神经元模型的类型</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">layer1</span> <span class="c1"># 该NeuronGroup的姓名</span>
+        <span class="n">num</span><span class="p">:</span> <span class="mi">10</span> <span class="c1"># 该NeuronGroup中Neuron的数量</span>
+        <span class="n">parameters</span><span class="p">:</span> <span class="p">{}</span> <span class="c1"># 额外输入的kwargs中的parameters，在神经元中为各类神经元模型的参数</span>
+        <span class="n">shape</span><span class="p">:</span> <span class="c1"># 维度</span>
+        <span class="o">-</span> <span class="mi">10</span>
+        <span class="nb">type</span><span class="p">:</span> <span class="n">null</span> <span class="c1"># 该type表示的是神经元是兴奋还是抑制，暂未启用该参数</span>
+
+<span class="o">-</span>   <span class="n">layer3</span><span class="p">:</span>
+    <span class="o">-</span>   <span class="n">layer1</span><span class="p">:</span>
+            <span class="n">_class_label</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">neg</span><span class="o">&gt;</span> <span class="c1"># 表示该对象为NeuronGroup类型</span>
+            <span class="nb">id</span><span class="p">:</span> <span class="n">autoname1</span><span class="o">&lt;</span><span class="n">net</span><span class="o">&gt;</span><span class="n">_layer3</span><span class="o">&lt;</span><span class="n">asb</span><span class="o">&gt;</span><span class="n">_layer1</span><span class="o">&lt;</span><span class="n">neg</span><span class="o">&gt;</span>  <span class="c1"># 表示该NeuronGroup的id，具体含义为，该对象是在名为autoname1的网络下的名为layer3的组合中的名为layer1的神经元组</span>
+            <span class="n">model_name</span><span class="p">:</span> <span class="n">clif</span> <span class="c1"># 采用的神经元模型的类型</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">layer1</span> <span class="c1"># 该NeuronGroup的姓名，由于是在layer3内部，所以不会出现与上述layer1重名的现象</span>
+            <span class="n">num</span><span class="p">:</span> <span class="mi">10</span> <span class="c1"># 该NeuronGroup中Neuron的数量</span>
+            <span class="n">parameters</span><span class="p">:</span> <span class="p">{}</span> <span class="c1"># 额外输入的kwargs中的parameters，在神经元中为各类神经元模型的参数</span>
+            <span class="n">shape</span><span class="p">:</span> <span class="c1"># 维度</span>
+            <span class="o">-</span> <span class="mi">10</span>
+            <span class="nb">type</span><span class="p">:</span> <span class="n">null</span> <span class="c1"># 该type表示的是神经元是兴奋还是抑制，暂未启用该参数</span>
+
+    <span class="o">-</span>   <span class="n">connection0</span><span class="p">:</span>
+            <span class="n">_class_label</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">con</span><span class="o">&gt;</span> <span class="c1"># 表示该对象为Connection类型</span>
+            <span class="n">link_type</span><span class="p">:</span> <span class="n">full</span> <span class="c1"># 连接形式为全链接</span>
+            <span class="n">max_delay</span><span class="p">:</span> <span class="mi">0</span> <span class="c1"># 连接的最大延迟</span>
+            <span class="n">name</span><span class="p">:</span> <span class="n">connection0</span> <span class="c1"># 连接的姓名</span>
+            <span class="n">parameters</span><span class="p">:</span> <span class="p">{}</span>
+            <span class="n">post_assembly</span><span class="p">:</span> <span class="n">layer3</span>   <span class="c1"># 突触后神经元为layer3层, 此处为特殊情况，layer3其实为一个assembly</span>
+            <span class="n">post_var_name</span><span class="p">:</span> <span class="n">WgtSum</span>   <span class="c1"># 该连接对突触后神经元的输出为WgtSum</span>
+            <span class="n">pre_assembly</span><span class="p">:</span> <span class="n">layer2</span>    <span class="c1"># 突触前神经元为layer2层</span>
+            <span class="n">pre_var_name</span><span class="p">:</span> <span class="n">O</span>         <span class="c1"># 该连接接受突触前神经元的输入为‘O’</span>
+            <span class="n">sparse_with_mask</span><span class="p">:</span> <span class="n">false</span> <span class="c1"># 是否启用mask，该设定为平台对于系数矩阵所设置，具体可移步connection中查看具体说明</span>
+            <span class="n">weight</span><span class="p">:</span> <span class="c1"># 权重矩阵</span>
+                <span class="n">autoname1</span><span class="o">&lt;</span><span class="n">net</span><span class="o">&gt;</span><span class="n">_layer3</span><span class="o">&lt;</span><span class="n">asb</span><span class="o">&gt;</span><span class="n">_connection0</span><span class="o">&lt;</span><span class="n">con</span><span class="o">&gt;</span><span class="p">:</span><span class="n">autoname1</span><span class="o">&lt;</span><span class="n">net</span><span class="o">&gt;</span><span class="n">_layer3</span><span class="o">&lt;</span><span class="n">asb</span><span class="o">&gt;</span><span class="n">_layer3</span><span class="o">&lt;</span><span class="n">neg</span><span class="o">&gt;&lt;-</span><span class="n">autoname1</span><span class="o">&lt;</span><span class="n">net</span><span class="o">&gt;</span><span class="n">_layer3</span><span class="o">&lt;</span><span class="n">asb</span><span class="o">&gt;</span><span class="n">_layer2</span><span class="o">&lt;</span><span class="n">neg</span><span class="o">&gt;</span><span class="p">:{</span><span class="n">weight</span><span class="p">}:</span> <span class="c1"># 此处为该权重的id，在平台后端变量库中可以获取</span>
+                <span class="o">-</span>   <span class="o">-</span> <span class="mf">0.05063159018754959</span>
+                <span class="c1"># 该权重的id的格式解读为：这是一个属于网络autoname1的组合layer3中的名为connection0的连接，该链接由&#39;&lt;-&#39;标识后方的autoname1中的layer3下的layer2层连接向autoname1中的layer3中的layer3</span>
+                <span class="c1"># 即， layer3为autoname1中的一个组合层，该连接为组合层layer3中的layer2连向了layer3</span>
+
+<span class="c1"># 连接的存储格式</span>
+<span class="o">-</span>   <span class="n">connection1</span><span class="p">:</span>
+        <span class="n">_class_label</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">con</span><span class="o">&gt;</span> <span class="c1"># 表示该对象为Connection类型</span>
+        <span class="n">link_type</span><span class="p">:</span> <span class="n">full</span> <span class="c1"># 连接形式为全链接</span>
+        <span class="n">max_delay</span><span class="p">:</span> <span class="mi">0</span> <span class="c1"># 连接的最大延迟</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">connection1</span> <span class="c1"># 连接的姓名</span>
+        <span class="n">parameters</span><span class="p">:</span> <span class="c1"># 连接的参数，此处为连接初始化时所用的参数，有给定权值时将会采用给定的权值</span>
+            <span class="n">w_mean</span><span class="p">:</span> <span class="mf">0.02</span>
+            <span class="n">w_std</span><span class="p">:</span> <span class="mf">0.05</span>
+        <span class="n">post_assembly</span><span class="p">:</span> <span class="n">layer1</span>   <span class="c1"># 突触后神经元为layer1层</span>
+        <span class="n">post_var_name</span><span class="p">:</span> <span class="n">WgtSum</span>   <span class="c1"># 该连接对突触后神经元的输出为WgtSum</span>
+        <span class="n">pre_assembly</span><span class="p">:</span> <span class="nb">input</span>     <span class="c1"># 突触前神经元为input层</span>
+        <span class="n">pre_var_name</span><span class="p">:</span> <span class="n">O</span>         <span class="c1"># 该连接接受突触前神经元的输入为‘O’</span>
+        <span class="n">sparse_with_mask</span><span class="p">:</span> <span class="n">false</span> <span class="c1"># 是否启用mask，该设定为平台对于系数矩阵所设置，具体可移步connection中查看具体说明</span>
+        <span class="n">weight</span><span class="p">:</span> <span class="c1"># 权重矩阵</span>
+            <span class="n">autoname1</span><span class="o">&lt;</span><span class="n">net</span><span class="o">&gt;</span><span class="n">_connection1</span><span class="o">&lt;</span><span class="n">con</span><span class="o">&gt;</span><span class="p">:</span><span class="n">autoname1</span><span class="o">&lt;</span><span class="n">net</span><span class="o">&gt;</span><span class="n">_layer1</span><span class="o">&lt;</span><span class="n">neg</span><span class="o">&gt;&lt;-</span><span class="n">autoname1</span><span class="o">&lt;</span><span class="n">net</span><span class="o">&gt;</span><span class="n">_input</span><span class="o">&lt;</span><span class="n">nod</span><span class="o">&gt;</span><span class="p">:{</span><span class="n">weight</span><span class="p">}:</span>
+            <span class="o">-</span>   <span class="o">-</span> <span class="mf">0.05063159018754959</span>
+                <span class="o">......</span>
+
+<span class="c1"># 学习算法的存储格式</span>
+<span class="o">-</span>   <span class="n">learner2</span><span class="p">:</span>
+        <span class="n">_class_label</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">learner</span><span class="o">&gt;</span> <span class="c1"># 表示该对象为Learner类型，为学习算法</span>
+        <span class="n">algorithm</span><span class="p">:</span> <span class="n">full_online_STDP</span> <span class="c1"># 表示Learner对象采用的学习算法是 full_online_STDP</span>
+        <span class="n">lr_schedule_name</span><span class="p">:</span> <span class="n">null</span> <span class="c1"># 表示该Learner对象采用的 lr_schedule优化算法，null为未采用</span>
+        <span class="n">name</span><span class="p">:</span> <span class="n">_learner2</span> <span class="c1"># 该Learner对象的名称</span>
+        <span class="n">optim_name</span><span class="p">:</span> <span class="n">null</span> <span class="c1"># 表示该Learner对象采用的optimizer优化算法，null为未采用</span>
+        <span class="n">parameters</span><span class="p">:</span> <span class="p">{}</span> <span class="c1"># 表示该Learner对象的额外参数，例如在STCA中需要设定一个alpha值</span>
+        <span class="n">trainable</span><span class="p">:</span> <span class="c1"># 表示该Learner对象作用的范围，此处即学习算法针对connection1与connection2起作用</span>
+        <span class="o">-</span> <span class="n">connection1</span>
+        <span class="o">-</span> <span class="n">connection2</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="custom/0_index.html" class="btn btn-neutral float-right" title="自定义" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="backend.html" class="btn btn-neutral float-left" title="模拟后端 Backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

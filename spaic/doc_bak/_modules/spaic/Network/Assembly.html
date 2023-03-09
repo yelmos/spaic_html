@@ -1,0 +1,1087 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Network.Assembly &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.Network.Assembly</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.Network.Assembly 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on 2020/8/5</span>
+<span class="sd">@project: SPAIC</span>
+<span class="sd">@filename: Assembly</span>
+<span class="sd">@author: Hong Chaofei</span>
+<span class="sd">@contact: hongchf@gmail.com</span>
+<span class="sd">@description:</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">spaic</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">..Network.BaseModule</span> <span class="kn">import</span> <span class="n">BaseModule</span><span class="p">,</span> <span class="n">VariableAgent</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+
+
+<span class="c1"># class ContextMetaClass(type):</span>
+<span class="c1">#</span>
+<span class="c1">#     def __call__(self, *args, **kwargs):</span>
+<span class="c1">#         spaic.global_assembly_init_count += 1</span>
+<span class="c1">#         rv = super(ContextMetaClass, self).__call__(*args, **kwargs)</span>
+<span class="c1">#         spaic.global_assembly_init_count -= 1</span>
+<span class="c1">#         return rv</span>
+
+<div class="viewcode-block" id="Assembly"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly">[文档]</a><span class="k">class</span> <span class="nc">Assembly</span><span class="p">(</span><span class="n">BaseModule</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Base class for all network units.</span>
+
+<span class="sd">        The Assembly represent an abstract network structure, it defines the basic network construct behavior and attributes.</span>
+<span class="sd">        It can contain any neural network units like neurongroups, nodes, other assemblies and their connections.</span>
+<span class="sd">        The classes like Node, NeuronGroup, and Network are special cases of Assembly.</span>
+
+<span class="sd">        Methods:</span>
+<span class="sd">            add_assembly: Add a new assembly to this assembly as its member.</span>
+<span class="sd">            del_assembly: Delete an existed member assembly of this assembly.</span>
+<span class="sd">            add_connection: Add the connection between two member assemblies of this assembly.</span>
+<span class="sd">            del_connection: Delete an existed connection between member assemblies of this assembly.</span>
+<span class="sd">            copy_assembly: Copy an existed assembly structure into this assembly.</span>
+<span class="sd">            replace_assembly: Replace an existed member assembly with a new assembly.</span>
+<span class="sd">            merge_assembly:   Add the member assemblies and connections of the target assembly, which are not already included in this assembly, to this assembly.</span>
+<span class="sd">            select_assembly:   Select a list of member assemblies in this assembly, and form a new assembly that contains those selected assemblies.</span>
+
+
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            _class_label(str): the label is a static variable to imply the class of this object</span>
+<span class="sd">            _backend(Backend): the backend backend this assembly runs on</span>
+<span class="sd">            _groups(OrderedDict): the container of member assemblies</span>
+<span class="sd">            _connections(OrderedDict): the container of member connections</span>
+<span class="sd">            _supers(list): the super assemblies that add this assembly as their member assemblies</span>
+<span class="sd">            _input_connections(list): the connections that use this assembly as post-synaptic target</span>
+<span class="sd">            _output_connections(list): the connections that use this assembly as pre-synaptic target</span>
+<span class="sd">            num(int): the total number of neurons this assembly contains</span>
+<span class="sd">            position(Tuple(int, int)): the top level positon of this assembly</span>
+<span class="sd">            _var_names: The backend variable names this assembly and its members contains</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_class_label</span> <span class="o">=</span> <span class="s1">&#39;&lt;asb&gt;&#39;</span>
+    <span class="n">_is_terminal</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Base class for  neural network units, and defines the basic attributes of a group object.</span>
+
+<span class="sd">        It contains other Assemblies (including neuron_groups, networks and nodes) and their connections.</span>
+<span class="sd">        This class provides a abstract representation of network topology.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">           name(str): name of the network assembly</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            _backend(Backend): the backend backend this assembly runs on</span>
+<span class="sd">            _groups(OrderedDict): the container of member assemblies</span>
+<span class="sd">            _connections(OrderedDict): the container of member connections</span>
+<span class="sd">            _supers(list): the super assemblies that add this assembly as their member assemblies</span>
+<span class="sd">            _input_connections(list): the connections that use this assembly as post-synaptic target</span>
+<span class="sd">            _output_connections(list): the connections that use this assembly as pre-synaptic target</span>
+<span class="sd">            num(int): the total number of neurons this assembly contains</span>
+<span class="sd">            position(Tuple(int, int)): the top level positon of this assembly</span>
+<span class="sd">            _var_names: The backend variable names this assembly and its members contains</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Assembly</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">global_assembly_context_list</span>
+        <span class="n">init_count</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">global_assembly_init_count</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Backend</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">:</span> <span class="n">OrderedDict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Assembly</span><span class="p">]</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">:</span> <span class="n">OrderedDict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">]</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_projections</span><span class="p">:</span> <span class="n">OrderedDict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Projection</span><span class="p">]</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_supers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_input_connections</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_output_connections</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># _var_names 和 _var_dict移动到了BaseModule 作为网络各模块的通用属性</span>
+        <span class="c1"># self._var_names = []</span>
+        <span class="c1"># self._var_dict = dict()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context_enterpoint</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># front-end functions</span>
+<div class="viewcode-block" id="Assembly.add_type"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.add_type">[文档]</a>    <span class="k">def</span> <span class="nf">add_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Assembly.get_labeled_name"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.get_labeled_name">[文档]</a>    <span class="k">def</span> <span class="nf">get_labeled_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;[updated]&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span><span class="s1">&#39;{&#39;</span><span class="o">+</span><span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;[updated]&#39;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;}&#39;</span> <span class="o">+</span> <span class="s1">&#39;[updated]&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span><span class="s1">&#39;{&#39;</span><span class="o">+</span><span class="n">key</span><span class="o">+</span><span class="s1">&#39;}&#39;</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">VariableAgent</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">key</span><span class="o">.</span><span class="n">var_name</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="n">keys</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="s1">&#39;[updated]&#39;</span> <span class="ow">in</span> <span class="n">k</span><span class="p">:</span>
+                        <span class="n">mk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;[updated]&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span> <span class="o">+</span> <span class="s1">&#39;[updated]&#39;</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">mk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span>
+                    <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mk</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">VariableAgent</span><span class="p">):</span>
+                    <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">var_name</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">keys</span></div>
+
+<div class="viewcode-block" id="Assembly.add_assembly"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.add_assembly">[文档]</a>    <span class="k">def</span> <span class="nf">add_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">assembly</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a new assembly to this assembly as its member.</span>
+<span class="sd">        This is the basic method to build the network structure, neurongroups, nodes and other assemblies is added</span>
+<span class="sd">        to this assembly by calling add_assembly function, explicitly or implicitly.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): the attribute name of the added assembly</span>
+<span class="sd">            assembly (Assembly): the assembly to be added</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            if you want to add a new assembly to in assembly initialization, you can explicitly use add_assembly:</span>
+
+<span class="sd">            &gt;&gt;&gt; def __init__(self, name=None):</span>
+<span class="sd">            &gt;&gt;&gt;    ...</span>
+<span class="sd">            &gt;&gt;&gt;    self.add_assembly(name=&#39;layer1&#39;, assembly=Assembly())</span>
+
+<span class="sd">            or implicitly use add_assembly:</span>
+
+<span class="sd">            &gt;&gt;&gt; def __init__(self, name=None):</span>
+<span class="sd">            &gt;&gt;&gt;     ...</span>
+<span class="sd">            &gt;&gt;&gt;     self.layer1 = Assembly()</span>
+
+<span class="sd">            you can also add new assemblies after the target assembly has been created:</span>
+
+<span class="sd">            &gt;&gt;&gt; TestAsb = Assembly()</span>
+<span class="sd">            &gt;&gt;&gt; TestAsb.add_assembly(name=&#39;layer1&#39;, assembly=Assembly())</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">assert</span> <span class="n">assembly</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="s2">&quot;assembly </span><span class="si">%s</span><span class="s2"> is already in the assembly </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">,</span> <span class="s2">&quot;assembly with name: </span><span class="si">%s</span><span class="s2"> have the same name with assembly already in the assembly </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">assembly</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Assembly.del_assembly"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.del_assembly">[文档]</a>    <span class="k">def</span> <span class="nf">del_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assembly</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete an existed member assembly of this assembly.</span>
+
+<span class="sd">        User can delete by assembly object or delete by assembly name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            assembly(Assembly): the member assembly to be deleted</span>
+<span class="sd">            name(str): the member name of the assembly to be deleted</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            User can delete member assembly by object:</span>
+
+<span class="sd">            &gt;&gt;&gt; TestAsb = Assembly() # assuming contains neurongroups and network structure</span>
+<span class="sd">            &gt;&gt;&gt; TestAsb.del_assembly(assembly=TestAsb.layer1)</span>
+
+<span class="sd">            User can also delete member assembly by the name:</span>
+
+<span class="sd">            &gt;&gt;&gt; TestAsb = Assembly() # assuming contains neurongroups and network structure</span>
+<span class="sd">            &gt;&gt;&gt; TestAsb.del_assembly(name=&#39;layer1&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">assembly</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">deleted_assembly</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">gkey</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">assembly</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">gkey</span><span class="p">]</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">gkey</span><span class="p">]</span>
+                    <span class="n">deleted_assembly</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">assert</span> <span class="n">deleted_assembly</span><span class="p">,</span> <span class="s2">&quot; try to delete an assembly that is not in the group&quot;</span>
+
+            <span class="k">for</span> <span class="n">ckey</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">ckey</span><span class="p">]</span><span class="o">.</span><span class="n">assembly_linked</span><span class="p">(</span><span class="n">assembly</span><span class="p">):</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">ckey</span><span class="p">]</span>
+
+        <span class="k">elif</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">,</span> <span class="s2">&quot; try to delete an assembly that is not in the group&quot;</span>
+            <span class="n">assembly</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">ckey</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">ckey</span><span class="p">]</span><span class="o">.</span><span class="n">assembly_linked</span><span class="p">(</span><span class="n">assembly</span><span class="p">):</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">ckey</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Assembly.add_connection"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.add_connection">[文档]</a>    <span class="k">def</span> <span class="nf">add_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add the connection between two member assemblies of this assembly.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name(str): name of this connection</span>
+<span class="sd">            connection(Connection): the new connection to be added to the assembly</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            &gt;&gt;&gt; TestAsb = Assembly() # assuming contains neurongroups and network structure</span>
+<span class="sd">            &gt;&gt;&gt; TestAsb.add_connection(name=&#39;con1&#39;, connection=Connection(self.layer1, self.layer2, link_type=&#39;full&#39;))</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">assert</span> <span class="n">connection</span><span class="o">.</span><span class="n">pre_assembly</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_groups</span><span class="p">(),</span> <span class="s1">&#39;pre_assembly </span><span class="si">%s</span><span class="s1"> is not in the group&#39;</span><span class="o">%</span><span class="n">connection</span><span class="o">.</span><span class="n">pre_assembly</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">assert</span> <span class="n">connection</span><span class="o">.</span><span class="n">post_assembly</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_groups</span><span class="p">(),</span> <span class="s1">&#39;post_assembly </span><span class="si">%s</span><span class="s1"> is not in the group&#39;</span><span class="o">%</span><span class="n">connection</span><span class="o">.</span><span class="n">post_assembly</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">connection</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot; connection is already in the assembly&#39;s connection list&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;duplicated name for the connection&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># self._connections[name] = connection</span>
+            <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Assembly.del_connection"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.del_connection">[文档]</a>    <span class="k">def</span> <span class="nf">del_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete an existed connection between member assemblies of this assembly.</span>
+
+<span class="sd">        User can delete the connection by connection object or by connection name.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            connection(Connection): the connection object to be deleted</span>
+<span class="sd">            name(str): the name of connection to be deleted</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            Delete by object:</span>
+
+<span class="sd">            &gt;&gt;&gt; TestAsb = Assembly() # assuming it contains neurongroups and network structure</span>
+<span class="sd">            &gt;&gt;&gt; TestAsb.del_connection(connection=TestAsb.con1)</span>
+
+<span class="sd">            Delete by name:</span>
+
+<span class="sd">            &gt;&gt;&gt; TestAsb = Assembly()</span>
+<span class="sd">            &gt;&gt;&gt; TestAsb.del_connection(name=&#39;con1&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">connection</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">deleted_connection</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">for</span> <span class="n">ckey</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">connection</span><span class="p">:</span>
+                    <span class="nb">dict</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">()</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">ckey</span><span class="p">]</span>
+                    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">ckey</span><span class="p">]</span>
+                    <span class="n">deleted_connection</span> <span class="o">=</span> <span class="kc">True</span> 
+            <span class="k">assert</span> <span class="n">deleted_connection</span><span class="p">,</span>  <span class="s2">&quot; try to delete an connection that is not in the group&quot;</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">,</span> <span class="s2">&quot; try to delete an connection that is not in the group&quot;</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Assembly.add_projection"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.add_projection">[文档]</a>    <span class="k">def</span> <span class="nf">add_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">projection</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add the projection between two member assemblies of this assembly.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name(str): name of this projection</span>
+<span class="sd">            projection(Projection): the new projection to be added to the assembly</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            &gt;&gt;&gt; TestAsb = Assembly() # assuming contains neurongroups and network structure</span>
+<span class="sd">            &gt;&gt;&gt; TestAsb.add_projection(name=&#39;prj1&#39;, projection=Projection(self.layer1, self.layer2, link_type=&#39;full&#39;))</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">assert</span> <span class="n">projection</span><span class="o">.</span><span class="n">pre_assembly</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="s1">&#39;pre_assembly </span><span class="si">%s</span><span class="s1"> is not in the group&#39;</span> <span class="o">%</span> <span class="n">projection</span><span class="o">.</span><span class="n">pre_assembly</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">assert</span> <span class="n">projection</span><span class="o">.</span><span class="n">post_assembly</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="s1">&#39;post_assembly </span><span class="si">%s</span><span class="s1"> is not in the group&#39;</span> <span class="o">%</span> <span class="n">projection</span><span class="o">.</span><span class="n">post_assembly</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projections</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">projection</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projections</span><span class="p">[</span><span class="n">name</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot; projection is already in the assembly&#39;s projection list&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;duplicated name for the projection&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">projection</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Assembly.copy_assembly"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.copy_assembly">[文档]</a>    <span class="k">def</span> <span class="nf">copy_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">assembly</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Copy an existed assembly structure into this assembly.</span>
+
+<span class="sd">        A new assembly is initialized which copy the structure(type and connection of the assembly members) of the original assembly,</span>
+<span class="sd">        and the new assembly is added to this assembly.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name(str): the name of the new copy assembly</span>
+<span class="sd">            assembly(Assembly): the assembly object to be copied</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            &gt;&gt;&gt; Asb1 = Assembly() # assuming it contains neurongroups and network structure</span>
+<span class="sd">            &gt;&gt;&gt; Asb2 = Assembly() # assuming it contains neurongroups and network structure</span>
+<span class="sd">            &gt;&gt;&gt; Asb1.copy_assembly(name=&#39;layer2&#39;, assembly=Asb2)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="n">assembly</span><span class="o">.</span><span class="n">structure_copy</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">rv</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Assembly.replace_assembly"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.replace_assembly">[文档]</a>    <span class="k">def</span> <span class="nf">replace_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_assembly</span><span class="p">,</span> <span class="n">new_assembly</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Replace an existed member assembly with a new assembly.</span>
+
+<span class="sd">        Delete the existed old member assembly, add the new assembly to this assembly,</span>
+<span class="sd">        and redirect related connections from the old assembly to the new assembly.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            old_assembly(Assembly): the old member assembly to be replaced</span>
+<span class="sd">            new_assembly(Assembly): the new assembly</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            &gt;&gt;&gt; templateAsb = Assembly() # assuming templateAsb contains a member assembly called asb1</span>
+<span class="sd">            &gt;&gt;&gt; asb2 = Assembly() # assuming it contains neurongroups and network structure</span>
+<span class="sd">            &gt;&gt;&gt; templateAsb.replace_assembly(templateAsb.asb1, asb2)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">replaced_assembly</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">gkey</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">gkey</span><span class="p">]</span> <span class="ow">is</span> <span class="n">old_assembly</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">gkey</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_assembly</span>
+                <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">gkey</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_assembly</span>
+                <span class="n">replaced_assembly</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">assert</span> <span class="n">replaced_assembly</span><span class="p">,</span> <span class="s2">&quot; try to repalce an assembly that is not in the group&quot;</span>
+
+        <span class="k">for</span> <span class="n">con</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">con</span><span class="o">.</span><span class="n">assembly_linked</span><span class="p">(</span><span class="n">old_assembly</span><span class="p">):</span>
+                <span class="n">con</span><span class="o">.</span><span class="n">replace_assembly</span><span class="p">(</span><span class="n">old_assembly</span><span class="p">,</span> <span class="n">new_assembly</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Assembly.merge_assembly"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.merge_assembly">[文档]</a>    <span class="k">def</span> <span class="nf">merge_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assembly</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add the member assemblies and connections of the target assembly, which are not already included in this assembly, to this assembly.</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            assembly(Assembly): the target assembly, from which this assembly will copy member assemblies and connections.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            &gt;&gt;&gt; target_asb = Assembly()  # assuming it contains neurongroups and network structure</span>
+<span class="sd">            &gt;&gt;&gt; test_asb = Assembly() # assuming it contains neurongroups and network structure</span>
+<span class="sd">            &gt;&gt;&gt; test_asb.merge_assembly(target_asb)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">assembly</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">item</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">:</span>
+                <span class="c1"># for the different sub_assembly with different name:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+                    <span class="c1"># set a duplicated name with suffix (1),(2),(3),...</span>
+                    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
+                        <span class="n">tmp_key</span> <span class="o">=</span> <span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39;)&#39;</span>
+                        <span class="k">if</span> <span class="n">tmp_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">tmp_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                            <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># for the sub_assembly that is not in self</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">assembly</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">item</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+                    <span class="c1"># set a duplicated name with suffix (1),(2),(3),...</span>
+                    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">):</span>
+                        <span class="n">tmp_key</span> <span class="o">=</span> <span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;(&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39;)&#39;</span>
+                        <span class="k">if</span> <span class="n">tmp_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">:</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">tmp_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                            <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="Assembly.select_assembly"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.select_assembly">[文档]</a>    <span class="k">def</span> <span class="nf">select_assembly</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assemblies</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">with_connection</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Select a list of member assemblies in this assembly, and form a new assembly that contains those selected assemblies</span>
+<span class="sd">        and their connections(if with_connection is True).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            assemblies(List[Assembly]): list of assemblies (or member assembly names) to be selected to form a new assembly</span>
+<span class="sd">            name: the name of the new assembly</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            a new assembly that contains the selected assemblies and their connections (if with_coonection is True)</span>
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">            &gt;&gt;&gt; testAsb = Assembly() # assuming it contains member assemblies named asb1, asb2, asb3...</span>
+<span class="sd">            &gt;&gt;&gt; newAsb1 = testAsb.select_assembly([&#39;asb1&#39;, &#39;asb2&#39;], &#39;newAsb&#39;) # using names</span>
+<span class="sd">            &gt;&gt;&gt; newAsb2 = testAsb.select_assembly([testAsb.asb2, testAsb.asb3], &#39;newAsb&#39;) # using assembly objects</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">new_asb</span> <span class="o">=</span> <span class="n">Assembly</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">asb</span> <span class="ow">in</span> <span class="n">assemblies</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">asb</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">asb_name</span><span class="o">=</span> <span class="n">asb</span>
+                <span class="k">if</span> <span class="n">asb_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">:</span>
+                    <span class="n">asb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">asb_name</span><span class="p">]</span>
+                    <span class="n">new_asb</span><span class="o">.</span><span class="n">add_assembly</span><span class="p">(</span><span class="n">asb_name</span><span class="p">,</span> <span class="n">asb</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">with_connection</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">con</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                            <span class="k">if</span> <span class="n">con</span><span class="o">.</span><span class="n">assembly_linked</span><span class="p">(</span><span class="n">asb</span><span class="p">):</span>
+                                <span class="n">new_asb</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No assembly name in the groups&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">asb</span><span class="p">,</span> <span class="n">Assembly</span><span class="p">),</span> <span class="s2">&quot;selected object that is not Assembly&quot;</span>
+                <span class="k">for</span> <span class="n">gkey</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">asb</span><span class="p">:</span>
+                        <span class="n">new_asb</span><span class="o">.</span><span class="n">add_assembly</span><span class="p">(</span><span class="n">asb</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">asb</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">with_connection</span><span class="p">:</span>
+                            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">con</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                                <span class="k">if</span> <span class="n">con</span><span class="o">.</span><span class="n">assembly_linked</span><span class="p">(</span><span class="n">asb</span><span class="p">):</span>
+                                    <span class="n">new_asb</span><span class="o">.</span><span class="n">add_connection</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No assembly in the groups&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">new_asb</span></div>
+
+<div class="viewcode-block" id="Assembly.assembly_hide"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.assembly_hide">[文档]</a>    <span class="k">def</span> <span class="nf">assembly_hide</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prohibit this assembly from building and display, but keep this assembly for later use.</span>
+
+<span class="sd">        The set this assembly and its member assemblies with the flag hided = True.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            &gt;&gt;&gt; TestAsb = Assembly()</span>
+<span class="sd">            &gt;&gt;&gt; TestAsb.assembly_hide()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">assembly_hide</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Assembly.assembly_show"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.assembly_show">[文档]</a>    <span class="k">def</span> <span class="nf">assembly_show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make the hided assembly to normal assembly.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">        &gt;&gt;&gt; TestAsb = Assembly() # assuming hided</span>
+<span class="sd">        &gt;&gt;&gt; TestAsb.assembly_show()</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">assembly_show</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="Assembly.get_groups"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.get_groups">[文档]</a>    <span class="k">def</span> <span class="nf">get_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all member neurongroups and neurongroups in member assemblies in a list.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            recursive(bool): flag to decide if members of the member assemblies should be returned.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of all member groups</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span> <span class="ow">and</span> <span class="n">recursive</span><span class="p">:</span>
+            <span class="n">all_groups</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">all_groups</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_groups</span><span class="p">(</span><span class="n">recursive</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">all_groups</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">recursive</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="Assembly.get_leveled_groups"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.get_leveled_groups">[文档]</a>    <span class="k">def</span> <span class="nf">get_leveled_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get list of all sup groups in leveled order, such as [ [self], [subgroups], [subgroup of subgroups], ...]</span>
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_terminal</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[[</span><span class="bp">self</span><span class="p">]]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">leveled_groups</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">self</span><span class="p">]]</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">new_level_groups</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_leveled_groups</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">level</span><span class="p">,</span> <span class="n">groups</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">new_level_groups</span><span class="p">):</span>
+                    <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">if</span> <span class="n">level</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">leveled_groups</span><span class="p">):</span>
+                        <span class="n">leveled_groups</span><span class="p">[</span><span class="n">level</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">leveled_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">leveled_groups</span></div>
+
+<div class="viewcode-block" id="Assembly.get_assemblies"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.get_assemblies">[文档]</a>    <span class="k">def</span> <span class="nf">get_assemblies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all the member assemblies and assemblies in member assemblies.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            recursive(bool): flag to decide if members of the member assemblies should be returned.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of all member assemblies</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">recursive</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="c1"># use recursive as a level label</span>
+            <span class="n">recursive</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span> <span class="ow">and</span> <span class="n">recursive</span><span class="p">:</span>
+            <span class="n">all_assemblies</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">all_assemblies</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">get_assemblies</span><span class="p">(</span><span class="n">recursive</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">all_assemblies</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">recursive</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span></div>
+
+<div class="viewcode-block" id="Assembly.get_assembly_key"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.get_assembly_key">[文档]</a>    <span class="k">def</span> <span class="nf">get_assembly_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assembly</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the key of the target assembly if it is a member of this assembly</span>
+<span class="sd">        Args:</span>
+<span class="sd">            assembly: the target assembly</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            the key of target assembly</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">gkey</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">gkey</span><span class="p">]</span> <span class="ow">is</span> <span class="n">assembly</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">gkey</span>
+        <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Assembly.get_super_assemblies"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.get_super_assemblies">[文档]</a>    <span class="k">def</span> <span class="nf">get_super_assemblies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assembly</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all the super assembly of the target assembly if it is a member or member&#39;s member of self assembly</span>
+<span class="sd">        Args:</span>
+<span class="sd">            assembly: the target assembly</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of super assemblies or []</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">elif</span> <span class="n">assembly</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">sup_list</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_super_assemblies</span><span class="p">(</span><span class="n">assembly</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sup_list</span><span class="p">:</span>
+                    <span class="n">return_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span>
+                    <span class="n">return_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sup_list</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">return_list</span>
+            <span class="k">return</span> <span class="p">[]</span></div>
+
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Assembly</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="kc">True</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Assembly.get_connections"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.get_connections">[文档]</a>    <span class="k">def</span> <span class="nf">get_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Get the Connections in this assembly</span>
+<span class="sd">        Args:</span>
+<span class="sd">            recursive(bool): flag to decide if member connections of the member assemblies should be returned.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of Connections</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">recursive</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">all_assmblies</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_assemblies</span><span class="p">(</span><span class="n">recursive</span><span class="p">)</span>
+            <span class="n">connections</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">asb</span> <span class="ow">in</span> <span class="n">all_assmblies</span><span class="p">:</span>
+                <span class="n">connections</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">asb</span><span class="o">.</span><span class="n">get_connections</span><span class="p">(</span><span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="n">connections</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">get_connections</span><span class="p">(</span><span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">connections</span></div>
+
+<div class="viewcode-block" id="Assembly.get_var_names"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.get_var_names">[文档]</a>    <span class="k">def</span> <span class="nf">get_var_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a list of variable names the assembly member contains.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_var_names</span></div>
+
+<div class="viewcode-block" id="Assembly.get_str"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.get_str">[文档]</a>    <span class="k">def</span> <span class="nf">get_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a string description of the strcuture of this assembly</span>
+<span class="sd">        Args:</span>
+<span class="sd">            level: the deepth of this assembly relative to the top network</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            String representations</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">level_space</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="n">level</span>
+        <span class="n">repr_str</span> <span class="o">=</span> <span class="n">level_space</span> <span class="o">+</span> <span class="s2">&quot;|name:</span><span class="si">{}</span><span class="s2">, type:</span><span class="si">{}</span><span class="s2">, &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">repr_str</span> <span class="o">+=</span> <span class="s2">&quot;total_neuron_num:</span><span class="si">{}</span><span class="se">\n</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num</span><span class="p">)</span>
+        <span class="n">level</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">repr_str</span> <span class="o">+=</span> <span class="n">g</span><span class="o">.</span><span class="n">get_str</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">repr_str</span> <span class="o">+=</span> <span class="n">c</span><span class="o">.</span><span class="n">get_str</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">repr_str</span> <span class="o">+=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_str</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">repr_str</span></div>
+
+    <span class="c1"># back-end functions</span>
+<div class="viewcode-block" id="Assembly.build"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Build the front-end network structure into a back-end computation graph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            backend(Backend): the backend backend to be builded into</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;builder for assembly has been called&quot;</span><span class="p">)</span>
+        <span class="c1"># for asb in self.get_groups():</span>
+        <span class="c1">#     asb.set_id()</span>
+        <span class="c1"># for con in self.get_connections():</span>
+        <span class="c1">#     con.set_id()</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Assembly.build_projections"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.build_projections">[文档]</a>    <span class="k">def</span> <span class="nf">build_projections</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">proj</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">proj</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">group</span><span class="o">.</span><span class="n">build_projections</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Assembly.set_id"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.set_id">[文档]</a>    <span class="k">def</span> <span class="nf">set_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the ID of this assembly</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_supers</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_class_label</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">super_ids</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="nb">super</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supers</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">super</span><span class="o">.</span><span class="n">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">super_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">super</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">super_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">super</span><span class="o">.</span><span class="n">set_id</span><span class="p">())</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_class_label</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">super_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">super_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pre_id</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span>
+                <span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="n">super_ids</span><span class="p">:</span>
+                    <span class="n">pre_id</span> <span class="o">+=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span>
+                <span class="n">pre_id</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">pre_id</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span></div>
+
+<div class="viewcode-block" id="Assembly.register_connection"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.register_connection">[文档]</a>    <span class="k">def</span> <span class="nf">register_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection_obj</span><span class="p">,</span> <span class="n">presynaptic</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Register input or output connection of this assembly</span>
+<span class="sd">        Args:</span>
+<span class="sd">            connection_obj (Connection.Connection): the connection</span>
+<span class="sd">            presynaptic (bool) : if this assembly is presynaptic neuron</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># ###对复杂结构的assembly也进行注册</span>
+        <span class="c1"># for key, i in self._groups.items():</span>
+        <span class="c1">#     if presynaptic:</span>
+        <span class="c1">#         if connection_obj not in i._output_connections:</span>
+        <span class="c1">#             i._output_connections.append(connection_obj)</span>
+        <span class="c1">#     else:</span>
+        <span class="c1">#         if connection_obj not in i._input_connections:</span>
+        <span class="c1">#             i._input_connections.append(connection_obj)</span>
+        <span class="c1"># # connection_obj.post_groups</span>
+        <span class="k">if</span> <span class="n">presynaptic</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">connection_obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_output_connections</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_output_connections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">connection_obj</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">connection_obj</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_connections</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_input_connections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">connection_obj</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Assembly.structure_copy"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.structure_copy">[文档]</a>    <span class="k">def</span> <span class="nf">structure_copy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Copy the structure of this assembly with new members</span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: name of the new Assembly</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            the new assembly</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># define a new object but remain the structure</span>
+        <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+        <span class="n">rv</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">tmp_dict</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">tmp_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">tmp_dict</span><span class="p">[</span><span class="s1">&#39;_supers&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">tmp_dict</span><span class="p">[</span><span class="s1">&#39;_input_connections&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">tmp_dict</span><span class="p">[</span><span class="s1">&#39;_output_connections&#39;</span><span class="p">]</span>
+        <span class="n">rv</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tmp_dict</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">rv</span></div>
+
+<div class="viewcode-block" id="Assembly.add_super"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.add_super">[文档]</a>    <span class="k">def</span> <span class="nf">add_super</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assembly</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Tell this assemlby  the target assembly is it&#39;s super assembly</span>
+<span class="sd">        Args:</span>
+<span class="sd">            assembly: the target super assembly</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">assembly</span><span class="p">,</span> <span class="n">Assembly</span><span class="p">),</span> <span class="s2">&quot;the super is not Assembly&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_supers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">assembly</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Assembly.del_super"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.del_super">[文档]</a>    <span class="k">def</span> <span class="nf">del_super</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assembly</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete certain assembly from super assemblies of this assembly</span>
+<span class="sd">        Args:</span>
+<span class="sd">            assembly: the target super assembly</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span>  <span class="n">assembly</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supers</span><span class="p">,</span> <span class="s2">&quot;the assembly is not in supers&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_supers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">assembly</span><span class="p">)</span></div>
+
+
+    <span class="c1"># def __getattr__(self, name):</span>
+
+<div class="viewcode-block" id="Assembly.train"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.train">[文档]</a>    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">training</span> <span class="o">=</span> <span class="n">mode</span>
+        <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_projections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">training</span> <span class="o">=</span> <span class="n">mode</span></div>
+
+<div class="viewcode-block" id="Assembly.eval"><a class="viewcode-back" href="../../../spaic.Network.html#spaic.Network.Assembly.Assembly.eval">[文档]</a>    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">__main__</span>
+        <span class="n">spaic</span><span class="o">.</span><span class="n">global_assembly_context_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">main_vars</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">__main__</span><span class="p">)</span>
+        <span class="n">NoInMain</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">main_vars</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">main_vars</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
+               <span class="n">NoInMain</span> <span class="o">=</span> <span class="kc">False</span>
+               <span class="bp">self</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+               <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">NoInMain</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;can only construct network using with at __main__&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># record the variable number before enter the context</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">context_enterpoint</span> <span class="o">=</span> <span class="n">main_vars</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">__main__</span>
+        <span class="n">main_vars</span> <span class="o">=</span> <span class="nb">vars</span><span class="p">(</span><span class="n">__main__</span><span class="p">)</span>
+        <span class="n">endpoint_num</span> <span class="o">=</span> <span class="n">main_vars</span><span class="o">.</span><span class="fm">__len__</span><span class="p">()</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="c1"># depending on the feature that python &gt;=3.7 , dict is insertion ordered, so we can get the subunits by order</span>
+        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">main_vars</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">ind</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_enterpoint</span> <span class="ow">and</span> <span class="n">ind</span> <span class="o">&lt;=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">global_assembly_context_omit_start</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">main_vars</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">ind</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_enterpoint</span> <span class="ow">and</span> <span class="n">ind</span> <span class="o">&gt;</span> <span class="n">spaic</span><span class="o">.</span><span class="n">global_assembly_context_omit_end</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">main_vars</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+
+        <span class="n">spaic</span><span class="o">.</span><span class="n">global_assembly_context_list</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">spaic</span><span class="o">.</span><span class="n">global_assembly_context_omit_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_enterpoint</span>
+        <span class="n">spaic</span><span class="o">.</span><span class="n">global_assembly_context_omit_end</span> <span class="o">=</span> <span class="n">endpoint_num</span>
+        <span class="c1"># keys = list(globals().keys())</span>
+        <span class="c1"># print(keys)</span>
+
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">..Network.Topology</span> <span class="kn">import</span> <span class="n">Connection</span>
+        <span class="kn">from</span> <span class="nn">..Network.Topology</span> <span class="kn">import</span> <span class="n">Projection</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Assembly</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span> <span class="ow">is</span> <span class="n">spaic</span><span class="o">.</span><span class="n">NeuronGroup</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Node</span><span class="p">)):</span>
+            <span class="c1"># If class is NeuronGroup or the subclass of Node, do not add other object to it.</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Assembly</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num</span> <span class="o">+=</span> <span class="n">value</span><span class="o">.</span><span class="n">num</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">add_super</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Connection</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">add_super</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Projection</span><span class="p">):</span>
+            <span class="c1"># if it is not Connection but belongs to projection (pure projection)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_projections</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">set_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">add_super</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Assembly</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__delattr__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">del_super</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_groups</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">builded</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">del_super</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">repr_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_str</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">repr_str</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

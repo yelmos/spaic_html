@@ -1,0 +1,1785 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Backend package &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>spaic.Backend package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/spaic.Simulation.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spaic-backend-package">
+<h1>spaic.Backend package<a class="headerlink" href="#spaic-backend-package" title="永久链接至标题">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.Backend.Builder">
+<span id="spaic-backend-builder-module"></span><h2>spaic.Backend.Builder module<a class="headerlink" href="#module-spaic.Backend.Builder" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/9/15
+&#64;project: SPAIC
+&#64;filename: Builder
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+</div>
+<div class="section" id="module-spaic.Backend.Backend">
+<span id="spaic-backend-backend-module"></span><h2>spaic.Backend.Backend module<a class="headerlink" href="#module-spaic.Backend.Backend" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/6
+&#64;project: SPAIC
+&#64;filename: Backend
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a>
+&#64;description:
+定义网络仿真使用的backend，如 Pytorch, Tensorflow, CUDA, 达尔文芯片等，以及相应的微分方程求解方法比如 Euler, 2阶 Runge-Kutta等</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Backend.Backend.</span></span><span class="sig-name descname"><span class="pre">Backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="spaic.Network.html#spaic.Network.BaseModule.BaseModule" title="spaic.Network.BaseModule.BaseModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Network.BaseModule.BaseModule</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Basic backend class. All specified backend backend should subclass it.
+The backend is a parameter for the build function and becomes an attribute of all objects defined
+in the frontend backend network in building process. These objects build their initial data
+and specified operations into the attributes of backend, according to _variables
+and _operations respectively. The data will update in each step according the computation graph.
+:param dt: the length of a backend timestep, in millisecond.
+:type dt: float, optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">变量</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>device</strong> (<em>str</em>) – the desired device of returned tensor. Its value can be ‘cpu’ or ‘cuda’. If None, uses
+the current device for the default tensor type.</p></li>
+<li><p><strong>builded</strong> (<em>bool</em>) – whether the object defined in the frontend backend network has been builded.</p></li>
+<li><p><strong>time</strong> (<em>float</em>) – current backend time, in millisecond.</p></li>
+<li><p><strong>n_time_step</strong> (<em>int</em>) – the num of current time step.</p></li>
+<li><p><strong>_variables</strong> (<em>OrderedDict</em>) – records all variables from the build function of frontend objects.</p></li>
+<li><p><strong>_parameters_dict</strong> (<em>OrderedDict</em>) – records the variables to be trained.</p></li>
+<li><p><strong>_InitVariables_dict</strong> (<em>OrderedDict</em>) – reserves a copy of the initialization variables for initialization.</p></li>
+<li><p><strong>_graph_var_dicts</strong> (<em>dict</em>) – has following format: {‘variables_dict’: self._variables, ‘temp_dict’: dict(), ‘update_dict’: dict(), ‘reduce_dict’: dict()},
+recording the intermediate value of variables in computation progress.</p></li>
+<li><p><strong>basic_operate</strong> (<em>dict</em>) – dictionary of basic operators, mapping from operator names using in frontend to
+the funtion objects implemented in backend.</p></li>
+<li><p><strong>_operations</strong> (<em>list</em>) – records all basic operations from the build function of frontend objects, each of
+which has following format: [ret_var_name: str, operation_name, input_var_name1: str, input_var_name2 :str, …].</p></li>
+<li><p><strong>_graph_operations</strong> (<em>list</em>) – redefine each basic operation, that is, add the corresponding keyword in the _graph_var_dicts to each variable,
+which has following format: [(dict_type, ret_var_name), operation_name, [(dict_type1, input_var_name1),(dict_type2, input_var_name2),…]].</p></li>
+<li><p><strong>_standalone_operations</strong> (<em>list</em>) – records all standalone operations from the build function of frontend objects,
+each of which has following format: (ret_var_name: str, function, input_var_names: list).</p></li>
+<li><p><strong>_initial_operations</strong> (<em>list</em>) – records all initial operations from the build function of frontend objects, each of
+which has following format: (ret_var_name: str, function, input_var_names: list).</p></li>
+<li><p><strong>_monitors</strong> (<em>list</em>) – records all monitors defined in fronted network through build function of Monitor object.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.build_graph">
+<span class="sig-name descname"><span class="pre">build_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.build_graph"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.build_graph" title="永久链接至目标">¶</a></dt>
+<dd><p>build a computation graph before performing the calculation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.graph_update_step">
+<span class="sig-name descname"><span class="pre">graph_update_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.graph_update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.graph_update_step" title="永久链接至目标">¶</a></dt>
+<dd><p>update value of _graph_var_dicts.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.initial_step">
+<span class="sig-name descname"><span class="pre">initial_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.initial_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.initial_step" title="永久链接至目标">¶</a></dt>
+<dd><p>initialize network variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.update_step">
+<span class="sig-name descname"><span class="pre">update_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.update_step" title="永久链接至目标">¶</a></dt>
+<dd><p>update the return variables of standalone operations and basic operations and current backend time.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.r_update_step">
+<span class="sig-name descname"><span class="pre">r_update_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.r_update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.r_update_step" title="永久链接至目标">¶</a></dt>
+<dd><p>update the return variables of basic operations without using graph_update_step().</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.add_variable">
+<span class="sig-name descname"><span class="pre">add_variable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.add_variable"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.add_variable" title="永久链接至目标">¶</a></dt>
+<dd><p>add variables from front objects to _variables of Backend.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.add_backend_variable">
+<span class="sig-name descname"><span class="pre">add_backend_variable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.add_backend_variable"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.add_backend_variable" title="永久链接至目标">¶</a></dt>
+<dd><p>add variables according to the specified backend.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.add_operation">
+<span class="sig-name descname"><span class="pre">add_operation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.add_operation"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.add_operation" title="永久链接至目标">¶</a></dt>
+<dd><p>add basic operations from front objects to _operations of Backend.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.register_standalone">
+<span class="sig-name descname"><span class="pre">register_standalone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.register_standalone"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.register_standalone" title="永久链接至目标">¶</a></dt>
+<dd><p>add standalone operations from front objects to _standalone_operations of Backend.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.register_initial">
+<span class="sig-name descname"><span class="pre">register_initial</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.register_initial"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.register_initial" title="永久链接至目标">¶</a></dt>
+<dd><p>add initial operations from front objects to _initial_operations of Backend.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.basic_operate">
+<span class="sig-name descname"><span class="pre">basic_operate</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{}</span></em><a class="headerlink" href="#spaic.Backend.Backend.Backend.basic_operate" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.param_init_operate">
+<span class="sig-name descname"><span class="pre">param_init_operate</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{}</span></em><a class="headerlink" href="#spaic.Backend.Backend.Backend.param_init_operate" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.backend_name">
+<span class="sig-name descname"><span class="pre">backend_name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'None'</span></em><a class="headerlink" href="#spaic.Backend.Backend.Backend.backend_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.set_batch_size">
+<span class="sig-name descname"><span class="pre">set_batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.set_batch_size"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.set_batch_size" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.get_batch_size">
+<span class="sig-name descname"><span class="pre">get_batch_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.get_batch_size"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.get_batch_size" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.set_runtime">
+<span class="sig-name descname"><span class="pre">set_runtime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.set_runtime"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.set_runtime" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">build_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.build_graph"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id0" title="永久链接至目标">¶</a></dt>
+<dd><p>Build a computation graph before performing the calculation.
+Note that only the basic operations are redefiend into the _graph_operations list. The format of _graph_operations is as follows:
+[(dict_type, ret_var_name), operation_name, [(dict_type1, input_var_name1),(dict_type2, input_var_name2),…]].
+Traverse all basic operations and add the corresponding keyword in the _graph_var_dicts as dict_type to each variable in basic operation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.var_check">
+<span class="sig-name descname"><span class="pre">var_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.var_check"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.var_check" title="永久链接至目标">¶</a></dt>
+<dd><p>For specified operation, check the type or the shape of input variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.graph_update_step_r">
+<span class="sig-name descname"><span class="pre">graph_update_step_r</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.graph_update_step_r"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.graph_update_step_r" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">graph_update_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduce_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.graph_update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id1" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.push_update_step">
+<span class="sig-name descname"><span class="pre">push_update_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.push_update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.push_update_step" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.fetch_update_step">
+<span class="sig-name descname"><span class="pre">fetch_update_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.fetch_update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.fetch_update_step" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">initial_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.initial_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id2" title="永久链接至目标">¶</a></dt>
+<dd><p>Initialize network variables.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.clear_step">
+<span class="sig-name descname"><span class="pre">clear_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.clear_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.clear_step" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.initial_continue_step">
+<span class="sig-name descname"><span class="pre">initial_continue_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.initial_continue_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.initial_continue_step" title="永久链接至目标">¶</a></dt>
+<dd><p>Initialize network for continuous run.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">update_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id3" title="永久链接至目标">¶</a></dt>
+<dd><p>Update the return variables of standalone operations and basic operations and current backend time.
+:returns: tuple(self._variables.values())</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.update_time_steps">
+<span class="sig-name descname"><span class="pre">update_time_steps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.update_time_steps"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.update_time_steps" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">r_update_step</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.r_update_step"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id4" title="永久链接至目标">¶</a></dt>
+<dd><p>Update the return variables of basic operations without using graph_update_step().
+:returns: tuple(self._variables.values())</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.reduce_sum_update">
+<span class="sig-name descname"><span class="pre">reduce_sum_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.reduce_sum_update"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.reduce_sum_update" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.get_varialble">
+<span class="sig-name descname"><span class="pre">get_varialble</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.get_varialble"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.get_varialble" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.set_variable_value">
+<span class="sig-name descname"><span class="pre">set_variable_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_parameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.set_variable_value"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.set_variable_value" title="永久链接至目标">¶</a></dt>
+<dd><p>Set the backend value, in specific Backend
+:param name:
+:param value:
+:param is_parameter:</p>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">add_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_parameter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_param</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_constant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.add_variable"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id5" title="永久链接至目标">¶</a></dt>
+<dd><p>Add variables from front objects to _variables of Backend and get copies to assign to _parameters_dict and _InitVariables_dict.
+:param name: the name of the added variable
+:type name: str
+:param shape: the shape of the variable
+:type shape: list, int
+:param value: the value of the variable
+:type value: optional
+:param is_parameter: whether the variable is trainable
+:type is_parameter: bool, optional
+:param init:
+:type init: optinal</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.has_variable">
+<span class="sig-name descname"><span class="pre">has_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.has_variable"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.has_variable" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.add_delay">
+<span class="sig-name descname"><span class="pre">add_delay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_delay</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.add_delay"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.add_delay" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">add_backend_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_param</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.add_backend_variable"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id6" title="永久链接至目标">¶</a></dt>
+<dd><p>This method will be overwritten by different subclasses to add variables to _variables of specified backend.
+:param name: the name of the added variable
+:type name: str
+:param shape: the shape of the variable
+:type shape: list, int
+:param value: the value of the variable
+:type value: optional
+:param is_parameter: whether the variable is trainable
+:type is_parameter: bool, optional
+:param init:
+:type init: optinal
+:param grad: whether to use grad
+:type grad: bool, optional</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.sparse_to_dense">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">sparse_to_dense</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.sparse_to_dense"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.sparse_to_dense" title="永久链接至目标">¶</a></dt>
+<dd><p>This method will be sparse matrix to dense matrix.
+:param index_name:
+:type index_name: str
+:param value_name:
+:type value_name: str
+:param shape_name:
+:type shape_name: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">add_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.add_operation"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id7" title="永久链接至目标">¶</a></dt>
+<dd><p>Add basic operations from front objects to _operations of Backend.
+:param op: the operation includes [ret_var_name: str, operation_name, input_var_name1: str, input_var_name2 :str, …]
+:type op: list</p>
+<p>transformed to : [[return_var_names], operation_name, [input_var_names]]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">register_standalone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_names</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_names</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.register_standalone"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id8" title="永久链接至目标">¶</a></dt>
+<dd><p>Add standalone operations from front objects to _standalone_operations of Backend.
+:param output_name: the name of the return variable of the method
+:type output_name: str
+:param funtion (): the standalone method
+:param input_names: the name of the arguments of the method
+:type input_names: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">register_initial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_names</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.register_initial"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#id9" title="永久链接至目标">¶</a></dt>
+<dd><p>Add initial operations from front objects to _initial_operations of Backend..
+:param output_name: the name of the return variable of the method
+:type output_name: str
+:param funtion (): the standalone method
+:param input_names: the name of the arguments of the method
+:type input_names: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.store">
+<span class="sig-name descname"><span class="pre">store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.store"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.store" title="永久链接至目标">¶</a></dt>
+<dd><p>Store backend_name and _variables into _stored_states dictionary.
+:param name: the name of network state.
+:type name: str, optional</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.restore">
+<span class="sig-name descname"><span class="pre">restore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.restore"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.restore" title="永久链接至目标">¶</a></dt>
+<dd><p>Restore network state from _stored_states dictionary.
+:param name: the name of network state.
+:type name: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.check_key">
+<span class="sig-name descname"><span class="pre">check_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ckey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.check_key"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.check_key" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.threshold">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.threshold"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.threshold" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> – membrane voltage</p></li>
+<li><p><strong>v_th</strong> – threshold</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>v&gt; v_th</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.cat">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">cat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.cat"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.cat" title="永久链接至目标">¶</a></dt>
+<dd><p>Joining data together along a dimension.
+Note that the total dimension of the data remains the same after cat.
+:param x:
+:type x: list
+:param dim: the dimension to cat.
+:type dim: int</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>concat(x, dim)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.stack">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">stack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.stack"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.stack" title="永久链接至目标">¶</a></dt>
+<dd><p>Add new dimension when stack data.
+:param x:
+:type x: list
+:param dim: the dimension to stack.
+:type dim: int</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>stack(x, dim)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.permute">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">permute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permute_dim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.permute"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.permute" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> (<em>x---&gt;</em>) – </p></li>
+<li><p><strong>operation</strong> (<em>permute_dim---&gt; the dimension index of permute</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.view">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_dim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.view"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.view" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> (<em>x---&gt;</em>) – </p></li>
+<li><p><strong>operation</strong> (<em>view_dim---&gt; the shape of view</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.assign">
+<span class="sig-name descname"><span class="pre">assign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.assign"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.assign" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>y---&gt;</em>) – </p></li>
+<li><p><strong>input</strong> (<em>x---&gt;</em>) – </p></li>
+<li><p><strong>x</strong> (<em>y =</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.unsqueeze">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">unsqueeze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.unsqueeze"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.unsqueeze" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> (<em>x---&gt;</em>) – </p></li>
+<li><p><strong>operation</strong> (<em>dim---&gt; the dim of unsqueeze</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.reduce_sum">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">reduce_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">dim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.reduce_sum"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.reduce_sum" title="永久链接至目标">¶</a></dt>
+<dd><p>Reduce the dimensions of the data
+:param x:
+:type x: list
+:param dim: the dimension to reduce.
+:type dim: tuple(int)</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>sum(x, dim)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.index_select">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">index_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.index_select"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.index_select" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – </p></li>
+<li><p><strong>indices</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.scatter">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.scatter"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.scatter" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – </p></li>
+<li><p><strong>indices</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.conv1d">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">conv1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.conv1d"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.conv1d" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – </p></li>
+<li><p><strong>kernel</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.conv_trans1d">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">conv_trans1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.conv_trans1d"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.conv_trans1d" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – </p></li>
+<li><p><strong>kernel</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.im2col_indices">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">im2col_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.im2col_indices"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.im2col_indices" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>4D array  N</em><em>, </em><em>FH</em><em>, </em><em>FW</em><em>, </em><em>C_{in}</em>) – </p></li>
+<li><p><strong>kh</strong> (<em>kernel_height</em>) – </p></li>
+<li><p><strong>kw</strong> (<em>kernel_width</em>) – </p></li>
+<li><p><strong>stride</strong> – </p></li>
+<li><p><strong>padding</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.conv2d_flatten">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">conv2d_flatten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.conv2d_flatten"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.conv2d_flatten" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>4D array</em><em> (</em><em>batch_size</em><em>, </em><em>out_channels</em><em>, </em><em>height</em><em>, </em><em>width</em><em>)</em>) – </p></li>
+<li><p><strong>Returns</strong> – </p></li>
+<li><p><strong>(</strong><strong>batch_size</strong> (<em>3D array</em>) – </p></li>
+<li><p><strong>out_channels</strong> – </p></li>
+<li><p><strong>width</strong><strong>)</strong> (<em>height *</em>) – </p></li>
+<li><p><strong>----------</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.feature_map_flatten">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">feature_map_flatten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.feature_map_flatten"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.feature_map_flatten" title="永久链接至目标">¶</a></dt>
+<dd><p>For RSTDP and STDP learning rules which is  follwed with conv pre_layer
+:param x:
+:type x: 4D array (batch_size, out_channels, height, width)
+:param Returns:
+:param 2D array (batch_size:
+:param out_channels * height * width):
+:param ———-:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.add">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.add"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.add" title="永久链接至目标">¶</a></dt>
+<dd><p>Add the tensor y to the input x and returns a new result.
+:param x: input
+:type x: Tensor
+:param y: the second input
+:type y: Tensor or Number</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>x + y</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.minus">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">minus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.minus"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.minus" title="永久链接至目标">¶</a></dt>
+<dd><p>The first input minus the second input
+:param x: input
+:type x: Tensor
+:param y: the second input
+:type y: Tensor or Number</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>x - y</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.div">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">div</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.div"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.div" title="永久链接至目标">¶</a></dt>
+<dd><p>The first input div the second input
+:param x: input
+:type x: Tensor
+:param y: the second input
+:type y: Tensor or Number</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>x/y</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.relu">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">relu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.relu"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.relu" title="永久链接至目标">¶</a></dt>
+<dd><p>Rectified Linear
+:param x:</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>x = x if x&gt;0. else x = 0</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.mat_mult_weight">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">mat_mult_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.mat_mult_weight"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.mat_mult_weight" title="永久链接至目标">¶</a></dt>
+<dd><p>Matrix product.
+:param A: the first input to be multiplied
+:type A: Tensor
+:param X: the second input to be multiplied
+:type X: Tensor</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>mat_mult_weight(A,X)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.mat_mult_weight_complex">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">mat_mult_weight_complex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.mat_mult_weight_complex"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.mat_mult_weight_complex" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.mat_mult_pre">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">mat_mult_pre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.mat_mult_pre"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.mat_mult_pre" title="永久链接至目标">¶</a></dt>
+<dd><p>Matrix product.
+:param A: the first input to be multiplied
+:type A: Tensor
+:param X: the second input to be multiplied
+:type X: Tensor</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>mat_mult_pre(A,X)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.sigmoid">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">sigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.sigmoid"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.sigmoid" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>x</strong> – </p>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.mat_mult">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">mat_mult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.mat_mult"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.mat_mult" title="永久链接至目标">¶</a></dt>
+<dd><p>Matrix product.
+:param A: the first input to be multiplied
+:type A: Tensor
+:param X: the second input to be multiplied
+:type X: Tensor</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>mat_mult(A,X)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.reshape_mat_mult">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">reshape_mat_mult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.reshape_mat_mult"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.reshape_mat_mult" title="永久链接至目标">¶</a></dt>
+<dd><p>Matrix product.
+:param A: the first input to be multiplied
+:type A: Tensor
+:param X: the second input to be multiplied
+:type X: Tensor</p>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.bmm">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">bmm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.bmm"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.bmm" title="永久链接至目标">¶</a></dt>
+<dd><p>Performs a batch matrix-matrix product.
+:param A: the first input to be multiplied  [batch_size, n, m]
+:type A: Tensor
+:param X: the second input to be multiplied  [batch_size, m, p]
+:type X: Tensor</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>bmm(A,X)   [batch_size, n, p]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.sparse_mat_mult_weight">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">sparse_mat_mult_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.sparse_mat_mult_weight"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.sparse_mat_mult_weight" title="永久链接至目标">¶</a></dt>
+<dd><p>Sparse matrix product.
+:param A: the first input to be multiplied
+:type A: Tensor
+:param X: the second input to be multiplied
+:type X: Tensor</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>sparse_mat_mult_weight(A,X)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.var_mult">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">var_mult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.var_mult"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.var_mult" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – </p></li>
+<li><p><strong>X</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>A * X</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.mult_sum_weight">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">mult_sum_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.mult_sum_weight"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.mult_sum_weight" title="永久链接至目标">¶</a></dt>
+<dd><blockquote>
+<div><p>sum(A*X, dim=-2)</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – </p></li>
+<li><p><strong>X</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.mat_linear">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">mat_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.mat_linear"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.mat_linear" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – </p></li>
+<li><p><strong>X</strong> – </p></li>
+<li><p><strong>b</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>mat_mul(A,X)+b</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.ger">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">ger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.ger"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.ger" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – </p></li>
+<li><p><strong>X</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>ger(A,X)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.var_linear">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">var_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.var_linear"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.var_linear" title="永久链接至目标">¶</a></dt>
+<dd><p>If A is matrix, then A and X should have the same shape, A*X is elemen-wise multiplication
+else  A should be a scalar value.
+:returns: A*X +b</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.to_numpy">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">to_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.to_numpy"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.to_numpy" title="永久链接至目标">¶</a></dt>
+<dd><dl class="simple">
+<dt>Args：</dt><dd><p>data</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">返回</dt>
+<dd class="field-odd"><p>data.numpy()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.to_tensor">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">to_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.to_tensor"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.to_tensor" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>data</strong> – </p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.tensor(data)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.clamp_">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">clamp_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.clamp_"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.clamp_" title="永久链接至目标">¶</a></dt>
+<dd><p>in-place clamp the data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.clamp_max_">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">clamp_max_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.clamp_max_"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.clamp_max_" title="永久链接至目标">¶</a></dt>
+<dd><p>in-place clamp the max of the data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.clamp_min_">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">clamp_min_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.clamp_min_"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.clamp_min_" title="永久链接至目标">¶</a></dt>
+<dd><p>in-place clamp the min of the data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.uniform">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.uniform"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.uniform" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>a</strong> (<em>float</em>) – the lower bound of the uniform distribution</p></li>
+<li><p><strong>b</strong> (<em>float</em>) – the upper bound of the uniform distribution</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.uniform_(data, a=0.0, b=1.0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.normal">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.normal"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.normal" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>mean</strong> (<em>float</em>) – the mean of the normal distribution</p></li>
+<li><p><strong>std</strong> (<em>float</em>) – the standard deviation of the normal distribution</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.normal_(data, mean=0.0, std=1.0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.xavier_normal">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">xavier_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.xavier_normal"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.xavier_normal" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>gain</strong> – an optional scaling factor</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.xavier_normal_(data, gain=1.0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.xavier_uniform">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">xavier_uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.xavier_uniform"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.xavier_uniform" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>gain</strong> – an optional scaling factor</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.xavier_uniform_(data, gain=1.0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.kaiming_normal">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">kaiming_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fan_in'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonlinearity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'leaky_relu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.kaiming_normal"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.kaiming_normal" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>a</strong> – the negative slope of the rectifier used after this layer (only used with ‘leaky_relu’)</p></li>
+<li><p><strong>mode</strong> – either ‘fan_in’ (default) or ‘fan_out’. Choosing ‘fan_in’ preserves the magnitude of the variance of the weights in the forward pass. Choosing ‘fan_out’ preserves the magnitudes in the backwards pass.</p></li>
+<li><p><strong>nonlinearity</strong> – the non-linear function (nn.functional name), recommended to use only with ‘relu’ or ‘leaky_relu’ (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.kaiming_normal_(data, a=0, mode=’fan_in’, nonlinearity=’leaky_relu’)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.kaiming_uniform">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">kaiming_uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fan_in'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonlinearity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'leaky_relu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.kaiming_uniform"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.kaiming_uniform" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>a</strong> – the negative slope of the rectifier used after this layer (only used with ‘leaky_relu’)</p></li>
+<li><p><strong>mode</strong> – either ‘fan_in’ (default) or ‘fan_out’. Choosing ‘fan_in’ preserves the magnitude of the variance of the weights in the forward pass. Choosing ‘fan_out’ preserves the magnitudes in the backwards pass.</p></li>
+<li><p><strong>nonlinearity</strong> – the non-linear function (nn.functional name), recommended to use only with ‘relu’ or ‘leaky_relu’ (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.kaiming_uniform_(data, a=0, mode=’fan_in’, nonlinearity=’leaky_relu’)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.zero_init">
+<em class="property"><span class="pre">abstract</span> </em><span class="sig-name descname"><span class="pre">zero_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.zero_init"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.zero_init" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>constant_value</strong> (<em>float</em>) – the value to fill the tensor with</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.constant_(data, constant_value)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.exp">
+<span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.exp"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.exp" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>return exp(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.sin">
+<span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.sin"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.sin" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>return exp(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.cos">
+<span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.cos"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.cos" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>return exp(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.tan">
+<span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.tan"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.tan" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>return exp(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.log"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.log" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>return exp(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.log2">
+<span class="sig-name descname"><span class="pre">log2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.log2"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.log2" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>return exp(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.log10">
+<span class="sig-name descname"><span class="pre">log10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.log10"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.log10" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>return exp(x)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Backend.Backend.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Backend.html#Backend.reset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Backend.Backend.reset" title="永久链接至目标">¶</a></dt>
+<dd><p>Reset voltage</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="spaic-backend-tf-backend-module">
+<h2>spaic.Backend.TF_Backend module<a class="headerlink" href="#spaic-backend-tf-backend-module" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="module-spaic.Backend.Torch_Backend">
+<span id="spaic-backend-torch-backend-module"></span><h2>spaic.Backend.Torch_Backend module<a class="headerlink" href="#module-spaic.Backend.Torch_Backend" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/9/14
+&#64;project: SPAIC
+&#64;filename: Torch_Backend
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a>
+&#64;description:</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Engine">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Backend.Torch_Backend.</span></span><span class="sig-name descname"><span class="pre">Torch_Engine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph_operations</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Engine"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Engine" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Engine.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">torch.Tensor</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Engine.forward"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Engine.forward" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Engine.training">
+<span class="sig-name descname"><span class="pre">training</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Engine.training" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">spaic.Backend.Torch_Backend.</span></span><span class="sig-name descname"><span class="pre">Torch_Backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cpu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend" title="永久链接至目标">¶</a></dt>
+<dd><p>基类：<a class="reference internal" href="#spaic.Backend.Backend.Backend" title="spaic.Backend.Backend.Backend"><code class="xref py py-class docutils literal notranslate"><span class="pre">spaic.Backend.Backend.Backend</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.backend_name">
+<span class="sig-name descname"><span class="pre">backend_name</span></span><em class="property"> <span class="pre">=</span> <span class="pre">'pytorch'</span></em><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.backend_name" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.build"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.build" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.build_graph">
+<span class="sig-name descname"><span class="pre">build_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.build_graph"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.build_graph" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.add_backend_variable">
+<span class="sig-name descname"><span class="pre">add_backend_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_param</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.add_backend_variable"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.add_backend_variable" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – </p></li>
+<li><p><strong>shape</strong> – </p></li>
+<li><p><strong>value</strong> – </p></li>
+<li><p><strong>init</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.set_variable_value">
+<span class="sig-name descname"><span class="pre">set_variable_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_parameter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.set_variable_value"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.set_variable_value" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.sparse_to_dense">
+<span class="sig-name descname"><span class="pre">sparse_to_dense</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.sparse_to_dense"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.sparse_to_dense" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.get_str">
+<span class="sig-name descname"><span class="pre">get_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.get_str"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.get_str" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.threshold">
+<span class="sig-name descname"><span class="pre">threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_th</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.threshold"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.threshold" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.cat">
+<span class="sig-name descname"><span class="pre">cat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.cat"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.cat" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.stack">
+<span class="sig-name descname"><span class="pre">stack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.stack"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.stack" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.reduce_sum">
+<span class="sig-name descname"><span class="pre">reduce_sum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">dim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.reduce_sum"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.reduce_sum" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.index_select">
+<span class="sig-name descname"><span class="pre">index_select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.index_select"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.index_select" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.permute">
+<span class="sig-name descname"><span class="pre">permute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permute_dim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.permute"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.permute" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.view">
+<span class="sig-name descname"><span class="pre">view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_dim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.view"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.view" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.scatter">
+<span class="sig-name descname"><span class="pre">scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.scatter"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.scatter" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.conv1d">
+<span class="sig-name descname"><span class="pre">conv1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.conv1d"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.conv1d" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.conv_trans1d">
+<span class="sig-name descname"><span class="pre">conv_trans1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.conv_trans1d"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.conv_trans1d" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.conv_2d">
+<span class="sig-name descname"><span class="pre">conv_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.conv_2d"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.conv_2d" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.conv_max_pool2d">
+<span class="sig-name descname"><span class="pre">conv_max_pool2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_stride</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_padding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.conv_max_pool2d"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.conv_max_pool2d" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.conv_avg_pool2d">
+<span class="sig-name descname"><span class="pre">conv_avg_pool2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_stride</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_padding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dilation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.conv_avg_pool2d"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.conv_avg_pool2d" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.conv_add_bias">
+<span class="sig-name descname"><span class="pre">conv_add_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.conv_add_bias"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.conv_add_bias" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.max_pool2d">
+<span class="sig-name descname"><span class="pre">max_pool2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_stride</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_padding</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.max_pool2d"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.max_pool2d" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.avg_pool2d">
+<span class="sig-name descname"><span class="pre">avg_pool2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_stride</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pool_padding</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.avg_pool2d"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.avg_pool2d" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.dropout">
+<span class="sig-name descname"><span class="pre">dropout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.dropout"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.dropout" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.reshape_mat_mult">
+<span class="sig-name descname"><span class="pre">reshape_mat_mult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.reshape_mat_mult"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.reshape_mat_mult" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.im2col_indices">
+<span class="sig-name descname"><span class="pre">im2col_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stride</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.im2col_indices"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.im2col_indices" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.conv2d_flatten">
+<span class="sig-name descname"><span class="pre">conv2d_flatten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.conv2d_flatten"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.conv2d_flatten" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.feature_map_flatten">
+<span class="sig-name descname"><span class="pre">feature_map_flatten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.feature_map_flatten"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.feature_map_flatten" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.add"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.add" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.minus">
+<span class="sig-name descname"><span class="pre">minus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.minus"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.minus" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.div">
+<span class="sig-name descname"><span class="pre">div</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.div"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.div" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.relu">
+<span class="sig-name descname"><span class="pre">relu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.relu"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.relu" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.sigmoid">
+<span class="sig-name descname"><span class="pre">sigmoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.sigmoid"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.sigmoid" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.mat_mult_weight">
+<span class="sig-name descname"><span class="pre">mat_mult_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.mat_mult_weight"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.mat_mult_weight" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A---&gt;preGroup</strong> (<em>input</em>) – </p></li>
+<li><p><strong>X---&gt;postGroup</strong> (<em>weight</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.mat_mult_weight_complex">
+<span class="sig-name descname"><span class="pre">mat_mult_weight_complex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.mat_mult_weight_complex"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.mat_mult_weight_complex" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A---&gt;preGroup</strong> (<em>input</em>) – </p></li>
+<li><p><strong>X---&gt;postGroup</strong> (<em>weight</em>) – </p></li>
+<li><p><strong>postGroup</strong> (<em>beta---&gt;</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.mat_mult_pre">
+<span class="sig-name descname"><span class="pre">mat_mult_pre</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.mat_mult_pre"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.mat_mult_pre" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A---&gt;preGroup</strong> (<em>input</em>) – </p></li>
+<li><p><strong>X---&gt;postGroup</strong> (<em>weight</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.mat_mult">
+<span class="sig-name descname"><span class="pre">mat_mult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.mat_mult"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.mat_mult" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A---&gt;preGroup</strong> (<em>input</em>) – </p></li>
+<li><p><strong>X---&gt;postGroup</strong> (<em>weight</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.bmm">
+<span class="sig-name descname"><span class="pre">bmm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.bmm"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.bmm" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>postGroup</strong> (<em>A---&gt;</em>) – </p></li>
+<li><p><strong>preGroup</strong> (<em>X---&gt;</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.ger">
+<span class="sig-name descname"><span class="pre">ger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.ger"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.ger" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>postGroup</strong> (<em>A---&gt;</em>) – </p></li>
+<li><p><strong>preGroup</strong> (<em>X---&gt;</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.sparse_mat_mult_weight">
+<span class="sig-name descname"><span class="pre">sparse_mat_mult_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.sparse_mat_mult_weight"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.sparse_mat_mult_weight" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A---&gt;preGroup</strong> (<em>sparseWeight</em><em>(</em><em>post</em><em>, </em><em>pre</em><em>)</em>) – </p></li>
+<li><p><strong>X---&gt;postGroup</strong> (<em>input</em><em>(</em><em>batch</em><em>, </em><em>pre</em><em>)</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.var_mult">
+<span class="sig-name descname"><span class="pre">var_mult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.var_mult"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.var_mult" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.mult_sum_weight">
+<span class="sig-name descname"><span class="pre">mult_sum_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.mult_sum_weight"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.mult_sum_weight" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.mat_linear">
+<span class="sig-name descname"><span class="pre">mat_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.mat_linear"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.mat_linear" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.var_linear">
+<span class="sig-name descname"><span class="pre">var_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.var_linear"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.var_linear" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.unsqueeze">
+<span class="sig-name descname"><span class="pre">unsqueeze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.unsqueeze"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.unsqueeze" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.to_numpy">
+<span class="sig-name descname"><span class="pre">to_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">torch.Tensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.to_numpy"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.to_numpy" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.to_tensor">
+<span class="sig-name descname"><span class="pre">to_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.to_tensor"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.to_tensor" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.exp">
+<span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.exp"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.exp" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.clamp_">
+<span class="sig-name descname"><span class="pre">clamp_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.clamp_"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.clamp_" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.clamp_max_">
+<span class="sig-name descname"><span class="pre">clamp_max_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.clamp_max_"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.clamp_max_" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.clamp_min_">
+<span class="sig-name descname"><span class="pre">clamp_min_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.clamp_min_"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.clamp_min_" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.uniform">
+<span class="sig-name descname"><span class="pre">uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.uniform"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.uniform" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>a</strong> (<em>float</em>) – the lower bound of the uniform distribution</p></li>
+<li><p><strong>b</strong> (<em>float</em>) – the upper bound of the uniform distribution</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.uniform_(data, a=0.0, b=1.0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.normal">
+<span class="sig-name descname"><span class="pre">normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.normal"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.normal" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>mean</strong> (<em>float</em>) – the mean of the normal distribution</p></li>
+<li><p><strong>std</strong> (<em>float</em>) – the standard deviation of the normal distribution</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.normal_(data, mean=0.0, std=1.0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.xavier_normal">
+<span class="sig-name descname"><span class="pre">xavier_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.xavier_normal"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.xavier_normal" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>gain</strong> – an optional scaling factor</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.xavier_normal_(data, gain=1.0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.xavier_uniform">
+<span class="sig-name descname"><span class="pre">xavier_uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.xavier_uniform"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.xavier_uniform" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>gain</strong> – an optional scaling factor</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.xavier_uniform_(data, gain=1.0)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.kaiming_normal">
+<span class="sig-name descname"><span class="pre">kaiming_normal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fan_in'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonlinearity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'leaky_relu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.kaiming_normal"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.kaiming_normal" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>a</strong> – the negative slope of the rectifier used after this layer (only used with ‘leaky_relu’)</p></li>
+<li><p><strong>mode</strong> – either ‘fan_in’ (default) or ‘fan_out’. Choosing ‘fan_in’ preserves the magnitude of the variance of the weights in the forward pass. Choosing ‘fan_out’ preserves the magnitudes in the backwards pass.</p></li>
+<li><p><strong>nonlinearity</strong> – the non-linear function (nn.functional name), recommended to use only with ‘relu’ or ‘leaky_relu’ (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.kaiming_normal_(data, a=0, mode=’fan_in’, nonlinearity=’leaky_relu’)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.kaiming_uniform">
+<span class="sig-name descname"><span class="pre">kaiming_uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fan_in'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonlinearity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'leaky_relu'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.kaiming_uniform"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.kaiming_uniform" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>a</strong> – the negative slope of the rectifier used after this layer (only used with ‘leaky_relu’)</p></li>
+<li><p><strong>mode</strong> – either ‘fan_in’ (default) or ‘fan_out’. Choosing ‘fan_in’ preserves the magnitude of the variance of the weights in the forward pass. Choosing ‘fan_out’ preserves the magnitudes in the backwards pass.</p></li>
+<li><p><strong>nonlinearity</strong> – the non-linear function (nn.functional name), recommended to use only with ‘relu’ or ‘leaky_relu’ (default).</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.kaiming_uniform_(data, a=0, mode=’fan_in’, nonlinearity=’leaky_relu’)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.zero_init">
+<span class="sig-name descname"><span class="pre">zero_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constant_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.zero_init"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.zero_init" title="永久链接至目标">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">参数</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>tensor</em>) – an n-dimensional torch.Tensor</p></li>
+<li><p><strong>constant_value</strong> (<em>float</em>) – the value to fill the tensor with</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回</dt>
+<dd class="field-even"><p>torch.nn.init.constant_(data, constant_value)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.sin">
+<span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.sin"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.sin" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.cos">
+<span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.cos"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.cos" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.tan">
+<span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.tan"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.tan" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.log"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.log" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.log2">
+<span class="sig-name descname"><span class="pre">log2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.log2"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.log2" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.log10">
+<span class="sig-name descname"><span class="pre">log10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.log10"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.log10" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="spaic.Backend.Torch_Backend.Torch_Backend.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/spaic/Backend/Torch_Backend.html#Torch_Backend.reset"><span class="viewcode-link"><span class="pre">[源代码]</span></span></a><a class="headerlink" href="#spaic.Backend.Torch_Backend.Torch_Backend.reset" title="永久链接至目标">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spaic.Backend">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spaic.Backend" title="永久链接至标题">¶</a></h2>
+<p>Created on 2020/8/11
+&#64;project: SPAIC
+&#64;author: Hong Chaofei
+&#64;contact: <a class="reference external" href="mailto:hongchf&#37;&#52;&#48;gmail&#46;com">hongchf<span>&#64;</span>gmail<span>&#46;</span>com</a></p>
+<p>&#64;description:</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

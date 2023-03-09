@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Learning.Learner &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure_en/0_index.html">Basic Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output_en.html">Input output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend_en.html">Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model_en.html">save or load model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom_en/0_index.html">Custom</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor_en.html">Monitor</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.Learning.Learner</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.Learning.Learner 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Created on 2020/8/12</span>
+<span class="sd">@project: SPAIC</span>
+<span class="sd">@filename: Learner</span>
+<span class="sd">@author: Hong Chaofei</span>
+<span class="sd">@contact: hongchf@gmail.com</span>
+
+<span class="sd">@description:</span>
+<span class="sd">定义学习模块，包括各种学习算法对仿真计算过程中插入的各种计算模块，以及记录需要学习连接的接口</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># from ..Network.Connection import Connection</span>
+<span class="c1"># from ..Neuron.Neuron import NeuronGroup</span>
+<span class="kn">from</span> <span class="nn">..Network.Assembly</span> <span class="kn">import</span> <span class="n">BaseModule</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<div class="viewcode-block" id="Learner"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner">[文档]</a><span class="k">class</span> <span class="nc">Learner</span><span class="p">(</span><span class="n">BaseModule</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Base learner model for all the learner model.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            parameters(dict) : The parameters for learner.</span>
+<span class="sd">            super_parameters(dict) : Super parameters for future use.</span>
+<span class="sd">            backend_functions(dict) : Contains all the learner model we can choose.</span>
+
+<span class="sd">            name(str) : The typical name for the learner.</span>
+<span class="sd">            preferred_backend(str) : Choose which kind of backend to use. Like &quot;Pytorch&quot;, &quot;Tensorflow&quot; or &quot;Jax&quot;.</span>
+<span class="sd">            trainable_groups(dict) : Trainable container, includes nodes and layers to train.</span>
+<span class="sd">            trainable_connections(dict) : Trainable container, includes connections to train.</span>
+
+<span class="sd">            init_trainable: The initial state of this learner of whether it is trainable.</span>
+
+<span class="sd">        Methods:</span>
+<span class="sd">            add_trainable(self, trainable) : Add target object (Network, Assembly, Connection,</span>
+<span class="sd">                            or list of them) to the trainable container</span>
+<span class="sd">            build(self, backend) : Build Learner, choose the backend as user wish, if we have already finished the api.</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">learning_algorithms</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">learning_optims</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">optim_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Adam&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">,</span> <span class="s1">&#39;AdamW&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span><span class="p">,</span>
+                  <span class="s1">&#39;SparseAdam&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SparseAdam</span><span class="p">,</span> <span class="s1">&#39;Adamax&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adamax</span><span class="p">,</span>
+                  <span class="s1">&#39;ASGD&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">ASGD</span><span class="p">,</span> <span class="s1">&#39;LBFGS&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">LBFGS</span><span class="p">,</span>
+                  <span class="s1">&#39;RMSprop&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">RMSprop</span><span class="p">,</span> <span class="s1">&#39;Rpop&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Rprop</span><span class="p">,</span>
+                  <span class="s1">&#39;SGD&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">,</span> <span class="s1">&#39;Adadelta&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adadelta</span><span class="p">,</span>
+                  <span class="s1">&#39;Adagrad&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adagrad</span><span class="p">}</span>
+
+    <span class="n">lr_schedule_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;LambdaLR&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">LambdaLR</span><span class="p">,</span>
+                        <span class="s1">&#39;StepLR&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">StepLR</span><span class="p">,</span>
+                        <span class="s1">&#39;MultiStepLR&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">MultiStepLR</span><span class="p">,</span>
+                        <span class="s1">&#39;ExponentialLR&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ExponentialLR</span><span class="p">,</span>
+                        <span class="s1">&#39;CosineAnnealingLR&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">CosineAnnealingLR</span><span class="p">,</span>
+                        <span class="s1">&#39;ReduceLROnPlateau&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span><span class="p">,</span>
+                        <span class="s1">&#39;CyclicLR&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">CyclicLR</span><span class="p">,</span>
+                        <span class="s1">&#39;CosineAnnealingWarmRestarts&#39;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">CosineAnnealingWarmRestarts</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pathway</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;STCA&#39;</span><span class="p">,</span> <span class="s1">&#39;STBP&#39;</span><span class="p">,</span> <span class="s1">&#39;RSTDP&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">Learner</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">super_parameters</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">backend_functions</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optim_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lr_schedule_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefered_backend</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainable_groups</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainable_connections</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainable_nodes</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trainable_modules</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_trainable</span> <span class="o">=</span> <span class="n">trainable</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pathway_groups</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pathway_connections</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pathway_nodes</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pathway_modules</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_pathway</span> <span class="o">=</span> <span class="n">pathway</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_operations</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<div class="viewcode-block" id="Learner.add_trainable"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.add_trainable">[文档]</a>    <span class="k">def</span> <span class="nf">add_trainable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trainable</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Add target object (Assembly, Connection, or list of them) to the trainable container</span>
+<span class="sd">            Args:</span>
+<span class="sd">                trainable(list) : The trainable target waiting for added.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">from</span> <span class="nn">..Network.Assembly</span> <span class="kn">import</span> <span class="n">Assembly</span>
+        <span class="kn">from</span> <span class="nn">..Network.Connections</span> <span class="kn">import</span> <span class="n">Connection</span>
+        <span class="kn">from</span> <span class="nn">..Neuron.Neuron</span> <span class="kn">import</span> <span class="n">NeuronGroup</span>
+        <span class="kn">from</span> <span class="nn">..Neuron.Module</span> <span class="kn">import</span> <span class="n">Module</span>
+        <span class="kn">from</span> <span class="nn">..Neuron.Node</span> <span class="kn">import</span> <span class="n">Node</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">trainable</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">trainable</span> <span class="o">=</span> <span class="p">[</span><span class="n">trainable</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">trainable</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">NeuronGroup</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trainable_groups</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Connection</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trainable_connections</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Node</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trainable_nodes</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Module</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">trainable_modules</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Assembly</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">sub_t</span> <span class="ow">in</span> <span class="n">target</span><span class="o">.</span><span class="n">get_groups</span><span class="p">():</span>
+                    <span class="n">trainable</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_t</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">sub_t</span> <span class="ow">in</span> <span class="n">target</span><span class="o">.</span><span class="n">get_connections</span><span class="p">():</span>
+                    <span class="n">trainable</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_t</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Learner.add_pathway"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.add_pathway">[文档]</a>    <span class="k">def</span> <span class="nf">add_pathway</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pathway</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Add target object (Assembly, Connection, or list of them) to the pathway container</span>
+<span class="sd">            Args:</span>
+<span class="sd">                pathway(list) : The pathway target waiting for added.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">from</span> <span class="nn">..Network.Assembly</span> <span class="kn">import</span> <span class="n">Assembly</span>
+        <span class="kn">from</span> <span class="nn">..Network.Connections</span> <span class="kn">import</span> <span class="n">Connection</span>
+        <span class="kn">from</span> <span class="nn">..Neuron.Neuron</span> <span class="kn">import</span> <span class="n">NeuronGroup</span>
+        <span class="kn">from</span> <span class="nn">..Neuron.Module</span> <span class="kn">import</span> <span class="n">Module</span>
+        <span class="kn">from</span> <span class="nn">..Neuron.Node</span> <span class="kn">import</span> <span class="n">Node</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pathway</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">pathway</span> <span class="o">=</span> <span class="p">[</span><span class="n">pathway</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">pathway</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">NeuronGroup</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pathway_groups</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Connection</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pathway_connections</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Node</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pathway_nodes</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Module</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">pathway_modules</span><span class="p">[</span><span class="n">target</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">Assembly</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">sub_t</span> <span class="ow">in</span> <span class="n">target</span><span class="o">.</span><span class="n">get_groups</span><span class="p">():</span>
+                    <span class="n">pathway</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_t</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">sub_t</span> <span class="ow">in</span> <span class="n">target</span><span class="o">.</span><span class="n">get_connections</span><span class="p">():</span>
+                    <span class="n">pathway</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub_t</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Learner.build"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Build Learner, choose the backend as user wish, if we have already finished the api.</span>
+<span class="sd">            Args:</span>
+<span class="sd">                backend(backend) : Backend we have.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_trainable</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># If user has given the &#39;trainable&#39; parameter.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_trainable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">init_trainable</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">backend_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">prefered_backend</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;the backend </span><span class="si">%s</span><span class="s2"> is not supported by the learning rule </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">backend</span><span class="o">.</span><span class="n">backend_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">optim_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">build_optimizer</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_schedule_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">build_lr_shedule</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;STCA&#39;</span><span class="p">,</span> <span class="s1">&#39;STBP&#39;</span><span class="p">,</span> <span class="s1">&#39;RSTDP&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">Learner</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
+        <span class="n">algorithm</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">algorithm</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">learning_algorithms</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">learning_algorithms</span><span class="p">[</span><span class="n">algorithm</span><span class="p">](</span><span class="n">trainable</span><span class="o">=</span><span class="n">trainable</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No algorithm </span><span class="si">%s</span><span class="s2"> in algorithm list&quot;</span> <span class="o">%</span> <span class="n">algorithm</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Learner.set_optimizer"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.set_optimizer">[文档]</a>    <span class="k">def</span> <span class="nf">set_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optim_name</span><span class="p">,</span> <span class="n">optim_lr</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optim_lr</span> <span class="o">=</span> <span class="n">optim_lr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optim_para</span> <span class="o">=</span> <span class="n">kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optim_name</span> <span class="o">=</span> <span class="n">optim_name</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">optim_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">Learner</span><span class="o">.</span><span class="n">optim_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No optim </span><span class="si">%s</span><span class="s2"> in optim list&quot;</span> <span class="o">%</span> <span class="n">Learner</span><span class="o">.</span><span class="n">optim_dict</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Learner.set_schedule"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.set_schedule">[文档]</a>    <span class="k">def</span> <span class="nf">set_schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lr_schedule_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lr_schedule_para</span> <span class="o">=</span> <span class="n">kwargs</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lr_schedule_name</span> <span class="o">=</span> <span class="n">lr_schedule_name</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr_schedule_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">Learner</span><span class="o">.</span><span class="n">lr_schedule_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No lr_schedule </span><span class="si">%s</span><span class="s2"> in lr_schedule list&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Learner.get_param"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.get_param">[文档]</a>    <span class="k">def</span> <span class="nf">get_param</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="n">var_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">conn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_connections</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">conn</span><span class="o">.</span><span class="n">_var_names</span><span class="p">:</span>
+                <span class="n">var_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_nodes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">_var_names</span><span class="p">:</span>
+                <span class="n">var_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">_var_names</span><span class="p">:</span>
+                <span class="n">var_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">_parameters_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">var_name</span><span class="p">:</span>
+                <span class="n">param</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">mod</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_modules</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">param</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">mod</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">param</span></div>
+
+<div class="viewcode-block" id="Learner.get_varname"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.get_varname">[文档]</a>    <span class="k">def</span> <span class="nf">get_varname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;:{&#39;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;}&#39;</span>
+        <span class="k">return</span> <span class="n">name</span></div>
+
+<div class="viewcode-block" id="Learner.build_optimizer"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.build_optimizer">[文档]</a>    <span class="k">def</span> <span class="nf">build_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_param</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optim</span> <span class="o">=</span> <span class="n">Learner</span><span class="o">.</span><span class="n">optim_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">optim_name</span><span class="p">](</span><span class="n">param</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">optim_lr</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">optim_para</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Learner.build_lr_shedule"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.build_lr_shedule">[文档]</a>    <span class="k">def</span> <span class="nf">build_lr_shedule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">shedule</span> <span class="o">=</span> <span class="n">Learner</span><span class="o">.</span><span class="n">lr_schedule_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">lr_schedule_name</span><span class="p">](</span><span class="bp">self</span><span class="o">.</span><span class="n">optim</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">lr_schedule_para</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Learner.optim_step"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.optim_step">[文档]</a>    <span class="k">def</span> <span class="nf">optim_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">step</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Learner.optim_zero_grad"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.optim_zero_grad">[文档]</a>    <span class="k">def</span> <span class="nf">optim_zero_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Learner.optim_shedule"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.optim_shedule">[文档]</a>    <span class="k">def</span> <span class="nf">optim_shedule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">shedule</span><span class="o">.</span><span class="n">step</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Learner.register"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.register">[文档]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">Learner</span><span class="o">.</span><span class="n">learning_algorithms</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">((</span><span class="s1">&#39;A learning algorithm with the name &quot;</span><span class="si">%s</span><span class="s1">&quot; has already been registered&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">Learner</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;Given algorithm of type </span><span class="si">%s</span><span class="s1"> does not seem to be a valid algorithm.&#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">algorithm</span><span class="p">))))</span>
+
+        <span class="n">Learner</span><span class="o">.</span><span class="n">learning_algorithms</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">algorithm</span></div>
+
+<div class="viewcode-block" id="Learner.connection_function"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.connection_function">[文档]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">connection_function</span><span class="p">(</span><span class="n">learner</span><span class="p">,</span> <span class="n">input_vars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">output_vars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">new_vars_dict</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">execute_condition</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;initial&#39;</span><span class="p">,</span><span class="s1">&#39;iterative&#39;</span><span class="p">,</span><span class="s1">&#39;end&#39;</span><span class="p">],</span> <span class="n">target</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;trainable&#39;</span><span class="p">,</span> <span class="s1">&#39;pathway&#39;</span><span class="p">]):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Learner.Assamble_function"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.Learner.Assamble_function">[文档]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">Assamble_function</span><span class="p">(</span><span class="n">learner</span><span class="p">,</span> <span class="n">input_vars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">output_vars</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">new_vars_dict</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span> <span class="n">execute_condition</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;initial&#39;</span><span class="p">,</span><span class="s1">&#39;iterative&#39;</span><span class="p">,</span><span class="s1">&#39;end&#39;</span><span class="p">],</span> <span class="n">target</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;trainable&#39;</span><span class="p">,</span> <span class="s1">&#39;pathway&#39;</span><span class="p">]):</span>
+        <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="SpikeProp"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.SpikeProp">[文档]</a><span class="k">class</span> <span class="nc">SpikeProp</span><span class="p">(</span><span class="n">Learner</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SpikeProp</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="k">pass</span></div>
+
+<span class="c1"># Learner.register(&quot;spikeprop&quot;, SpikeProp)</span>
+
+
+<div class="viewcode-block" id="ReSuMe"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.ReSuMe">[文档]</a><span class="k">class</span> <span class="nc">ReSuMe</span><span class="p">(</span><span class="n">Learner</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ReSuMe</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="k">pass</span></div>
+
+
+<span class="c1"># Learner.register(&quot;ReSuMe&quot;, ReSuMe)</span>
+
+
+<div class="viewcode-block" id="FORCE"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.Learner.FORCE">[文档]</a><span class="k">class</span> <span class="nc">FORCE</span><span class="p">(</span><span class="n">Learner</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FORCE</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="k">pass</span></div>
+
+
+<span class="c1"># Learner.register(&quot;force&quot;, FORCE)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,497 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>spaic.Learning.RSTDP &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../basic_structure/0_index.html">基础结构</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">模块代码</a> &raquo;</li>
+        
+      <li>spaic.Learning.RSTDP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>spaic.Learning.RSTDP 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1"># encoding: utf-8</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">@author: Yuan Mengwen</span>
+<span class="sd">@contact: mwyuan94@gmail.com</span>
+<span class="sd">@project: PyCharm</span>
+<span class="sd">@filename: RSTDP.py</span>
+<span class="sd">@time:2021/4/8 10:46</span>
+<span class="sd">@description:</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">.Learner</span> <span class="kn">import</span> <span class="n">Learner</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<div class="viewcode-block" id="RSTDP"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.RSTDP.RSTDP">[文档]</a><span class="k">class</span> <span class="nc">RSTDP</span><span class="p">(</span><span class="n">Learner</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reward-modulated STDP. Adapted from `(Florian 2007)</span>
+<span class="sd">    &lt;https://florian.io/papers/2007_Florian_Modulated_STDP.pdf&gt;`.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        lr (int or float): learning rate</span>
+<span class="sd">        trainable: It can be network or neurongroups</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        tau_plus (int or float): Time constant for pre -synaptic firing trace determines the range of interspike intervals over which synaptic occur.</span>
+<span class="sd">        tau_minus (int or float): Time constant for post-synaptic firing trace.</span>
+<span class="sd">        a_plus (float): Learning rate for post-synaptic.</span>
+<span class="sd">        a_minus (flaot): Learning rate for pre-synaptic.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RSTDP</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">trainable</span><span class="o">=</span><span class="n">trainable</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefered_backend</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pytorch&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;RSTDP&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lr&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tau_constant_variables</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tau_constant_variables</span><span class="p">[</span><span class="s1">&#39;tau_plus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tau_plus&#39;</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tau_constant_variables</span><span class="p">[</span><span class="s1">&#39;tau_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tau_minus&#39;</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constant_variables</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constant_variables</span><span class="p">[</span><span class="s1">&#39;A_plus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;A_plus&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constant_variables</span><span class="p">[</span><span class="s1">&#39;A_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;A_minus&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RSTDP.weight_update"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.RSTDP.RSTDP.weight_update">[文档]</a>    <span class="k">def</span> <span class="nf">weight_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">eligibility</span><span class="p">,</span> <span class="n">reward</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        RSTDP learning rule for ``Connection`` subclass of ``AbstractConnection`` class.</span>
+<span class="sd">        Args:</span>
+<span class="sd">            weight : weight between pre and post neurongroup</span>
+<span class="sd">            eligibility: a decaying memory of the relationships between the recent pairs of pre and postsynaptic spike pairs</span>
+<span class="sd">            reward: reward signal</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Compute weight update based on the eligibility value of the past timestep.</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reward</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">reward</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">eligibility</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">reward</span> <span class="o">=</span> <span class="n">reward</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">reward</span> <span class="o">=</span> <span class="n">reward</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">eligibility</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">weight</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="n">reward</span> <span class="o">*</span> <span class="n">eligibility</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">weight</span></div>
+
+<div class="viewcode-block" id="RSTDP.build"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.RSTDP.RSTDP.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RSTDP</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">dt</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">tau_var</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tau_constant_variables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">tau_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">/</span> <span class="n">tau_var</span><span class="p">)</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">tau_var</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constant_variables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">var_shape</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">shape</span>
+                    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">var_shape</span><span class="p">)</span>  <span class="c1"># (1, shape)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">var</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">var_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+                    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">var_len</span><span class="p">)</span>  <span class="c1"># (1, shape)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">var</span><span class="p">)</span>
+
+        <span class="n">permute_name</span> <span class="o">=</span> <span class="s1">&#39;rstdp_permute_dim&#39;</span>
+        <span class="n">permute_dim_value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">permute_name</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">permute_dim_value</span><span class="p">,</span> <span class="n">is_constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">reward_name</span> <span class="o">=</span> <span class="s1">&#39;Output_Reward[updated]&#39;</span>
+
+        <span class="c1"># Traverse all trainable connections</span>
+        <span class="k">for</span> <span class="n">conn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_connections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">preg</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">pre_assembly</span>
+            <span class="n">postg</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">post_assembly</span>
+            <span class="n">pre_name</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_input_name</span><span class="p">(</span><span class="n">preg</span><span class="p">,</span> <span class="n">postg</span><span class="p">)</span>
+            <span class="n">post_name</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_group_name</span><span class="p">(</span><span class="n">postg</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">)</span>
+            <span class="n">weight_name</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_link_name</span><span class="p">(</span><span class="n">preg</span><span class="p">,</span> <span class="n">postg</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+
+            <span class="c1"># p_plus tracks the influence of presynaptic spikes; p_minus tracks the influence of postsynaptic spikes</span>
+            <span class="n">p_plus_name</span> <span class="o">=</span> <span class="n">pre_name</span> <span class="o">+</span> <span class="s1">&#39;_</span><span class="si">{p_plus}</span><span class="s1">&#39;</span>
+            <span class="n">p_minus_name</span> <span class="o">=</span> <span class="n">post_name</span> <span class="o">+</span> <span class="s1">&#39;_</span><span class="si">{p_minus}</span><span class="s1">&#39;</span>
+            <span class="n">eligibility_name</span> <span class="o">=</span> <span class="n">weight_name</span> <span class="o">+</span> <span class="s1">&#39;_</span><span class="si">{eligibility}</span><span class="s1">&#39;</span>
+            <span class="n">pre_shape_temp</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">pre_name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pre_shape_temp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pre_shape_temp</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">pre_shape</span> <span class="o">=</span> <span class="p">[</span><span class="n">pre_shape_temp</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pre_shape_temp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">pre_shape_temp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">pre_shape_temp</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pre_shape</span> <span class="o">=</span> <span class="n">pre_shape_temp</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">p_plus_name</span><span class="p">,</span> <span class="n">pre_shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">p_minus_name</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">post_name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">eligibility_name</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">weight_name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+            <span class="c1"># Equations</span>
+            <span class="c1"># p_plus *= np.exp(-dt / tau_plus)</span>
+            <span class="c1"># p_plus += A_plus * pre</span>
+            <span class="c1"># p_minus *= np.exp(-dt / tau_minus)</span>
+            <span class="c1"># p_minus += A_minus * post</span>
+            <span class="c1"># eligibility = torch.matmul(post.transpose(1, 0), p_plus) + torch.matmul(p_minus.transpose(1, 0), pre)</span>
+
+            <span class="c1"># Update p_plus values</span>
+            <span class="c1"># backend.add_operation([&#39;p_plus_temp&#39;, &#39;var_mult&#39;, &#39;A_plus&#39;, pre_name])</span>
+            <span class="c1"># backend.add_operation([p_plus_name, &#39;var_linear&#39;, &#39;tau_plus&#39;, p_plus_name, &#39;p_plus_temp&#39;])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;p_plus_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;var_mult&#39;</span><span class="p">,</span> <span class="s1">&#39;tau_plus&#39;</span><span class="p">,</span> <span class="n">p_plus_name</span><span class="p">])</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pre_shape_temp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pre_shape_temp</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="c1"># if pre layer is 2d feature map</span>
+                <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;pre_name_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;feature_map_flatten&#39;</span><span class="p">,</span> <span class="n">pre_name</span><span class="p">])</span>
+                <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">p_plus_name</span><span class="p">,</span> <span class="s1">&#39;var_linear&#39;</span><span class="p">,</span> <span class="s1">&#39;A_plus&#39;</span><span class="p">,</span> <span class="s1">&#39;pre_name_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;p_plus_temp&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">p_plus_name</span><span class="p">,</span> <span class="s1">&#39;var_linear&#39;</span><span class="p">,</span> <span class="s1">&#39;A_plus&#39;</span><span class="p">,</span> <span class="n">pre_name</span><span class="p">,</span> <span class="s1">&#39;p_plus_temp&#39;</span><span class="p">])</span>
+
+            <span class="c1"># Update p_minus values</span>
+            <span class="c1"># backend.add_operation([&#39;p_minus_temp&#39;, &#39;var_mult&#39;, &#39;A_minus&#39;, post_name])</span>
+            <span class="c1"># backend.add_operation([p_minus_name, &#39;var_linear&#39;, &#39;tau_minus&#39;, p_minus_name, &#39;p_minus_temp&#39;])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;p_minus_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;var_mult&#39;</span><span class="p">,</span> <span class="s1">&#39;tau_minus&#39;</span><span class="p">,</span> <span class="n">p_minus_name</span><span class="p">])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">p_minus_name</span><span class="p">,</span> <span class="s1">&#39;var_linear&#39;</span><span class="p">,</span> <span class="s1">&#39;A_minus&#39;</span><span class="p">,</span> <span class="n">post_name</span><span class="p">,</span> <span class="s1">&#39;p_minus_temp&#39;</span><span class="p">])</span>
+
+            <span class="c1"># Calculate point eligibility value</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;post_permute&#39;</span><span class="p">,</span> <span class="s1">&#39;permute&#39;</span><span class="p">,</span> <span class="n">post_name</span><span class="p">,</span> <span class="n">permute_name</span><span class="p">])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;pre_post&#39;</span><span class="p">,</span> <span class="s1">&#39;mat_mult&#39;</span><span class="p">,</span> <span class="s1">&#39;post_permute&#39;</span><span class="p">,</span> <span class="n">p_plus_name</span> <span class="o">+</span> <span class="s1">&#39;[updated]&#39;</span><span class="p">])</span>
+
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;p_minus_permute&#39;</span><span class="p">,</span> <span class="s1">&#39;permute&#39;</span><span class="p">,</span> <span class="n">p_minus_name</span> <span class="o">+</span> <span class="s1">&#39;[updated]&#39;</span><span class="p">,</span> <span class="n">permute_name</span><span class="p">])</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pre_shape_temp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pre_shape_temp</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;post_pre&#39;</span><span class="p">,</span> <span class="s1">&#39;mat_mult&#39;</span><span class="p">,</span> <span class="s1">&#39;p_minus_permute&#39;</span><span class="p">,</span> <span class="s1">&#39;pre_name_temp&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;post_pre&#39;</span><span class="p">,</span> <span class="s1">&#39;mat_mult&#39;</span><span class="p">,</span> <span class="s1">&#39;p_minus_permute&#39;</span><span class="p">,</span> <span class="n">pre_name</span><span class="p">])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">eligibility_name</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;pre_post&#39;</span><span class="p">,</span> <span class="s1">&#39;post_pre&#39;</span><span class="p">])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">weight_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_update</span><span class="p">,</span> <span class="n">weight_name</span><span class="p">,</span> <span class="n">eligibility_name</span><span class="p">,</span> <span class="n">reward_name</span><span class="p">])</span></div></div>
+<span class="n">Learner</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;rstdp&#39;</span><span class="p">,</span> <span class="n">RSTDP</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="RSTDPET"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.RSTDP.RSTDPET">[文档]</a><span class="k">class</span> <span class="nc">RSTDPET</span><span class="p">(</span><span class="n">Learner</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reward-modulated STDP with eligibility trace. Adapted from `(Florian 2007)</span>
+<span class="sd">    &lt;https://florian.io/papers/2007_Florian_Modulated_STDP.pdf&gt;`.</span>
+<span class="sd">    Args:</span>
+<span class="sd">        lr (int or float): learning rate</span>
+<span class="sd">        trainable: It can be network or neurongroups</span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        tau_plus (int or float): Time constant for pre -synaptic firing trace determines the range of interspike intervals over which synaptic occur.</span>
+<span class="sd">        tau_minus (int or float): Time constant for post-synaptic firing trace.</span>
+<span class="sd">        a_plus (float): Learning rate for post-synaptic.</span>
+<span class="sd">        a_minus (flaot): Learning rate for pre-synaptic.</span>
+<span class="sd">    Notes:</span>
+<span class="sd">        Batch_size for network using RSTDPET as learning algorithm must be 1.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lr</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RSTDPET</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">trainable</span><span class="o">=</span><span class="n">trainable</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefered_backend</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pytorch&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;RSTDPET&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">lr</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tau_constant_variables</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tau_constant_variables</span><span class="p">[</span><span class="s1">&#39;tau_plus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tau_plus&#39;</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tau_constant_variables</span><span class="p">[</span><span class="s1">&#39;tau_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tau_minus&#39;</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tau_constant_variables</span><span class="p">[</span><span class="s1">&#39;tau_e_trace&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tau_e_trace&#39;</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tau_membrane_variables</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tau_membrane_variables</span><span class="p">[</span><span class="s1">&#39;tau_e&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tau_e&#39;</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constant_variables</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constant_variables</span><span class="p">[</span><span class="s1">&#39;A_plus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;A_plus&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_constant_variables</span><span class="p">[</span><span class="s1">&#39;A_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;A_minus&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RSTDPET.weight_update"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.RSTDP.RSTDPET.weight_update">[文档]</a>    <span class="k">def</span> <span class="nf">weight_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">eligibility_trace</span><span class="p">,</span> <span class="n">reward</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        RSTDPET learning rule for ``Connection`` subclass of ``AbstractConnection`` class.</span>
+<span class="sd">        Notes:</span>
+<span class="sd">            The batch of pre and post should be 1</span>
+<span class="sd">        Args:</span>
+<span class="sd">            weight : weight between pre and post neurongroup</span>
+<span class="sd">            eligibility_trace: a decaying memory of the relationships between the recent pairs of pre and postsynaptic spike pairs</span>
+<span class="sd">            reward: reward signal</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="c1"># Keep parameters consistent through inplace operation</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reward</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">reward</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">eligibility_trace</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="n">reward</span> <span class="o">=</span> <span class="n">reward</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">reward</span> <span class="o">=</span> <span class="n">reward</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">eligibility_trace</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">weight</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">*</span> <span class="n">reward</span> <span class="o">*</span> <span class="n">eligibility_trace</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">weight</span></div>
+
+<div class="viewcode-block" id="RSTDPET.build"><a class="viewcode-back" href="../../../spaic.Learning.html#spaic.Learning.RSTDP.RSTDPET.build">[文档]</a>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">backend</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RSTDPET</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">backend</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">dt</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">tau_var</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tau_constant_variables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">tau_var</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">dt</span> <span class="o">/</span> <span class="n">tau_var</span><span class="p">)</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">tau_var</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">tau_membrane_var</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tau_membrane_variables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">tau_membrane_var</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dt</span><span class="o">/</span><span class="n">tau_membrane_var</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>  <span class="c1"># (1, neuron_num)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">tau_membrane_var</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constant_variables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">var_shape</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">shape</span>
+                    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">var_shape</span><span class="p">)</span>  <span class="c1"># (1, shape)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">var</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">var_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+                    <span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">var_len</span><span class="p">)</span>  <span class="c1"># (1, shape)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">var</span><span class="p">)</span>
+
+        <span class="n">view_name</span> <span class="o">=</span> <span class="s1">&#39;rstdpet_view_dim&#39;</span>
+        <span class="n">view_dim_value</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">view_name</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">view_dim_value</span><span class="p">,</span> <span class="n">is_constant</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">reward_name</span> <span class="o">=</span> <span class="s1">&#39;Output_Reward[updated]&#39;</span>
+
+        <span class="c1"># Traverse all trainable connections</span>
+        <span class="k">for</span> <span class="n">conn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">trainable_connections</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+
+            <span class="n">preg</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">pre_assembly</span>
+            <span class="n">postg</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">post_assembly</span>
+            <span class="n">pre_name</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_input_name</span><span class="p">(</span><span class="n">preg</span><span class="p">,</span> <span class="n">postg</span><span class="p">)</span>
+            <span class="n">post_name</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_group_name</span><span class="p">(</span><span class="n">postg</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">)</span>
+            <span class="n">weight_name</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">get_link_name</span><span class="p">(</span><span class="n">preg</span><span class="p">,</span> <span class="n">postg</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+
+            <span class="c1"># p_plus tracks the influence of presynaptic spikes; p_minus tracks the influence of postsynaptic spikes</span>
+            <span class="n">p_plus_name</span> <span class="o">=</span> <span class="n">pre_name</span> <span class="o">+</span> <span class="s1">&#39;_</span><span class="si">{p_plus}</span><span class="s1">&#39;</span>
+            <span class="n">p_minus_name</span> <span class="o">=</span> <span class="n">post_name</span> <span class="o">+</span> <span class="s1">&#39;_</span><span class="si">{p_minus}</span><span class="s1">&#39;</span>
+            <span class="n">eligibility_name</span> <span class="o">=</span> <span class="n">weight_name</span> <span class="o">+</span> <span class="s1">&#39;_</span><span class="si">{eligibility}</span><span class="s1">&#39;</span>
+            <span class="n">eligibility_trace_name</span> <span class="o">=</span> <span class="n">weight_name</span> <span class="o">+</span> <span class="s1">&#39;_</span><span class="si">{eligibility_trace}</span><span class="s1">&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">p_plus_name</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">pre_name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">p_minus_name</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">post_name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">eligibility_name</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">weight_name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">variable_to_backend</span><span class="p">(</span><span class="n">eligibility_trace_name</span><span class="p">,</span> <span class="n">backend</span><span class="o">.</span><span class="n">_variables</span><span class="p">[</span><span class="n">weight_name</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
+            <span class="c1"># Equations</span>
+            <span class="c1"># pre = pre.view(-1)</span>
+            <span class="c1"># post = post.view(-1)</span>
+            <span class="c1"># p_plus *= np.exp(-dt / tau_plus)</span>
+            <span class="c1"># p_plus += A_plus * pre</span>
+            <span class="c1"># p_minus *= np.exp(-dt / tau_minus)</span>
+            <span class="c1"># p_minus += A_minus * post</span>
+            <span class="c1"># eligibility = torch.ger(post, p_plus) + torch.ger(p_minus, pre)</span>
+            <span class="c1"># eligibility_trace *= np.exp(-dt / tau_e_trace)</span>
+            <span class="c1"># eligibility_trace += eligibility / tau_e</span>
+
+            <span class="c1"># Update p_plus values</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;pre_view&#39;</span><span class="p">,</span> <span class="s1">&#39;view&#39;</span><span class="p">,</span> <span class="n">pre_name</span><span class="p">,</span> <span class="n">view_name</span><span class="p">])</span>
+            <span class="c1"># backend.add_operation([&#39;p_plus_temp&#39;, &#39;var_mult&#39;, &#39;A_plus&#39;, &#39;pre_view&#39;])</span>
+            <span class="c1"># backend.add_operation([p_plus_name, &#39;var_linear&#39;, &#39;tau_plus&#39;, p_plus_name, &#39;p_plus_temp&#39;])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;p_plus_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;var_mult&#39;</span><span class="p">,</span> <span class="s1">&#39;tau_plus&#39;</span><span class="p">,</span> <span class="n">p_plus_name</span><span class="p">])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">p_plus_name</span><span class="p">,</span> <span class="s1">&#39;var_linear&#39;</span><span class="p">,</span> <span class="s1">&#39;A_plus&#39;</span><span class="p">,</span> <span class="s1">&#39;pre_view&#39;</span><span class="p">,</span> <span class="s1">&#39;p_plus_temp&#39;</span><span class="p">])</span>
+
+            <span class="c1"># Update p_minus values</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;post_view&#39;</span><span class="p">,</span> <span class="s1">&#39;view&#39;</span><span class="p">,</span> <span class="n">post_name</span><span class="p">,</span> <span class="n">view_name</span><span class="p">])</span>
+            <span class="c1"># backend.add_operation([&#39;p_minus_temp&#39;, &#39;var_mult&#39;, &#39;A_minus&#39;, &#39;post_view&#39;])</span>
+            <span class="c1"># backend.add_operation([p_minus_name, &#39;var_linear&#39;, &#39;tau_minus&#39;, p_minus_name, &#39;p_minus_temp&#39;])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;p_minus_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;var_mult&#39;</span><span class="p">,</span> <span class="s1">&#39;tau_minus&#39;</span><span class="p">,</span> <span class="n">p_minus_name</span><span class="p">])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">p_minus_name</span><span class="p">,</span> <span class="s1">&#39;var_linear&#39;</span><span class="p">,</span> <span class="s1">&#39;A_minus&#39;</span><span class="p">,</span> <span class="s1">&#39;post_view&#39;</span><span class="p">,</span> <span class="s1">&#39;p_minus_temp&#39;</span><span class="p">])</span>
+
+            <span class="c1"># Calculate point eligibility value</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;pre_post&#39;</span><span class="p">,</span> <span class="s1">&#39;ger&#39;</span><span class="p">,</span> <span class="s1">&#39;post_view&#39;</span><span class="p">,</span> <span class="n">p_plus_name</span> <span class="o">+</span> <span class="s1">&#39;[updated]&#39;</span><span class="p">])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;post_pre&#39;</span><span class="p">,</span> <span class="s1">&#39;ger&#39;</span><span class="p">,</span> <span class="n">p_minus_name</span> <span class="o">+</span> <span class="s1">&#39;[updated]&#39;</span><span class="p">,</span> <span class="s1">&#39;pre_view&#39;</span><span class="p">])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">eligibility_name</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;pre_post&#39;</span><span class="p">,</span> <span class="s1">&#39;post_pre&#39;</span><span class="p">])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="s1">&#39;eligibility_trace_temp&#39;</span><span class="p">,</span> <span class="s1">&#39;var_mult&#39;</span><span class="p">,</span> <span class="s1">&#39;tau_e&#39;</span><span class="p">,</span> <span class="n">eligibility_name</span> <span class="o">+</span> <span class="s1">&#39;[updated]&#39;</span><span class="p">])</span>
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="n">eligibility_trace_name</span><span class="p">,</span> <span class="s1">&#39;var_linear&#39;</span><span class="p">,</span> <span class="s1">&#39;tau_e_trace&#39;</span><span class="p">,</span> <span class="n">eligibility_trace_name</span><span class="p">,</span> <span class="s1">&#39;eligibility_trace_temp&#39;</span><span class="p">])</span>
+
+            <span class="n">backend</span><span class="o">.</span><span class="n">add_operation</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight_update</span><span class="p">,</span> <span class="n">weight_name</span><span class="p">,</span> <span class="n">eligibility_trace_name</span><span class="p">,</span> <span class="n">reward_name</span><span class="p">])</span></div></div>
+
+<span class="n">Learner</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;rstdpet&#39;</span><span class="p">,</span> <span class="n">RSTDPET</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

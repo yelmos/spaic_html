@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>连接 &mdash; SPAIC 0.5 文档</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="突触" href="3_synaptic.html" />
+    <link rel="prev" title="神经元" href="1_neuron.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> SPAIC
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="在文档中搜索" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="0_index.html">基础结构</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1_neuron.html">神经元</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">连接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_synaptic.html">突触</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4_algorithm.html">算法</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5_encode_decode.html">编码解码</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../input_output.html">输入输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../backend.html">模拟后端 Backend</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../save_model.html">保存与读取模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../custom/0_index.html">自定义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../monitor.html">监视器</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPAIC</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="0_index.html">基础结构</a> &raquo;</li>
+        
+      <li>连接</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/basic_structure/2_connection.rst.txt" rel="nofollow"> 查看页面源码</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>连接<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>本章节主要介绍能够在SPAIC平台上使用的连接方式，包含了全连接，卷积连接，稀疏连接，一对一连接等。
+作为脉冲神经网络最为基本的组成结构之一，连接中包含了网络最为重要的权重信息。与此同时，作为类脑计算平台，SPAIC平台中的连接支持仿生连接的形式，即支持反馈连接与连接延迟以及突触连接等具有一定生理特征的连接方式。</p>
+<div class="section" id="id2">
+<h2>连接参数<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pre_assembly</span><span class="p">:</span> <span class="n">Assembly</span><span class="p">,</span> <span class="n">post_assembly</span><span class="p">:</span> <span class="n">Assembly</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">link_type</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;full&#39;</span><span class="p">,</span> <span class="s1">&#39;sparse_connect&#39;</span><span class="p">,</span> <span class="s1">&#39;conv&#39;</span><span class="p">,</span> <span class="s1">&#39;...&#39;</span><span class="p">),</span> <span class="n">syn_type</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;basic_synapse&#39;</span><span class="p">],</span>
+        <span class="n">max_delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sparse_with_mask</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">pre_var_name</span><span class="o">=</span><span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="n">post_var_name</span><span class="o">=</span><span class="s1">&#39;Isyn&#39;</span><span class="p">,</span>
+        <span class="n">syn_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>在连接的初始化参数中，我们可以看到，在建立连接时，必须给定的参数为突触前神经元、突触后神经元以及连接类型。</p>
+<ul class="simple">
+<li><p>pre_assembly - 突触前神经元，或是突触前神经元组，亦可视为连接的起点，上一层</p></li>
+<li><p>post_assembly - 突触后神经元，或是突触后神经元组，亦可视为连接的终点，下一层</p></li>
+<li><p>name - 连接的姓名，用于建立连接时更易区分，建议用户给定有意义的名称</p></li>
+<li><p>link_type - 连接类型，可选的有全连接、稀疏连接、卷积连接等</p></li>
+<li><p>syn_type - 突触类型，将会在突触部分进行更为详细的讲解</p></li>
+<li><p>max_delay - 突触延迟，即突触前神经元的信号将延迟几个时间步之后再传递给突触后神经元</p></li>
+<li><p>sparse_with_mask - 稀疏矩阵所用过滤器的开启与否</p></li>
+<li><p>pre_var_name - 突触前神经元对突触的输出，即该连接接收到的信号，默认接受到突触前神经元发放的‘output’脉冲信号，即默认</p></li>
+</ul>
+<p>为’O’
+- post_var_name - 突触对突触后神经元的输出，即输出的信号，默认为突触电流’Isyn‘
+- syn_kwargs - 突触的自定义参数，将在突触介绍部分做进一步讲解
+- **kwargs - 在自定义参数中包含了某些连接所需要的特定参数，这些参数将在下文提及这些连接时谈到</p>
+<p>除了这些参数以外，还有一些与权重相关的重要参数，例如:</p>
+<ul class="simple">
+<li><p>w_mean - 权重的平均值</p></li>
+<li><p>w_std - 权重的标准差</p></li>
+<li><p>w_max - 权重的最大值</p></li>
+<li><p>w_min - 权重的最小值</p></li>
+<li><p>weight - 权重值</p></li>
+</ul>
+<p>在没有给定权重值，也就是用户没有传入weight的情况下，我们会进行权重的随机生成，这个时候就需要借用到w_mean与w_std，根据方差与均值生成随机数之后，若用户设定了w_min与w_max则截取在w_min与w_max之间的值作为权重，否则则直接将生成的随机数作为权重。</p>
+<p>例如在连接conn1_example中，该连接在建立时将会根据均值为1，方差为5生成随机权重，并且将小于0.0的权重归为0.0，将大于2.0的权重归为2.0。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">conn1_example</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">,</span>
+                                <span class="n">w_mean</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">w_std</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">w_min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">w_max</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>全连接<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>全连接是连接中最为基本的一种形式，</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">conn1_full</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>全连接包含的重要关键字参数为：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1"># 权重，如果不给定权重，连接将采取生成随机权重</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mask&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1">#</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">w_std</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w_std&#39;</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span> <span class="c1"># 权重的方差，用于生成随机权重</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">w_mean</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w_mean&#39;</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">)</span> <span class="c1"># 权重的均值，用于生成随机权重</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">w_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w_max&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1"># 权重的最大值，</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">w_min</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w_min&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1"># 权重的最小值，</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">flatten_on</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;flatten&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="c1"># 拉平的操作，用于卷积层后</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>一对一连接<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>一对一连接在SPAIC中分为两种，基本的one_to_one以及稀疏形式的one_to_one_sparse，</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">conn_1to1</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;one_to_one&#39;</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">conn_1to1s</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;one_to_one_sparse&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>一对一连接主要包含的重要关键字参数为：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">w_std</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;w_std&#39;</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span> <span class="c1"># 权重的方差，用于生成随机权重</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>卷积连接<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>常见的卷积连接，池化方法可选择的有 <code class="code docutils literal notranslate"><span class="pre">avgpool</span></code> 以及 <code class="code docutils literal notranslate"><span class="pre">maxpool</span></code> ，这两个池化方法需要在突触类型中传入方可启用。</p>
+<p>卷积连接中主要包含的连接参数有：
+.. code-block:: python</p>
+<blockquote>
+<div><p>self.out_channels = kwargs.get(‘out_channels’, 4)  # 输出通道
+self.in_channels = kwargs.get(‘in_channels’, 1)    # 输入通道
+self.kernel_size = kwargs.get(‘kernel_size’, [3, 3])# 卷积核
+self.w_std = kwargs.get(‘w_std’, 0.05) # 权重的方差，用于生成随机权重
+self.w_mean = kwargs.get(‘w_mean’, 0.05) # 权重的均值，用于生成随机权重
+weight = kwargs.get(‘weight’, None) # 权重，如果不给定权重，连接将采取生成随机权重</p>
+<p>self.stride = kwargs.get(‘stride’, 1)
+self.padding = kwargs.get(‘padding’, 0)
+self.dilation = kwargs.get(‘dilation’, 1)
+self.groups = kwargs.get(‘groups’, 1)</p>
+</div></blockquote>
+<p>卷积连接的示例1：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">connection1</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;conv&#39;</span><span class="p">,</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                                      <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                                      <span class="n">init</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">init_param</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">9</span><span class="p">)),</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">9</span><span class="p">))})</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">connection2</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;conv&#39;</span><span class="p">,</span>
+                                      <span class="n">in_channels</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                                      <span class="n">init</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="n">init_param</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="mi">9</span><span class="p">)),</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="mi">9</span><span class="p">))})</span>
+
+<span class="bp">self</span><span class="o">.</span><span class="n">connection3</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer3</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">,</span>
+                                      <span class="n">syn_type</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;flatten&#39;</span><span class="p">,</span> <span class="s1">&#39;basic_synapse&#39;</span><span class="p">],</span>
+                                      <span class="n">init</span><span class="o">=</span><span class="s1">&#39;kaiming_normal&#39;</span><span class="p">,</span> <span class="n">init_param</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">5</span><span class="p">)})</span>
+</pre></div>
+</div>
+<p>卷积连接的示例2：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;conv&#39;</span><span class="p">,</span>
+                                <span class="n">syn_type</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;dropout&#39;</span><span class="p">,</span> <span class="s1">&#39;basic_synapse&#39;</span><span class="p">],</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+                                <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+                                <span class="n">init_param</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">128</span><span class="o">*</span><span class="mi">3</span><span class="o">*</span><span class="mi">3</span><span class="p">)),</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">128</span><span class="o">*</span><span class="mi">9</span><span class="p">))),</span> <span class="n">bias</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer3</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;conv&#39;</span><span class="p">,</span>
+                                <span class="n">syn_type</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;maxpool&#39;</span><span class="p">,</span> <span class="s1">&#39;dropout&#39;</span><span class="p">,</span> <span class="s1">&#39;basic_synapse&#39;</span><span class="p">],</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+                                <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span>
+                                <span class="n">pool_stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pool_padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+                                <span class="n">init_param</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">256</span><span class="o">*</span><span class="mi">9</span><span class="p">)),</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">256</span><span class="o">*</span><span class="mi">9</span><span class="p">))),</span> <span class="n">bias</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">conv4</span> <span class="o">=</span> <span class="n">spaic</span><span class="o">.</span><span class="n">Connection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer4</span><span class="p">,</span> <span class="n">link_type</span><span class="o">=</span><span class="s1">&#39;conv&#39;</span><span class="p">,</span>
+                                <span class="n">syn_type</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;maxpool&#39;</span><span class="p">,</span> <span class="s1">&#39;dropout&#39;</span><span class="p">,</span> <span class="s1">&#39;basic_synapse&#39;</span><span class="p">],</span> <span class="n">in_channels</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span>
+                                <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">stride</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span>
+                                <span class="n">pool_stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pool_padding</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+                                <span class="n">init_param</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">512</span><span class="o">*</span><span class="mi">9</span><span class="p">)),</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">512</span><span class="o">*</span><span class="mi">9</span><span class="p">))),</span> <span class="n">bias</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>稀疏连接<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>常见的稀疏连接，通过传入参数 :code:<a href="#id7"><span class="problematic" id="id8">`</span></a>density`来设置稀疏连接的连接稠密程度</p>
+</div>
+<div class="section" id="id9">
+<h2>随机连接<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<p>常见的随机连接，通过传入参数 :code:<a href="#id10"><span class="problematic" id="id11">`</span></a>probability`来设置随机连接的连接概率</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="3_synaptic.html" class="btn btn-neutral float-right" title="突触" accesskey="n" rel="next">下一页 <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="1_neuron.html" class="btn btn-neutral float-left" title="神经元" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> 上一页</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; 版权所有 2021, Zhejiang Lab.
+
+    </p>
+  </div>
+    
+    
+    
+    利用 <a href="https://www.sphinx-doc.org/">Sphinx</a> 构建，使用了 
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">主题</a>
+    
+    由 <a href="https://readthedocs.org">Read the Docs</a>开发. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
