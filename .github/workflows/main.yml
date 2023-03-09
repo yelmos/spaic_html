@@ -6,30 +6,34 @@ name: WAR CI
 on:
   push:
     branches:
-      - master # 当main分支发生push操作时，将执行所属工作流程
+      - main # 当main分支发生push操作时，将执行所属工作流程
     tag:
       - "*"
   pull_request_target:
     branches:
-      - master
+      - main
     tag:
       - "*"
-permissions:
-  contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./spaic/doc
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+          path: ./src/main/webapp
 
   deploy:
     needs: build
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
